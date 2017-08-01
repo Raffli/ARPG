@@ -8,8 +8,20 @@ public class PlayerAttack : MonoBehaviour {
     public bool leftMouseClick = false;
     public bool rightMouseClick = false;
 
+    public bool leftAttack = false;
+    public bool rightAttack = false;
+
+    public int lightDamage;
+    public int heavyDamage;
+
+    public SwordAttack sword;
+
+
     void Start () {
         animator = GetComponent<Animator>();
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<SwordAttack>();
+        sword.setLightDamage(lightDamage);
+        sword.setHeavyDamage(heavyDamage);
     }
 
     void FixedUpdate () {
@@ -23,6 +35,8 @@ public class PlayerAttack : MonoBehaviour {
         if (Input.GetAxis("Fire1") > 0)
         {
             leftMouseClick = true;
+            leftAttack = true;
+            StartCoroutine(ResetLeftMouse());
         }
         else
         {
@@ -32,27 +46,27 @@ public class PlayerAttack : MonoBehaviour {
         if (Input.GetAxis("Fire2") > 0)
         {
             rightMouseClick = true;
+            rightAttack = true;
+            StartCoroutine(ResetRightMouse());
         }
         else
         {
             rightMouseClick = false;
         }
+
+        sword.setAttack(leftAttack, rightAttack);
     }
 
     IEnumerator ResetLeftMouse()
     {
-        yield return new WaitForSeconds(0.1f);
-        leftMouseClick = false;
-        yield return null;
-
+        yield return new WaitForSeconds(0.5f);
+        leftAttack = false;
     }
 
     IEnumerator ResetRightMouse()
     {
-        yield return new WaitForSeconds(0.1f);
-        rightMouseClick = false;
-        yield return null;
-
+        yield return new WaitForSeconds(1.5f);
+        rightAttack = false;
     }
 
     IEnumerator InAction()
