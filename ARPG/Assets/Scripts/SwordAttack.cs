@@ -18,14 +18,14 @@ public class SwordAttack : MonoBehaviour {
 
     }
 
-    public void setLightDamage(int damage) {
+    public void SetLightDamage(int damage) {
         lightDamage = damage;
     }
-    public void setHeavyDamage(int damage) {
+    public void SetHeavyDamage(int damage) {
         heavyDamage = damage;
     }
 
-    public void setAttack(bool lAttack,bool hAttack)
+    public void SetAttack(bool lAttack,bool hAttack)
     {
         lightAttack = lAttack;
         heavyAttack = hAttack;

@@ -14,14 +14,14 @@ public class PlayerAttack : MonoBehaviour {
     public int lightDamage;
     public int heavyDamage;
 
-    public SwordAttack sword;
+    public GameObject sword;
 
 
     void Start () {
         animator = GetComponent<Animator>();
-        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<SwordAttack>();
-        sword.setLightDamage(lightDamage);
-        sword.setHeavyDamage(heavyDamage);
+        sword = GameObject.FindGameObjectWithTag("Sword");
+        sword.GetComponent<SwordAttack>().SetLightDamage(lightDamage);
+        sword.GetComponent<SwordAttack>().SetHeavyDamage(heavyDamage);
     }
 
     void FixedUpdate () {
@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour {
             rightMouseClick = false;
         }
 
-        sword.setAttack(leftAttack, rightAttack);
+        sword.GetComponent<SwordAttack>().SetAttack(leftAttack, rightAttack);
     }
 
     IEnumerator ResetLeftMouse()

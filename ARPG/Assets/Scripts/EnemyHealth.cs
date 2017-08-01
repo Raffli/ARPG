@@ -5,24 +5,30 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour {
 
 
-    public int health;
+    public int currentHealth;
+    public int maxHealth;
     Animator anim;
-	// Use this for initialization
-	void Start () {
+    bool isDead;
+
+    void Start () {
+        this.currentHealth = this.maxHealth;
         anim = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
-        if (health <= 0) {
-            anim.SetTrigger("Dead");
-        }
-	    	
+        
 	}
 
     public void ReduceHealth(int damage) {
-        health -= damage;
+        if (!isDead)
+        {
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                isDead = true;
+                anim.SetTrigger("Dead");
+            }
+        }
     }
 
 
