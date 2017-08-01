@@ -5,17 +5,18 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 6f;
-
     Vector3 movement;
     Rigidbody playerRigidbody;
     int floorMask;
     float camRayLength = 100f;
+    public Animator animator;
 
     void Awake ()
     {
         floorMask = LayerMask.GetMask ("Floor");
-
         playerRigidbody = GetComponent<Rigidbody> ();
+        animator = GetComponent<Animator>();
+
     }
 
 
@@ -25,9 +26,28 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Move (h, v);
-
         Turning ();
+
+        if (animator)
+        {
+            if (h != 0 || v != 0)
+            {
+                animator.SetBool("Walk", true);
+            }
+            else
+            {
+                animator.SetBool("Walk", false);
+
+            }
+
+            animator.SetFloat("Axis_Horizontal", h);
+            animator.SetFloat("Axis_Vertical", v);
+
+        }
+
+
     }
+		
 
 
     void Move (float h, float v)
@@ -55,6 +75,5 @@ public class PlayerMovement : MonoBehaviour
 
             playerRigidbody.MoveRotation(newRotatation);
         }
-
     }
 }
