@@ -156,7 +156,7 @@ namespace TornadoBanditsStudio.LowPolyFreePack
         private GUIStyle iconGUISkin;
         private GUIStyle textTitleGUISkin;
         private GUIStyle simpleTextGUISkin;
-        private GUIStyle buttonGUIStyle;
+        //private GUIStyle buttonGUIStyle;
         private GUIStyle simpleBackgroundColor;
         private GUIStyle linkTextGUISkin;
         private GUIStyle simpleMiddleTextGUISkin;
@@ -219,7 +219,7 @@ namespace TornadoBanditsStudio.LowPolyFreePack
             simpleMiddleTextGUISkin.normal.textColor = whiteColor;
 
             //Button gui style
-            buttonGUIStyle = new GUIStyle (GUI.skin.button);
+            //buttonGUIStyle = new GUIStyle (GUI.skin.button);
 
             //Link text gui skin
             linkTextGUISkin = new GUIStyle (GUI.skin.button);
