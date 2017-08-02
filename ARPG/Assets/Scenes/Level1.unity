@@ -26649,18 +26649,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1831580031499302, guid: 972303964839d4b40baf35cbcf440e20, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 114339963954958774, guid: 972303964839d4b40baf35cbcf440e20,
+        type: 2}
+      propertyPath: spellOrigin
+      value: 
+      objectReference: {fileID: 1526863712}
+    - target: {fileID: 114339963954958774, guid: 972303964839d4b40baf35cbcf440e20,
+        type: 2}
+      propertyPath: fireBall
+      value: 
+      objectReference: {fileID: 1525896181860374, guid: a075524887189a649926bed67de83d21,
+        type: 2}
+    - target: {fileID: 114339963954958774, guid: 972303964839d4b40baf35cbcf440e20,
+        type: 2}
+      propertyPath: lightCooldown
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114990762273720854, guid: 972303964839d4b40baf35cbcf440e20,
+    - target: {fileID: 114339963954958774, guid: 972303964839d4b40baf35cbcf440e20,
         type: 2}
-      propertyPath: speed
-      value: 14
+      propertyPath: heavyCooldown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 972303964839d4b40baf35cbcf440e20, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1526863712 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1280994026301414, guid: 972303964839d4b40baf35cbcf440e20,
+    type: 2}
+  m_PrefabInternal: {fileID: 1526863711}
 --- !u!1 &1531645304
 GameObject:
   m_ObjectHideFlags: 0

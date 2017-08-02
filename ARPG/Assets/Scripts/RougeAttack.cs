@@ -35,7 +35,7 @@ public class RougeAttack : MonoBehaviour {
             animator.SetBool("LeftMouse", leftMouseClick);
         }
 
-        if (Input.GetAxis("Fire1") > 0)
+        if (Input.GetAxis("Fire1") > 0 && !leftAttack)
         {
             leftMouseClick = true;
             leftAttack = true;
@@ -46,7 +46,7 @@ public class RougeAttack : MonoBehaviour {
             leftMouseClick = false;
         }
 
-        if (Input.GetAxis("Fire2") > 0)
+        if (Input.GetAxis("Fire2") > 0 && !rightAttack)
         {
             rightMouseClick = true;
             rightAttack = true;

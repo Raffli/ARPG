@@ -5,6 +5,11 @@ using UnityEngine;
 public class MageAttack : MonoBehaviour {
 
     public Animator animator;
+    public GameObject spellOrigin;
+    public GameObject fireBall;
+    public float lightCooldown;
+    public float heavyCooldown;
+
     public bool leftMouseClick = false;
     public bool rightMouseClick = false;
 
@@ -27,8 +32,10 @@ public class MageAttack : MonoBehaviour {
             animator.SetBool("LeftMouse", leftMouseClick);
         }
 
-        if (Input.GetAxis("Fire1") > 0)
+        if (Input.GetAxis("Fire1") > 0 && !leftAttack)
         {
+            GameObject obj = Instantiate(fireBall, spellOrigin.transform.position, transform.rotation);
+            obj.GetComponent<Fireball>().SetFireballDamage(lightDamage);
             leftMouseClick = true;
             leftAttack = true;
             StartCoroutine(ResetLeftMouse());
@@ -38,7 +45,7 @@ public class MageAttack : MonoBehaviour {
             leftMouseClick = false;
         }
 
-        if (Input.GetAxis("Fire2") > 0)
+        if (Input.GetAxis("Fire2") > 0 && !rightAttack)
         {
             rightMouseClick = true;
             rightAttack = true;
@@ -52,24 +59,14 @@ public class MageAttack : MonoBehaviour {
 
     IEnumerator ResetLeftMouse()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(lightCooldown);
         leftAttack = false;
     }
 
     IEnumerator ResetRightMouse()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(heavyCooldown);
         rightAttack = false;
     }
 
-    IEnumerator InAction()
-    {
-        yield return null;
-    }
-
-
-    IEnumerator AnimationEnd()
-    {
-        yield return null;
-    }
 }
