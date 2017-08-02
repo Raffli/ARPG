@@ -24,6 +24,11 @@ public class MageAttack : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
+    void CastFireball() {
+        GameObject obj = Instantiate(fireBall, spellOrigin.transform.position, transform.rotation);
+        obj.GetComponent<Fireball>().SetFireballDamage(lightDamage);
+    }
+
     void FixedUpdate () {
 
         if (animator)
@@ -34,8 +39,6 @@ public class MageAttack : MonoBehaviour {
 
         if (Input.GetAxis("Fire1") > 0 && !leftAttack)
         {
-            GameObject obj = Instantiate(fireBall, spellOrigin.transform.position, transform.rotation);
-            obj.GetComponent<Fireball>().SetFireballDamage(lightDamage);
             leftMouseClick = true;
             leftAttack = true;
             StartCoroutine(ResetLeftMouse());
