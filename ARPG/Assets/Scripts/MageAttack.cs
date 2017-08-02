@@ -7,6 +7,7 @@ public class MageAttack : MonoBehaviour {
     public Animator animator;
     public GameObject spellOrigin;
     public GameObject fireBall;
+    public GameObject shockWave;
     public float lightCooldown;
     public float heavyCooldown;
 
@@ -22,6 +23,12 @@ public class MageAttack : MonoBehaviour {
 
     void Start () {
         animator = GetComponent<Animator>();
+    }
+
+    void CastShockWave()
+    {
+        shockWave.SetActive(true);
+        shockWave.GetComponent<ShockWave>().SetDamage(heavyDamage);
     }
 
     void CastFireball() {
