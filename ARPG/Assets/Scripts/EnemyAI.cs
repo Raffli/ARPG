@@ -39,7 +39,9 @@ public class EnemyAI: MonoBehaviour {
     void AttackPlayer()
     {
         anim.SetTrigger("Attack");
-        playerHealth.TakeDamage(damage);
+        if (playerHealth) { 
+            playerHealth.TakeDamage(damage);
+        }
         
     }
 

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Sword
   - Enemy
+  - Mage
+  - Warrior
+  - Rouge
   layers:
   - Default
   - TransparentFX
