@@ -1479,7 +1479,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135194}
-  m_LocalRotation: {x: 0.40718642, y: -0.4492305, z: 0.54883075, w: 0.57547885}
+  m_LocalRotation: {x: 0.40718645, y: -0.44923052, z: 0.5488308, w: 0.5754789}
   m_LocalPosition: {x: -0.08873856, y: 0.13916698, z: -0.25895718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2481,7 +2481,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2505,7 +2505,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!92 &9268192
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2623,7 +2623,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 400000, guid: 1527ff41453632b44a4b04882b7378f3, type: 2}
-  mask: {}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   damage: 25
   force: 250
   range: 3
@@ -2653,7 +2655,9 @@ MonoBehaviour:
   gravity: 16
   rotateSpeed: 8
   dampTime: 3
-  mask: {}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   downcastrange: 1.5
   grounded: 1
   myaudiosource: {fileID: 8268192}
@@ -2685,7 +2689,9 @@ MonoBehaviour:
   target: {fileID: 468188}
   targetOffset: {x: 0, y: 1.5, z: 0}
   distance: 2.5
-  lineOfSightMask: {}
+  lineOfSightMask:
+    serializedVersion: 2
+    m_Bits: 0
   closerRadius: 0.2
   closerSnapLag: 0.1
   xSpeed: 120
