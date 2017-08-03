@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     Vector3 offset;
 
 
-    void Start ()
+    void Start()
     {
 
         target = transform.parent.GetComponent<Transform>();
@@ -23,10 +23,38 @@ public class CameraFollow : MonoBehaviour
     }
 
 
-    void FixedUpdate ()
+    void Update()
     {
         Vector3 targetCamPos = target.position + offset;
 
-        transform.position = Vector3.Lerp (transform.position, targetCamPos, smoothing * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print(other);
+        if (other.transform.tag.Equals("Hideable"))
+        {
+            Component[] renderers;
+            renderers = other.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers){
+                renderer.GetComponent<Renderer>().enabled = false;
+            }
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag.Equals("Hideable"))
+        {
+            Component[] renderers;
+            renderers = other.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.GetComponent<Renderer>().enabled = true;
+            }
+
+        }
     }
 }
