@@ -32,7 +32,6 @@ public class CameraFollow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other);
         if (other.transform.tag.Equals("Hideable"))
         {
             Component[] renderers;
