@@ -50,7 +50,7 @@ public class EnemyAI: MonoBehaviour {
 
 
     void Update() {
-        if (!anim.GetBool("Dead") && aggro)
+        if (!anim.GetBool("Dead") && aggro && agent)
         {
             agent.isStopped = false;
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -69,7 +69,9 @@ public class EnemyAI: MonoBehaviour {
         }
         else
         {
-            agent.isStopped = true;
+            if (agent) {
+                agent.isStopped = true;
+            }
             CancelInvoke("AttackPlayer");
             anim.SetBool("Walk", false);
         }
