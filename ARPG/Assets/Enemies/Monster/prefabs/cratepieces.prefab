@@ -330,7 +330,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
-  m_LocalRotation: {x: 0.30997553, y: -0.3971313, z: 0.85165083, w: -0.14454393}
+  m_LocalRotation: {x: 0.3099755, y: -0.39713123, z: 0.8516507, w: -0.14454392}
   m_LocalPosition: {x: -0.066590935, y: -0.14028414, z: -0.16322403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1095,7 +1095,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1119,7 +1119,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1

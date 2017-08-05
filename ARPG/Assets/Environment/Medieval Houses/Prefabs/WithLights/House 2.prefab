@@ -658,6 +658,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4820617459177836}
   - component: {fileID: 114894732686182332}
+  - component: {fileID: 65281921295422638}
+  - component: {fileID: 54012742902912148}
   m_Layer: 0
   m_Name: House 2
   m_TagString: Untagged
@@ -3218,8 +3220,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312254397946868}
-  m_LocalRotation: {x: -0, y: 0.92168427, z: -0, w: -0.38794103}
-  m_LocalPosition: {x: 1614.294, y: 1949.7604, z: -133.95612}
+  m_LocalRotation: {x: -0, y: 0.9959811, z: -0, w: 0.08956408}
+  m_LocalPosition: {x: 401.3, y: 20.069487, z: 450}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 4488927327113710}
@@ -3236,7 +3238,7 @@ Transform:
   - {fileID: 4292057631907208}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 225.653, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 169.723, z: 0}
 --- !u!4 &4829900201013114
 Transform:
   m_ObjectHideFlags: 1
@@ -7501,6 +7503,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823938928418120}
   m_Mesh: {fileID: 4300012, guid: dec7bee5b25eb4149bb4143a2afb0e32, type: 3}
+--- !u!54 &54012742902912148
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312254397946868}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65281921295422638
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312254397946868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.947255, y: 3.6191604, z: 4.028771}
+  m_Center: {x: -0.30457467, y: 1.3854251, z: -0.41605505}
 --- !u!108 &108440907626918932
 Light:
   m_ObjectHideFlags: 1
