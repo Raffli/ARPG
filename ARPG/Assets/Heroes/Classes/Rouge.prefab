@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 81343605135078690}
   - component: {fileID: 114869359777556472}
   - component: {fileID: 136512734137662486}
+  - component: {fileID: 114081450955161302}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2220,6 +2221,24 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114081450955161302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351571013515272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b5ec6153a1d55438228df10fe66844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFog: 1
+  useRadialDistance: 0
+  heightFog: 1
+  height: 1
+  heightDensity: 2
+  startDistance: 0
+  fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!114 &114103671667532962
 MonoBehaviour:
   m_ObjectHideFlags: 1

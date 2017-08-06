@@ -108,7 +108,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0d9a46e2bfb73f3469bf7113e7e346cb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 860238ee23f83d34e91b07e79b412fb6, type: 2}
 --- !u!1001 &221087
 Prefab:
   m_ObjectHideFlags: 0
@@ -19710,11 +19710,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: fb09873443ab1854d8892a2693f70148, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fb09873443ab1854d8892a2693f70148, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fb09873443ab1854d8892a2693f70148, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
