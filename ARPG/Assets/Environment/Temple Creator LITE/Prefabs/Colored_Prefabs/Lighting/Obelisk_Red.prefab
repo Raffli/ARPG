@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &100002
 GameObject:
@@ -32,7 +32,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &400000
 Transform:
@@ -53,9 +53,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 316.49496, y: 1.9900128, z: 307.38806}
-  m_LocalScale: {x: 0.75, y: 0.7500001, z: 1}
+  m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 90.9, y: 39.3, z: 551.9}
+  m_LocalScale: {x: 3, y: 3.000002, z: 3.000002}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -124,8 +124,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 2
-  m_Range: 15
+  m_Intensity: 5
+  m_Range: 28
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

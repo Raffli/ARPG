@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 81955913190698952}
   - component: {fileID: 114882290469415608}
   - component: {fileID: 136749879782881068}
-  - component: {fileID: 114907377131340500}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1192,24 +1191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 5
---- !u!114 &114907377131340500
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1691311719951312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b5ec6153a1d55438228df10fe66844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceFog: 1
-  useRadialDistance: 0
-  heightFog: 1
-  height: 1
-  heightDensity: 2
-  startDistance: 0
-  fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!124 &124926911355517374
 Behaviour:
   m_ObjectHideFlags: 1
