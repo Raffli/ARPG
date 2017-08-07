@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 81838119962319650}
   - component: {fileID: 114533241575179052}
   - component: {fileID: 136807797850192122}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1863,6 +1863,8 @@ MonoBehaviour:
   shockWave: {fileID: 1585934396180578}
   lightDamage: 10
   heavyDamage: 20
+  cooldownPrimaryAttack: 3
+  heavyCooldown: 0
 --- !u!114 &114533241575179052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1886,6 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654963fa2ebb7244099935278ac9e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 35
 --- !u!114 &114672763052447504
 MonoBehaviour:
   m_ObjectHideFlags: 1

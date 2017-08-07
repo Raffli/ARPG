@@ -32,16 +32,19 @@ public class EnemyAI: MonoBehaviour {
 		if (withinAggroColliders.Length > 0)
         {
             aggro = true;
+			goingBack = false;
 			agent.stoppingDistance = 8f;
             playerPosition = withinAggroColliders[0].GetComponent<Transform>();
             playerHealth = withinAggroColliders[0].GetComponent<PlayerHealth>();
         }
         else if (aggro){
             aggro = false;
+			GoBackToSpawn ();
         }
     }
 
 	public void SetAttacked (Transform playerPosition) {
+		StopCoroutine (ResetWasAttacked ());
 		this.playerPosition = playerPosition;
 		wasAttacked = true;
 		StartCoroutine (ResetWasAttacked ());
