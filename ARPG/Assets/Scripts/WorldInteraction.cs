@@ -38,7 +38,7 @@ public class WorldInteraction : MonoBehaviour {
 				interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, attackRange);
 			}
 			else if (interactedObject.tag == "Interactable Object") {
-				interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 1f);
+				interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
 			} else {
 				playerAgent.stoppingDistance = 0f;
 				playerAgent.SetDestination (interactionInfo.point);

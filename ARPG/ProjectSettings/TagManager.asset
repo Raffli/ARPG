@@ -10,6 +10,7 @@ TagManager:
   - Warrior
   - Rouge
   - Hideable
+  - Interactable Object
   layers:
   - Default
   - TransparentFX
