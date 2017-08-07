@@ -70,6 +70,7 @@ public class EnemyAI: MonoBehaviour {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 anim.SetBool("Walk", false);
+				EnsureLookDirection ();
 				if (!goingBack) {
 					if (!IsInvoking ("AttackPlayer")) {
 						InvokeRepeating ("AttackPlayer", 0.5f, attackSpeed);
@@ -95,6 +96,13 @@ public class EnemyAI: MonoBehaviour {
             anim.SetBool("Walk", false);
         }
     }
+
+	void EnsureLookDirection () {
+		agent.updateRotation = false;
+		Vector3 lookDirection = new Vector3 (playerPosition.position.x, transform.position.y, playerPosition.position.z);
+		agent.transform.LookAt (lookDirection);
+		agent.updateRotation = true;
+	}
 
 	void GoBackToSpawn () {
 		Debug.Log ("go back to spawn");
