@@ -802,9 +802,9 @@ GameObject:
   - component: {fileID: 195005231906594288}
   - component: {fileID: 54469741136095770}
   - component: {fileID: 143997758736210608}
-  - component: {fileID: 114339963954958774}
-  - component: {fileID: 114990762273720854}
   - component: {fileID: 114672763052447504}
+  - component: {fileID: 114581875402664992}
+  - component: {fileID: 114071326639959632}
   m_Layer: 9
   m_Name: Mage
   m_TagString: Mage
@@ -1847,7 +1847,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114339963954958774
+--- !u!114 &114071326639959632
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1858,18 +1858,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1b9a27ac3b0174ab9ea4bd2aadc78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   spellOrigin: {fileID: 1280994026301414}
   fireBall: {fileID: 1525896181860374, guid: a075524887189a649926bed67de83d21, type: 2}
   shockWave: {fileID: 1585934396180578}
-  lightCooldown: 1
-  heavyCooldown: 2
-  leftMouseClick: 0
-  rightMouseClick: 0
-  leftAttack: 0
-  rightAttack: 0
-  lightDamage: 20
-  heavyDamage: 40
+  lightDamage: 10
+  heavyDamage: 20
 --- !u!114 &114533241575179052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1882,6 +1875,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 5
+--- !u!114 &114581875402664992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831580031499302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654963fa2ebb7244099935278ac9e6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114672763052447504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1894,20 +1898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
---- !u!114 &114990762273720854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1831580031499302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070a8811d8aa2d84eb9e6432d4654e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 60
-  animator: {fileID: 0}
+  maxHealth: 0
 --- !u!114 &114997606363459372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1921,8 +1912,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
-  range: 20
+    m_Bits: 0
+  range: 0
 --- !u!124 &124183490218011874
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2094,10 +2085,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.63
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 17
+  m_Acceleration: 35
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 550
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
