@@ -20,13 +20,13 @@ public class Interactable : MonoBehaviour {
 	void Update () {
 		if (playerAgent != null && !playerAgent.pathPending && !hasInteracted) {
 			if (playerAgent.remainingDistance <= playerAgent.stoppingDistance) {
+				EnsureLookDirection ();
+				hasInteracted = true;
 				if (isEnemy) {
 					playerAgent.transform.GetComponent<IAttack> ().AttackPrimary (this.gameObject);
 				} else {
 					transform.GetComponent<IInteract> ().Interact ();
 				}
-				EnsureLookDirection ();
-				hasInteracted = true;
 			}
 		}
 	}

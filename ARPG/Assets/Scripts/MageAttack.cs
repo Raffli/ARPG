@@ -19,43 +19,66 @@ public class MageAttack : MonoBehaviour, IAttack {
 	private bool secondaryOnCooldown;
 	private NavMeshAgent playerAgent;
 	private GameObject enemy;
+	private WorldInteraction worldInteraction;
 
 	void Start () {
 		animator = GetComponent<Animator>();
 		playerAgent = GetComponent<NavMeshAgent> ();
+		worldInteraction = GetComponent<WorldInteraction> ();
 	}
 
 	void FixedUpdate () {
-		if (Input.GetAxis ("Fire2") > 0) {
+		if (Input.GetButtonDown ("Fire2")) {
 			AttackSecondary ();
+		} else if (Input.GetButtonDown ("Spell1")) {
+			UseFirstSpell ();
+		} else if (Input.GetButtonDown ("Spell2")) {
+			UseSecondSpell ();
+		} else if (Input.GetButtonDown ("Spell3")) {
+			UseThirdSpell ();
+		} else if (Input.GetButtonDown ("HealPotion")) {
+			UseHealPotion ();
+		} else if (Input.GetButtonDown ("ManaPotion")) {
+			UseManaPotion ();
 		}
 	}
 
 	public void AttackPrimary (GameObject enemy) {
 		this.enemy = enemy;
 		if (!primaryOnCooldown) {
+			worldInteraction.SetCanInteract (false);
 			primaryOnCooldown = true;
 			if (animator) {
-				Debug.Log ("set animation trigger");
-				animator.SetTrigger ("attackedPrimary"); // Animator calls the function that instantiates the fireball
+				animator.SetTrigger ("attackedPrimary"); // Animator calls CastFireball
 			}
 		}
 	}
 
 	public void AttackSecondary () {
-		if (animator) {
-			animator.SetTrigger ("attackedSecondary");
+		if (!secondaryOnCooldown) {
+			worldInteraction.SetCanInteract (false);
+			playerAgent.isStopped = true;
+			secondaryOnCooldown = true;
+			if (animator) {
+				animator.SetTrigger ("attackedSecondary"); // Animator calls CastShockWave
+			}
 		}
 	}
 
 	public void UseFirstSpell () {
-		throw new System.NotImplementedException ();
+		Debug.Log ("First spell");
 	}
 	public void UseSecondSpell () {
-		throw new System.NotImplementedException ();
+		Debug.Log ("Second spell");
 	}
 	public void UseThirdSpell () {
-		throw new System.NotImplementedException ();
+		Debug.Log ("Third spell");
+	}
+	public void UseHealPotion () {
+		Debug.Log ("heal potion used");
+	}
+	public void UseManaPotion () {
+		Debug.Log ("mana potion used");
 	}
 
 	private void CastFireball () {
@@ -65,17 +88,29 @@ public class MageAttack : MonoBehaviour, IAttack {
 		GameObject obj = Instantiate (fireBall, spawnPoint, Quaternion.LookRotation (toTarget));
 		obj.GetComponent<Fireball> ().SetPlayerAgent (playerAgent);
 		obj.GetComponent<Fireball> ().SetFireballDamage (primaryDamage);
+		worldInteraction.SetCanInteract (true);
 		StartCoroutine (ResetPrimaryAttack ());
 	}
 
 	private void CastShockWave () {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWave> ().SetDamage (secondaryDamage);
+		worldInteraction.SetCanInteract (true);
+		StartCoroutine (ResetSecondaryAttack ());
+	}
+
+	private void RestartPlayerAgent () {
+		playerAgent.isStopped = false;
 	}
 
 	IEnumerator ResetPrimaryAttack () {
 		yield return new WaitForSeconds (cooldownPrimaryAttack);
 		primaryOnCooldown = false;
+	}
+
+	IEnumerator ResetSecondaryAttack () {
+		yield return new WaitForSeconds (cooldownSecondaryAttack);
+		secondaryOnCooldown = false;
 	}
 		
 }
