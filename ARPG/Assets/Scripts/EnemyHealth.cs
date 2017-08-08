@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour {
     Rigidbody rb;
     BoxCollider boxCollider;
     NavMeshAgent agent;
+	EnemyAI enemyAI;
     bool isDead;
 
     void Start () {
@@ -21,10 +22,22 @@ public class EnemyHealth : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         agent = GetComponent<NavMeshAgent>();
+		enemyAI = GetComponent<EnemyAI> ();
     }
 	
 	void Update () {
         
+	}
+
+	void Die () {
+		isDead = true;
+		enemyAI.enabled = false;
+		anim.SetTrigger("Dead");
+		rb.isKinematic = true;
+		rb.useGravity = false;
+		Destroy(agent);
+		Destroy(boxCollider);
+		StartCoroutine(Remove());
 	}
 
     public void ReduceHealth(int damage) {
@@ -33,13 +46,7 @@ public class EnemyHealth : MonoBehaviour {
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
-                isDead = true;
-                anim.SetTrigger("Dead");
-                rb.isKinematic = true;
-                rb.useGravity = false;
-                Destroy(agent);
-                Destroy(boxCollider);
-                StartCoroutine(Remove());
+				Die ();
             }
         }
     }

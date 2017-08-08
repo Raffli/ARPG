@@ -22,13 +22,8 @@ public class Interactable : MonoBehaviour {
 			if (playerAgent.remainingDistance <= playerAgent.stoppingDistance) {
 				if (isEnemy) {
 					playerAgent.transform.GetComponent<IAttack> ().AttackPrimary (this.gameObject);
-					transform.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
 				} else {
-					Debug.Log ("interact with object");
-					/*Animator objectAnimator = transform.GetComponent<Animator> ();
-					if (objectAnimator != null) {
-						objectAnimator.SetTrigger ("hasInteracted");
-					}*/
+					transform.GetComponent<IInteract> ().Interact ();
 				}
 				EnsureLookDirection ();
 				hasInteracted = true;

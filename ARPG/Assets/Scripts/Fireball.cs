@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Fireball : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Fireball : MonoBehaviour {
     public int speed;
     int lightDamage;
     int aliveFor;
+	NavMeshAgent playerAgent;
 
     void Start () {
         GetComponent<Rigidbody>().AddForce(transform.forward * speed);
@@ -28,6 +30,11 @@ public class Fireball : MonoBehaviour {
         }
     }
 
+
+	public void SetPlayerAgent (NavMeshAgent playerAgent) {
+		this.playerAgent = playerAgent;
+	}
+
     public void SetFireballDamage(int damage) {
         lightDamage = damage;
     }
@@ -36,7 +43,7 @@ public class Fireball : MonoBehaviour {
     {
         if (other.transform.tag == "Enemy")
         {
-            
+			other.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
             other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
             Destroy(gameObject);
         }

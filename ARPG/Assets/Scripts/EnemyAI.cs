@@ -98,17 +98,20 @@ public class EnemyAI: MonoBehaviour {
     }
 
 	void EnsureLookDirection () {
-		agent.updateRotation = false;
-		Vector3 lookDirection = new Vector3 (playerPosition.position.x, transform.position.y, playerPosition.position.z);
-		agent.transform.LookAt (lookDirection);
-		agent.updateRotation = true;
+		if (agent) {
+			agent.updateRotation = false;
+			Vector3 lookDirection = new Vector3 (playerPosition.position.x, transform.position.y, playerPosition.position.z);
+			agent.transform.LookAt (lookDirection);
+			agent.updateRotation = true;
+		}
 	}
 
 	void GoBackToSpawn () {
-		Debug.Log ("go back to spawn");
-		goingBack = true;
-		agent.stoppingDistance = 0f;
-		agent.SetDestination (spawnPosition);
+		if (agent) {
+			goingBack = true;
+			agent.stoppingDistance = 0f;
+			agent.SetDestination (spawnPosition);
+		}
 	}
 
 	IEnumerator ResetWasAttacked () {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MageAttack : MonoBehaviour, IAttack {
 	
@@ -15,9 +16,11 @@ public class MageAttack : MonoBehaviour, IAttack {
 	public float heavyCooldown;
 
 	private bool primaryOnCooldown;
+	private NavMeshAgent playerAgent;
 
 	void Start () {
 		animator = GetComponent<Animator>();
+		playerAgent = GetComponent<NavMeshAgent> ();
 	}
 
 	public void AttackPrimary (GameObject enemy) {
@@ -26,6 +29,7 @@ public class MageAttack : MonoBehaviour, IAttack {
 			Vector3 targetPoint = enemy.transform.position;
 			Vector3 toTarget = targetPoint - spawnPoint;
 			GameObject obj = Instantiate (fireBall, spawnPoint, Quaternion.LookRotation (toTarget));
+			obj.GetComponent<Fireball> ().SetPlayerAgent (playerAgent);
 			obj.GetComponent<Fireball> ().SetFireballDamage (lightDamage);
 			primaryOnCooldown = true;
 			StartCoroutine (ResetPrimaryAttack ());
