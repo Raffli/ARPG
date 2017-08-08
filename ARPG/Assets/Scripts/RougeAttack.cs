@@ -25,6 +25,8 @@ public class RougeAttack : MonoBehaviour, IAttack {
 	private NavMeshAgent playerAgent;
 	private GameObject enemy;
 	private WorldInteraction worldInteraction;
+	private SwordAttack leftSwordAttack;
+	private SwordAttack rightSwordAttack;
 
     public GameObject leftSword;
     public GameObject rightSword;
@@ -33,6 +35,8 @@ public class RougeAttack : MonoBehaviour, IAttack {
         animator = GetComponent<Animator>();
 		playerAgent = GetComponent<NavMeshAgent> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
+		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 		leftSword.GetComponent<SwordAttack>().SetLightDamage(primaryDamage);
         leftSword.GetComponent<SwordAttack>().SetHeavyDamage(secondaryDamage);
 		rightSword.GetComponent<SwordAttack>().SetLightDamage(primaryDamage);
@@ -60,7 +64,7 @@ public class RougeAttack : MonoBehaviour, IAttack {
 		if (!primaryOnCooldown) {
 			worldInteraction.SetCanInteract (false);
 			primaryOnCooldown = true;
-			leftSword.GetComponent<SwordAttack>().SetAttack(true, false);
+			leftSwordAttack.SetAttack(true, false);
 			if (animator) {				
 				animator.SetTrigger ("attackedPrimary"); 
 			}
@@ -73,7 +77,7 @@ public class RougeAttack : MonoBehaviour, IAttack {
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			secondaryOnCooldown = true;
-			rightSword.GetComponent<SwordAttack>().SetAttack(false, true);
+			rightSwordAttack.SetAttack(false, true);
 			if (animator) {		
 				animator.SetTrigger ("attackedSecondary"); 
 			}
@@ -98,9 +102,10 @@ public class RougeAttack : MonoBehaviour, IAttack {
 	}
 
 	private void RestartPlayerAgent () {
-		Debug.Log ("restart player agent");
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
+		leftSwordAttack.DisableSword ();
+		rightSwordAttack.DisableSword ();
 	}
 
 	IEnumerator ResetPrimaryAttack () {

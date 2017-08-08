@@ -30,11 +30,11 @@ public class SwordAttack : MonoBehaviour {
         {
             swordColl.enabled = true;
         }
-        else
-        {
-            swordColl.enabled = false;
-        }
     }
+
+	public void DisableSword (){
+		swordColl.enabled = false;
+	}
 
     private void OnTriggerEnter(Collider other)
     {
