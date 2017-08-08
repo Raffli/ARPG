@@ -109,7 +109,7 @@ public class EnemyAI: MonoBehaviour {
 	void GoBackToSpawn () {
 		if (agent) {
 			goingBack = true;
-			agent.stoppingDistance = 0f;
+			agent.stoppingDistance = 0.1f;
 			agent.SetDestination (spawnPosition);
 		}
 	}
