@@ -1,4 +1,6 @@
-﻿public interface IInteract {
+﻿using UnityEngine;
 
-	void Interact ();
+public interface IInteract {
+
+	void Interact (Transform player);
 }

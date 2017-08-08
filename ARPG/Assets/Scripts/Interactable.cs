@@ -25,7 +25,7 @@ public class Interactable : MonoBehaviour {
 				if (isEnemy) {
 					playerAgent.transform.GetComponent<IAttack> ().AttackPrimary (this.gameObject);
 				} else {
-					transform.GetComponent<IInteract> ().Interact ();
+					transform.GetComponent<IInteract> ().Interact (playerAgent.transform);
 				}
 			}
 		}
