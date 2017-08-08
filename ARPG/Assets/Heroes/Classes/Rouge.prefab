@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 81343605135078690}
   - component: {fileID: 114869359777556472}
   - component: {fileID: 136512734137662486}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -321,8 +321,8 @@ GameObject:
   - component: {fileID: 95110761013600818}
   - component: {fileID: 114370691427122320}
   - component: {fileID: 195707992819222078}
-  - component: {fileID: 114918606178886032}
   - component: {fileID: 114103671667532962}
+  - component: {fileID: 114681288344731046}
   m_Layer: 9
   m_Name: Rouge
   m_TagString: Rouge
@@ -1781,7 +1781,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446356675736468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104, y: 51, z: 933}
+  m_LocalPosition: {x: 300.7634, y: 34.73699, z: 752.08215}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 4528382803399570}
@@ -2266,15 +2266,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f33c69b8e4e2148900a604f73a8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  leftMouseClick: 0
-  rightMouseClick: 0
-  leftAttack: 0
-  rightAttack: 0
-  lightDamage: 10
-  heavyDamage: 20
+  primaryDamage: 10
+  secondaryDamage: 20
+  cooldownPrimaryAttack: 1
+  cooldownSecondaryAttack: 2
+  cooldownFirstSpell: 0
+  cooldownSecondSpell: 0
+  cooldownThirdSpell: 0
   leftSword: {fileID: 1119166978266300}
   rightSword: {fileID: 1844512708093130}
+--- !u!114 &114681288344731046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1446356675736468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654963fa2ebb7244099935278ac9e6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 5
 --- !u!114 &114869359777556472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2287,19 +2299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 5
---- !u!114 &114918606178886032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1446356675736468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070a8811d8aa2d84eb9e6432d4654e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 18
-  animator: {fileID: 0}
 --- !u!124 &124620965318703064
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2767,10 +2766,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 17
+  m_Acceleration: 35
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 550
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

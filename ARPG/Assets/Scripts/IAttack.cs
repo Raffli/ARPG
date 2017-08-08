@@ -7,4 +7,6 @@ public interface IAttack {
 	void UseFirstSpell ();
 	void UseSecondSpell ();
 	void UseThirdSpell ();
+	void UseHealPotion ();
+	void UseManaPotion ();
 }

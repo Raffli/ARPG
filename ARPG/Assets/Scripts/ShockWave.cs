@@ -7,12 +7,7 @@ public class ShockWave : MonoBehaviour {
     Collider[] withinRangeColliders;
     public LayerMask enemyLayerMask;
     public float range;
-    int heavyDamage;
-
-    void Start () {
-		
-	}
-	
+    int heavyDamage;	
 
     public void SetDamage(int damage) {
         heavyDamage = damage;

@@ -14,10 +14,6 @@ public class SwordAttack : MonoBehaviour {
         swordColl = GetComponent<BoxCollider>();
     }
 
-    void Update() {
-
-    }
-
     public void SetLightDamage(int damage) {
         lightDamage = damage;
     }
@@ -34,11 +30,11 @@ public class SwordAttack : MonoBehaviour {
         {
             swordColl.enabled = true;
         }
-        else
-        {
-            swordColl.enabled = false;
-        }
     }
+
+	public void DisableSword (){
+		swordColl.enabled = false;
+	}
 
     private void OnTriggerEnter(Collider other)
     {

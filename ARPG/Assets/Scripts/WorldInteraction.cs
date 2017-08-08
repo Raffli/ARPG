@@ -10,6 +10,7 @@ public class WorldInteraction : MonoBehaviour {
 	private int floorMask;
 	private int interactionMask;
 	private int enemyMask;
+	private bool canInteract;
 
 	public float attackRange;
 
@@ -19,11 +20,14 @@ public class WorldInteraction : MonoBehaviour {
 		floorMask = LayerMask.GetMask ("Floor");
 		enemyMask = LayerMask.GetMask ("Enemy");
 		interactionMask = LayerMask.GetMask ("Interactable");
+		canInteract = true;
 	}
 	
 	void Update () {
-		if (Input.GetButtonDown ("Fire1") /*&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()*/) {
-			GetInteraction ();
+		if (canInteract) {
+			if (Input.GetButtonDown ("Fire1") /*&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()*/) {
+				GetInteraction ();
+			}
 		}
 
 		if (playerAgent.remainingDistance <= playerAgent.stoppingDistance) {
@@ -40,6 +44,7 @@ public class WorldInteraction : MonoBehaviour {
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, attackRange);
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, interactionMask)){
+			canInteract = false;
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
@@ -47,5 +52,9 @@ public class WorldInteraction : MonoBehaviour {
 			playerAgent.SetDestination (interactionInfo.point);
 			animator.SetBool("Walk", true);
 		}
+	}
+		
+	public void SetCanInteract (bool canInteract) {
+		this.canInteract = canInteract;
 	}
 }

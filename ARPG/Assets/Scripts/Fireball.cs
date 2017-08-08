@@ -14,10 +14,6 @@ public class Fireball : MonoBehaviour {
     void Start () {
         GetComponent<Rigidbody>().AddForce(transform.forward * speed);
 	}
-	
-	void Update () {
-		
-	}
 
     private void FixedUpdate()
     {
