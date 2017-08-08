@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 81343605135078690}
   - component: {fileID: 114869359777556472}
   - component: {fileID: 136512734137662486}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2261,18 +2261,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446356675736468}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f33c69b8e4e2148900a604f73a8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  leftMouseClick: 0
-  rightMouseClick: 0
-  leftAttack: 0
-  rightAttack: 0
-  lightDamage: 10
-  heavyDamage: 20
+  primaryDamage: 10
+  secondaryDamage: 20
+  cooldownPrimaryAttack: 1
+  cooldownSecondaryAttack: 2
+  cooldownFirstSpell: 0
+  cooldownSecondSpell: 0
+  cooldownThirdSpell: 0
   leftSword: {fileID: 1119166978266300}
   rightSword: {fileID: 1844512708093130}
 --- !u!114 &114681288344731046

@@ -12,11 +12,19 @@ public class MageAttack : MonoBehaviour, IAttack {
 
 	public int primaryDamage;
 	public int secondaryDamage;
+
 	public float cooldownPrimaryAttack;
 	public float cooldownSecondaryAttack;
+	public float cooldownFirstSpell;
+	public float cooldownSecondSpell;
+	public float cooldownThirdSpell;
 
 	private bool primaryOnCooldown;
 	private bool secondaryOnCooldown;
+	private bool firstSpellOnCooldown;
+	private bool secondSpellOnCooldown;
+	private bool thirdSpellOnCooldown;
+
 	private NavMeshAgent playerAgent;
 	private GameObject enemy;
 	private WorldInteraction worldInteraction;
