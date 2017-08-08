@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 114358387234466456}
   - component: {fileID: 195353485695888532}
   - component: {fileID: 95691195404953228}
+  - component: {fileID: 114226919116729354}
   m_Layer: 10
   m_Name: SPIDER
   m_TagString: Enemy
@@ -1412,7 +1413,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899568589371024}
-  m_LocalRotation: {x: -0.5130578, y: 0.7729673, z: -0.23008448, w: -0.29386094}
+  m_LocalRotation: {x: -0.5130579, y: 0.7729674, z: -0.23008451, w: -0.29386097}
   m_LocalPosition: {x: -0.09935835, y: 0.77972996, z: 0.35664558}
   m_LocalScale: {x: 0.99999976, y: 0.9999998, z: 0.99999976}
   m_Children:
@@ -1657,6 +1658,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114226919116729354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191762875744278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114358387234466456
 MonoBehaviour:
   m_ObjectHideFlags: 1

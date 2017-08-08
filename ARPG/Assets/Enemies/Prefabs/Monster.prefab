@@ -778,6 +778,7 @@ GameObject:
   - component: {fileID: 114645562348718556}
   - component: {fileID: 195265363757849702}
   - component: {fileID: 95375170327331632}
+  - component: {fileID: 114503314703148166}
   m_Layer: 10
   m_Name: Monster
   m_TagString: Enemy
@@ -2029,6 +2030,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+--- !u!114 &114503314703148166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863466460029694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114645562348718556
 MonoBehaviour:
   m_ObjectHideFlags: 1

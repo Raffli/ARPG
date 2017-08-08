@@ -24,6 +24,6 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     void Die() {
-        print("Player ist tod");
+        print("Player ist tot");
     }
 }

@@ -1375,6 +1375,7 @@ GameObject:
   - component: {fileID: 114719185228858406}
   - component: {fileID: 195090829974122392}
   - component: {fileID: 95111530962051262}
+  - component: {fileID: 114942013928788960}
   m_Layer: 10
   m_Name: EarthTroll
   m_TagString: Enemy
@@ -3902,6 +3903,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+--- !u!114 &114942013928788960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769558917431344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137616064445048176
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 114173834258307834}
   - component: {fileID: 195013812871788802}
   - component: {fileID: 95200307055807964}
+  - component: {fileID: 114798862682169540}
   m_Layer: 10
   m_Name: IceGolem
   m_TagString: Enemy
@@ -1884,6 +1885,17 @@ MonoBehaviour:
   aggroRadius: 20
   damage: 5
   attackSpeed: 2
+--- !u!114 &114798862682169540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550868200648924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114882809069408512
 MonoBehaviour:
   m_ObjectHideFlags: 1

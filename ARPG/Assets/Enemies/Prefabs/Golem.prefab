@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 114941326413119136}
   - component: {fileID: 195967283675922960}
   - component: {fileID: 95441816411491764}
+  - component: {fileID: 114942833531280292}
   m_Layer: 10
   m_Name: Golem
   m_TagString: Enemy
@@ -673,6 +674,17 @@ MonoBehaviour:
   aggroRadius: 20
   damage: 5
   attackSpeed: 2
+--- !u!114 &114942833531280292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759386636871906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137417294954972320
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

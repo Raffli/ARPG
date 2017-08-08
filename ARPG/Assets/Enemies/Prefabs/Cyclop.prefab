@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 114524688881902516}
   - component: {fileID: 195383060773705498}
   - component: {fileID: 95525733722317506}
+  - component: {fileID: 114622237268463614}
   m_Layer: 10
   m_Name: Cyclop
   m_TagString: Enemy
@@ -1820,6 +1821,17 @@ MonoBehaviour:
   aggroRadius: 20
   damage: 5
   attackSpeed: 2
+--- !u!114 &114622237268463614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1206605488080206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114791166691546284
 MonoBehaviour:
   m_ObjectHideFlags: 1

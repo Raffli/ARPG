@@ -8,6 +8,8 @@ public class WorldInteraction : MonoBehaviour {
 	private NavMeshAgent playerAgent;
 	private Animator animator;
 	private int floorMask;
+	private int interactionMask;
+	private int enemyMask;
 
 	public float attackRange;
 
@@ -15,10 +17,12 @@ public class WorldInteraction : MonoBehaviour {
 		playerAgent = GetComponent<NavMeshAgent> ();
 		animator = GetComponent<Animator> ();
 		floorMask = LayerMask.GetMask ("Floor");
+		enemyMask = LayerMask.GetMask ("Enemy");
+		interactionMask = LayerMask.GetMask ("Interactable");
 	}
 	
 	void Update () {
-		if (Input.GetMouseButtonDown (0) /*&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()*/) {
+		if (Input.GetAxis ("Fire1") > 0 /*&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()*/) {
 			GetInteraction ();
 		}
 
@@ -32,18 +36,16 @@ public class WorldInteraction : MonoBehaviour {
 	void GetInteraction (){
 		Ray interactionRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit interactionInfo; 
-		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
+		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, enemyMask)) {
 			GameObject interactedObject = interactionInfo.collider.gameObject;
-			if (interactedObject.tag == "Enemy") {
-				interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, attackRange);
-			}
-			else if (interactedObject.tag == "Interactable Object") {
-				interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
-			} else {
-				playerAgent.stoppingDistance = 0f;
-				playerAgent.SetDestination (interactionInfo.point);
-				animator.SetBool("Walk", true);
-			}
+			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, attackRange);
+		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, interactionMask)){
+			GameObject interactedObject = interactionInfo.collider.gameObject;
+			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
+		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
+			playerAgent.stoppingDistance = 0f;
+			playerAgent.SetDestination (interactionInfo.point);
+			animator.SetBool("Walk", true);
 		}
 	}
 }

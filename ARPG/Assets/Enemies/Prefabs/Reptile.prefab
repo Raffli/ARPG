@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 114360306385934664}
   - component: {fileID: 195425806084992250}
   - component: {fileID: 95156314128196168}
+  - component: {fileID: 114322513721583588}
   m_Layer: 10
   m_Name: Reptile
   m_TagString: Enemy
@@ -1395,6 +1396,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114322513721583588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513005404616986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114360306385934664
 MonoBehaviour:
   m_ObjectHideFlags: 1

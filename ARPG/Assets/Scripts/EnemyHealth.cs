@@ -24,10 +24,6 @@ public class EnemyHealth : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
 		enemyAI = GetComponent<EnemyAI> ();
     }
-	
-	void Update () {
-        
-	}
 
 	void Die () {
 		isDead = true;

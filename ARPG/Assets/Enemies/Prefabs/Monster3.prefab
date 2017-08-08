@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 114017066371042764}
   - component: {fileID: 195120209785700358}
   - component: {fileID: 95993061122202474}
+  - component: {fileID: 114052430633218050}
   m_Layer: 10
   m_Name: Monster3
   m_TagString: Enemy
@@ -2121,6 +2122,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+--- !u!114 &114052430633218050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1553979342758032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137481366244625670
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

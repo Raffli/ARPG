@@ -1861,10 +1861,10 @@ MonoBehaviour:
   spellOrigin: {fileID: 1280994026301414}
   fireBall: {fileID: 1525896181860374, guid: a075524887189a649926bed67de83d21, type: 2}
   shockWave: {fileID: 1585934396180578}
-  lightDamage: 10
-  heavyDamage: 20
-  cooldownPrimaryAttack: 3
-  heavyCooldown: 0
+  primaryDamage: 10
+  secondaryDamage: 20
+  cooldownPrimaryAttack: 1
+  cooldownSecondaryAttack: 3
 --- !u!114 &114533241575179052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1915,8 +1915,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  range: 0
+    m_Bits: 1024
+  range: 20
 --- !u!124 &124183490218011874
 Behaviour:
   m_ObjectHideFlags: 1
