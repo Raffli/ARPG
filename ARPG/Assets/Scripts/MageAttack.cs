@@ -34,7 +34,9 @@ public class MageAttack : MonoBehaviour, IAttack {
 	public void AttackPrimary (GameObject enemy) {
 		this.enemy = enemy;
 		if (!primaryOnCooldown) {
+			primaryOnCooldown = true;
 			if (animator) {
+				Debug.Log ("set animation trigger");
 				animator.SetTrigger ("attackedPrimary"); // Animator calls the function that instantiates the fireball
 			}
 		}
@@ -63,7 +65,6 @@ public class MageAttack : MonoBehaviour, IAttack {
 		GameObject obj = Instantiate (fireBall, spawnPoint, Quaternion.LookRotation (toTarget));
 		obj.GetComponent<Fireball> ().SetPlayerAgent (playerAgent);
 		obj.GetComponent<Fireball> ().SetFireballDamage (primaryDamage);
-		primaryOnCooldown = true;
 		StartCoroutine (ResetPrimaryAttack ());
 	}
 
@@ -71,7 +72,6 @@ public class MageAttack : MonoBehaviour, IAttack {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWave> ().SetDamage (secondaryDamage);
 	}
-
 
 	IEnumerator ResetPrimaryAttack () {
 		yield return new WaitForSeconds (cooldownPrimaryAttack);

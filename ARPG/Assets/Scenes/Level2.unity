@@ -18755,6 +18755,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114071326639959632, guid: 972303964839d4b40baf35cbcf440e20,
+        type: 2}
+      propertyPath: cooldownPrimaryAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114071326639959632, guid: 972303964839d4b40baf35cbcf440e20,
+        type: 2}
+      propertyPath: cooldownSecondaryAttack
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 972303964839d4b40baf35cbcf440e20, type: 2}
   m_IsPrefabParent: 0
