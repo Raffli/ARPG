@@ -4232,7 +4232,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4880,7 +4880,7 @@ GameObject:
   - component: {fileID: 515131180}
   - component: {fileID: 515131181}
   m_Layer: 5
-  m_Name: AbilityControls
+  m_Name: SkillControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6808,7 +6808,7 @@ GameObject:
   - component: {fileID: 685934212}
   - component: {fileID: 685934211}
   m_Layer: 5
-  m_Name: Ability4
+  m_Name: Skill4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9286,7 +9286,7 @@ GameObject:
   - component: {fileID: 881732271}
   - component: {fileID: 881732270}
   m_Layer: 5
-  m_Name: Ability2
+  m_Name: Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10940,7 +10940,7 @@ GameObject:
   - component: {fileID: 1074348590}
   - component: {fileID: 1074348589}
   m_Layer: 5
-  m_Name: Ability1
+  m_Name: Skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12762,7 +12762,7 @@ GameObject:
   - component: {fileID: 1267292643}
   - component: {fileID: 1267292642}
   m_Layer: 5
-  m_Name: Ability2
+  m_Name: Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13136,7 +13136,7 @@ GameObject:
   - component: {fileID: 1313676097}
   - component: {fileID: 1313676096}
   m_Layer: 5
-  m_Name: Ability3
+  m_Name: Skill3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13366,7 +13366,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.82
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!222 &1343803205
@@ -14077,7 +14077,7 @@ GameObject:
   - component: {fileID: 1398442630}
   - component: {fileID: 1398442629}
   m_Layer: 5
-  m_Name: Ability4
+  m_Name: Skill4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14800,7 +14800,7 @@ GameObject:
   - component: {fileID: 1451101316}
   - component: {fileID: 1451101315}
   m_Layer: 5
-  m_Name: Ability5
+  m_Name: Skill5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15623,7 +15623,7 @@ GameObject:
   - component: {fileID: 1540171415}
   - component: {fileID: 1540171414}
   m_Layer: 5
-  m_Name: Ability6
+  m_Name: Skill6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16133,7 +16133,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.22
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!222 &1562142650
@@ -17109,7 +17109,7 @@ GameObject:
   - component: {fileID: 1689506141}
   - component: {fileID: 1689506140}
   m_Layer: 5
-  m_Name: Ability6
+  m_Name: Skill6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18063,7 +18063,7 @@ GameObject:
   - component: {fileID: 1782370212}
   - component: {fileID: 1782370213}
   m_Layer: 5
-  m_Name: Abilities
+  m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18383,7 +18383,7 @@ GameObject:
   - component: {fileID: 1832209943}
   - component: {fileID: 1832209942}
   m_Layer: 5
-  m_Name: Ability1
+  m_Name: Skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19467,7 +19467,7 @@ GameObject:
   - component: {fileID: 1891815781}
   - component: {fileID: 1891815780}
   m_Layer: 5
-  m_Name: Ability7
+  m_Name: Skill7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20664,7 +20664,7 @@ GameObject:
   - component: {fileID: 1957413692}
   - component: {fileID: 1957413691}
   m_Layer: 5
-  m_Name: Ability7
+  m_Name: Skill7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21582,7 +21582,7 @@ GameObject:
   - component: {fileID: 2034379229}
   - component: {fileID: 2034379228}
   m_Layer: 5
-  m_Name: Ability3
+  m_Name: Skill3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22896,7 +22896,7 @@ GameObject:
   - component: {fileID: 2141799615}
   - component: {fileID: 2141799614}
   m_Layer: 5
-  m_Name: Ability5
+  m_Name: Skill5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

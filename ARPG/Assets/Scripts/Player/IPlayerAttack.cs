@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IAttack {
+public interface IPlayerAttack {
 
 	void AttackPrimary (GameObject enemy);
 	void AttackSecondary ();

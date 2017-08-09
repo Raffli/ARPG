@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MageAttack : MonoBehaviour, IAttack {
+public class MageAttack : MonoBehaviour, IPlayerAttack {
 	
 	private Animator animator;
 	public GameObject spellOrigin;
@@ -90,7 +90,7 @@ public class MageAttack : MonoBehaviour, IAttack {
 		Debug.Log ("mana potion used");
 	}
 
-	private void CastFireball () {
+	private void CastPrimaryAttack () {
 		Vector3 spawnPoint = spellOrigin.transform.position;
 		Vector3 targetPoint = enemy.transform.position;
 		Vector3 toTarget = targetPoint - spawnPoint;

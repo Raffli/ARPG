@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RougeAttack : MonoBehaviour, IAttack {
+public class RougeAttack : MonoBehaviour, IPlayerAttack {
 
 	private Animator animator;
 
