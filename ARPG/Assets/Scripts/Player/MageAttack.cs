@@ -28,6 +28,7 @@ public class MageAttack : MonoBehaviour, IAttack {
 	private NavMeshAgent playerAgent;
 	private GameObject enemy;
 	private WorldInteraction worldInteraction;
+	private Player player;
 
 	void Start () {
 		animator = GetComponent<Animator>();
