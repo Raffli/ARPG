@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
         if (other.transform.tag.Equals("Hideable"))
         {
             if (other.gameObject.layer == 8) {
-                other.gameObject.layer = 1;
+                other.gameObject.layer = 0;
             } 
             Component[] renderers;
             renderers = other.GetComponentsInChildren<Renderer>();
@@ -50,8 +50,6 @@ public class CameraFollow : MonoBehaviour
     {
         if (other.transform.tag.Equals("Hideable"))
         {
-            if (other.gameObject.layer == 1)
-            other.gameObject.layer = 8;
             Component[] renderers;
             renderers = other.GetComponentsInChildren<Renderer>();
             foreach (Renderer renderer in renderers)

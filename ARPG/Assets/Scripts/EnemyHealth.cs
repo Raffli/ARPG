@@ -36,13 +36,9 @@ public class EnemyHealth : MonoBehaviour {
         anim.SetTrigger("Dead");
         rb.isKinematic = true;
         rb.useGravity = false;
-        RemoveComponents();
-    }
-
-    private void RemoveComponents(){
         Destroy(transform.Find("EnemyCanvas").gameObject);
-        Destroy(agent);
         Destroy(boxCollider);
+        agent.isStopped = true;
         StartCoroutine(RemoveSelf());
     }
 
@@ -74,6 +70,8 @@ public class EnemyHealth : MonoBehaviour {
 
     IEnumerator RemoveSelf()
     {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(agent);
         yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }

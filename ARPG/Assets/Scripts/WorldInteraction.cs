@@ -48,7 +48,7 @@ public class WorldInteraction : MonoBehaviour {
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
-			playerAgent.stoppingDistance = 0f;
+			playerAgent.stoppingDistance = 0.1f;
 			playerAgent.SetDestination (interactionInfo.point);
 			animator.SetBool("Walk", true);
 		}
