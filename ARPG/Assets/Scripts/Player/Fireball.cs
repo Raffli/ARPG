@@ -7,7 +7,7 @@ public class Fireball : MonoBehaviour {
 
     public int lifeTicks;
     public int speed;
-    int lightDamage;
+    int damage;
     int aliveFor;
 	NavMeshAgent playerAgent;
 
@@ -17,8 +17,6 @@ public class Fireball : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //transform.Translate(Vector3.forward * movement);
-
         aliveFor++;
         if (aliveFor == lifeTicks)
         {
@@ -32,15 +30,15 @@ public class Fireball : MonoBehaviour {
 	}
 
     public void SetFireballDamage(int damage) {
-        lightDamage = damage;
-    }
+        this.damage = damage;
+	}
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Enemy")
         {
 			other.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
-            other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
+            other.GetComponent<EnemyHealth>().ReduceHealth(damage);
             Destroy(gameObject);
         }
     }

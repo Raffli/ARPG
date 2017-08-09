@@ -11,10 +11,6 @@ public class PlayerHealth : MonoBehaviour {
         this.currentHealth = this.maxHealth;
     }
 
-    void Update() {
-
-    }
-
     public void TakeDamage(int amount) {
         currentHealth -= amount;
         print("got hit -" + amount + " Health");
