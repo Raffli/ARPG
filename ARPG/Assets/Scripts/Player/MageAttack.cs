@@ -101,7 +101,7 @@ public class MageAttack : MonoBehaviour, IPlayerAttack {
 		StartCoroutine (ResetPrimaryAttack ());
 	}
 
-	private void CastShockWave () {
+	private void CastSecondaryAttack () {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWave> ().SetDamage (secondaryDamage);
 		worldInteraction.SetCanInteract (true);
