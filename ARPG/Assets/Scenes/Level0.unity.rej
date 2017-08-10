@@ -1,0 +1,13 @@
+diff a/ARPG/Assets/Scenes/Level0.unity b/ARPG/Assets/Scenes/Level0.unity	(rejected hunks)
+@@ -8,8 +8,9 @@
+     smallestOccluder: 5
+     smallestHole: 0.25
+     backfaceThreshold: 100
+-  m_SceneGUID: 00000000000000000000000000000000
+-  m_OcclusionCullingData: {fileID: 0}
++  m_SceneGUID: 768b6d0ce950e554e98d05e1adedaee8
++  m_OcclusionCullingData: {fileID: 36300000, guid: 67f2f5671a68fb9468bafe14086e6e59,
++    type: 2}
+ --- !u!104 &2
+ RenderSettings:
+   m_ObjectHideFlags: 0
