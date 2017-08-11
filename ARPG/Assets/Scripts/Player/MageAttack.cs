@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MageAttack : MonoBehaviour, IPlayerAttack {
+public class MageAttack : Attack {
 	
-	private Animator animator;
 	public GameObject spellOrigin;
 	public GameObject fireBall;
 	public GameObject shockWave;
@@ -19,107 +18,34 @@ public class MageAttack : MonoBehaviour, IPlayerAttack {
 	public float cooldownSecondSpell;
 	public float cooldownThirdSpell;
 
-	private bool primaryOnCooldown;
-	private bool secondaryOnCooldown;
-	private bool firstSpellOnCooldown;
-	private bool secondSpellOnCooldown;
-	private bool thirdSpellOnCooldown;
-
-	private NavMeshAgent playerAgent;
-	private GameObject enemy;
-	private WorldInteraction worldInteraction;
-	private Player player;
-
-	void Start () {
-		animator = GetComponent<Animator>();
-		playerAgent = GetComponent<NavMeshAgent> ();
-		worldInteraction = GetComponent<WorldInteraction> ();
-	}
-
-	void FixedUpdate () {
-		if (Input.GetButtonDown ("Fire2")) {
-			AttackSecondary ();
-		} else if (Input.GetButtonDown ("Spell1")) {
-			UseFirstSpell ();
-		} else if (Input.GetButtonDown ("Spell2")) {
-			UseSecondSpell ();
-		} else if (Input.GetButtonDown ("Spell3")) {
-			UseThirdSpell ();
-		} else if (Input.GetButtonDown ("HealPotion")) {
-			UseHealPotion ();
-		} else if (Input.GetButtonDown ("ManaPotion")) {
-			UseManaPotion ();
-		}
-	}
-
-	public void AttackPrimary (GameObject enemy) {
-		this.enemy = enemy;
-		if (!primaryOnCooldown) {
-			worldInteraction.SetCanInteract (false);
-			primaryOnCooldown = true;
-			if (animator) {
-				animator.SetTrigger ("attackedPrimary"); // Animator calls CastFireball
-			}
-		}
-	}
-
-	public void AttackSecondary () {
-		if (!secondaryOnCooldown) {
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			secondaryOnCooldown = true;
-			if (animator) {
-				animator.SetTrigger ("attackedSecondary"); // Animator calls CastShockWave
-			}
-		}
-	}
-
-	public void UseFirstSpell () {
-		Debug.Log ("First spell");
-	}
-	public void UseSecondSpell () {
-		Debug.Log ("Second spell");
-	}
-	public void UseThirdSpell () {
-		Debug.Log ("Third spell");
-	}
-	public void UseHealPotion () {
-		Debug.Log ("heal potion used");
-	}
-	public void UseManaPotion () {
-		Debug.Log ("mana potion used");
-	}
-
-	private void CastPrimaryAttack () {
-		Vector3 spawnPoint = spellOrigin.transform.position;
-		Vector3 targetPoint = enemy.transform.position;
-		Vector3 toTarget = targetPoint - spawnPoint;
-		GameObject obj = Instantiate (fireBall, spawnPoint, Quaternion.LookRotation (toTarget));
-		obj.GetComponent<Fireball> ().SetPlayerAgent (playerAgent);
-		obj.GetComponent<Fireball> ().SetFireballDamage (primaryDamage);
+	protected override void CastPrimaryAttack () {
+		skills [0].Execute (playerAgent, enemy, spellOrigin);
 		worldInteraction.SetCanInteract (true);
-		StartCoroutine (ResetPrimaryAttack ());
 	}
 
-	private void CastSecondaryAttack () {
+	protected override void CastSecondaryAttack () {
+
+	}
+
+	protected override void CastFirstSpell () {
+		
+	}
+
+	protected override void CastSecondSpell () {
+		
+	}
+
+	protected override void CastThirdSpell () {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWave> ().SetDamage (secondaryDamage);
 		worldInteraction.SetCanInteract (true);
-		StartCoroutine (ResetSecondaryAttack ());
+
 	}
 
 	private void RestartPlayerAgent () {
 		playerAgent.isStopped = false;
 	}
 
-	IEnumerator ResetPrimaryAttack () {
-		yield return new WaitForSeconds (cooldownPrimaryAttack);
-		primaryOnCooldown = false;
-	}
 
-	IEnumerator ResetSecondaryAttack () {
-		yield return new WaitForSeconds (cooldownSecondaryAttack);
-		secondaryOnCooldown = false;
-	}
 		
 }
