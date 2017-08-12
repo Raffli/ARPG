@@ -29,16 +29,14 @@ public class Fireball : MonoBehaviour, ISkill {
 		onCooldown = false;
 	}
 
-	/*void Update () {
-		//Debug.Log ("on cooldown ist " + onCooldown);
+	void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
-			if (cooldownLeft <= 0.0f) {
-				Debug.Log ("cooldown ist false");
+			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}
 		}
-	}*/
+	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
 		Vector3 spawnPoint = spellOrigin.transform.position;
@@ -53,11 +51,6 @@ public class Fireball : MonoBehaviour, ISkill {
 
 	public void StartCooldown () {
 		onCooldown = true;
-		StartCoroutine ("ResetPrimaryAttack");
-	}
-
-	IEnumerator ResetPrimaryAttack () {
-		yield return new WaitForSeconds (cooldown);
-		onCooldown = false;
+		cooldownLeft = cooldown;
 	}
 }

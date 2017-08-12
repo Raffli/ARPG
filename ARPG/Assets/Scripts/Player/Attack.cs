@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour {
 		playerAgent = GetComponent<NavMeshAgent> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
 		skills = new ISkill[5]; 
-		skills [0] = new Fireball ();
+		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
 		skills [0].SetProperties ();
 	}
 	
