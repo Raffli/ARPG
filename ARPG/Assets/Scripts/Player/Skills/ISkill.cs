@@ -16,4 +16,5 @@ public interface ISkill {
 	void SetProperties ();
 	void StartCooldown ();
 	void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin);
+	void Execute (Transform player);
 }

@@ -36,10 +36,9 @@ public class MageAttack : Attack {
 	}
 
 	protected override void CastThirdSpell () {
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWave> ().SetDamage (secondaryDamage);
+		skills [4].Execute (transform);
+		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
-
 	}
 
 	private void RestartPlayerAgent () {

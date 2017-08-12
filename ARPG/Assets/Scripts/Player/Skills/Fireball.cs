@@ -15,10 +15,7 @@ public class Fireball : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private float cooldownRate = 0.01f;
-
 	public void SetProperties () {
-		Debug.Log ("set properties");
 		skillName = "Fireball";
 		skillIcon = (Image) Resources.Load ("/UI/Fireball");
 		manaCost = 10;
@@ -37,6 +34,8 @@ public class Fireball : MonoBehaviour, ISkill {
 			}
 		}
 	}
+
+	public void Execute (Transform player) {}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
 		Vector3 spawnPoint = spellOrigin.transform.position;

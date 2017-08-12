@@ -30,6 +30,8 @@ public class Attack : MonoBehaviour {
 		skills = new ISkill[5]; 
 		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
 		skills [0].SetProperties ();
+		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
+		skills [4].SetProperties ();
 	}
 	
 	void FixedUpdate () {
@@ -75,7 +77,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseFirstSpell () {
-		if (skills [2] != null && skills[2].onCooldown) {
+		if (skills [2] != null && !skills[2].onCooldown) {
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [2].StartCooldown ();
@@ -86,7 +88,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseSecondSpell () {
-		if (skills [3] != null && skills[3].onCooldown) {
+		if (skills [3] != null && !skills[3].onCooldown) {
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [3].StartCooldown ();
@@ -97,7 +99,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseThirdSpell () {
-		if (skills [4] != null && skills[4].onCooldown) {
+		if (skills [4] != null && !skills[4].onCooldown) {
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [4].StartCooldown ();

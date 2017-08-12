@@ -1,32 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
 
-public class ShockWave : MonoBehaviour {
+public class ShockWave : MonoBehaviour, ISkill {
 
-    Collider[] withinRangeColliders;
-    public LayerMask enemyLayerMask;
-    public float range;
-    int heavyDamage;	
+	public string skillName { get; set; }
+	public Image skillIcon { get; set; }
+	public int manaCost { get; set; }
+	public int baseDamage { get; set; }
+	public int damage { get; set; }
+	public float cooldown { get; set; }
+	public float cooldownLeft { get; set; }
+	public bool onCooldown { get; set; }
 
-    public void SetDamage(int damage) {
-        heavyDamage = damage;
-    }
+	private GameObject shockWave;
 
-    private void OnEnable()
-    {
-        StartCoroutine(Procedure());
-    }
+	public void SetProperties () {
+		skillName = "Shockwave";
+		skillIcon = (Image) Resources.Load ("/UI/Shockwave");
+		manaCost = 20;
+		baseDamage = 15;
+		damage = baseDamage;
+		cooldown = 4f;
+		cooldownLeft = 0f;
+		onCooldown = false;
+	}
 
-    IEnumerator Procedure()
-    {
-        yield return new WaitForSeconds(0.3f);
-        withinRangeColliders = Physics.OverlapSphere(transform.position, range, enemyLayerMask);
-        for (int i = 0; i < withinRangeColliders.Length; i++) {
-            EnemyHealth enemyHealth = withinRangeColliders[i].GetComponent<EnemyHealth>();
-            enemyHealth.ReduceHealth(heavyDamage);
-        }
-        yield return new WaitForSeconds(0.2f);
-        gameObject.SetActive(false);
-    }
+	void Update () {
+		if (onCooldown) {
+			cooldownLeft -= Time.deltaTime;
+			if (cooldownLeft <= 0) {
+				onCooldown = false;
+			}
+		}
+	}
+
+	public void StartCooldown () {
+		onCooldown = true;
+		cooldownLeft = cooldown;
+	}
+
+	public void Execute (Transform player) {
+		Debug.Log ("Execute the shock wave");
+		shockWave = player.Find ("Shockwave").gameObject;
+		shockWave.SetActive (true);
+		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
+	}
+
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 }

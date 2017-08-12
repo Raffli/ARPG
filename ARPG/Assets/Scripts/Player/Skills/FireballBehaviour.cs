@@ -37,7 +37,6 @@ public class FireballBehaviour : MonoBehaviour {
 		if (other.transform.tag == "Enemy")
 		{
 			other.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
-			Debug.Log ("damage dealt " + damage);
 			other.GetComponent<EnemyHealth>().ReduceHealth(damage);
 			Destroy(gameObject);
 		}
