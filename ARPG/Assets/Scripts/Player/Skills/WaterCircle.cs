@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class ShockWave : MonoBehaviour, ISkill {
+public class WaterCircle : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public Image skillIcon { get; set; }
@@ -15,12 +15,12 @@ public class ShockWave : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private GameObject shockWave;
+	private GameObject waterCircle;
 
 	public void SetProperties () {
-		skillName = "Shockwave";
-		skillIcon = (Image) Resources.Load ("/UI/shockwave");
-		manaCost = 20;
+		skillName = "Water Circle";
+		skillIcon = (Image) Resources.Load ("/UI/waterCircle");
+		manaCost = 25;
 		baseDamage = 15;
 		damage = baseDamage;
 		cooldown = 4f;
@@ -43,9 +43,9 @@ public class ShockWave : MonoBehaviour, ISkill {
 	}
 
 	public void Execute (Transform player) {
-		shockWave = player.Find ("Shockwave").gameObject;
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
+		waterCircle = player.Find ("WaterCircle").gameObject;
+		waterCircle.SetActive (true);
+		waterCircle.GetComponent<WaterCircleBehaviour> ().SetDamage (damage);
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}

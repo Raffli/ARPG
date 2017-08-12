@@ -32,7 +32,9 @@ public class MageAttack : Attack {
 	}
 
 	protected override void CastSecondSpell () {
-		
+		skills [3].Execute (transform);
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
 
 	protected override void CastThirdSpell () {

@@ -190,13 +190,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4764313262899212}
+  - component: {fileID: 114206499757285662}
   m_Layer: 0
   m_Name: WaterCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1157735531560800
 GameObject:
   m_ObjectHideFlags: 1
@@ -1716,7 +1717,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831580031499302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.8}
+  m_LocalPosition: {x: 79.8, y: 49.2, z: 448.88678}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_Children:
   - {fileID: 4020016878249778}
@@ -2034,7 +2035,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831580031499302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f90ddaa6218173e439f69a41aed30917, type: 2}
   m_CullingMode: 0
@@ -2114,7 +2115,18 @@ MonoBehaviour:
   cooldownSecondaryAttack: 4
   cooldownFirstSpell: 0
   cooldownSecondSpell: 0
-  cooldownThirdSpell: 0
+  cooldownThirdSpell: 4
+--- !u!114 &114206499757285662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149708797252504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ba8d08597b8914f82ba9f745f7805b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114533241575179052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2199,7 +2211,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1585934396180578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 710d0835289591a4a8c21d16833e3298, type: 3}
+  m_Script: {fileID: 11500000, guid: cf3f74c10b92682428b25e0c8c370767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLayerMask:
@@ -2374,7 +2386,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831580031499302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.63
   m_Speed: 17
@@ -18558,7 +18570,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -402873170
+  randomSeed: -450791511
   InitialModule:
     serializedVersion: 3
     enabled: 1

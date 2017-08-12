@@ -30,6 +30,8 @@ public class Attack : MonoBehaviour {
 		skills = new ISkill[5]; 
 		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
 		skills [0].SetProperties ();
+		skills [3] = gameObject.AddComponent <WaterCircle> () as WaterCircle;
+		skills [3].SetProperties ();
 		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
 		skills [4].SetProperties ();
 	}
