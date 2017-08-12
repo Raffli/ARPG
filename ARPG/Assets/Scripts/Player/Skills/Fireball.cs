@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Fireball : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
+	public string skillDescription { get; set; }
 	public Image skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
@@ -17,6 +18,7 @@ public class Fireball : MonoBehaviour, ISkill {
 
 	public void SetProperties () {
 		skillName = "Fireball";
+		skillDescription = "You create a fireball that is thrown at the target and deals damage.";
 		skillIcon = (Image) Resources.Load ("/UI/Fireball");
 		manaCost = 10;
 		baseDamage = 10;
