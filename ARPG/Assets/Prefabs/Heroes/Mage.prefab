@@ -626,6 +626,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4889555635543938}
+  - component: {fileID: 114703843733881390}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -2164,6 +2165,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+--- !u!114 &114703843733881390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1566263165203788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda3f9dcff75ecd47a82f742f1449da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114765735694669818
 MonoBehaviour:
   m_ObjectHideFlags: 1

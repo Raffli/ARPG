@@ -51,4 +51,5 @@ public class WaterCircle : MonoBehaviour, ISkill {
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
+	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 }

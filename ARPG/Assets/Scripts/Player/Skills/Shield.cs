@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class ShockWave : MonoBehaviour, ISkill {
+public class Shield : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
@@ -16,16 +16,17 @@ public class ShockWave : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private GameObject shockWave;
+	private GameObject shield;
+	private Player playerStats;
 
 	public void SetProperties () {
-		skillName = "Shockwave";
-		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon = (Image) Resources.Load ("/UI/shockwave");
-		manaCost = 20;
-		baseDamage = 15;
+		skillName = "Protective Aura";
+		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
+		skillIcon = (Image) Resources.Load ("/UI/protectingAura");
+		manaCost = 15;
+		baseDamage = 0;
 		damage = baseDamage;
-		cooldown = 4f;
+		cooldown = 6f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
@@ -45,9 +46,10 @@ public class ShockWave : MonoBehaviour, ISkill {
 	}
 
 	public void Execute (Transform player) {
-		shockWave = player.Find ("Shockwave").gameObject;
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
+		shield = player.Find ("Shield").gameObject;
+		playerStats = player.GetComponent<Player> ();
+		shield.SetActive (true);
+		// add to player.armor or something
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}

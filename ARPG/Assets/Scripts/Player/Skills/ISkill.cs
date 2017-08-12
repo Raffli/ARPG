@@ -18,4 +18,5 @@ public interface ISkill {
 	void StartCooldown ();
 	void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin);
 	void Execute (Transform player);
+	void Execute (NavMeshAgent playerAgent, Vector3 targetPoint);
 }

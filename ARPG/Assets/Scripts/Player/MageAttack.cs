@@ -24,11 +24,14 @@ public class MageAttack : Attack {
 	}
 
 	protected override void CastSecondaryAttack () {
-
+		skills [1].Execute (playerAgent, Input.mousePosition);
+		worldInteraction.SetCanInteract (true);
 	}
 
 	protected override void CastFirstSpell () {
-		
+		skills [2].Execute (transform);
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
 
 	protected override void CastSecondSpell () {
