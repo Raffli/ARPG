@@ -2545,13 +2545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d667a70bdc1e846b528dd79f8bdcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryDamage: 10
-  secondaryDamage: 10
-  cooldownPrimaryAttack: 1
-  cooldownSecondaryAttack: 3
-  cooldownFirstSpell: 0
-  cooldownSecondSpell: 0
-  cooldownThirdSpell: 0
   sword: {fileID: 1719316841955122}
 --- !u!114 &114378919824546838
 MonoBehaviour:
