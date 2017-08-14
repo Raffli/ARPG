@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class TwinBlades : MonoBehaviour, ISkill {
+public class PoisonousBlade : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
@@ -16,25 +16,22 @@ public class TwinBlades : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	//private SwordAttack leftSwordAttack;
-	//private GameObject leftSword;
-	private SwordAttack rightSwordAttack;
-	private GameObject rightSword;
+	private GameObject poisonousBlade;
+	private Player playerStats;
 
 	public void SetProperties () {}
-	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject sword) {}
 
-	public void SetProperties (GameObject sword) {
-		//leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
-		rightSword = sword;
-		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
-		skillName = "Twin Blades";
-		skillDescription = "You hit your enemy with two lightning fast blades.";
-		skillIcon = (Image) Resources.Load ("UI/twinBlades");
-		manaCost = 0;
-		baseDamage = 15;
+	public void SetProperties (Player player) {
+		playerStats = player.GetComponent<Player> ();
+		poisonousBlade = player.transform.Find ("PoisonousBlade").gameObject;
+		skillName = "Poisonous Blade";
+		skillDescription = "You put poison on your blade and deal more damage.";
+		skillIcon = (Image) Resources.Load ("UI/poisonousBlade");
+		manaCost = 15;
+		baseDamage = 0;
 		damage = baseDamage;
-		cooldown = 2f;
+		cooldown = 6f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
@@ -54,11 +51,11 @@ public class TwinBlades : MonoBehaviour, ISkill {
 	}
 
 	public void Execute () {
-		rightSwordAttack.SetHeavyDamage (baseDamage);
-		rightSwordAttack.SetAttack(false, true);
+		poisonousBlade.SetActive (true);
+		// add to player.damage or something
 	}
 
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 }

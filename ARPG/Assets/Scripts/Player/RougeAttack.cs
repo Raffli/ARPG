@@ -19,13 +19,12 @@ public class RougeAttack : Attack {
 		skills [0].SetProperties (leftSword);
 		skills [1] = gameObject.AddComponent <TwinBlades> () as TwinBlades;
 		skills [1].SetProperties (rightSword);
-		/*
-		skills [2] = gameObject.AddComponent <Shield> () as Shield;
-		skills [2].SetProperties ();
-		skills [3] = gameObject.AddComponent <WaterCircle> () as WaterCircle;
-		skills [3].SetProperties ();
-		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
-		skills [4].SetProperties ();*/
+		skills [2] = gameObject.AddComponent <PoisonousBlade> () as PoisonousBlade;
+		skills [2].SetProperties (player);
+		skills [3] = gameObject.AddComponent <Stealth> () as Stealth;
+		skills [3].SetProperties (player);
+		skills [4] = gameObject.AddComponent <SweepingLotus> () as SweepingLotus;
+		skills [4].SetProperties (player);
 	}
 
 	protected override void CastPrimaryAttack () {
