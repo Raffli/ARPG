@@ -18,7 +18,11 @@ public class WaterCircle : MonoBehaviour, ISkill {
 
 	private GameObject waterCircle;
 
-	public void SetProperties () {
+	public void SetProperties () {}
+	public void SetProperties (GameObject sword) {}
+
+	public void SetProperties (Player player) {
+		waterCircle = player.transform.Find ("WaterCircle").gameObject;
 		skillName = "Water Circle";
 		skillDescription = "You get sourrounded by water that deals damage to everything it comes in contact with.";
 		skillIcon = (Image) Resources.Load ("UI/waterCircle");
@@ -44,12 +48,12 @@ public class WaterCircle : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute (Transform player) {
-		waterCircle = player.Find ("WaterCircle").gameObject;
+	public void Execute () {
 		waterCircle.SetActive (true);
 		waterCircle.GetComponent<WaterCircleBehaviour> ().SetDamage (damage);
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 }

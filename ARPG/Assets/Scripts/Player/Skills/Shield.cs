@@ -19,7 +19,12 @@ public class Shield : MonoBehaviour, ISkill {
 	private GameObject shield;
 	private Player playerStats;
 
-	public void SetProperties () {
+	public void SetProperties () {}
+	public void SetProperties (GameObject sword) {}
+
+	public void SetProperties (Player player) {
+		playerStats = player.GetComponent<Player> ();
+		shield = player.transform.Find ("Shield").gameObject;
 		skillName = "Protective Aura";
 		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
 		skillIcon = (Image) Resources.Load ("UI/protectingAura");
@@ -45,13 +50,12 @@ public class Shield : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute (Transform player) {
-		shield = player.Find ("Shield").gameObject;
-		playerStats = player.GetComponent<Player> ();
+	public void Execute () {
 		shield.SetActive (true);
 		// add to player.armor or something
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 }

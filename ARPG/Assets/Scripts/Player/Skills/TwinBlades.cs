@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class ShockWave : MonoBehaviour, ISkill {
+public class TwinBlades : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
@@ -16,20 +16,26 @@ public class ShockWave : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private GameObject shockWave;
+	//private SwordAttack leftSwordAttack;
+	//private GameObject leftSword;
+	private SwordAttack rightSwordAttack;
+	private GameObject rightSword;
 
 	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
+	public void SetProperties (Player player) {}
 
-	public void SetProperties (Player player) {
-		shockWave = player.transform.Find ("Shockwave").gameObject;
-		skillName = "Shockwave";
-		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon = (Image) Resources.Load ("UI/shockwave");
-		manaCost = 20;
+	public void SetProperties (GameObject sword) {
+		//leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		rightSword = sword;
+		Debug.Log ("swords name is " + rightSword.name);
+		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
+		skillName = "Twin Blades";
+		skillDescription = "You hit your enemy with two lightning fast blades.";
+		skillIcon = (Image) Resources.Load ("UI/twinBlades");
+		manaCost = 0;
 		baseDamage = 15;
 		damage = baseDamage;
-		cooldown = 4f;
+		cooldown = 2f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
@@ -49,11 +55,11 @@ public class ShockWave : MonoBehaviour, ISkill {
 	}
 
 	public void Execute () {
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
+		rightSwordAttack.SetHeavyDamage (baseDamage);
+		rightSwordAttack.SetAttack(false, true);
 	}
 
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 }

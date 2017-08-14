@@ -18,6 +18,9 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 
 	private int floorMask;
 
+	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject sword) {}
+
 	public void SetProperties () {
 		skillName = "Ground Breaker";
 		skillDescription = "You break the ground at the target location.";
@@ -41,8 +44,9 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 		}
 	}
 
-	public void Execute (Transform player) {}
+	public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) { 
 		Ray interactionRay = Camera.main.ScreenPointToRay (Input.mousePosition);

@@ -6,30 +6,18 @@ using UnityEngine.AI;
 public class MageAttack : Attack {
 	
 	public GameObject spellOrigin;
-	public GameObject fireBall;
-	public GameObject shockWave;
-
-	public int primaryDamage;
-	public int secondaryDamage;
-
-	public float cooldownPrimaryAttack;
-	public float cooldownSecondaryAttack;
-	public float cooldownFirstSpell;
-	public float cooldownSecondSpell;
-	public float cooldownThirdSpell;
 
 	public override void EquipSkill () {
-		Debug.Log ("equip skill");
 		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
 		skills [0].SetProperties ();
 		skills [1] = gameObject.AddComponent <GroundBreaker> () as GroundBreaker;
 		skills [1].SetProperties ();
 		skills [2] = gameObject.AddComponent <Shield> () as Shield;
-		skills [2].SetProperties ();
+		skills [2].SetProperties (player);
 		skills [3] = gameObject.AddComponent <WaterCircle> () as WaterCircle;
-		skills [3].SetProperties ();
+		skills [3].SetProperties (player);
 		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
-		skills [4].SetProperties ();
+		skills [4].SetProperties (player);
 	}
 
 	protected override void CastPrimaryAttack () {
@@ -44,19 +32,19 @@ public class MageAttack : Attack {
 	}
 
 	protected override void CastFirstSpell () {
-		skills [2].Execute (transform);
+		skills [2].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
 	protected override void CastSecondSpell () {
-		skills [3].Execute (transform);
+		skills [3].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
 	protected override void CastThirdSpell () {
-		skills [4].Execute (transform);
+		skills [4].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WarriorAttack : MonoBehaviour, IPlayerAttack {
+public class WarriorAttack : MonoBehaviour {
 
 	private Animator animator;
 

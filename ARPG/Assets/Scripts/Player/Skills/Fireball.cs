@@ -16,6 +16,9 @@ public class Fireball : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
+	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject sword) {}
+
 	public void SetProperties () {
 		skillName = "Fireball";
 		skillDescription = "You create a fireball that is thrown at the target and deals damage.";
@@ -37,8 +40,9 @@ public class Fireball : MonoBehaviour, ISkill {
 		}
 	}
 
-	public void Execute (Transform player) {}
+	public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
+	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
 		Vector3 spawnPoint = spellOrigin.transform.position;

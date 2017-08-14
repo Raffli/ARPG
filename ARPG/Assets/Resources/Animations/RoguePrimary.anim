@@ -39918,8 +39918,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 0
+    functionName: CastPrimaryAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.7
     functionName: RestartPlayerAgent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
+    functionName: DisableSwords
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

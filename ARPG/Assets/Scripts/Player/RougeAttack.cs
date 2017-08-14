@@ -3,118 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RougeAttack : MonoBehaviour, IPlayerAttack {
+public class RougeAttack : Attack {
 
-	private Animator animator;
+	public GameObject leftSword;
+	public GameObject rightSword;
 
-	public int primaryDamage;
-	public int secondaryDamage;
-
-	public float cooldownPrimaryAttack;
-	public float cooldownSecondaryAttack;
-	public float cooldownFirstSpell;
-	public float cooldownSecondSpell;
-	public float cooldownThirdSpell;
-
-	private bool primaryOnCooldown;
-	private bool secondaryOnCooldown;
-	private bool firstSpellOnCooldown;
-	private bool secondSpellOnCooldown;
-	private bool thirdSpellOnCooldown;
-
-	private NavMeshAgent playerAgent;
-	private GameObject enemy;
-	private WorldInteraction worldInteraction;
 	private SwordAttack leftSwordAttack;
 	private SwordAttack rightSwordAttack;
 
-    public GameObject leftSword;
-    public GameObject rightSword;
-
-    void Start () {
-        animator = GetComponent<Animator>();
-		playerAgent = GetComponent<NavMeshAgent> ();
-		worldInteraction = GetComponent<WorldInteraction> ();
+	public override void EquipSkill () {
 		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
 		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
-		leftSword.GetComponent<SwordAttack>().SetLightDamage(primaryDamage);
-        leftSword.GetComponent<SwordAttack>().SetHeavyDamage(secondaryDamage);
-		rightSword.GetComponent<SwordAttack>().SetLightDamage(primaryDamage);
-        rightSword.GetComponent<SwordAttack>().SetHeavyDamage(secondaryDamage);
-    }
 
-    void FixedUpdate () {
-		if (Input.GetButtonDown ("Fire2")) {
-			AttackSecondary ();
-		} else if (Input.GetButtonDown ("Spell1")) {
-			UseFirstSpell ();
-		} else if (Input.GetButtonDown ("Spell2")) {
-			UseSecondSpell ();
-		} else if (Input.GetButtonDown ("Spell3")) {
-			UseThirdSpell ();
-		} else if (Input.GetButtonDown ("HealPotion")) {
-			UseHealPotion ();
-		} else if (Input.GetButtonDown ("ManaPotion")) {
-			UseManaPotion ();
-		}
-    }
-
-	public void AttackPrimary (GameObject enemy) {
-		this.enemy = enemy;
-		if (!primaryOnCooldown) {
-			worldInteraction.SetCanInteract (false);
-			primaryOnCooldown = true;
-			leftSwordAttack.SetAttack(true, false);
-			if (animator) {				
-				animator.SetTrigger ("attackedPrimary"); 
-			}
-			StartCoroutine (ResetPrimaryAttack ());
-		}
+		skills [0] = gameObject.AddComponent <SparklingStrike> () as SparklingStrike;
+		skills [0].SetProperties (leftSword);
+		skills [1] = gameObject.AddComponent <TwinBlades> () as TwinBlades;
+		skills [1].SetProperties (rightSword);
+		/*
+		skills [2] = gameObject.AddComponent <Shield> () as Shield;
+		skills [2].SetProperties ();
+		skills [3] = gameObject.AddComponent <WaterCircle> () as WaterCircle;
+		skills [3].SetProperties ();
+		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
+		skills [4].SetProperties ();*/
 	}
 
-	public void AttackSecondary () {
-		if (!secondaryOnCooldown) {
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			secondaryOnCooldown = true;
-			rightSwordAttack.SetAttack(false, true);
-			if (animator) {		
-				animator.SetTrigger ("attackedSecondary"); 
-			}
-			StartCoroutine (ResetSecondaryAttack ());
-		}
+	protected override void CastPrimaryAttack () {
+		skills [0].Execute ();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
 
-	public void UseFirstSpell () {
-		Debug.Log ("First spell");
+	protected override void CastSecondaryAttack () {
+		skills [1].Execute ();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
-	public void UseSecondSpell () {
-		Debug.Log ("Second spell");
+
+	protected override void CastFirstSpell () {
+		skills [2].Execute ();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
-	public void UseThirdSpell () {
-		Debug.Log ("Third spell");
+
+	protected override void CastSecondSpell () {
+		skills [3].Execute ();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
-	public void UseHealPotion () {
-		Debug.Log ("heal potion used");
-	}
-	public void UseManaPotion () {
-		Debug.Log ("mana potion used");
+
+	protected override void CastThirdSpell () {
+		skills [4].Execute ();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract (true);
 	}
 
 	private void RestartPlayerAgent () {
 		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
+	}
+
+	private void DisableSwords () {
 		leftSwordAttack.DisableSword ();
 		rightSwordAttack.DisableSword ();
 	}
-
-	IEnumerator ResetPrimaryAttack () {
-		yield return new WaitForSeconds (cooldownPrimaryAttack);
-		primaryOnCooldown = false;
-	}
-
-	IEnumerator ResetSecondaryAttack () {
-		yield return new WaitForSeconds (cooldownSecondaryAttack);
-		secondaryOnCooldown = false;
-	}
+		
 }

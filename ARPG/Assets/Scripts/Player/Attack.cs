@@ -76,7 +76,6 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void AttackSecondary () {
-		Debug.Log ("skills ready? " + skills [1].skillName );
 		if (skills [1] != null && !skills[1].onCooldown && (player.currentMana - skills [1].manaCost) >= 0) {
 			player.currentMana -= skills [1].manaCost;
 			worldInteraction.SetCanInteract (false);

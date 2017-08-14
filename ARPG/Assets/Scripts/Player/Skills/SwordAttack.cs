@@ -12,6 +12,7 @@ public class SwordAttack : MonoBehaviour {
 
     void Start() {
         swordColl = GetComponent<BoxCollider>();
+		DisableSword ();
     }
 
     public void SetLightDamage(int damage) {

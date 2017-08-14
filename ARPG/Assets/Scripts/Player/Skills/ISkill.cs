@@ -15,8 +15,11 @@ public interface ISkill {
 	bool onCooldown { get; set; }
 
 	void SetProperties ();
+	void SetProperties (Player player);
+	void SetProperties (GameObject sword);
 	void StartCooldown ();
+	void Execute (NavMeshAgent playerAgent, GameObject enemy);
 	void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin);
-	void Execute (Transform player);
+	void Execute ();
 	void Execute (NavMeshAgent playerAgent, Vector3 targetPoint);
 }
