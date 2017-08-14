@@ -9,5 +9,21 @@ public class Player : MonoBehaviour {
 	public int xpToLevel;
 	public int maximumMana;
 	public int currentMana;
+	public int maxHealth;
+	public int currentHealth;
 
+	void Start() {
+		currentHealth = maxHealth;
+	}
+
+	public void TakeDamage (int amount) {
+		currentHealth -= amount;
+		if (currentHealth <= 0) {
+			Die();
+		}
+	}
+
+	void Die() {
+		Debug.Log("Player ist tot");
+	}
 }

@@ -21,27 +21,28 @@ public class Attack : MonoBehaviour {
 	protected bool healPotionOnCooldown;
 	protected bool manaPotionOnCooldown;
 
+	protected Vector3 castPosition;
+
 	protected ISkill [] skills;
+	protected HealPotion healPotion;
+	protected ManaPotion manaPotion;
 
 	void Start () {
 		animator = GetComponent<Animator>();
 		playerAgent = GetComponent<NavMeshAgent> ();
+		player = GetComponent <Player> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
+		healPotion = gameObject.AddComponent<HealPotion> () as HealPotion;
+		healPotion.SetProperties ();
+		manaPotion = gameObject.AddComponent<ManaPotion> () as ManaPotion;
+		manaPotion.SetProperties ();
 		skills = new ISkill[5]; 
-		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
-		skills [0].SetProperties ();
-		skills [1] = gameObject.AddComponent <GroundBreaker> () as GroundBreaker;
-		skills [1].SetProperties ();
-		skills [2] = gameObject.AddComponent <Shield> () as Shield;
-		skills [2].SetProperties ();
-		skills [3] = gameObject.AddComponent <WaterCircle> () as WaterCircle;
-		skills [3].SetProperties ();
-		skills [4] = gameObject.AddComponent <ShockWave> () as ShockWave;
-		skills [4].SetProperties ();
 	}
 	
 	void FixedUpdate () {
 		if (Input.GetButtonDown ("Fire2")) {
+			Debug.Log (Input.mousePosition);
+			castPosition = Input.mousePosition;
 			AttackSecondary ();
 		} else if (Input.GetButtonDown ("Spell1")) {
 			UseFirstSpell ();
@@ -53,6 +54,8 @@ public class Attack : MonoBehaviour {
 			UseHealPotion ();
 		} else if (Input.GetButtonDown ("ManaPotion")) {
 			UseManaPotion ();
+		} else if (Input.GetButtonDown ("Jump")) {
+			EquipSkill ();
 		}
 	}
 
@@ -72,6 +75,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void AttackSecondary () {
+		Debug.Log ("skills ready? " + skills [1].skillName );
 		if (skills [1] != null && !skills[1].onCooldown) {
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
@@ -116,13 +120,18 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseHealPotion () {
-		Debug.Log ("heal potion used");
+		if (!healPotion.onCooldown) {
+			healPotion.Use (player);
+		}
 	}
 
 	public void UseManaPotion () {
-		Debug.Log ("mana potion used");
+		if (!manaPotion.onCooldown) {
+			manaPotion.Use (player);
+		}
 	}
 
+	public virtual void EquipSkill () {}
 	protected virtual void CastPrimaryAttack () {}
 	protected virtual void CastSecondaryAttack () {}
 	protected virtual void CastFirstSpell () {}

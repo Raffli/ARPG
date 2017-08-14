@@ -21,7 +21,7 @@ public class ShockWave : MonoBehaviour, ISkill {
 	public void SetProperties () {
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon = (Image) Resources.Load ("/UI/shockwave");
+		skillIcon = (Image) Resources.Load ("UI/shockwave");
 		manaCost = 20;
 		baseDamage = 15;
 		damage = baseDamage;

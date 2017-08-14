@@ -6,7 +6,7 @@ public class EnemyAI: MonoBehaviour {
 
     NavMeshAgent agent;
     Transform playerPosition;
-    PlayerHealth playerHealth;
+	Player player;
     Animator anim;
     Collider[] withinAggroColliders;
     public LayerMask aggroLayerMask;
@@ -35,7 +35,7 @@ public class EnemyAI: MonoBehaviour {
 			goingBack = false;
 			agent.stoppingDistance = 8f;
             playerPosition = withinAggroColliders[0].GetComponent<Transform>();
-            playerHealth = withinAggroColliders[0].GetComponent<PlayerHealth>();
+            player = withinAggroColliders[0].GetComponent<Player>();
         }
         else if (aggro){
             aggro = false;
@@ -51,9 +51,9 @@ public class EnemyAI: MonoBehaviour {
 	}
 
     void DealDamage() {
-        if (playerHealth)
+        if (player)
         {
-            playerHealth.TakeDamage(damage);
+            player.TakeDamage(damage);
         }
     }
 

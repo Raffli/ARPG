@@ -22,7 +22,7 @@ public class Shield : MonoBehaviour, ISkill {
 	public void SetProperties () {
 		skillName = "Protective Aura";
 		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
-		skillIcon = (Image) Resources.Load ("/UI/protectingAura");
+		skillIcon = (Image) Resources.Load ("UI/protectingAura");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;

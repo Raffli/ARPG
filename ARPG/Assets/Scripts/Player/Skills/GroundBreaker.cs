@@ -21,7 +21,7 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 	public void SetProperties () {
 		skillName = "Ground Breaker";
 		skillDescription = "You break the ground at the target location.";
-		skillIcon = (Image) Resources.Load ("/UI/groundbreaker");
+		skillIcon = (Image) Resources.Load ("UI/groundbreaker");
 		manaCost = 25;
 		baseDamage = 20;
 		damage = baseDamage;

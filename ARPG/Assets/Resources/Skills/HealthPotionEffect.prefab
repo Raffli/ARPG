@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4192242994490422}
+  - component: {fileID: 114303086662406598}
   m_Layer: 9
   m_Name: HealthPotionEffect
   m_TagString: Untagged
@@ -132,6 +133,17 @@ Transform:
   m_Father: {fileID: 4262507341993104}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114303086662406598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102889190482034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c384a85c5ee4a99479e1e3b12ee3b333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198262415296252618
 ParticleSystem:
   m_ObjectHideFlags: 1

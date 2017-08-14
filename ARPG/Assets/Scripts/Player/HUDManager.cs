@@ -11,7 +11,6 @@ public class HUDManager : MonoBehaviour {
 	private Image manaPool;
 
 	private Player player;
-	private PlayerHealth playerHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -20,13 +19,12 @@ public class HUDManager : MonoBehaviour {
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
 
 		player = GetComponent<Player> ();
-		playerHealth = GetComponent<PlayerHealth> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		xpBar.value = ((float) player.xp) / ((float) player.xpToLevel);
-		healthPool.fillAmount = ((float) playerHealth.currentHealth) / ((float) playerHealth.maxHealth);
+		healthPool.fillAmount = ((float) player.currentHealth) / ((float) player.maxHealth);
 		manaPool.fillAmount = ((float) player.currentMana) / ((float) player.maximumMana);
 	}
 }
