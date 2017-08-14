@@ -53,13 +53,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4085791748028262}
+  - component: {fileID: 114490352678464600}
   m_Layer: 9
   m_Name: FireFissure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1127669501993658
 GameObject:
   m_ObjectHideFlags: 1
@@ -690,6 +691,17 @@ Transform:
   m_Father: {fileID: 4085791748028262}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114490352678464600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1032091654798624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893b289fe49087040b17f43f478562f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198156952246136258
 ParticleSystem:
   m_ObjectHideFlags: 1

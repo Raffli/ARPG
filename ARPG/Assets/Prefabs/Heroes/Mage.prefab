@@ -1922,7 +1922,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831580031499302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 79.8, y: 49.2, z: 448.88678}
+  m_LocalPosition: {x: 76.734406, y: 50.009155, z: 483.6952}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_Children:
   - {fileID: 4020016878249778}
@@ -2353,15 +2353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellOrigin: {fileID: 1280994026301414}
-  fireBall: {fileID: 1525896181860374, guid: a075524887189a649926bed67de83d21, type: 2}
-  shockWave: {fileID: 1585934396180578}
-  primaryDamage: 10
-  secondaryDamage: 20
-  cooldownPrimaryAttack: 2
-  cooldownSecondaryAttack: 4
-  cooldownFirstSpell: 0
-  cooldownSecondSpell: 0
-  cooldownThirdSpell: 4
 --- !u!114 &114206499757285662
 MonoBehaviour:
   m_ObjectHideFlags: 1
