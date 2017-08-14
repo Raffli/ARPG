@@ -64,7 +64,8 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void AttackPrimary (GameObject enemy) {
-		if (skills [0] != null && !skills[0].onCooldown) {
+		if (skills [0] != null && !skills[0].onCooldown && (player.currentMana - skills [0].manaCost) >= 0) {
+			player.currentMana -= skills [0].manaCost;
 			this.enemy = enemy;
 			worldInteraction.SetCanInteract (false);
 			skills [0].StartCooldown ();
@@ -76,7 +77,8 @@ public class Attack : MonoBehaviour {
 
 	public void AttackSecondary () {
 		Debug.Log ("skills ready? " + skills [1].skillName );
-		if (skills [1] != null && !skills[1].onCooldown) {
+		if (skills [1] != null && !skills[1].onCooldown && (player.currentMana - skills [1].manaCost) >= 0) {
+			player.currentMana -= skills [1].manaCost;
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [1].StartCooldown ();
@@ -87,7 +89,8 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseFirstSpell () {
-		if (skills [2] != null && !skills[2].onCooldown) {
+		if (skills [2] != null && !skills[2].onCooldown && (player.currentMana - skills [2].manaCost) >= 0) {
+			player.currentMana -= skills [2].manaCost;
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [2].StartCooldown ();
@@ -98,7 +101,8 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseSecondSpell () {
-		if (skills [3] != null && !skills[3].onCooldown) {
+		if (skills [3] != null && !skills[3].onCooldown && (player.currentMana - skills [3].manaCost) >= 0) {
+			player.currentMana -= skills [3].manaCost;
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [3].StartCooldown ();
@@ -109,7 +113,8 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void UseThirdSpell () {
-		if (skills [4] != null && !skills[4].onCooldown) {
+		if (skills [4] != null && !skills[4].onCooldown && (player.currentMana - skills [4].manaCost) >= 0) {
+			player.currentMana -= skills [4].manaCost;
 			worldInteraction.SetCanInteract (false);
 			playerAgent.isStopped = true;
 			skills [4].StartCooldown ();
