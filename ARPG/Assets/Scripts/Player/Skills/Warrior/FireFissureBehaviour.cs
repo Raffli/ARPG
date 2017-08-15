@@ -9,6 +9,7 @@ public class FireFissureBehaviour : MonoBehaviour {
     public Collider[] colliderArray;
     private int damage;
     private GameObject spellOrigin;
+    private List<Collider> colliderList = new List<Collider>();
 
     private void OnEnable()
 	{
@@ -37,7 +38,17 @@ public class FireFissureBehaviour : MonoBehaviour {
     {
         if (other.transform.tag == "Enemy")
         {
-            other.GetComponent<EnemyHealth>().ReduceHealth(damage);
+            foreach(Collider col in colliderList)
+            {
+                if (col == other) {
+                    return;
+                }
+            }
+            {
+                other.GetComponent<EnemyHealth>().ReduceHealth(damage);
+                colliderList.Add(other);
+            }
+
         }
     }
 

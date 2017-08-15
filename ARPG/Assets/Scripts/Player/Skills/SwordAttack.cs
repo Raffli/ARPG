@@ -9,6 +9,7 @@ public class SwordAttack : MonoBehaviour {
     bool lightAttack;
     bool heavyAttack;
     Collider swordColl;
+    Collider lastCollider;
 
     void Start() {
         swordColl = GetComponent<BoxCollider>();
@@ -33,22 +34,30 @@ public class SwordAttack : MonoBehaviour {
         }
     }
 
-	public void DisableSword (){
+    public void DisableSword (){
 		swordColl.enabled = false;
-	}
+        lastCollider = null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Enemy") {
-            if (lightAttack)
-            {      
-                other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
-                swordColl.enabled = false;
-            }
-            else if(heavyAttack)
+            if (lastCollider != other)
             {
-                other.GetComponent<EnemyHealth>().ReduceHealth(heavyDamage);
-                swordColl.enabled = false;
+                lastCollider = null;
+                if (lightAttack)
+                {
+                    other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
+                    lastCollider=other;
+                }
+                else if (heavyAttack)
+                {
+                    other.GetComponent<EnemyHealth>().ReduceHealth(heavyDamage);
+                    lastCollider=other;
+                }
+            }
+            else {
+                return;
             }
         }
     }
