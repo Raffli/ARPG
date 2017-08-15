@@ -2305,8 +2305,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.3790231, y: 5.1352882, z: 1.0306363}
-  m_Center: {x: 0.15169194, y: -1.9906775, z: -0.0153196715}
+  m_Size: {x: 0.79436225, y: 3.4585736, z: 0.28624427}
+  m_Center: {x: -0.006646908, y: -1.9089301, z: -0.11977357}
 --- !u!81 &81955913190698952
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2732,7 +2732,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1836134293967588}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.2
   m_Speed: 17
   m_Acceleration: 35
   avoidancePriority: 50
@@ -2741,7 +2741,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 4
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
