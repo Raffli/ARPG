@@ -28,7 +28,7 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 		sweepingLotus = player.transform.Find ("SweepingLotus").gameObject;
 		skillName = "Sweeping Lotus";
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
-		skillIcon = (Image) Resources.Load ("UI/stealth");
+		skillIcon = (Image) Resources.Load ("UI/sweepingLotus");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;
@@ -53,7 +53,7 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 
 	public void Execute () {
 		sweepingLotus.SetActive (true);
-		// add to player.damage or something
+
 	}
 
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
