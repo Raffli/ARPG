@@ -25,12 +25,11 @@ public class FireFissure : MonoBehaviour, ISkill {
 
 	public void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		fireFissure = player.transform.Find ("FireFissure").gameObject;
 		skillName = "Fire Fissure";
 		skillDescription = "You smash the ground causing the ground to erupt in fire.";
 		skillIcon = (Image) Resources.Load ("UI/fireFissure");
 		manaCost = 15;
-		baseDamage = 0;
+		baseDamage = 20;
 		damage = baseDamage;
 		cooldown = 6f;
 		cooldownLeft = 0f;
@@ -52,10 +51,12 @@ public class FireFissure : MonoBehaviour, ISkill {
 	}
 
 	public void Execute (GameObject spellOrigin) {
-		fireFissure.SetActive (true);
-	}
+        GameObject fireFissure = (GameObject)Resources.Load("Skills/FireFissure");
+        GameObject obj = Instantiate(fireFissure, spellOrigin.transform.position, spellOrigin.transform.rotation);
+        obj.GetComponent<FireFissureBehaviour>().SetFireFissureDamage(damage);
+    }
 
-	public void Execute () {}
+    public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

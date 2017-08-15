@@ -1,19 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class FireFissureBehaviour : MonoBehaviour {
 
-	private void OnEnable()
+    public Collider[] colliderArray;
+    private int damage;
+    private GameObject spellOrigin;
+
+    private void OnEnable()
 	{
 		StartCoroutine(Procedure());
 	}
 
-	IEnumerator Procedure()
+    public void SetFireFissureDamage(int damage)
+    {
+        this.damage = damage;
+    }
+
+    IEnumerator Procedure()
 	{
-		yield return new WaitForSeconds(1f);
-		// still to do
-		yield return new WaitForSeconds(2f);
-		gameObject.SetActive(false);
+        for (int i = 0; i < colliderArray.Length; i++)
+        {
+            colliderArray[i].enabled = true;
+            yield return new WaitForSeconds(0.1f);
+            colliderArray[i].enabled = false;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        Destroy(gameObject);
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Enemy")
+        {
+            other.GetComponent<EnemyHealth>().ReduceHealth(damage);
+        }
+    }
+
+
+
 }
