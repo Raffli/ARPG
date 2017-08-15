@@ -50,7 +50,7 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) { 
-		Ray interactionRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {
 			GameObject groundBreaker = (GameObject)Resources.Load ("Skills/GroundBreaker");
