@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour {
 
 	protected Vector3 castPosition;
 
-	protected ISkill [] skills;
+	public ISkill [] skills;
 	protected HealPotion healPotion;
 	protected ManaPotion manaPotion;
 
