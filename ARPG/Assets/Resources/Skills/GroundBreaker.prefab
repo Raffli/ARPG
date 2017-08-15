@@ -361,6 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113ce007f7208ba438b82f2ed48665a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  range: 10
 --- !u!198 &198016383323564168
 ParticleSystem:
   m_ObjectHideFlags: 1

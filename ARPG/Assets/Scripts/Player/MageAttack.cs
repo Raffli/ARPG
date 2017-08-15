@@ -26,7 +26,6 @@ public class MageAttack : Attack {
 	}
 
 	protected override void CastSecondaryAttack () {
-		Debug.Log ("cast is at " + castPosition);
 		skills [1].Execute (playerAgent, castPosition);
 		worldInteraction.SetCanInteract (true);
 	}

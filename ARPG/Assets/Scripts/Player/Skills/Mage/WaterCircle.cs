@@ -28,9 +28,9 @@ public class WaterCircle : MonoBehaviour, ISkill {
 		skillDescription = "You get sourrounded by water that deals damage to everything it comes in contact with.";
 		skillIcon = (Image) Resources.Load ("UI/waterCircle");
 		manaCost = 25;
-		baseDamage = 15;
+		baseDamage = 10;
 		damage = baseDamage;
-		cooldown = 4f;
+		cooldown = 5f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
