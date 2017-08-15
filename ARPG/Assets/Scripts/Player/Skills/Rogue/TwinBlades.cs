@@ -16,17 +16,19 @@ public class TwinBlades : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	//private SwordAttack leftSwordAttack;
-	//private GameObject leftSword;
+	private SwordAttack leftSwordAttack;
+	private GameObject leftSword;
 	private SwordAttack rightSwordAttack;
 	private GameObject rightSword;
 
 	public void SetProperties () {}
 	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject sword) {}
 
-	public void SetProperties (GameObject sword) {
-		//leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
-		rightSword = sword;
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {
+		this.leftSword = leftSword;
+		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		this.rightSword = rightSword;
 		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 		skillName = "Twin Blades";
 		skillDescription = "You hit your enemy with two lightning fast blades.";

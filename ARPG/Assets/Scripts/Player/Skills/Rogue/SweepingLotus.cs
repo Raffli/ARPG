@@ -21,6 +21,7 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 
 	public void SetProperties () {}
 	public void SetProperties (GameObject sword) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();

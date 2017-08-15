@@ -20,6 +20,7 @@ public class WaterCircle : MonoBehaviour, ISkill {
 
 	public void SetProperties () {}
 	public void SetProperties (GameObject sword) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (Player player) {
 		waterCircle = player.transform.Find ("WaterCircle").gameObject;

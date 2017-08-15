@@ -21,6 +21,7 @@ public class Bash : MonoBehaviour, ISkill {
 
 	public void SetProperties () {}
 	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (GameObject sword) {
 		this.sword = sword;

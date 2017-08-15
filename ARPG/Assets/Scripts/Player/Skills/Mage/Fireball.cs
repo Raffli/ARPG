@@ -18,6 +18,7 @@ public class Fireball : MonoBehaviour, ISkill {
 
 	public void SetProperties (Player player) {}
 	public void SetProperties (GameObject sword) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties () {
 		skillName = "Fireball";

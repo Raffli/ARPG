@@ -18,16 +18,14 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 
 	private SwordAttack leftSwordAttack;
 	private GameObject leftSword;
-	//private SwordAttack rightSwordAttack;
-	//private GameObject rightSword;
 
 	public void SetProperties () {}
 	public void SetProperties (Player player) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (GameObject sword) {
 		leftSword = sword;
 		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
-		//rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 		skillName = "Sparkling Strike";
 		skillDescription = "You hit your enemy with a powerful strike with your blade.";
 		skillIcon = (Image) Resources.Load ("UI/sparklingStrike");

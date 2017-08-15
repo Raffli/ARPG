@@ -20,6 +20,7 @@ public class ShockWave : MonoBehaviour, ISkill {
 
 	public void SetProperties () {}
 	public void SetProperties (GameObject sword) {}
+	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (Player player) {
 		shockWave = player.transform.Find ("Shockwave").gameObject;
