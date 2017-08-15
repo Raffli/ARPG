@@ -27,16 +27,16 @@ public class TwinBlades : MonoBehaviour, ISkill {
 
 	public void SetProperties (GameObject leftSword, GameObject rightSword) {
 		this.leftSword = leftSword;
-		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		leftSwordAttack = leftSword.GetComponent<SwordAttack>();
 		this.rightSword = rightSword;
-		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
+		rightSwordAttack = rightSword.GetComponent<SwordAttack>();
 		skillName = "Twin Blades";
 		skillDescription = "You hit your enemy with two lightning fast blades.";
 		skillIcon = (Image) Resources.Load ("UI/twinBlades");
 		manaCost = 0;
-		baseDamage = 15;
+		baseDamage = 30;
 		damage = baseDamage;
-		cooldown = 2f;
+		cooldown = 1.3f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
@@ -58,7 +58,9 @@ public class TwinBlades : MonoBehaviour, ISkill {
 	public void Execute () {
 		rightSwordAttack.SetHeavyDamage (baseDamage);
 		rightSwordAttack.SetAttack(false, true);
-	}
+        leftSwordAttack.SetHeavyDamage(baseDamage);
+        leftSwordAttack.SetAttack(false, true);
+    }
 
 	public void Execute (GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}

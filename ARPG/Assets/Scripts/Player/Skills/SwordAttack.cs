@@ -43,10 +43,12 @@ public class SwordAttack : MonoBehaviour {
             if (lightAttack)
             {      
                 other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
+                swordColl.enabled = false;
             }
             else if(heavyAttack)
             {
                 other.GetComponent<EnemyHealth>().ReduceHealth(heavyDamage);
+                swordColl.enabled = false;
             }
         }
     }

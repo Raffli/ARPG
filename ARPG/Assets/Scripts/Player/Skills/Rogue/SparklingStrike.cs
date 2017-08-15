@@ -16,23 +16,23 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private SwordAttack leftSwordAttack;
-	private GameObject leftSword;
+	private SwordAttack rightSwordAttack;
+	private GameObject rightSword;
 
 	public void SetProperties () {}
 	public void SetProperties (Player player) {}
 	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
 	public void SetProperties (GameObject sword) {
-		leftSword = sword;
-		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		rightSword = sword;
+		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 		skillName = "Sparkling Strike";
 		skillDescription = "You hit your enemy with a powerful strike with your blade.";
 		skillIcon = (Image) Resources.Load ("UI/sparklingStrike");
 		manaCost = 0;
-		baseDamage = 15;
+		baseDamage = 20;
 		damage = baseDamage;
-		cooldown = 2f;
+		cooldown = 0.8f;
 		cooldownLeft = 0f;
 		onCooldown = false;
 	}
@@ -52,8 +52,8 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 	}
 
 	public void Execute () {
-		leftSwordAttack.SetLightDamage (baseDamage);
-		leftSwordAttack.SetAttack(true, false);
+        rightSwordAttack.SetLightDamage (baseDamage);
+        rightSwordAttack.SetAttack(true, false);
 	}
 
 	public void Execute (GameObject spellOrigin) {}

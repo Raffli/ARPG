@@ -16,9 +16,9 @@ public class RougeAttack : Attack {
 		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 
 		skills [0] = gameObject.AddComponent <SparklingStrike> () as SparklingStrike;
-		skills [0].SetProperties (leftSword);
+		skills [0].SetProperties (rightSword);
 		skills [1] = gameObject.AddComponent <TwinBlades> () as TwinBlades;
-		skills [1].SetProperties (rightSword);
+		skills [1].SetProperties (leftSword,rightSword);
 		skills [2] = gameObject.AddComponent <PoisonousBlade> () as PoisonousBlade;
 		skills [2].SetProperties (player);
 		skills [3] = gameObject.AddComponent <Stealth> () as Stealth;

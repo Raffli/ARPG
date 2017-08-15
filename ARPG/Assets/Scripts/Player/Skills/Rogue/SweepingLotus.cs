@@ -30,7 +30,7 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
 		skillIcon = (Image) Resources.Load ("UI/sweepingLotus");
 		manaCost = 15;
-		baseDamage = 0;
+		baseDamage = 8;
 		damage = baseDamage;
 		cooldown = 6f;
 		cooldownLeft = 0f;
@@ -52,11 +52,12 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 	}
 
 	public void Execute () {
-		sweepingLotus.SetActive (true);
+        sweepingLotus.SetActive (true);
+        sweepingLotus.GetComponent<SweepingLotusBehaviour>().SetDamage(baseDamage);
 
-	}
+    }
 
-	public void Execute (GameObject spellOrigin) {}
+    public void Execute (GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
