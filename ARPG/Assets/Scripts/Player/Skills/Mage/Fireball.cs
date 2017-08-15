@@ -41,6 +41,7 @@ public class Fireball : MonoBehaviour, ISkill {
 		}
 	}
 
+	public void Execute (GameObject spellOrigin) {}
 	public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

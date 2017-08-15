@@ -54,6 +54,7 @@ public class WaterCircle : MonoBehaviour, ISkill {
 		waterCircle.GetComponent<WaterCircleBehaviour> ().SetDamage (damage);
 	}
 
+	public void Execute (GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

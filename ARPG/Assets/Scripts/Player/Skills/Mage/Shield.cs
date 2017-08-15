@@ -56,6 +56,7 @@ public class Shield : MonoBehaviour, ISkill {
 		// add to player.armor or something
 	}
 
+	public void Execute (GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

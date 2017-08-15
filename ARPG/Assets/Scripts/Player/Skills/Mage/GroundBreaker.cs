@@ -45,6 +45,7 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 		}
 	}
 
+	public void Execute (GameObject spellOrigin) {}
 	public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

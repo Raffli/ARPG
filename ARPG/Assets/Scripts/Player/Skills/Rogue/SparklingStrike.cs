@@ -56,6 +56,7 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 		leftSwordAttack.SetAttack(true, false);
 	}
 
+	public void Execute (GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}

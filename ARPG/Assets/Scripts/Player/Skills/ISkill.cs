@@ -22,5 +22,6 @@ public interface ISkill {
 	void Execute (NavMeshAgent playerAgent, GameObject enemy);
 	void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin);
 	void Execute ();
+	void Execute (GameObject spellOrigin);
 	void Execute (NavMeshAgent playerAgent, Vector3 targetPoint);
 }

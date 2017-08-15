@@ -51,10 +51,11 @@ public class FireFissure : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute () {
+	public void Execute (GameObject spellOrigin) {
 		fireFissure.SetActive (true);
 	}
 
+	public void Execute () {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
 	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}

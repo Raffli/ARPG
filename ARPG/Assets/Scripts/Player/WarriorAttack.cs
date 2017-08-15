@@ -7,6 +7,7 @@ public class WarriorAttack : Attack {
 
     public GameObject sword;
 	private SwordAttack swordAttack;
+	public GameObject spellOrigin;
 
 	public override void EquipSkill () {
 		swordAttack = sword.GetComponent<SwordAttack> ();
@@ -48,7 +49,7 @@ public class WarriorAttack : Attack {
 	}
 
 	protected override void CastThirdSpell () {
-		skills [4].Execute ();
+		skills [4].Execute (spellOrigin);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
