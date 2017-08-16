@@ -10,14 +10,22 @@ public class FireballBehaviour : MonoBehaviour {
 	private int damage;
 	private int aliveFor;
 	private NavMeshAgent playerAgent;
+    private bool impact;
+    private SphereCollider coll;
+    private GameObject effects;
+    AudioSource source;
+    public AudioClip hitSound;
 
-	private void Start () {
+    private void Start () {
 		GetComponent<Rigidbody>().AddForce(transform.forward * speed);
-	}
+        coll = GetComponent<SphereCollider>();
+        source = GetComponent<AudioSource>();
+        effects = gameObject.transform.GetChild(0).gameObject;
+    }
 	
 	private void FixedUpdate() {
 		aliveFor++;
-		if (aliveFor == lifeTicks)
+		if (aliveFor == lifeTicks && !impact)
 		{
 			Destroy(gameObject);
 		}
@@ -31,13 +39,24 @@ public class FireballBehaviour : MonoBehaviour {
 		this.damage = damage;
 	}
 
-	private void OnTriggerEnter(Collider other)
+    IEnumerator AfterImpact() {
+        GetComponent<Rigidbody>().isKinematic = true;
+        coll.enabled = false;
+        effects.SetActive(false);
+        source.Stop();
+        source.PlayOneShot(hitSound);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.tag == "Enemy")
+		if (other.transform.tag == "Enemy" && !impact)
 		{
+            impact = true;
 			other.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
 			other.GetComponent<EnemyHealth>().ReduceHealth(damage);
-			Destroy(gameObject);
-		}
+            StartCoroutine(AfterImpact());
+        }
 	}
 }

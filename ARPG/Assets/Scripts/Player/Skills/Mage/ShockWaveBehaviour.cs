@@ -26,7 +26,7 @@ public class ShockWaveBehaviour : MonoBehaviour {
             EnemyHealth enemyHealth = withinRangeColliders[i].GetComponent<EnemyHealth>();
             enemyHealth.ReduceHealth(damage);
         }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.6f);
         gameObject.SetActive(false);
     }
 }

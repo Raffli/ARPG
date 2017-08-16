@@ -35,6 +35,7 @@ public class GroundBreakerBehaviour : MonoBehaviour {
             EnemyHealth enemyHealth = withinRangeColliders[j].GetComponent<EnemyHealth>();
             enemyHealth.ReduceHealth(damage);
         }
+        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }
 }

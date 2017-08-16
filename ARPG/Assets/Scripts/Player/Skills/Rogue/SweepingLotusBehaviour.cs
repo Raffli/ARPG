@@ -9,6 +9,8 @@ public class SweepingLotusBehaviour : MonoBehaviour {
     public LayerMask enemyLayerMask;
     public float range;
     public int ticks;
+    AudioSource source;
+    public AudioClip[] hitSounds;
 
     public void SetDamage(int damage)
     {
@@ -17,6 +19,7 @@ public class SweepingLotusBehaviour : MonoBehaviour {
 
     private void OnEnable()
     {
+        source = GetComponent<AudioSource>();
         StartCoroutine(Procedure());
     }
 
@@ -24,10 +27,11 @@ public class SweepingLotusBehaviour : MonoBehaviour {
     {
         for (int i = 0; i <= ticks; i++)
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.1f);
             withinRangeColliders = Physics.OverlapSphere(transform.position, range, enemyLayerMask);
             for (int j = 0; j < withinRangeColliders.Length; j++)
             {
+                source.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
                 EnemyHealth enemyHealth = withinRangeColliders[j].GetComponent<EnemyHealth>();
                 enemyHealth.ReduceHealth(damage);
             }

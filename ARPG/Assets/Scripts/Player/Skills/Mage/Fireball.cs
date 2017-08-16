@@ -24,7 +24,7 @@ public class Fireball : MonoBehaviour, ISkill {
 		skillName = "Fireball";
 		skillDescription = "You create a fireball that is thrown at the target and deals damage.";
 		skillIcon = (Image) Resources.Load ("UI/fireball");
-		manaCost = 10;
+		manaCost = 0;
 		baseDamage = 10;
 		damage = baseDamage;
 		cooldown = 2f;

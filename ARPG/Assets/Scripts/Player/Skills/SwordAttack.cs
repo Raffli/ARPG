@@ -10,10 +10,13 @@ public class SwordAttack : MonoBehaviour {
     bool heavyAttack;
     Collider swordColl;
     Collider lastCollider;
+    AudioSource source;
+    public AudioClip[] hitSounds;
 
     void Start() {
         swordColl = GetComponent<BoxCollider>();
-		DisableSword ();
+        source = GetComponent<AudioSource>();
+        DisableSword ();
     }
 
     public void SetLightDamage(int damage) {
@@ -47,11 +50,14 @@ public class SwordAttack : MonoBehaviour {
                 lastCollider = null;
                 if (lightAttack)
                 {
+
+                    source.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
                     other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
                     lastCollider=other;
                 }
                 else if (heavyAttack)
                 {
+                    source.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
                     other.GetComponent<EnemyHealth>().ReduceHealth(heavyDamage);
                     lastCollider=other;
                 }

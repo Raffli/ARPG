@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ManaPotionEffect : MonoBehaviour {
 
-	private void OnEnable()
+    private void OnEnable()
 	{
 		StartCoroutine(Procedure());
 	}
@@ -12,8 +12,8 @@ public class ManaPotionEffect : MonoBehaviour {
 	IEnumerator Procedure()
 	{
 		yield return new WaitForSeconds(0.2f);
-		// still to do
-		yield return new WaitForSeconds(1f);
+        // still to do
+        yield return new WaitForSeconds(1f);
 		gameObject.SetActive(false);
 	}
 }
