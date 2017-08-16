@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class Attack : MonoBehaviour {
+public class Attack : NetworkBehaviour
+{
 
 	private Animator animator;
 
@@ -40,7 +42,11 @@ public class Attack : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if (Input.GetButtonDown ("Fire2")) {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        if (Input.GetButtonDown ("Fire2")) {
 			Debug.Log (Input.mousePosition);
 			castPosition = Input.mousePosition;
 			AttackSecondary ();

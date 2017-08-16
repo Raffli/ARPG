@@ -14,15 +14,16 @@ public class HUDManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
+        hudPanel = GameObject.FindWithTag("HUD");
+        xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
-		player = GetComponent<Player> ();
+        player = GetComponent<Player> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		xpBar.value = ((float) player.xp) / ((float) player.xpToLevel);
+        xpBar.value = ((float) player.xp) / ((float) player.xpToLevel);
 		healthPool.fillAmount = ((float) player.currentHealth) / ((float) player.maxHealth);
 		manaPool.fillAmount = ((float) player.currentMana) / ((float) player.maximumMana);
 	}

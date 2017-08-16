@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class WorldInteraction : MonoBehaviour {
+public class WorldInteraction : NetworkBehaviour
+{
 
 	private NavMeshAgent playerAgent;
 	private Animator animator;
@@ -24,6 +26,10 @@ public class WorldInteraction : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         if (canInteract) {
             if (Input.GetButtonDown("Fire1")) { //&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
 				GetInteraction ();
