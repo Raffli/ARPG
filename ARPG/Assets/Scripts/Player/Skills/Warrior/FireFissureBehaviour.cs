@@ -30,7 +30,7 @@ public class FireFissureBehaviour : MonoBehaviour {
             colliderArray[i].enabled = false;
             yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
 	}
 
