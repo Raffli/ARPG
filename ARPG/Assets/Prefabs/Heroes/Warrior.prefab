@@ -685,13 +685,14 @@ GameObject:
   - component: {fileID: 114088505465142944}
   - component: {fileID: 114853128366094886}
   - component: {fileID: 114088427072387170}
+  - component: {fileID: 114013366737672714}
   m_Layer: 9
   m_Name: Warrior
   m_TagString: Warrior
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1888259964591428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2091,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322f6d5f72b2ce943a64326764ee1f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114013366737672714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836134293967588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 220
+    i1: 216
+    i2: 0
+    i3: 170
+    i4: 24
+    i5: 94
+    i6: 16
+    i7: 148
+    i8: 137
+    i9: 17
+    i10: 110
+    i11: 215
+    i12: 254
+    i13: 102
+    i14: 8
+    i15: 6
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114088427072387170
 MonoBehaviour:
   m_ObjectHideFlags: 1

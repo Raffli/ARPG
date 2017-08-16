@@ -17,7 +17,6 @@ public class HUDManager : MonoBehaviour {
 		xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
-
 		player = GetComponent<Player> ();
 	}
 	
