@@ -6,7 +6,7 @@ public interface ISkill {
 	
 	string skillName { get; set; }
 	string skillDescription { get; set; }
-	Image skillIcon { get; set; }
+	Sprite skillIcon { get; set; }
 	int manaCost { get; set; }
 	int baseDamage { get; set; }
 	int damage { get; set; }

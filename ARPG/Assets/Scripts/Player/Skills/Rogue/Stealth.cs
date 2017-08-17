@@ -8,7 +8,7 @@ public class Stealth : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class Stealth : MonoBehaviour, ISkill {
 		stealth = player.transform.Find ("Stealth").gameObject;
 		skillName = "Stealth";
 		skillDescription = "You concentrate and become invisible to enemies for a while.";
-		skillIcon = (Image) Resources.Load ("UI/stealth");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/stealth");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;

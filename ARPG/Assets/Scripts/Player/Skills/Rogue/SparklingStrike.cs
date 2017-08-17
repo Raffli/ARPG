@@ -8,7 +8,7 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class SparklingStrike : MonoBehaviour, ISkill {
 		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
 		skillName = "Sparkling Strike";
 		skillDescription = "You hit your enemy with a powerful strike with your blade.";
-		skillIcon = (Image) Resources.Load ("UI/sparklingStrike");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/sparklingStrike");
 		manaCost = 0;
 		baseDamage = 15;
 		damage = baseDamage;

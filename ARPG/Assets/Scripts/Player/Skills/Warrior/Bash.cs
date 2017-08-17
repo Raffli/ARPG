@@ -8,7 +8,7 @@ public class Bash : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class Bash : MonoBehaviour, ISkill {
 		swordAttack = sword.GetComponent<SwordAttack> ();
 		skillName = "Bash";
 		skillDescription = "You slice through your enemy with full power.";
-		skillIcon = (Image) Resources.Load ("UI/bash");
+		skillIcon = Resources.Load <Sprite> ("UI/Icons/bash");
 		manaCost = 0;
 		baseDamage = 15;
 		damage = baseDamage;

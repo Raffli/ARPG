@@ -37,10 +37,8 @@ public class ManaPotion : MonoBehaviour {
 
 	public void Use (Player player) {
 		onCooldown = true;
-		player.currentMana += manaAmount;
-		if (player.currentMana > player.maximumMana) {
-			player.currentMana = player.maximumMana;
-		}
+		cooldownLeft = cooldown;
+		player.IncreaseMana (manaAmount);
 		manaPotionEffect = player.transform.Find ("ManaPotionEffect").gameObject;
 		manaPotionEffect.SetActive (true);
 	}

@@ -17,14 +17,19 @@ public class RougeAttack : Attack {
 
 		skills [0] = gameObject.AddComponent <SparklingStrike> () as SparklingStrike;
 		skills [0].SetProperties (leftSword);
+		HUDManager.Instance.AddSkillToUI (skills [0].skillIcon, 5);
 		skills [1] = gameObject.AddComponent <TwinBlades> () as TwinBlades;
-		skills [1].SetProperties (rightSword);
+		skills [1].SetProperties (leftSword, rightSword);
+		HUDManager.Instance.AddSkillToUI (skills [1].skillIcon, 6);
 		skills [2] = gameObject.AddComponent <PoisonousBlade> () as PoisonousBlade;
 		skills [2].SetProperties (player);
+		HUDManager.Instance.AddSkillToUI (skills [2].skillIcon, 0);
 		skills [3] = gameObject.AddComponent <Stealth> () as Stealth;
 		skills [3].SetProperties (player);
+		HUDManager.Instance.AddSkillToUI (skills [3].skillIcon, 1);
 		skills [4] = gameObject.AddComponent <SweepingLotus> () as SweepingLotus;
 		skills [4].SetProperties (player);
+		HUDManager.Instance.AddSkillToUI (skills [4].skillIcon, 2);
 	}
 
 	protected override void CastPrimaryAttack () {

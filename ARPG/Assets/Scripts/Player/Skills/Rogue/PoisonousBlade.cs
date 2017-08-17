@@ -8,7 +8,7 @@ public class PoisonousBlade : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class PoisonousBlade : MonoBehaviour, ISkill {
 		poisonousBlade = player.transform.Find ("PoisonousBlade").gameObject;
 		skillName = "Poisonous Blade";
 		skillDescription = "You put poison on your blade and deal more damage.";
-		skillIcon = (Image) Resources.Load ("UI/poisonousBlade");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/poisonousBlade");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;

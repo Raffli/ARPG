@@ -8,7 +8,7 @@ public class ShockWave : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -26,7 +26,7 @@ public class ShockWave : MonoBehaviour, ISkill {
 		shockWave = player.transform.Find ("Shockwave").gameObject;
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon = (Image) Resources.Load ("UI/shockwave");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/shockwave");
 		manaCost = 20;
 		baseDamage = 15;
 		damage = baseDamage;

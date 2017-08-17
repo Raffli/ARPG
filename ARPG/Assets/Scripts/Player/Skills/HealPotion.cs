@@ -37,10 +37,8 @@ public class HealPotion : MonoBehaviour {
 
 	public void Use (Player player) {
 		onCooldown = true;
-		player.currentHealth += healAmount;
-		if (player.currentHealth > player.maxHealth) {
-			player.currentHealth = player.maxHealth;
-		}
+		cooldownLeft = cooldown;
+		player.Heal (healAmount);
 		healPotionEffect = player.transform.Find ("HealthPotionEffect").gameObject;
 		healPotionEffect.SetActive (true);
 	}

@@ -8,7 +8,7 @@ public class Bladestorm : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class Bladestorm : MonoBehaviour, ISkill {
 		swordAttack = sword.GetComponent<SwordAttack> ();
 		skillName = "Bladestorm";
 		skillDescription = "You rotate around yourself slicing through every enemy around you.";
-		skillIcon = (Image) Resources.Load ("UI/bladestorm");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/bladestorm");
 		manaCost = 0;
 		baseDamage = 10;
 		damage = baseDamage;

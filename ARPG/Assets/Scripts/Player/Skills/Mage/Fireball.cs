@@ -8,7 +8,7 @@ public class Fireball : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -23,7 +23,7 @@ public class Fireball : MonoBehaviour, ISkill {
 	public void SetProperties () {
 		skillName = "Fireball";
 		skillDescription = "You create a fireball that is thrown at the target and deals damage.";
-		skillIcon = (Image) Resources.Load ("UI/fireball");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/fireball");
 		manaCost = 10;
 		baseDamage = 10;
 		damage = baseDamage;
