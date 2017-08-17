@@ -9,22 +9,8 @@ public class WarriorAttack : Attack {
 	private SwordAttack swordAttack;
 	public GameObject spellOrigin;
 
-    public override void RpcEquipSkill() {
-		swordAttack = sword.GetComponent<SwordAttack> ();
 
-		skills [0] = gameObject.AddComponent <Bash> () as Bash;
-		skills [0].SetProperties (sword);
-		skills [1] = gameObject.AddComponent <Bladestorm> () as Bladestorm;
-		skills [1].SetProperties (sword);
-		skills [2] = gameObject.AddComponent <WarCry> () as WarCry;
-		skills [2].SetProperties (player);
-		skills [3] = gameObject.AddComponent <LastStand> () as LastStand;
-		skills [3].SetProperties (player);
-		skills [4] = gameObject.AddComponent <FireFissure> () as FireFissure;
-		skills [4].SetProperties (player);
-	}
-
-    public override void CmdEquipSkill()
+    public override void EquipSkill()
     {
         swordAttack = sword.GetComponent<SwordAttack>();
 
@@ -40,71 +26,41 @@ public class WarriorAttack : Attack {
         skills[4].SetProperties(player);
     }
 
-    protected override void RpcCastPrimaryAttack() {
-		skills [0].Execute ();
-		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
-	}
-
-	protected override void RpcCastSecondaryAttack() {
-		skills [1].Execute ();
-		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
-	}
-
-	protected override void RpcCastFirstSpell() {
-        print("firstspell");
-		skills [2].Execute ();
-		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
-	}
-
-	protected override void RpcCastSecondSpell() {
-		skills [3].Execute ();
-		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
-	}
-
-	protected override void RpcCastThirdSpell() {
-		skills [4].Execute (spellOrigin);
-		playerAgent.isStopped = false;
-		worldInteraction.SetCanInteract (true);
-	}
 
     protected override void CmdCastPrimaryAttack()
     {
-        skills[0].Execute();
+        skills[0].CmdExecute();
         playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
+        worldInteraction.CmdSetCanInteract(true);
     }
 
     protected override void CmdCastSecondaryAttack()
     {
-        skills[1].Execute();
+        skills[1].CmdExecute();
         playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
+        worldInteraction.CmdSetCanInteract(true);
     }
 
     protected override void CmdCastFirstSpell()
     {
         print("firstspell");
-        skills[2].Execute();
+        skills[2].CmdExecute();
         playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
+        worldInteraction.CmdSetCanInteract(true);
     }
 
     protected override void CmdCastSecondSpell()
     {
-        skills[3].Execute();
+        skills[3].CmdExecute();
         playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
+        worldInteraction.CmdSetCanInteract(true);
     }
 
     protected override void CmdCastThirdSpell()
     {
-        skills[4].Execute(spellOrigin);
+        skills[4].CmdExecute(spellOrigin);
         playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
+        worldInteraction.CmdSetCanInteract(true);
     }
 
     private void RestartPlayerAgent() {

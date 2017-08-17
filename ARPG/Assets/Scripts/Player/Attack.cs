@@ -35,81 +35,42 @@ public class Attack : NetworkBehaviour
 		player = GetComponent <Player> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
 		healPotion = gameObject.AddComponent<HealPotion> () as HealPotion;
-		healPotion.SetProperties ();
+		healPotion.CmdSetProperties ();
 		manaPotion = gameObject.AddComponent<ManaPotion> () as ManaPotion;
-		manaPotion.SetProperties ();
+		manaPotion.CmdSetProperties ();
 		skills = new Skill[5]; 
 	}
 	
 	void FixedUpdate () {
-        if (!isLocalPlayer)
+        if (Input.GetButtonDown("Fire2"))
         {
-            return;
+            castPosition = Input.mousePosition;
+            CmdAttackSecondary();
         }
-        if (isServer)
+        else if (Input.GetButtonDown("Spell1"))
         {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                Debug.Log(Input.mousePosition);
-                castPosition = Input.mousePosition;
-                RpcAttackSecondary();
-            }
-            else if (Input.GetButtonDown("Spell1"))
-            {
-                RpcUseFirstSpell();
-            }
-            else if (Input.GetButtonDown("Spell2"))
-            {
-                RpcUseSecondSpell();
-            }
-            else if (Input.GetButtonDown("Spell3"))
-            {
-                RpcUseThirdSpell();
-            }
-            else if (Input.GetButtonDown("HealPotion"))
-            {
-                RpcUseHealPotion();
-            }
-            else if (Input.GetButtonDown("ManaPotion"))
-            {
-                RpcUseManaPotion();
-            }
-            else if (Input.GetButtonDown("Jump"))
-            {
-                RpcEquipSkill();
-            }
+            CmdUseFirstSpell();
         }
-        else {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                Debug.Log(Input.mousePosition);
-                castPosition = Input.mousePosition;
-                CmdAttackSecondary();
-            }
-            else if (Input.GetButtonDown("Spell1"))
-            {
-                CmdUseFirstSpell();
-            }
-            else if (Input.GetButtonDown("Spell2"))
-            {
-                CmdUseSecondSpell();
-            }
-            else if (Input.GetButtonDown("Spell3"))
-            {
-                CmdUseThirdSpell();
-            }
-            else if (Input.GetButtonDown("HealPotion"))
-            {
-                CmdUseHealPotion();
-            }
-            else if (Input.GetButtonDown("ManaPotion"))
-            {
-                CmdUseManaPotion();
-            }
-            else if (Input.GetButtonDown("Jump"))
-            {
-                CmdEquipSkill();
-            }
+        else if (Input.GetButtonDown("Spell2"))
+        {
+            CmdUseSecondSpell();
+        }
+        else if (Input.GetButtonDown("Spell3"))
+        {
+            CmdUseThirdSpell();
+        }
+        else if (Input.GetButtonDown("HealPotion"))
+        {
+            CmdUseHealPotion();
+        }
+        else if (Input.GetButtonDown("ManaPotion"))
+        {
+            CmdUseManaPotion();
+        }
+        else if (Input.GetButtonDown("Jump"))
+        {
+            print("Jump");
+            EquipSkill();
         }
 	}
 
@@ -117,98 +78,6 @@ public class Attack : NetworkBehaviour
 		skills [index] = skill;
 	}
 
-    [ClientRpc]
-    public void RpcAttackPrimary(GameObject enemy) {
-		if (skills [0] != null && !skills[0].onCooldown && (player.currentMana - skills [0].manaCost) >= 0) {
-			player.currentMana -= skills [0].manaCost;
-			this.enemy = enemy;
-			worldInteraction.SetCanInteract (false);
-			skills [0].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("attackedPrimary"); // Animator calls CastPrimaryAttack
-			}
-		}
-	}
-
-    [ClientRpc]
-    public void RpcAttackSecondary() {
-		if (skills [1] != null && !skills[1].onCooldown && (player.currentMana - skills [1].manaCost) >= 0) {
-			player.currentMana -= skills [1].manaCost;
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [1].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("attackedSecondary"); // Animator calls CastSecondaryAttack
-			}
-		}
-	}
-
-    [ClientRpc]
-    public void RpcUseFirstSpell() {
-        print("use first spell");
-		if (skills [2] != null && !skills[2].onCooldown && (player.currentMana - skills [2].manaCost) >= 0) {
-			player.currentMana -= skills [2].manaCost;
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [2].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedFirstSpell"); // Animator calls CastFirstSpell
-			}
-		}
-	}
-
-    [ClientRpc]
-    public void RpcUseSecondSpell() {
-		if (skills [3] != null && !skills[3].onCooldown && (player.currentMana - skills [3].manaCost) >= 0) {
-			player.currentMana -= skills [3].manaCost;
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [3].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedSecondSpell"); // Animator calls CastSecondSpell
-			}
-		}
-	}
-
-    [ClientRpc]
-    public void RpcUseThirdSpell() {
-		if (skills [4] != null && !skills[4].onCooldown && (player.currentMana - skills [4].manaCost) >= 0) {
-			player.currentMana -= skills [4].manaCost;
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [4].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedThirdSpell"); // Animator calls CastThirdSpell
-			}
-		}
-	}
-
-    [ClientRpc]
-    public void RpcUseHealPotion() {
-		if (!healPotion.onCooldown) {
-			healPotion.Use (player);
-		}
-	}
-
-    [ClientRpc]
-    public void RpcUseManaPotion() {
-		if (!manaPotion.onCooldown) {
-			manaPotion.Use (player);
-		}
-	}
-
-    [ClientRpc]
-    public virtual void RpcEquipSkill() {}
-    [ClientRpc]
-    protected virtual void RpcCastPrimaryAttack() {}
-    [ClientRpc]
-    protected virtual void RpcCastSecondaryAttack() {}
-    [ClientRpc]
-    protected virtual void RpcCastFirstSpell () {}
-    [ClientRpc]
-    protected virtual void RpcCastSecondSpell() {}
-    [ClientRpc]
-    protected virtual void RpcCastThirdSpell() {}
 
 
     [Command]
@@ -218,8 +87,8 @@ public class Attack : NetworkBehaviour
         {
             player.currentMana -= skills[0].manaCost;
             this.enemy = enemy;
-            worldInteraction.SetCanInteract(false);
-            skills[0].StartCooldown();
+            worldInteraction.CmdSetCanInteract(false);
+            skills[0].CmdStartCooldown();
             if (animator)
             {
                 animator.SetTrigger("attackedPrimary"); // Animator calls CastPrimaryAttack
@@ -230,14 +99,21 @@ public class Attack : NetworkBehaviour
     [Command]
     public void CmdAttackSecondary()
     {
+        print("SecondaryAttack");
+        print(skills[1]);
+        print(skills[1].onCooldown);
+        print(player.currentMana);
+        print(skills[1].manaCost);
         if (skills[1] != null && !skills[1].onCooldown && (player.currentMana - skills[1].manaCost) >= 0)
         {
+            print("im if");
             player.currentMana -= skills[1].manaCost;
-            worldInteraction.SetCanInteract(false);
+            worldInteraction.CmdSetCanInteract(false);
             playerAgent.isStopped = true;
-            skills[1].StartCooldown();
+            skills[1].CmdStartCooldown();
             if (animator)
             {
+                print("animator set trigger");
                 animator.SetTrigger("attackedSecondary"); // Animator calls CastSecondaryAttack
             }
         }
@@ -250,9 +126,9 @@ public class Attack : NetworkBehaviour
         if (skills[2] != null && !skills[2].onCooldown && (player.currentMana - skills[2].manaCost) >= 0)
         {
             player.currentMana -= skills[2].manaCost;
-            worldInteraction.SetCanInteract(false);
+            worldInteraction.CmdSetCanInteract(false);
             playerAgent.isStopped = true;
-            skills[2].StartCooldown();
+            skills[2].CmdStartCooldown();
             if (animator)
             {
                 animator.SetTrigger("usedFirstSpell"); // Animator calls CastFirstSpell
@@ -266,9 +142,9 @@ public class Attack : NetworkBehaviour
         if (skills[3] != null && !skills[3].onCooldown && (player.currentMana - skills[3].manaCost) >= 0)
         {
             player.currentMana -= skills[3].manaCost;
-            worldInteraction.SetCanInteract(false);
+            worldInteraction.CmdSetCanInteract(false);
             playerAgent.isStopped = true;
-            skills[3].StartCooldown();
+            skills[3].CmdStartCooldown();
             if (animator)
             {
                 animator.SetTrigger("usedSecondSpell"); // Animator calls CastSecondSpell
@@ -282,9 +158,9 @@ public class Attack : NetworkBehaviour
         if (skills[4] != null && !skills[4].onCooldown && (player.currentMana - skills[4].manaCost) >= 0)
         {
             player.currentMana -= skills[4].manaCost;
-            worldInteraction.SetCanInteract(false);
+            worldInteraction.CmdSetCanInteract(false);
             playerAgent.isStopped = true;
-            skills[4].StartCooldown();
+            skills[4].CmdStartCooldown();
             if (animator)
             {
                 animator.SetTrigger("usedThirdSpell"); // Animator calls CastThirdSpell
@@ -310,8 +186,7 @@ public class Attack : NetworkBehaviour
         }
     }
 
-    [Command]
-    public virtual void CmdEquipSkill() { }
+    public virtual void EquipSkill() { }
     [Command]
     protected virtual void CmdCastPrimaryAttack() { }
     [Command]

@@ -546,24 +546,24 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 160
-    i1: 117
-    i2: 82
-    i3: 72
-    i4: 135
-    i5: 24
-    i6: 154
-    i7: 100
-    i8: 153
-    i9: 38
-    i10: 190
-    i11: 214
-    i12: 125
-    i13: 232
-    i14: 61
-    i15: 33
+    i0: 211
+    i1: 42
+    i2: 24
+    i3: 224
+    i4: 226
+    i5: 76
+    i6: 149
+    i7: 4
+    i8: 27
+    i9: 14
+    i10: 155
+    i11: 249
+    i12: 73
+    i13: 124
+    i14: 80
+    i15: 110
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114640330822576172
 MonoBehaviour:
   m_ObjectHideFlags: 1

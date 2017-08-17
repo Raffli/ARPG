@@ -23,7 +23,7 @@ public class Stealth : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute () {
 		stealth.SetActive (true);
 		// add to player.damage or something
 	}

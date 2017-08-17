@@ -23,7 +23,7 @@ public class LastStand : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute () {
 		lastStand.SetActive (true);
 	}
 }

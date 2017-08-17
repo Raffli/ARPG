@@ -14,6 +14,6 @@ public class LootChest : MonoBehaviour, IInteract {
 	}
 
 	private void ResetPlayerCanInteract () {
-		player.GetComponent<WorldInteraction> ().SetCanInteract(true);
+		player.GetComponent<WorldInteraction> ().CmdSetCanInteract(true);
 	}
 }

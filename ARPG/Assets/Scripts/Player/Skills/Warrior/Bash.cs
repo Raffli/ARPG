@@ -23,7 +23,7 @@ public class Bash : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute () {
 		swordAttack.SetLightDamage (baseDamage);
 		swordAttack.SetAttack(true, false);
 	}

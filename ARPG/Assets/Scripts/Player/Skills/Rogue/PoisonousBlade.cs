@@ -23,7 +23,7 @@ public class PoisonousBlade : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute () {
 		poisonousBlade.SetActive (true);
 		// add to player.damage or something
 	}

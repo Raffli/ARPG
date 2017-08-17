@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class ManaPotion : MonoBehaviour {
+public class ManaPotion : NetworkBehaviour {
 
 	private int manaAmount;
 
@@ -16,7 +17,8 @@ public class ManaPotion : MonoBehaviour {
 
 	private GameObject manaPotionEffect;
 
-	public void SetProperties () {
+    [Command]
+    public void CmdSetProperties () {
 		manaAmount = 50;
 		price = 50;
 		icon = (Image) Resources.Load ("UI/manaPotion");
@@ -35,13 +37,20 @@ public class ManaPotion : MonoBehaviour {
 		}
 	}
 
-	public void Use (Player player) {
+    [Command]
+    public void CmdUseEffect()
+    {
+        //manaPotionEffect = player.transform.Find("ManaPotionEffect").gameObject;
+        //manaPotionEffect.SetActive(true);
+    }
+
+    public void Use(Player player) {
 		onCooldown = true;
 		player.currentMana += manaAmount;
 		if (player.currentMana > player.maximumMana) {
 			player.currentMana = player.maximumMana;
 		}
-		manaPotionEffect = player.transform.Find ("ManaPotionEffect").gameObject;
-		manaPotionEffect.SetActive (true);
-	}
+        CmdUseEffect();
+
+    }
 }

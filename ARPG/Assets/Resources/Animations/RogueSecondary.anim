@@ -44851,7 +44851,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
-    functionName: RpcCastSecondaryAttack
+    functionName: CmdCastSecondaryAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

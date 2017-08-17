@@ -23,7 +23,7 @@ public class Bladestorm : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute () {
 		swordAttack.SetHeavyDamage (baseDamage);
 		swordAttack.SetAttack(false, true);
 	}

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class Skill : MonoBehaviour {
+public class Skill : NetworkBehaviour {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
@@ -17,16 +18,18 @@ public class Skill : MonoBehaviour {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	public virtual void SetProperties () {}
-	public virtual void SetProperties (Player player) {}
-	public virtual void SetProperties (GameObject sword) {} 
-	public virtual void SetProperties (GameObject leftSword, GameObject rightSword) {}
+    public virtual void SetProperties() {}
+    public virtual void SetProperties(Player player) {}
+    public virtual void SetProperties(GameObject sword) {}
+    public virtual void SetProperties(GameObject leftSword, GameObject rightSword) {}
 
-	public virtual void Execute () {}
-	public virtual void Execute (GameObject spellOrigin) {}
-	public virtual void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public virtual void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
-	public virtual void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
+
+    [Command]
+    public virtual void CmdExecute() {}
+    public virtual void CmdExecute(GameObject spellOrigin) {}
+    public virtual void CmdExecute(NavMeshAgent playerAgent, Vector3 targetPoint) {}
+    public virtual void CmdExecute(NavMeshAgent playerAgent, GameObject enemy) {}
+    public virtual void CmdExecute(NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 
 	protected virtual void Update () {
 		if (onCooldown) {
@@ -37,7 +40,8 @@ public class Skill : MonoBehaviour {
 		}
 	}
 
-	public virtual void StartCooldown () {
+    [Command]
+    public virtual void CmdStartCooldown () {
 		onCooldown = true;
 		cooldownLeft = cooldown;
 	}

@@ -9,7 +9,8 @@ public class Shield : Skill {
 	private GameObject shield;
 	private Player playerStats;
 
-	public override void SetProperties (Player player) {
+	public override void SetProperties(Player player) {
+
 		playerStats = player.GetComponent<Player> ();
 		shield = player.transform.Find ("Shield").gameObject;
 		skillName = "Protective Aura";
@@ -23,7 +24,7 @@ public class Shield : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute() {
 		shield.SetActive (true);
 		// add to player.armor or something
 	}

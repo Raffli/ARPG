@@ -27,7 +27,7 @@ public class TwinBlades : Skill {
 		onCooldown = false;
 	}
 		
-	public override void Execute () {
+	public override void CmdExecute () {
 		rightSwordAttack.SetHeavyDamage (baseDamage);
 		rightSwordAttack.SetAttack(false, true);
         leftSwordAttack.SetHeavyDamage(baseDamage);

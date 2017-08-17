@@ -8,7 +8,7 @@ public class ShockWave : Skill {
 
 	private GameObject shockWave;
 
-	public override void SetProperties (Player player) {
+	public override void SetProperties(Player player) {
 		shockWave = player.transform.Find ("Shockwave").gameObject;
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
@@ -21,7 +21,7 @@ public class ShockWave : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
+	public override void CmdExecute() {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
 	}
