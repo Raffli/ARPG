@@ -863,6 +863,9 @@ GameObject:
   - component: {fileID: 195265363757849702}
   - component: {fileID: 95375170327331632}
   - component: {fileID: 114503314703148166}
+  - component: {fileID: 114302708125482766}
+  - component: {fileID: 114113718603651066}
+  - component: {fileID: 114123999570281348}
   m_Layer: 10
   m_Name: Monster
   m_TagString: Enemy
@@ -2193,6 +2196,46 @@ MonoBehaviour:
   healthBar: {fileID: 114062804136260184}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}
+--- !u!114 &114113718603651066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863466460029694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114123999570281348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863466460029694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95375170327331632}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114240453013271746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2204,6 +2247,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5d2686939db345ab06661a5a5186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114302708125482766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863466460029694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 221
+    i1: 88
+    i2: 124
+    i3: 253
+    i4: 99
+    i5: 83
+    i6: 232
+    i7: 228
+    i8: 11
+    i9: 100
+    i10: 106
+    i11: 193
+    i12: 140
+    i13: 178
+    i14: 227
+    i15: 150
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114363390763232210
 MonoBehaviour:
   m_ObjectHideFlags: 1

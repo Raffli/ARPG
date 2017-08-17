@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class HUDManager : MonoBehaviour {
+
+public class HUDManager : NetworkBehaviour
+{
 
 	public GameObject hudPanel;
 	private Slider xpBar;
@@ -14,6 +17,9 @@ public class HUDManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (!isLocalPlayer) {
+            return;
+        }
         hudPanel = GameObject.FindWithTag("HUD");
         xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
@@ -23,6 +29,10 @@ public class HUDManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         xpBar.value = ((float) player.xp) / ((float) player.xpToLevel);
 		healthPool.fillAmount = ((float) player.currentHealth) / ((float) player.maxHealth);
 		manaPool.fillAmount = ((float) player.currentMana) / ((float) player.maximumMana);

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 
 	public int level;
  	public int xp;
@@ -12,8 +13,16 @@ public class Player : MonoBehaviour {
 	public int maxHealth;
 	public int currentHealth;
 
+
 	void Start() {
-		currentHealth = maxHealth;
+        if (isLocalPlayer)
+        {
+            transform.Find("Main Camera").gameObject.SetActive(true);
+        }
+        else {
+            Destroy(transform.Find("Main Camera").gameObject);
+        }
+        currentHealth = maxHealth;
 	}
 
 	public void TakeDamage (int amount) {

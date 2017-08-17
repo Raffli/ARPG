@@ -1443,6 +1443,9 @@ GameObject:
   - component: {fileID: 195090829974122392}
   - component: {fileID: 95111530962051262}
   - component: {fileID: 114942013928788960}
+  - component: {fileID: 114740666620094968}
+  - component: {fileID: 114547265946021524}
+  - component: {fileID: 114157026499994046}
   m_Layer: 10
   m_Name: EarthTroll
   m_TagString: Enemy
@@ -4006,6 +4009,25 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114157026499994046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769558917431344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95111530962051262}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114264349136544380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4081,6 +4103,27 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114547265946021524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769558917431344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114640176389805284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4125,6 +4168,38 @@ MonoBehaviour:
   aggroRadius: 20
   damage: 5
   attackSpeed: 2
+--- !u!114 &114740666620094968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769558917431344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 75
+    i1: 160
+    i2: 119
+    i3: 125
+    i4: 224
+    i5: 92
+    i6: 6
+    i7: 228
+    i8: 91
+    i9: 139
+    i10: 179
+    i11: 92
+    i12: 116
+    i13: 91
+    i14: 29
+    i15: 65
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114861270836320078
 MonoBehaviour:
   m_ObjectHideFlags: 1
