@@ -11,7 +11,6 @@ public class WorldInteraction : MonoBehaviour {
 	private int interactionMask;
 	private int enemyMask;
 	private bool canInteract;
-
 	public float attackRange;
 
 	void Start () {
@@ -25,7 +24,7 @@ public class WorldInteraction : MonoBehaviour {
 	
 	void Update () {
         if (canInteract) {
-            if (Input.GetButtonDown("Fire1")) { //&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
+            if (Input.GetButton("Fire1")) { //&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
 				GetInteraction ();
 			}
 		}

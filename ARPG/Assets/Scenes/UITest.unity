@@ -1991,7 +1991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1836134293967588, guid: dcd800aa185e109489116ed7fe660806, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcd800aa185e109489116ed7fe660806, type: 2}
@@ -8589,8 +8589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudPanel: {fileID: 354038371}
-  notLearned: {fileID: 21300000, guid: 50d724d48c7a4a844a72bcebfc172247, type: 3}
-  healPotion: {fileID: 21300000, guid: 86505d24e12ef6c4494e6b1ed8eeb031, type: 3}
+  normalCursor: {fileID: 2800000, guid: 88d71700b7fa7e7468baece063d7b899, type: 3}
+  attackCursor: {fileID: 2800000, guid: b99898fc47784984cb8c5b009ced957e, type: 3}
 --- !u!1001 &772574076
 Prefab:
   m_ObjectHideFlags: 0
@@ -19559,7 +19559,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1446356675736468, guid: 9698aff6024cf0c489039a2a883f1e0e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9698aff6024cf0c489039a2a883f1e0e, type: 2}

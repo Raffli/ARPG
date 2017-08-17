@@ -16,17 +16,22 @@ public class HUDManager : MonoBehaviour {
 	private Image [] cooldownFills;
 	private Text [] cooldownLefts;
 
-	public Sprite notLearned;
-	public Sprite healPotion;
+	private Sprite notLearned;
+	private Sprite healPotion;
 	private Sprite manaPotion;
+
+	public Texture2D normalCursor;
+	public Texture2D attackCursor;
+	private Ray ray;
 
 	void Awake () {
 		xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
 		skillGroup = hudPanel.transform.Find ("Skills").gameObject;
+		notLearned = Resources.Load<Sprite> ("UI/Icons/notLearned");
+		healPotion = Resources.Load<Sprite> ("UI/Icons/healPotion");
 		manaPotion = Resources.Load<Sprite> ("UI/Icons/manaPotion");
-		Debug.Log (skillGroup.transform.childCount);
 		skills = new Image [skillGroup.transform.childCount];
 		cooldownFills = new Image[skills.Length];
 		cooldownLefts = new Text[skills.Length];
@@ -46,6 +51,24 @@ public class HUDManager : MonoBehaviour {
 		} else {
 			Instance = this;
 		}
+
+		SetCursorTexture (normalCursor);
+	}
+
+	void Update () {
+		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit hit;
+		if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
+			if (hit.collider.gameObject.tag.Equals ("Enemy")) {
+				SetCursorTexture (attackCursor);
+			} else {
+				SetCursorTexture (normalCursor);
+			}
+		}
+	}
+
+	private void SetCursorTexture (Texture2D tex) {
+		Cursor.SetCursor (tex, Vector2.zero, CursorMode.Auto);
 	}
 
 	public void UpdateXPBar (int currentXp, int xpToLevel) {
