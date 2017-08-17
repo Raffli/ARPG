@@ -9,7 +9,7 @@ public class WarriorAttack : Attack {
 	private SwordAttack swordAttack;
 	public GameObject spellOrigin;
 
-	public override void EquipSkill () {
+    public override void RpcEquipSkill() {
 		swordAttack = sword.GetComponent<SwordAttack> ();
 
 		skills [0] = gameObject.AddComponent <Bash> () as Bash;
@@ -24,37 +24,38 @@ public class WarriorAttack : Attack {
 		skills [4].SetProperties (player);
 	}
 
-	protected override void CastPrimaryAttack () {
+	protected override void RpcCastPrimaryAttack() {
 		skills [0].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondaryAttack () {
+	protected override void RpcCastSecondaryAttack() {
 		skills [1].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastFirstSpell () {
+	protected override void RpcCastFirstSpell() {
+        print("firstspell");
 		skills [2].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondSpell () {
+	protected override void RpcCastSecondSpell() {
 		skills [3].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastThirdSpell () {
+	protected override void RpcCastThirdSpell() {
 		skills [4].Execute (spellOrigin);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	private void RestartPlayerAgent () {
+    private void RestartPlayerAgent() {
 		playerAgent.isStopped = false;
 		swordAttack.DisableSword ();
 	}

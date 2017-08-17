@@ -73,6 +73,8 @@ GameObject:
   - component: {fileID: 54599996847764712}
   - component: {fileID: 114640330822576172}
   - component: {fileID: 82217924006533226}
+  - component: {fileID: 114271215391475014}
+  - component: {fileID: 114931520720455570}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -530,6 +532,38 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114271215391475014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525896181860374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 160
+    i1: 117
+    i2: 82
+    i3: 72
+    i4: 135
+    i5: 24
+    i6: 154
+    i7: 100
+    i8: 153
+    i9: 38
+    i10: 190
+    i11: 214
+    i12: 125
+    i13: 232
+    i14: 61
+    i15: 33
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114640330822576172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -542,6 +576,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitSound: {fileID: 8300000, guid: c7865fd595be8a046a018f3e24771dd6, type: 3}
+--- !u!114 &114931520720455570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525896181860374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &135303358191209252
 SphereCollider:
   m_ObjectHideFlags: 1

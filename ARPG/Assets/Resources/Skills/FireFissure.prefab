@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 65202240747549698}
   - component: {fileID: 65382403089974892}
   - component: {fileID: 82733375882556700}
+  - component: {fileID: 114846569290177532}
+  - component: {fileID: 114981170454388660}
   m_Layer: 9
   m_Name: FireFissure
   m_TagString: Untagged
@@ -840,6 +842,59 @@ MonoBehaviour:
   - {fileID: 65527264149307952}
   - {fileID: 65202240747549698}
   - {fileID: 65382403089974892}
+--- !u!114 &114846569290177532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207760425914792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 168
+    i1: 219
+    i2: 152
+    i3: 157
+    i4: 84
+    i5: 248
+    i6: 8
+    i7: 244
+    i8: 122
+    i9: 182
+    i10: 193
+    i11: 242
+    i12: 163
+    i13: 64
+    i14: 185
+    i15: 11
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114981170454388660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207760425914792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!198 &198053518451863800
 ParticleSystem:
   m_ObjectHideFlags: 1

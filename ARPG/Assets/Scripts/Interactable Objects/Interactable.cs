@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour {
 				EnsureLookDirection ();
 				hasInteracted = true;
 				if (isEnemy) {
-					playerAgent.transform.GetComponent<Attack> ().AttackPrimary (this.gameObject);
+					playerAgent.transform.GetComponent<Attack> ().RpcAttackPrimary (this.gameObject);
 				} else {
 					transform.GetComponent<IInteract> ().Interact (playerAgent.transform);
 				}

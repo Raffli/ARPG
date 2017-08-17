@@ -49,27 +49,28 @@ public class Attack : NetworkBehaviour
         if (Input.GetButtonDown ("Fire2")) {
 			Debug.Log (Input.mousePosition);
 			castPosition = Input.mousePosition;
-			AttackSecondary ();
+            RpcAttackSecondary();
 		} else if (Input.GetButtonDown ("Spell1")) {
-			UseFirstSpell ();
+            RpcUseFirstSpell();
 		} else if (Input.GetButtonDown ("Spell2")) {
-			UseSecondSpell ();
+            RpcUseSecondSpell();
 		} else if (Input.GetButtonDown ("Spell3")) {
-			UseThirdSpell ();
+            RpcUseThirdSpell();
 		} else if (Input.GetButtonDown ("HealPotion")) {
-			UseHealPotion ();
+            RpcUseHealPotion();
 		} else if (Input.GetButtonDown ("ManaPotion")) {
-			UseManaPotion ();
+            RpcUseManaPotion();
 		} else if (Input.GetButtonDown ("Jump")) {
-			EquipSkill ();
+            RpcEquipSkill();
 		}
 	}
 
-	public void SetSkill (ISkill skill, int index) {
+    public void SetSkill (ISkill skill, int index) {
 		skills [index] = skill;
 	}
 
-	public void AttackPrimary (GameObject enemy) {
+    [ClientRpc]
+    public void RpcAttackPrimary(GameObject enemy) {
 		if (skills [0] != null && !skills[0].onCooldown && (player.currentMana - skills [0].manaCost) >= 0) {
 			player.currentMana -= skills [0].manaCost;
 			this.enemy = enemy;
@@ -81,7 +82,8 @@ public class Attack : NetworkBehaviour
 		}
 	}
 
-	public void AttackSecondary () {
+    [ClientRpc]
+    public void RpcAttackSecondary() {
 		if (skills [1] != null && !skills[1].onCooldown && (player.currentMana - skills [1].manaCost) >= 0) {
 			player.currentMana -= skills [1].manaCost;
 			worldInteraction.SetCanInteract (false);
@@ -93,7 +95,9 @@ public class Attack : NetworkBehaviour
 		}
 	}
 
-	public void UseFirstSpell () {
+    [ClientRpc]
+    public void RpcUseFirstSpell() {
+        print("use first spell");
 		if (skills [2] != null && !skills[2].onCooldown && (player.currentMana - skills [2].manaCost) >= 0) {
 			player.currentMana -= skills [2].manaCost;
 			worldInteraction.SetCanInteract (false);
@@ -105,7 +109,8 @@ public class Attack : NetworkBehaviour
 		}
 	}
 
-	public void UseSecondSpell () {
+    [ClientRpc]
+    public void RpcUseSecondSpell() {
 		if (skills [3] != null && !skills[3].onCooldown && (player.currentMana - skills [3].manaCost) >= 0) {
 			player.currentMana -= skills [3].manaCost;
 			worldInteraction.SetCanInteract (false);
@@ -117,7 +122,8 @@ public class Attack : NetworkBehaviour
 		}
 	}
 
-	public void UseThirdSpell () {
+    [ClientRpc]
+    public void RpcUseThirdSpell() {
 		if (skills [4] != null && !skills[4].onCooldown && (player.currentMana - skills [4].manaCost) >= 0) {
 			player.currentMana -= skills [4].manaCost;
 			worldInteraction.SetCanInteract (false);
@@ -129,23 +135,31 @@ public class Attack : NetworkBehaviour
 		}
 	}
 
-	public void UseHealPotion () {
+    [ClientRpc]
+    public void RpcUseHealPotion() {
 		if (!healPotion.onCooldown) {
 			healPotion.Use (player);
 		}
 	}
 
-	public void UseManaPotion () {
+    [ClientRpc]
+    public void RpcUseManaPotion() {
 		if (!manaPotion.onCooldown) {
 			manaPotion.Use (player);
 		}
 	}
 
-	public virtual void EquipSkill () {}
-	protected virtual void CastPrimaryAttack () {}
-	protected virtual void CastSecondaryAttack () {}
-	protected virtual void CastFirstSpell () {}
-	protected virtual void CastSecondSpell () {}
-	protected virtual void CastThirdSpell () {}
+    [ClientRpc]
+    public virtual void RpcEquipSkill() {}
+    [ClientRpc]
+    protected virtual void RpcCastPrimaryAttack() {}
+    [ClientRpc]
+    protected virtual void RpcCastSecondaryAttack() {}
+    [ClientRpc]
+    protected virtual void RpcCastFirstSpell () {}
+    [ClientRpc]
+    protected virtual void RpcCastSecondSpell() {}
+    [ClientRpc]
+    protected virtual void RpcCastThirdSpell() {}
 
 }

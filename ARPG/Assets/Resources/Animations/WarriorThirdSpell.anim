@@ -12790,7 +12790,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.43333334
-    functionName: CastThirdSpell
+    functionName: RpcCastThirdSpell
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

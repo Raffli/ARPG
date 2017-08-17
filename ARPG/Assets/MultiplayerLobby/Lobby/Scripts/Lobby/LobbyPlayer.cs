@@ -16,7 +16,7 @@ namespace Prototype.NetworkLobby
         public Button mageButton;
         public Button warriorButton;
 
-        public int avatarIndex = 5;
+        public int avatarIndex = 0;
 
         static Color[] Colors = new Color[] { Color.magenta, Color.red, Color.cyan, Color.blue, Color.green, Color.yellow };
         //used on server to avoid assigning the same color to two player

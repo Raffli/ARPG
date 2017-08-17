@@ -7,7 +7,7 @@ public class MageAttack : Attack {
 	
 	public GameObject spellOrigin;
 
-	public override void EquipSkill () {
+    public override void RpcEquipSkill() {
 		skills [0] = gameObject.AddComponent <Fireball> () as Fireball;
 		skills [0].SetProperties ();
 		skills [1] = gameObject.AddComponent <GroundBreaker> () as GroundBreaker;
@@ -20,29 +20,29 @@ public class MageAttack : Attack {
 		skills [4].SetProperties (player);
 	}
 
-	protected override void CastPrimaryAttack () {
+	protected override void RpcCastPrimaryAttack() {
 		skills [0].Execute (playerAgent, enemy, spellOrigin);
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondaryAttack () {
+	protected override void RpcCastSecondaryAttack() {
 		skills [1].Execute (playerAgent, castPosition);
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastFirstSpell () {
+	protected override void RpcCastFirstSpell() {
 		skills [2].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondSpell () {
+	protected override void RpcCastSecondSpell() {
 		skills [3].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastThirdSpell () {
+	protected override void RpcCastThirdSpell() {
 		skills [4].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);

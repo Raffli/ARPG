@@ -11,7 +11,8 @@ public class RougeAttack : Attack {
 	private SwordAttack leftSwordAttack;
 	private SwordAttack rightSwordAttack;
 
-	public override void EquipSkill () {
+
+    public override void RpcEquipSkill() {
 		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
 		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 
@@ -27,41 +28,41 @@ public class RougeAttack : Attack {
 		skills [4].SetProperties (player);
 	}
 
-	protected override void CastPrimaryAttack () {
+	protected override void RpcCastPrimaryAttack() {
 		skills [0].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondaryAttack () {
+	protected override void RpcCastSecondaryAttack() {
 		skills [1].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastFirstSpell () {
+	protected override void RpcCastFirstSpell() {
 		skills [2].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastSecondSpell () {
+	protected override void RpcCastSecondSpell() {
 		skills [3].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	protected override void CastThirdSpell () {
+	protected override void RpcCastThirdSpell() {
 		skills [4].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
 
-	private void RestartPlayerAgent () {
+	private void RestartPlayerAgent() {
 		playerAgent.isStopped = false;
 	}
 
-	private void DisableSwords () {
+	private void DisableSwords() {
 		leftSwordAttack.DisableSword ();
 		rightSwordAttack.DisableSword ();
 	}
