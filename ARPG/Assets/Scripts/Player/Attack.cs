@@ -25,7 +25,7 @@ public class Attack : NetworkBehaviour
 
 	protected Vector3 castPosition;
 
-	protected ISkill [] skills;
+	protected Skill [] skills;
 	protected HealPotion healPotion;
 	protected ManaPotion manaPotion;
 
@@ -38,7 +38,7 @@ public class Attack : NetworkBehaviour
 		healPotion.SetProperties ();
 		manaPotion = gameObject.AddComponent<ManaPotion> () as ManaPotion;
 		manaPotion.SetProperties ();
-		skills = new ISkill[5]; 
+		skills = new Skill[5]; 
 	}
 	
 	void FixedUpdate () {
@@ -113,7 +113,7 @@ public class Attack : NetworkBehaviour
         }
 	}
 
-    public void SetSkill (ISkill skill, int index) {
+    public void SetSkill (Skill skill, int index) {
 		skills [index] = skill;
 	}
 

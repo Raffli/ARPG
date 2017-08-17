@@ -4,28 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class GroundBreaker : MonoBehaviour, ISkill {
-
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
+public class GroundBreaker : Skill {
 
 	private int floorMask;
 
-	public void SetProperties (Player player) {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties () {
+	public override void SetProperties () {
 		skillName = "Ground Breaker";
 		skillDescription = "You break the ground at the target location.";
-		skillIcon = (Image) Resources.Load ("UI/groundbreaker");
+		skillIcon = (Sprite) Resources.Load ("UI/groundbreaker");
 		manaCost = 25;
 		baseDamage = 20;
 		damage = baseDamage;
@@ -36,21 +22,7 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 		floorMask = LayerMask.GetMask ("Floor");
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
-	}
-
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute () {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
-
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) { 
+	public override void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) { 
 		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {
@@ -59,10 +31,5 @@ public class GroundBreaker : MonoBehaviour, ISkill {
 			obj.GetComponent<GroundBreakerBehaviour> ().SetPlayerAgent (playerAgent);
 			obj.GetComponent<GroundBreakerBehaviour> ().SetDamage (damage);
 		}
-	}
-
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
 	}
 }
