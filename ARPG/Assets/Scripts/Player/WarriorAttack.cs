@@ -24,7 +24,23 @@ public class WarriorAttack : Attack {
 		skills [4].SetProperties (player);
 	}
 
-	protected override void RpcCastPrimaryAttack() {
+    public override void CmdEquipSkill()
+    {
+        swordAttack = sword.GetComponent<SwordAttack>();
+
+        skills[0] = gameObject.AddComponent<Bash>() as Bash;
+        skills[0].SetProperties(sword);
+        skills[1] = gameObject.AddComponent<Bladestorm>() as Bladestorm;
+        skills[1].SetProperties(sword);
+        skills[2] = gameObject.AddComponent<WarCry>() as WarCry;
+        skills[2].SetProperties(player);
+        skills[3] = gameObject.AddComponent<LastStand>() as LastStand;
+        skills[3].SetProperties(player);
+        skills[4] = gameObject.AddComponent<FireFissure>() as FireFissure;
+        skills[4].SetProperties(player);
+    }
+
+    protected override void RpcCastPrimaryAttack() {
 		skills [0].Execute ();
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
@@ -54,6 +70,42 @@ public class WarriorAttack : Attack {
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract (true);
 	}
+
+    protected override void CmdCastPrimaryAttack()
+    {
+        skills[0].Execute();
+        playerAgent.isStopped = false;
+        worldInteraction.SetCanInteract(true);
+    }
+
+    protected override void CmdCastSecondaryAttack()
+    {
+        skills[1].Execute();
+        playerAgent.isStopped = false;
+        worldInteraction.SetCanInteract(true);
+    }
+
+    protected override void CmdCastFirstSpell()
+    {
+        print("firstspell");
+        skills[2].Execute();
+        playerAgent.isStopped = false;
+        worldInteraction.SetCanInteract(true);
+    }
+
+    protected override void CmdCastSecondSpell()
+    {
+        skills[3].Execute();
+        playerAgent.isStopped = false;
+        worldInteraction.SetCanInteract(true);
+    }
+
+    protected override void CmdCastThirdSpell()
+    {
+        skills[4].Execute(spellOrigin);
+        playerAgent.isStopped = false;
+        worldInteraction.SetCanInteract(true);
+    }
 
     private void RestartPlayerAgent() {
 		playerAgent.isStopped = false;

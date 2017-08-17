@@ -43,7 +43,12 @@ public class WorldInteraction : NetworkBehaviour
 		}
 	}
 
-	void GetInteraction (){
+    public void SetCanInteract(bool canInteract)
+    {
+        this.canInteract = canInteract;
+    }
+
+    void GetInteraction (){
 		Ray interactionRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, enemyMask)) {
@@ -54,13 +59,11 @@ public class WorldInteraction : NetworkBehaviour
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
-			playerAgent.stoppingDistance = 0.2f;
+			playerAgent.stoppingDistance = 0.3f;
 			playerAgent.SetDestination (interactionInfo.point);
 			animator.SetBool("Walk", true);
 		}
 	}
-		
-	public void SetCanInteract (bool canInteract) {
-		this.canInteract = canInteract;
-	}
+
+
 }

@@ -46,23 +46,71 @@ public class Attack : NetworkBehaviour
         {
             return;
         }
-        if (Input.GetButtonDown ("Fire2")) {
-			Debug.Log (Input.mousePosition);
-			castPosition = Input.mousePosition;
-            RpcAttackSecondary();
-		} else if (Input.GetButtonDown ("Spell1")) {
-            RpcUseFirstSpell();
-		} else if (Input.GetButtonDown ("Spell2")) {
-            RpcUseSecondSpell();
-		} else if (Input.GetButtonDown ("Spell3")) {
-            RpcUseThirdSpell();
-		} else if (Input.GetButtonDown ("HealPotion")) {
-            RpcUseHealPotion();
-		} else if (Input.GetButtonDown ("ManaPotion")) {
-            RpcUseManaPotion();
-		} else if (Input.GetButtonDown ("Jump")) {
-            RpcEquipSkill();
-		}
+        if (isServer)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Debug.Log(Input.mousePosition);
+                castPosition = Input.mousePosition;
+                RpcAttackSecondary();
+            }
+            else if (Input.GetButtonDown("Spell1"))
+            {
+                RpcUseFirstSpell();
+            }
+            else if (Input.GetButtonDown("Spell2"))
+            {
+                RpcUseSecondSpell();
+            }
+            else if (Input.GetButtonDown("Spell3"))
+            {
+                RpcUseThirdSpell();
+            }
+            else if (Input.GetButtonDown("HealPotion"))
+            {
+                RpcUseHealPotion();
+            }
+            else if (Input.GetButtonDown("ManaPotion"))
+            {
+                RpcUseManaPotion();
+            }
+            else if (Input.GetButtonDown("Jump"))
+            {
+                RpcEquipSkill();
+            }
+        }
+        else {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Debug.Log(Input.mousePosition);
+                castPosition = Input.mousePosition;
+                CmdAttackSecondary();
+            }
+            else if (Input.GetButtonDown("Spell1"))
+            {
+                CmdUseFirstSpell();
+            }
+            else if (Input.GetButtonDown("Spell2"))
+            {
+                CmdUseSecondSpell();
+            }
+            else if (Input.GetButtonDown("Spell3"))
+            {
+                CmdUseThirdSpell();
+            }
+            else if (Input.GetButtonDown("HealPotion"))
+            {
+                CmdUseHealPotion();
+            }
+            else if (Input.GetButtonDown("ManaPotion"))
+            {
+                CmdUseManaPotion();
+            }
+            else if (Input.GetButtonDown("Jump"))
+            {
+                CmdEquipSkill();
+            }
+        }
 	}
 
     public void SetSkill (ISkill skill, int index) {
@@ -161,5 +209,118 @@ public class Attack : NetworkBehaviour
     protected virtual void RpcCastSecondSpell() {}
     [ClientRpc]
     protected virtual void RpcCastThirdSpell() {}
+
+
+    [Command]
+    public void CmdAttackPrimary(GameObject enemy)
+    {
+        if (skills[0] != null && !skills[0].onCooldown && (player.currentMana - skills[0].manaCost) >= 0)
+        {
+            player.currentMana -= skills[0].manaCost;
+            this.enemy = enemy;
+            worldInteraction.SetCanInteract(false);
+            skills[0].StartCooldown();
+            if (animator)
+            {
+                animator.SetTrigger("attackedPrimary"); // Animator calls CastPrimaryAttack
+            }
+        }
+    }
+
+    [Command]
+    public void CmdAttackSecondary()
+    {
+        if (skills[1] != null && !skills[1].onCooldown && (player.currentMana - skills[1].manaCost) >= 0)
+        {
+            player.currentMana -= skills[1].manaCost;
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[1].StartCooldown();
+            if (animator)
+            {
+                animator.SetTrigger("attackedSecondary"); // Animator calls CastSecondaryAttack
+            }
+        }
+    }
+
+    [Command]
+    public void CmdUseFirstSpell()
+    {
+        print("use first spell");
+        if (skills[2] != null && !skills[2].onCooldown && (player.currentMana - skills[2].manaCost) >= 0)
+        {
+            player.currentMana -= skills[2].manaCost;
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[2].StartCooldown();
+            if (animator)
+            {
+                animator.SetTrigger("usedFirstSpell"); // Animator calls CastFirstSpell
+            }
+        }
+    }
+
+    [Command]
+    public void CmdUseSecondSpell()
+    {
+        if (skills[3] != null && !skills[3].onCooldown && (player.currentMana - skills[3].manaCost) >= 0)
+        {
+            player.currentMana -= skills[3].manaCost;
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[3].StartCooldown();
+            if (animator)
+            {
+                animator.SetTrigger("usedSecondSpell"); // Animator calls CastSecondSpell
+            }
+        }
+    }
+
+    [Command]
+    public void CmdUseThirdSpell()
+    {
+        if (skills[4] != null && !skills[4].onCooldown && (player.currentMana - skills[4].manaCost) >= 0)
+        {
+            player.currentMana -= skills[4].manaCost;
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[4].StartCooldown();
+            if (animator)
+            {
+                animator.SetTrigger("usedThirdSpell"); // Animator calls CastThirdSpell
+            }
+        }
+    }
+
+    [Command]
+    public void CmdUseHealPotion()
+    {
+        if (!healPotion.onCooldown)
+        {
+            healPotion.Use(player);
+        }
+    }
+
+    [Command]
+    public void CmdUseManaPotion()
+    {
+        if (!manaPotion.onCooldown)
+        {
+            manaPotion.Use(player);
+        }
+    }
+
+    [Command]
+    public virtual void CmdEquipSkill() { }
+    [Command]
+    protected virtual void CmdCastPrimaryAttack() { }
+    [Command]
+    protected virtual void CmdCastSecondaryAttack() { }
+    [Command]
+    protected virtual void CmdCastFirstSpell() { }
+    [Command]
+    protected virtual void CmdCastSecondSpell() { }
+    [Command]
+    protected virtual void CmdCastThirdSpell() { }
 
 }

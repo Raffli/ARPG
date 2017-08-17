@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4838818914122284}
   - component: {fileID: 114007367670491160}
-  - component: {fileID: 114824415192715010}
   m_Layer: 0
   m_Name: LastStand
   m_TagString: Untagged
@@ -242,7 +241,6 @@ GameObject:
   - component: {fileID: 4927289378587994}
   - component: {fileID: 114336416587382802}
   - component: {fileID: 82821815150993644}
-  - component: {fileID: 114198289804686650}
   m_Layer: 0
   m_Name: ManaPotionEffect
   m_TagString: Untagged
@@ -619,7 +617,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4324517564784670}
   - component: {fileID: 114378919824546838}
-  - component: {fileID: 114858643817821894}
   m_Layer: 0
   m_Name: WarCry
   m_TagString: Untagged
@@ -715,7 +712,6 @@ GameObject:
   - component: {fileID: 4452961558044756}
   - component: {fileID: 114338938370822540}
   - component: {fileID: 82238265754512322}
-  - component: {fileID: 114941575402222480}
   m_Layer: 0
   m_Name: HealthPotionEffect
   m_TagString: Untagged
@@ -2205,38 +2201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 1719316841955122}
   spellOrigin: {fileID: 1075271639601732}
---- !u!114 &114198289804686650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1269802394886452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 220
-    i1: 216
-    i2: 0
-    i3: 170
-    i4: 24
-    i5: 94
-    i6: 16
-    i7: 148
-    i8: 137
-    i9: 17
-    i10: 110
-    i11: 215
-    i12: 254
-    i13: 102
-    i14: 8
-    i15: 6
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114200005541726842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2304,7 +2268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95373040938315544}
-  m_ParameterSendBits: 0
+  m_ParameterSendBits: 1023
   param0: 
   param1: 
   param2: 
@@ -2373,38 +2337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8805b84eacea7b64db5cae9254790ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114824415192715010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1139826316304536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 220
-    i1: 216
-    i2: 0
-    i3: 170
-    i4: 24
-    i5: 94
-    i6: 16
-    i7: 148
-    i8: 137
-    i9: 17
-    i10: 110
-    i11: 215
-    i12: 254
-    i13: 102
-    i14: 8
-    i15: 6
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114853128366094886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2423,38 +2355,6 @@ MonoBehaviour:
   currentMana: 0
   maxHealth: 200
   currentHealth: 0
---- !u!114 &114858643817821894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1751420704196040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 220
-    i1: 216
-    i2: 0
-    i3: 170
-    i4: 24
-    i5: 94
-    i6: 16
-    i7: 148
-    i8: 137
-    i9: 17
-    i10: 110
-    i11: 215
-    i12: 254
-    i13: 102
-    i14: 8
-    i15: 6
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114882290469415608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2467,38 +2367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 5
---- !u!114 &114941575402222480
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888259964591428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 220
-    i1: 216
-    i2: 0
-    i3: 170
-    i4: 24
-    i5: 94
-    i6: 16
-    i7: 148
-    i8: 137
-    i9: 17
-    i10: 110
-    i11: 215
-    i12: 254
-    i13: 102
-    i14: 8
-    i15: 6
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!124 &124926911355517374
 Behaviour:
   m_ObjectHideFlags: 1

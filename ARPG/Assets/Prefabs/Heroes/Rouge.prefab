@@ -211,7 +211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4987666296404048}
   - component: {fileID: 114038404146363958}
-  - component: {fileID: 114469602411712122}
   m_Layer: 0
   m_Name: Stealth
   m_TagString: Untagged
@@ -228,7 +227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4382303604748718}
   - component: {fileID: 114425794667392818}
-  - component: {fileID: 114844011675716324}
   m_Layer: 0
   m_Name: PoisonousBlade
   m_TagString: Untagged
@@ -417,7 +415,6 @@ GameObject:
   - component: {fileID: 4209445343327008}
   - component: {fileID: 114819862309591162}
   - component: {fileID: 82623640718401702}
-  - component: {fileID: 114856122549286682}
   m_Layer: 0
   m_Name: HealthPotionEffect
   m_TagString: Untagged
@@ -733,7 +730,6 @@ GameObject:
   - component: {fileID: 4334611559034900}
   - component: {fileID: 114282086678333264}
   - component: {fileID: 82105182530561504}
-  - component: {fileID: 114169055987672200}
   m_Layer: 0
   m_Name: ManaPotionEffect
   m_TagString: Untagged
@@ -996,7 +992,6 @@ GameObject:
   - component: {fileID: 4443698762362572}
   - component: {fileID: 114912229742600076}
   - component: {fileID: 82375829258584960}
-  - component: {fileID: 114932772073557800}
   m_Layer: 0
   m_Name: SweepingLotus
   m_TagString: Untagged
@@ -3288,38 +3283,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114169055987672200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1656836248273032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 150
-    i1: 152
-    i2: 175
-    i3: 246
-    i4: 2
-    i5: 76
-    i6: 240
-    i7: 196
-    i8: 137
-    i9: 3
-    i10: 154
-    i11: 42
-    i12: 136
-    i13: 63
-    i14: 30
-    i15: 14
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114183522623109602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3414,38 +3377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudPanel: {fileID: 0}
---- !u!114 &114469602411712122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175734131853762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 150
-    i1: 152
-    i2: 175
-    i3: 246
-    i4: 2
-    i5: 76
-    i6: 240
-    i7: 196
-    i8: 137
-    i9: 3
-    i10: 154
-    i11: 42
-    i12: 136
-    i13: 63
-    i14: 30
-    i15: 14
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114540770992235092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3480,7 +3411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95110761013600818}
-  m_ParameterSendBits: 0
+  m_ParameterSendBits: 1023
   param0: 
   param1: 
   param2: 
@@ -3539,70 +3470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c384a85c5ee4a99479e1e3b12ee3b333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114844011675716324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185184854909650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 150
-    i1: 152
-    i2: 175
-    i3: 246
-    i4: 2
-    i5: 76
-    i6: 240
-    i7: 196
-    i8: 137
-    i9: 3
-    i10: 154
-    i11: 42
-    i12: 136
-    i13: 63
-    i14: 30
-    i15: 14
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
---- !u!114 &114856122549286682
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1436033771626474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 150
-    i1: 152
-    i2: 175
-    i3: 246
-    i4: 2
-    i5: 76
-    i6: 240
-    i7: 196
-    i8: 137
-    i9: 3
-    i10: 154
-    i11: 42
-    i12: 136
-    i13: 63
-    i14: 30
-    i15: 14
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114912229742600076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3627,38 +3494,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ae4fe17d19c04e10920bfaca3bd8290, type: 3}
   - {fileID: 8300000, guid: 44b3696bd5132401cafdca8526812f63, type: 3}
   - {fileID: 8300000, guid: 72de2a353cacc46d3aad1d65f2599d2a, type: 3}
---- !u!114 &114932772073557800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1816186309640332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 150
-    i1: 152
-    i2: 175
-    i3: 246
-    i4: 2
-    i5: 76
-    i6: 240
-    i7: 196
-    i8: 137
-    i9: 3
-    i10: 154
-    i11: 42
-    i12: 136
-    i13: 63
-    i14: 30
-    i15: 14
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114971842564403010
 MonoBehaviour:
   m_ObjectHideFlags: 1
