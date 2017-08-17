@@ -8,7 +8,7 @@ public class WaterCircle : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -26,7 +26,7 @@ public class WaterCircle : MonoBehaviour, ISkill {
 		waterCircle = player.transform.Find ("WaterCircle").gameObject;
 		skillName = "Water Circle";
 		skillDescription = "You get sourrounded by water that deals damage to everything it comes in contact with.";
-		skillIcon = (Image) Resources.Load ("UI/waterCircle");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/waterCircle");
 		manaCost = 25;
 		baseDamage = 10;
 		damage = baseDamage;

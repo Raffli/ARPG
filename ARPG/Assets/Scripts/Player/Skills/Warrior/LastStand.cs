@@ -8,7 +8,7 @@ public class LastStand : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class LastStand : MonoBehaviour, ISkill {
 		lastStand = player.transform.Find ("LastStand").gameObject;
 		skillName = "Last Stand";
 		skillDescription = "You concentrate all your energy becoming invicible for the next x seconds.";
-		skillIcon = (Image) Resources.Load ("UI/lastStand");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/lastStand");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;

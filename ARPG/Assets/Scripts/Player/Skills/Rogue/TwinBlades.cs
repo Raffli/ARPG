@@ -8,7 +8,7 @@ public class TwinBlades : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -32,7 +32,7 @@ public class TwinBlades : MonoBehaviour, ISkill {
 		rightSwordAttack = rightSword.GetComponent<SwordAttack>();
 		skillName = "Twin Blades";
 		skillDescription = "You hit your enemy with two lightning fast blades.";
-		skillIcon = (Image) Resources.Load ("UI/twinBlades");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/twinBlades");
 		manaCost = 0;
 		baseDamage = 30;
 		damage = baseDamage;

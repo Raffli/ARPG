@@ -8,7 +8,7 @@ public class FireFissure : MonoBehaviour, ISkill {
 	
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -27,7 +27,7 @@ public class FireFissure : MonoBehaviour, ISkill {
 		playerStats = player.GetComponent<Player> ();
 		skillName = "Fire Fissure";
 		skillDescription = "You smash the ground causing the ground to erupt in fire.";
-		skillIcon = (Image) Resources.Load ("UI/fireFissure");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/fireFissure");
 		manaCost = 15;
 		baseDamage = 20;
 		damage = baseDamage;

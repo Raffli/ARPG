@@ -8,7 +8,7 @@ public class Shield : MonoBehaviour, ISkill {
 
 	public string skillName { get; set; }
 	public string skillDescription { get; set; }
-	public Image skillIcon { get; set; }
+	public Sprite skillIcon { get; set; }
 	public int manaCost { get; set; }
 	public int baseDamage { get; set; }
 	public int damage { get; set; }
@@ -28,7 +28,7 @@ public class Shield : MonoBehaviour, ISkill {
 		shield = player.transform.Find ("Shield").gameObject;
 		skillName = "Protective Aura";
 		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
-		skillIcon = (Image) Resources.Load ("UI/protectingAura");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/protectingAura");
 		manaCost = 15;
 		baseDamage = 0;
 		damage = baseDamage;

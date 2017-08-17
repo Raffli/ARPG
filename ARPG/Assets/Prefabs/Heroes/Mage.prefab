@@ -1044,7 +1044,6 @@ GameObject:
   - component: {fileID: 114581875402664992}
   - component: {fileID: 114071326639959632}
   - component: {fileID: 114765735694669818}
-  - component: {fileID: 114988191019647628}
   m_Layer: 9
   m_Name: Mage
   m_TagString: Mage
@@ -2806,29 +2805,6 @@ MonoBehaviour:
   currentMana: 71
   maxHealth: 100
   currentHealth: 0
---- !u!114 &114847400514895684
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1556165104051224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a0e3b15e631d474d9281fc5b434d853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114988191019647628
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1831580031499302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06ecfb5314d27d4882138c2b536aa48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hudPanel: {fileID: 0}
 --- !u!114 &114997606363459372
 MonoBehaviour:
   m_ObjectHideFlags: 1
