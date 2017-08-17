@@ -11,7 +11,9 @@ public class WorldInteraction : MonoBehaviour {
 	private int interactionMask;
 	private int enemyMask;
 	private bool canInteract;
+	private GameObject destination;
 	public float attackRange;
+	private Quaternion destinationRotation;
 
 	void Start () {
 		playerAgent = GetComponent<NavMeshAgent> ();
@@ -20,12 +22,14 @@ public class WorldInteraction : MonoBehaviour {
 		enemyMask = LayerMask.GetMask ("Enemy");
 		interactionMask = LayerMask.GetMask ("Interactable");
 		canInteract = true;
+		destination = Resources.Load<GameObject> ("UI/Destination");
+		destinationRotation = Quaternion.Euler (90, 0, 0);
 	}
 	
 	void Update () {
         if (canInteract) {
             if (Input.GetButton("Fire1")) { //&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
-				GetInteraction ();
+				GetInteraction (Input.GetButtonDown("Fire1"));
 			}
 		}
 
@@ -36,9 +40,10 @@ public class WorldInteraction : MonoBehaviour {
 		}
 	}
 
-	void GetInteraction (){
+	void GetInteraction (bool buttonDown){
 		Ray interactionRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit interactionInfo; 
+	
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, enemyMask)) {
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, attackRange);
@@ -47,6 +52,9 @@ public class WorldInteraction : MonoBehaviour {
 			GameObject interactedObject = interactionInfo.collider.gameObject;
 			interactedObject.GetComponent<Interactable> ().MoveToInteraction (playerAgent, 8f);
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
+			if (buttonDown) {
+				Instantiate (destination, interactionInfo.point, destinationRotation);
+			}
 			playerAgent.stoppingDistance = 0.1f;
 			playerAgent.SetDestination (interactionInfo.point);
 			animator.SetBool("Walk", true);
