@@ -40,6 +40,7 @@ public class Bash : MonoBehaviour, ISkill {
 	void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown (5, cooldownLeft, cooldown);
 			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}

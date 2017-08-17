@@ -38,6 +38,7 @@ public class ShockWave : MonoBehaviour, ISkill {
 	void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown (2, cooldownLeft, cooldown);
 			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}

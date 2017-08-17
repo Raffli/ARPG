@@ -29,6 +29,7 @@ public class HealPotion : MonoBehaviour {
 	void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown (3, cooldownLeft, cooldown);
 			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}

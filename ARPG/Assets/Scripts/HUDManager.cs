@@ -13,6 +13,8 @@ public class HUDManager : MonoBehaviour {
 	private Image manaPool;
 	private GameObject skillGroup;
 	private Image[] skills;
+	private Image [] cooldownFills;
+	private Text [] cooldownLefts;
 
 	public Sprite notLearned;
 	public Sprite healPotion;
@@ -24,10 +26,17 @@ public class HUDManager : MonoBehaviour {
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
 		skillGroup = hudPanel.transform.Find ("Skills").gameObject;
 		manaPotion = Resources.Load<Sprite> ("UI/Icons/manaPotion");
+		Debug.Log (skillGroup.transform.childCount);
 		skills = new Image [skillGroup.transform.childCount];
+		cooldownFills = new Image[skills.Length];
+		cooldownLefts = new Text[skills.Length];
 		for (int i = 0; i < skillGroup.transform.childCount; i++) {
 			skills [i] = skillGroup.transform.GetChild (i).GetComponent<Image> ();
 			skills [i].sprite = notLearned;
+			cooldownFills [i] = skills [i].transform.Find ("CooldownFill").GetComponent<Image> ();
+			cooldownFills [i].fillAmount = 0f;
+			cooldownLefts [i] = skills [i].transform.Find ("CooldownLeft").GetComponent<Text> ();
+			cooldownLefts [i].text = "";
 		}
 		skills [3].sprite = healPotion;
 		skills [4].sprite = manaPotion;
@@ -49,6 +58,15 @@ public class HUDManager : MonoBehaviour {
 
 	public void UpdateMana (int currentMana, int maxMana) {
 		manaPool.fillAmount = ((float)currentMana) / ((float)maxMana);
+	}
+
+	public void UpdateCooldown (int index, float cooldownLeft, float cooldownMax) {
+		cooldownFills [index].fillAmount = cooldownLeft / cooldownMax;
+		cooldownLefts [index].text = "" + (Mathf.CeilToInt(cooldownLeft));
+		if (cooldownLeft <= 0) {
+			cooldownFills [index].fillAmount = 0;
+			cooldownLefts [index].text = "";
+		}
 	}
 
 	public void AddSkillToUI (Sprite icon, int index) {

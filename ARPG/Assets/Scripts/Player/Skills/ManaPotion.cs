@@ -29,6 +29,7 @@ public class ManaPotion : MonoBehaviour {
 	void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown (4, cooldownLeft, cooldown);
 			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}
