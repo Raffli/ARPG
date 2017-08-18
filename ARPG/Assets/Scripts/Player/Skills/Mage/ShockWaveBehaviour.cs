@@ -27,6 +27,6 @@ public class ShockWaveBehaviour : MonoBehaviour {
             enemyHealth.ReduceHealth(damage);
         }
         yield return new WaitForSeconds(0.6f);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

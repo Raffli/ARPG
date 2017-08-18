@@ -26,7 +26,7 @@ public class Fireball : Skill {
         GameObject obj = Instantiate(fireball, spawnPoint, Quaternion.LookRotation(toTarget));
         obj.GetComponent<FireballBehaviour>().SetAttackingPlayer(gameObject);
         obj.GetComponent<FireballBehaviour>().SetFireballDamage(damage);
-
+        print("damage fireball" + damage);
         NetworkServer.Spawn(obj);
     }
 

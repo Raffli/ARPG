@@ -16,11 +16,7 @@ public class Player : NetworkBehaviour {
 
 	void Start() {
         print("localplayer : " + isLocalPlayer);
-        if (isLocalPlayer)
-        {
-            transform.Find("Main Camera").gameObject.SetActive(true);
-        }
-        else {
+        if (!isLocalPlayer) { 
             Destroy(transform.Find("Main Camera").gameObject);
         }
         currentHealth = maxHealth;

@@ -14,6 +14,6 @@ public class ManaPotionEffect : MonoBehaviour {
 		yield return new WaitForSeconds(0.2f);
         // still to do
         yield return new WaitForSeconds(1f);
-		gameObject.SetActive(false);
+        Destroy(gameObject);
 	}
 }

@@ -14,6 +14,7 @@ public class SweepingLotusBehaviour : MonoBehaviour {
 
     public void SetDamage(int damage)
     {
+        print("lotusdamage" + damage);
         this.damage = damage;
     }
 
@@ -36,6 +37,6 @@ public class SweepingLotusBehaviour : MonoBehaviour {
                 enemyHealth.ReduceHealth(damage);
             }
         }
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

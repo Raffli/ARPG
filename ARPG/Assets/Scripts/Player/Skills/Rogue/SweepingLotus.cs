@@ -27,6 +27,7 @@ public class SweepingLotus : Skill {
     {
         GameObject lotus = (GameObject)Resources.Load("Skills/SweepingLotus");
         GameObject obj = Instantiate(lotus, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        obj.GetComponent<SweepingLotusBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }
 
