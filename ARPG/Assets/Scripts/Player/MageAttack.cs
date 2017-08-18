@@ -40,6 +40,7 @@ public class MageAttack : Attack {
         {
             return;
         }
+        GetComponent<Animator>().SetBool("AttackedSecondary",false);
         skills[1].Execute(playerAgent, castPosition);
         worldInteraction.CmdSetCanInteract(true);
     }

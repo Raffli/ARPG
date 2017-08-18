@@ -47,7 +47,6 @@ public class Attack : NetworkBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            print(isLocalPlayer);
             castPosition = Input.mousePosition;
             AttackSecondary();
         }
@@ -104,7 +103,7 @@ public class Attack : NetworkBehaviour
             skills[0].StartCooldown();
             if (animator)
             {
-                GetComponent<NetworkAnimator>().SetTrigger("attackedPrimary"); // Animator calls CastPrimaryAttack
+                animator.SetTrigger("attackedPrimary"); // Animator calls CastPrimaryAttack
             }
         }
     }
@@ -120,7 +119,9 @@ public class Attack : NetworkBehaviour
             skills[1].StartCooldown();
             if (animator)
             {
-                GetComponent<NetworkAnimator>().SetTrigger("attackedSecondary"); // Animator calls CastSecondaryAttack
+                print("isServer" + isServer);
+                print("islocalplayer" + isLocalPlayer);
+                animator.SetBool("AttackedSecondary",true); // Animator calls CastSecondaryAttack
             }
         }
     }
@@ -135,7 +136,7 @@ public class Attack : NetworkBehaviour
             skills[2].StartCooldown();
             if (animator)
             {
-                GetComponent<NetworkAnimator>().SetTrigger("usedFirstSpell"); // Animator calls CastFirstSpell
+                animator.SetTrigger("usedFirstSpell"); // Animator calls CastFirstSpell
             }
         }
     }
@@ -150,7 +151,7 @@ public class Attack : NetworkBehaviour
             skills[3].StartCooldown();
             if (animator)
             {
-                GetComponent<NetworkAnimator>().SetTrigger("usedSecondSpell"); // Animator calls CastSecondSpell
+                animator.SetTrigger("usedSecondSpell"); // Animator calls CastSecondSpell
             }
         }
     }
@@ -165,7 +166,7 @@ public class Attack : NetworkBehaviour
             skills[4].StartCooldown();
             if (animator)
             {
-                GetComponent<NetworkAnimator>().SetTrigger("usedThirdSpell"); // Animator calls CastThirdSpell
+                animator.SetTrigger("usedThirdSpell"); // Animator calls CastThirdSpell
             }
         }
     }
