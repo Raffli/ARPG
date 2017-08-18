@@ -21,7 +21,7 @@ public class ShockWave : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute() {
+	public override void Execute() {
 		shockWave.SetActive (true);
 		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
 	}

@@ -19,7 +19,7 @@ public class Fireball : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
+	public override void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
 		Vector3 spawnPoint = spellOrigin.transform.position;
 		Vector3 targetPoint = enemy.transform.position;
 		Vector3 toTarget = targetPoint - spawnPoint;

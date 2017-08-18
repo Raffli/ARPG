@@ -21,7 +21,7 @@ public class WaterCircle : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute () {
+	public override void Execute () {
 		waterCircle.SetActive (true);
 		waterCircle.GetComponent<WaterCircleBehaviour> ().SetDamage (damage);
 	}

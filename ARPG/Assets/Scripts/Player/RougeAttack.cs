@@ -30,47 +30,75 @@ public class RougeAttack : Attack {
     }
 
 
-    protected override void CmdCastPrimaryAttack()
+    protected override void CastPrimaryAttack()
     {
-        skills[0].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[0].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastSecondaryAttack()
+    protected override void CastSecondaryAttack()
     {
-        skills[1].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[1].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastFirstSpell()
+    protected override void CastFirstSpell()
     {
-        skills[2].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[2].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastSecondSpell()
+    protected override void CastSecondSpell()
     {
-        skills[3].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[3].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastThirdSpell()
+    protected override void CastThirdSpell()
     {
-        skills[4].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[4].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
     private void RestartPlayerAgent() {
-		playerAgent.isStopped = false;
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        playerAgent.isStopped = false;
 	}
 
 	private void DisableSwords() {
-		leftSwordAttack.DisableSword ();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        leftSwordAttack.DisableSword ();
 		rightSwordAttack.DisableSword ();
 	}
 		

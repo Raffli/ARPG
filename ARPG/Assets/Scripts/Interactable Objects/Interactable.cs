@@ -25,7 +25,7 @@ public class Interactable : NetworkBehaviour
 				EnsureLookDirection ();
 				hasInteracted = true;
                 if (isEnemy) {
-                    playerAgent.transform.GetComponent<Attack>().CmdAttackPrimary(this.gameObject);         
+                    playerAgent.transform.GetComponent<Attack>().AttackPrimary(this.gameObject);         
                 } else {
 					transform.GetComponent<IInteract> ().Interact (playerAgent.transform);
 				}

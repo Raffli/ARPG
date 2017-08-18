@@ -23,7 +23,13 @@ public class GroundBreaker : Skill {
 		floorMask = LayerMask.GetMask ("Floor");
 	}
 
-	public override void CmdExecute (NavMeshAgent playerAgent, Vector3 targetPoint) { 
+    [Command]
+    private void CmdSpawnIt(GameObject obj) {
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {
+
 		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {
@@ -31,7 +37,8 @@ public class GroundBreaker : Skill {
 			GameObject obj = Instantiate (groundBreaker, interactionInfo.point, transform.rotation);
 			obj.GetComponent<GroundBreakerBehaviour> ().SetPlayerAgent (playerAgent);
 			obj.GetComponent<GroundBreakerBehaviour> ().SetDamage (damage);
-            NetworkServer.Spawn(obj);
-		}
+            CmdSpawnIt(obj);
+
+        }
 	}
 }

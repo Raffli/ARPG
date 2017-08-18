@@ -24,12 +24,11 @@ public class Skill : NetworkBehaviour {
     public virtual void SetProperties(GameObject leftSword, GameObject rightSword) {}
 
 
-    [Command]
-    public virtual void CmdExecute() {}
-    public virtual void CmdExecute(GameObject spellOrigin) {}
-    public virtual void CmdExecute(NavMeshAgent playerAgent, Vector3 targetPoint) {}
-    public virtual void CmdExecute(NavMeshAgent playerAgent, GameObject enemy) {}
-    public virtual void CmdExecute(NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
+    public virtual void Execute() {}
+    public virtual void Execute(GameObject spellOrigin) {}
+    public virtual void Execute(NavMeshAgent playerAgent, Vector3 targetPoint) {}
+    public virtual void Execute(NavMeshAgent playerAgent, GameObject enemy) {}
+    public virtual void Execute(NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 
 	protected virtual void Update () {
 		if (onCooldown) {
@@ -40,8 +39,7 @@ public class Skill : NetworkBehaviour {
 		}
 	}
 
-    [Command]
-    public virtual void CmdStartCooldown () {
+    public virtual void StartCooldown () {
 		onCooldown = true;
 		cooldownLeft = cooldown;
 	}

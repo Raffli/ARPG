@@ -23,7 +23,7 @@ public class SweepingLotus : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute () {
+	public override void Execute () {
         sweepingLotus.SetActive (true);
         sweepingLotus.GetComponent<SweepingLotusBehaviour>().SetDamage(baseDamage);
     }

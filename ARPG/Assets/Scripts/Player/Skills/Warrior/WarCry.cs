@@ -23,7 +23,7 @@ public class WarCry : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute () {
+	public override void Execute () {
 		warCry.SetActive (true);
 	}
 }

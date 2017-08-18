@@ -248,7 +248,7 @@ MonoBehaviour:
     i14: 142
     i15: 73
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!198 &198264237965746524
 ParticleSystem:
   m_ObjectHideFlags: 1

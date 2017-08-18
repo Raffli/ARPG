@@ -13654,7 +13654,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
-    functionName: CmdCastPrimaryAttack
+    functionName: CastPrimaryAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

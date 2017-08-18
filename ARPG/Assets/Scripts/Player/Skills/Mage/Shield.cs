@@ -24,7 +24,7 @@ public class Shield : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute() {
+	public override void Execute() {
 		shield.SetActive (true);
 		// add to player.armor or something
 	}

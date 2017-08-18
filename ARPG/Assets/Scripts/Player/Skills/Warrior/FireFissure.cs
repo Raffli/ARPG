@@ -23,7 +23,7 @@ public class FireFissure : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute (GameObject spellOrigin) {
+	public override void Execute (GameObject spellOrigin) {
         GameObject fireFissure = (GameObject)Resources.Load("Skills/FireFissure");
         GameObject obj = Instantiate(fireFissure, spellOrigin.transform.position, spellOrigin.transform.rotation);
         obj.GetComponent<FireFissureBehaviour>().SetFireFissureDamage(damage);

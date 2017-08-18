@@ -23,7 +23,7 @@ public class SparklingStrike : Skill {
 		onCooldown = false;
 	}
 
-	public override void CmdExecute () {
+	public override void Execute () {
         rightSwordAttack.SetLightDamage (baseDamage);
         rightSwordAttack.SetAttack(true, false);
 	}

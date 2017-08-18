@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 public class MageAttack : Attack {
 	
@@ -9,7 +10,7 @@ public class MageAttack : Attack {
 
     public override void EquipSkill()
     {
-        print("Equip");
+        
         skills[0] = gameObject.AddComponent<Fireball>() as Fireball;
         skills[0].SetProperties();
         skills[1] = gameObject.AddComponent<GroundBreaker>() as GroundBreaker;
@@ -23,41 +24,65 @@ public class MageAttack : Attack {
     }
 
 
-    protected override void CmdCastPrimaryAttack()
+    protected override void CastPrimaryAttack()
     {
-        skills[0].CmdExecute(playerAgent, enemy, spellOrigin);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[0].Execute(playerAgent, enemy, spellOrigin);
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastSecondaryAttack()
+    protected override void CastSecondaryAttack()
     {
-        skills[1].CmdExecute(playerAgent, castPosition);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[1].Execute(playerAgent, castPosition);
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastFirstSpell()
+    protected override void CastFirstSpell()
     {
-        skills[2].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[2].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastSecondSpell()
+    protected override void CastSecondSpell()
     {
-        skills[3].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[3].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
-    protected override void CmdCastThirdSpell()
+    protected override void CastThirdSpell()
     {
-        skills[4].CmdExecute();
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        skills[4].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
     }
 
     private void RestartPlayerAgent () {
-		playerAgent.isStopped = false;
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        playerAgent.isStopped = false;
 	}
 
 
