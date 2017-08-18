@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
+
 
 public class LastStand : Skill {
 
-	private GameObject lastStand;
 	private Player playerStats;
 
 	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		lastStand = player.transform.Find ("LastStand").gameObject;
 		skillName = "Last Stand";
 		skillDescription = "You concentrate all your energy becoming invicible for the next x seconds.";
 		skillIcon = (Sprite) Resources.Load ("UI/lastStand");
@@ -23,7 +23,17 @@ public class LastStand : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
-		lastStand.SetActive (true);
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject lastStand = (GameObject)Resources.Load("Skills/LastStand");
+        GameObject obj = Instantiate(lastStand, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute()
+    {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }

@@ -28,7 +28,7 @@ public class Shield : Skill {
     private void CmdSpawnIt()
     {
         GameObject shield = (GameObject)Resources.Load("Skills/Shield");
-        GameObject obj = Instantiate(shield, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+        GameObject obj = Instantiate(shield, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
     }
 

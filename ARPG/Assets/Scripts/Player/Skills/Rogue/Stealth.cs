@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 public class Stealth : Skill {
 
-	private GameObject stealth;
 	private Player playerStats;
 
 	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		stealth = player.transform.Find ("Stealth").gameObject;
 		skillName = "Stealth";
 		skillDescription = "You concentrate and become invisible to enemies for a while.";
 		skillIcon = (Sprite) Resources.Load ("UI/stealth");
@@ -23,8 +22,17 @@ public class Stealth : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
-		stealth.SetActive (true);
-		// add to player.damage or something
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject stealth = (GameObject)Resources.Load("Skills/Stealth");
+        GameObject obj = Instantiate(stealth, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute()
+    {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }

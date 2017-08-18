@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 public class WarCry : Skill {
 
-	private GameObject warCry;
 	private Player playerStats;
 
 	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		warCry = player.transform.Find ("WarCry").gameObject;
 		skillName = "War Cry";
 		skillDescription = "You cry out gaining strength and health for x seconds.";
 		skillIcon = (Sprite) Resources.Load ("UI/warcry");
@@ -23,7 +22,17 @@ public class WarCry : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
-		warCry.SetActive (true);
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject warCry = (GameObject)Resources.Load("Skills/WarCry");
+        GameObject obj = Instantiate(warCry, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute()
+    {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }

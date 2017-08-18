@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114563687060229900}
   - component: {fileID: 82316758571262754}
   - component: {fileID: 114880599351083952}
-  - component: {fileID: 114446707043297106}
+  - component: {fileID: 114124194086872812}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -185,7 +185,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114446707043297106
+--- !u!114 &114124194086872812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0
-  m_SyncRotationAxis: 7
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001

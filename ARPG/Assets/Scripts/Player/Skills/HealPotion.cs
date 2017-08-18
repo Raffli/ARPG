@@ -15,10 +15,7 @@ public class HealPotion : NetworkBehaviour {
     public float cooldownLeft { get; set; }
     public bool onCooldown { get; set; }
 
-    private GameObject healPotionEffect;
-
-    [Command]
-    public void CmdSetProperties() {
+    public void SetProperties() {
         healAmount = 50;
         price = 50;
         icon = (Image)Resources.Load("UI/healPotion");
@@ -39,8 +36,9 @@ public class HealPotion : NetworkBehaviour {
 
     [Command]
     public void CmdUseEffect() {
-       // healPotionEffect = player.transform.Find("HealthPotionEffect").gameObject;
-        //healPotionEffect.SetActive(true);
+        GameObject healEffect = (GameObject)Resources.Load("Skills/HealthPotionEffect");
+        GameObject obj = Instantiate(healEffect, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
     }
 
 	public void Use (Player player) {

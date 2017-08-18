@@ -39918,7 +39918,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0
+  - time: 0.06666667
     functionName: CastPrimaryAttack
     data: 
     objectReferenceParameter: {fileID: 0}

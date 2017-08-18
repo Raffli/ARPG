@@ -24,16 +24,18 @@ public class FireFissure : Skill {
 	}
 
     [Command]
-    private void CmdSpawnIt(GameObject spellOrigin)
+    private void CmdSpawnIt(Vector3 spawnPoint, Quaternion spawnRotation)
     {
         GameObject fireFissure = (GameObject)Resources.Load("Skills/FireFissure");
-        GameObject obj = Instantiate(fireFissure, spellOrigin.transform.position, spellOrigin.transform.rotation);
+        GameObject obj = Instantiate(fireFissure, spawnPoint, spawnRotation);
         obj.GetComponent<FireFissureBehaviour>().SetFireFissureDamage(damage);
 
         NetworkServer.Spawn(obj);
     }
 
     public override void Execute (GameObject spellOrigin) {
-        CmdSpawnIt(spellOrigin);
+        Vector3 spawnPoint = spellOrigin.transform.position;
+        Quaternion spawnRotation = spellOrigin.transform.rotation;
+        CmdSpawnIt(spawnPoint, spawnRotation);
     }
 }

@@ -15,10 +15,7 @@ public class ManaPotion : NetworkBehaviour {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-	private GameObject manaPotionEffect;
-
-    [Command]
-    public void CmdSetProperties () {
+    public void SetProperties () {
 		manaAmount = 50;
 		price = 50;
 		icon = (Image) Resources.Load ("UI/manaPotion");
@@ -40,8 +37,9 @@ public class ManaPotion : NetworkBehaviour {
     [Command]
     public void CmdUseEffect()
     {
-        //manaPotionEffect = player.transform.Find("ManaPotionEffect").gameObject;
-        //manaPotionEffect.SetActive(true);
+        GameObject manaEffect = (GameObject)Resources.Load("Skills/ManaPotionEffect");
+        GameObject obj = Instantiate(manaEffect, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
     }
 
     public void Use(Player player) {

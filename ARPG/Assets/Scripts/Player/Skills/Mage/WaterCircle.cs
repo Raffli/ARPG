@@ -24,7 +24,7 @@ public class WaterCircle : Skill {
     private void CmdSpawnIt()
     {
         GameObject waterCircle = (GameObject)Resources.Load("Skills/WaterCircle");
-        GameObject obj = Instantiate(waterCircle, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+        GameObject obj = Instantiate(waterCircle, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         obj.GetComponent<WaterCircleBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }

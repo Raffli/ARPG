@@ -26,7 +26,7 @@ public class ShockWave : Skill {
     private void CmdSpawnIt()
     {
         GameObject shockwave = (GameObject)Resources.Load("Skills/Shockwave");
-        GameObject obj = Instantiate(shockwave, gameObject.transform.position , gameObject.transform.rotation,  gameObject.transform);
+        GameObject obj = Instantiate(shockwave, GetComponent<NetworkTransform>().gameObject.transform.position , GetComponent<NetworkTransform>().gameObject.transform.rotation,  GetComponent<NetworkTransform>().gameObject.transform);
         obj.GetComponent<ShockWaveBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }

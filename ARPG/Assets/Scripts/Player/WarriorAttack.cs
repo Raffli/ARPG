@@ -25,6 +25,7 @@ public class WarriorAttack : Attack {
         skills[3].SetProperties(player);
         skills[4] = gameObject.AddComponent<FireFissure>() as FireFissure;
         skills[4].SetProperties(player);
+
     }
 
 

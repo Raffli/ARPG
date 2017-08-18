@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 public class SweepingLotus : Skill {
 
-	private GameObject sweepingLotus;
 	private Player playerStats;
 
 	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		sweepingLotus = player.transform.Find ("SweepingLotus").gameObject;
 		skillName = "Sweeping Lotus";
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
 		skillIcon = (Sprite) Resources.Load ("UI/sweepingLotus");
@@ -23,8 +22,16 @@ public class SweepingLotus : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute () {
-        sweepingLotus.SetActive (true);
-        sweepingLotus.GetComponent<SweepingLotusBehaviour>().SetDamage(baseDamage);
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject lotus = (GameObject)Resources.Load("Skills/SweepingLotus");
+        GameObject obj = Instantiate(lotus, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+
+    public override void Execute () {
+        CmdSpawnIt();
     }
 }
