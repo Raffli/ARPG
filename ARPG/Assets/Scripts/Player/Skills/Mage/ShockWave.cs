@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
+
 
 public class ShockWave : Skill {
 
-	private GameObject shockWave;
 
 	public override void SetProperties(Player player) {
-		shockWave = player.transform.Find ("Shockwave").gameObject;
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
 		skillIcon = (Sprite) Resources.Load ("UI/shockwave");
@@ -21,8 +21,18 @@ public class ShockWave : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute() {
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
-	}
+
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject shockwave = (GameObject)Resources.Load("Skills/Shockwave");
+        GameObject obj = Instantiate(shockwave, gameObject.transform.position , gameObject.transform.rotation,  gameObject.transform);
+        obj.GetComponent<ShockWaveBehaviour>().SetDamage(damage);
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute()
+    {
+        CmdSpawnIt();
+    }
 }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
+
 
 public class Shield : Skill {
 	
-	private GameObject shield;
 	private Player playerStats;
 
 	public override void SetProperties(Player player) {
 
 		playerStats = player.GetComponent<Player> ();
-		shield = player.transform.Find ("Shield").gameObject;
-		skillName = "Protective Aura";
+        skillName = "Protective Aura";
 		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
 		skillIcon = (Sprite) Resources.Load ("UI/protectingAura");
 		manaCost = 15;
@@ -24,8 +24,16 @@ public class Shield : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute() {
-		shield.SetActive (true);
-		// add to player.armor or something
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject shield = (GameObject)Resources.Load("Skills/Shield");
+        GameObject obj = Instantiate(shield, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute() {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }
