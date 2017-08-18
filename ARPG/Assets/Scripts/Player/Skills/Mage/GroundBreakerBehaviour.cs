@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class GroundBreakerBehaviour : MonoBehaviour {
 
 	private int damage;
-	private NavMeshAgent playerAgent;
+	private GameObject player;
     private Collider[] withinRangeColliders;
     public LayerMask enemyLayerMask;
     public float range;
@@ -20,9 +20,10 @@ public class GroundBreakerBehaviour : MonoBehaviour {
 		this.damage = damage;
 	}
 
-	public void SetPlayerAgent (NavMeshAgent playerAgent) {
-		this.playerAgent = playerAgent;
-	}
+    public void SetAttackingPlayer(GameObject player)
+    {
+        this.player = player;
+    }
 
 
     IEnumerator Procedure()
@@ -31,7 +32,7 @@ public class GroundBreakerBehaviour : MonoBehaviour {
         withinRangeColliders = Physics.OverlapSphere(transform.position, range, enemyLayerMask);
         for (int j = 0; j < withinRangeColliders.Length; j++)
         {
-            withinRangeColliders[j].GetComponent<EnemyAI>().SetAttacked(playerAgent.transform);
+            withinRangeColliders[j].GetComponent<EnemyAI>().SetAttacked(player.transform);
             EnemyHealth enemyHealth = withinRangeColliders[j].GetComponent<EnemyHealth>();
             enemyHealth.ReduceHealth(damage);
         }

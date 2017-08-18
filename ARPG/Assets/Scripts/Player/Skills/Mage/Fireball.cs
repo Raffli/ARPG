@@ -19,15 +19,22 @@ public class Fireball : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) { 
-		Vector3 spawnPoint = spellOrigin.transform.position;
-		Vector3 targetPoint = enemy.transform.position;
-		Vector3 toTarget = targetPoint - spawnPoint;
-		GameObject fireball = (GameObject) Resources.Load ("Skills/Fireball");
-		GameObject obj = Instantiate (fireball, spawnPoint, Quaternion.LookRotation (toTarget));
-		obj.GetComponent<FireballBehaviour> ().SetPlayerAgent (playerAgent);
-		obj.GetComponent<FireballBehaviour> ().SetFireballDamage (damage);
+    [Command]
+    private void CmdSpawnIt(Vector3 spawnPoint, Vector3 targetPoint, Vector3 toTarget)
+    {
+        GameObject fireball = (GameObject)Resources.Load("Skills/Fireball");
+        GameObject obj = Instantiate(fireball, spawnPoint, Quaternion.LookRotation(toTarget));
+        obj.GetComponent<FireballBehaviour>().SetAttackingPlayer(gameObject);
+        obj.GetComponent<FireballBehaviour>().SetFireballDamage(damage);
 
         NetworkServer.Spawn(obj);
-	}
+    }
+
+    public override void Execute(NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin)
+    {
+        Vector3 spawnPoint = spellOrigin.transform.position;
+        Vector3 targetPoint = enemy.transform.position;
+        Vector3 toTarget = targetPoint - spawnPoint;
+        CmdSpawnIt(spawnPoint, targetPoint, toTarget);
+    }
 }

@@ -32,7 +32,7 @@ public class MageAttack : Attack {
         }
         GetComponent<Animator>().SetBool("AttackedPrimary", false);
         skills[0].Execute(playerAgent, enemy, spellOrigin);
-        worldInteraction.CmdSetCanInteract(true);
+        worldInteraction.SetCanInteract(true);
     }
 
     protected override void CastSecondaryAttack()
@@ -43,7 +43,7 @@ public class MageAttack : Attack {
         }
         GetComponent<Animator>().SetBool("AttackedSecondary",false);
         skills[1].Execute(playerAgent, castPosition);
-        worldInteraction.CmdSetCanInteract(true);
+        worldInteraction.SetCanInteract(true);
     }
 
     protected override void CastFirstSpell()
@@ -55,7 +55,7 @@ public class MageAttack : Attack {
         GetComponent<Animator>().SetBool("UsedFirstSpell", false);
         skills[2].Execute();
         playerAgent.isStopped = false;
-        worldInteraction.CmdSetCanInteract(true);
+        worldInteraction.SetCanInteract(true);
     }
 
     protected override void CastSecondSpell()
@@ -67,7 +67,7 @@ public class MageAttack : Attack {
         GetComponent<Animator>().SetBool("UsedSecondSpell", false);
         skills[3].Execute();
         playerAgent.isStopped = false;
-        worldInteraction.CmdSetCanInteract(true);
+        worldInteraction.SetCanInteract(true);
     }
 
     protected override void CastThirdSpell()
@@ -79,7 +79,7 @@ public class MageAttack : Attack {
         GetComponent<Animator>().SetBool("UsedThirdSpell", false);
         skills[4].Execute();
         playerAgent.isStopped = false;
-        worldInteraction.CmdSetCanInteract(true);
+        worldInteraction.SetCanInteract(true);
     }
 
     private void RestartPlayerAgent () {

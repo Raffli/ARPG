@@ -43,8 +43,7 @@ public class WorldInteraction : NetworkBehaviour
 		}
 	}
 
-    [Command]
-    public void CmdSetCanInteract(bool canInteract)
+    public void SetCanInteract(bool canInteract)
     {
         this.canInteract = canInteract;
     }

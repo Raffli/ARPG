@@ -23,11 +23,17 @@ public class FireFissure : Skill {
 		onCooldown = false;
 	}
 
-	public override void Execute (GameObject spellOrigin) {
+    [Command]
+    private void CmdSpawnIt(GameObject spellOrigin)
+    {
         GameObject fireFissure = (GameObject)Resources.Load("Skills/FireFissure");
         GameObject obj = Instantiate(fireFissure, spellOrigin.transform.position, spellOrigin.transform.rotation);
         obj.GetComponent<FireFissureBehaviour>().SetFireFissureDamage(damage);
 
         NetworkServer.Spawn(obj);
+    }
+
+    public override void Execute (GameObject spellOrigin) {
+        CmdSpawnIt(spellOrigin);
     }
 }
