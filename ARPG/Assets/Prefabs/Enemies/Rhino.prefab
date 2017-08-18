@@ -1764,8 +1764,8 @@ MonoBehaviour:
     i13: 253
     i14: 67
     i15: 75
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114268863292193808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.045454547
+  m_SendInterval: 0.041666668
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_InterpolateMovement: 3
 --- !u!137 &137305983719509444
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

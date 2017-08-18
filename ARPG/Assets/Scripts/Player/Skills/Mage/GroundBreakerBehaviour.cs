@@ -32,7 +32,7 @@ public class GroundBreakerBehaviour : MonoBehaviour {
         withinRangeColliders = Physics.OverlapSphere(transform.position, range, enemyLayerMask);
         for (int j = 0; j < withinRangeColliders.Length; j++)
         {
-            withinRangeColliders[j].GetComponent<EnemyAI>().SetAttacked(player.transform);
+            //withinRangeColliders[j].GetComponent<EnemyAI>().SetAttacked(player.transform);
             EnemyHealth enemyHealth = withinRangeColliders[j].GetComponent<EnemyHealth>();
             enemyHealth.ReduceHealth(damage);
         }

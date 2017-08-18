@@ -27,7 +27,7 @@ public class GroundBreaker : Skill {
     private void CmdSpawnIt(Vector3 point) {
         GameObject groundBreaker = (GameObject)Resources.Load("Skills/GroundBreaker");
         GameObject obj = Instantiate(groundBreaker, point, transform.rotation);
-        obj.GetComponent<GroundBreakerBehaviour>().SetAttackingPlayer(gameObject);
+        //obj.GetComponent<GroundBreakerBehaviour>().SetAttackingPlayer(gameObject);
         obj.GetComponent<GroundBreakerBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }

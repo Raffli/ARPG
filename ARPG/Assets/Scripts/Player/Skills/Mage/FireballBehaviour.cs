@@ -54,7 +54,7 @@ public class FireballBehaviour : MonoBehaviour {
 		if (other.transform.tag == "Enemy" && !impact)
 		{
             impact = true;
-			other.GetComponent<EnemyAI> ().SetAttacked (player.transform);
+			//other.GetComponent<EnemyAI> ().SetAttacked (player.transform);
 			other.GetComponent<EnemyHealth>().ReduceHealth(damage);
             StartCoroutine(AfterImpact());
         }
