@@ -24,7 +24,11 @@ public class GroundBreaker : Skill {
 	}
 
     [Command]
-    private void CmdSpawnIt(GameObject obj) {
+    private void CmdSpawnIt(Vector3 point) {
+        GameObject groundBreaker = (GameObject)Resources.Load("Skills/GroundBreaker");
+        GameObject obj = Instantiate(groundBreaker, point, transform.rotation);
+        //obj.GetComponent<GroundBreakerBehaviour>().SetPlayerAgent(playerAgent);
+        obj.GetComponent<GroundBreakerBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }
 
@@ -32,13 +36,8 @@ public class GroundBreaker : Skill {
 
 		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
-		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {
-			GameObject groundBreaker = (GameObject)Resources.Load ("Skills/GroundBreaker");
-			GameObject obj = Instantiate (groundBreaker, interactionInfo.point, transform.rotation);
-			obj.GetComponent<GroundBreakerBehaviour> ().SetPlayerAgent (playerAgent);
-			obj.GetComponent<GroundBreakerBehaviour> ().SetDamage (damage);
-            CmdSpawnIt(obj);
-
+		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {		
+            CmdSpawnIt(interactionInfo.point);
         }
 	}
 }
