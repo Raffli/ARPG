@@ -30,6 +30,7 @@ public class MageAttack : Attack {
         {
             return;
         }
+        GetComponent<Animator>().SetBool("AttackedPrimary", false);
         skills[0].Execute(playerAgent, enemy, spellOrigin);
         worldInteraction.CmdSetCanInteract(true);
     }
@@ -51,6 +52,7 @@ public class MageAttack : Attack {
         {
             return;
         }
+        GetComponent<Animator>().SetBool("UsedFirstSpell", false);
         skills[2].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
@@ -62,6 +64,7 @@ public class MageAttack : Attack {
         {
             return;
         }
+        GetComponent<Animator>().SetBool("UsedSecondSpell", false);
         skills[3].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);
@@ -73,6 +76,7 @@ public class MageAttack : Attack {
         {
             return;
         }
+        GetComponent<Animator>().SetBool("UsedThirdSpell", false);
         skills[4].Execute();
         playerAgent.isStopped = false;
         worldInteraction.CmdSetCanInteract(true);

@@ -103,7 +103,7 @@ public class Attack : NetworkBehaviour
             skills[0].StartCooldown();
             if (animator)
             {
-                animator.SetTrigger("attackedPrimary"); // Animator calls CastPrimaryAttack
+                animator.SetBool("AttackedPrimary", true); // Animator calls CastPrimaryAttack
             }
         }
     }
@@ -119,8 +119,6 @@ public class Attack : NetworkBehaviour
             skills[1].StartCooldown();
             if (animator)
             {
-                print("isServer" + isServer);
-                print("islocalplayer" + isLocalPlayer);
                 animator.SetBool("AttackedSecondary",true); // Animator calls CastSecondaryAttack
             }
         }
@@ -136,7 +134,7 @@ public class Attack : NetworkBehaviour
             skills[2].StartCooldown();
             if (animator)
             {
-                animator.SetTrigger("usedFirstSpell"); // Animator calls CastFirstSpell
+                animator.SetBool("UsedFirstSpell", true); // Animator calls CastFirstSpell
             }
         }
     }
@@ -151,7 +149,7 @@ public class Attack : NetworkBehaviour
             skills[3].StartCooldown();
             if (animator)
             {
-                animator.SetTrigger("usedSecondSpell"); // Animator calls CastSecondSpell
+                animator.SetBool("UsedSecondSpell", true); // Animator calls CastSecondSpell
             }
         }
     }
@@ -166,7 +164,7 @@ public class Attack : NetworkBehaviour
             skills[4].StartCooldown();
             if (animator)
             {
-                animator.SetTrigger("usedThirdSpell"); // Animator calls CastThirdSpell
+                animator.SetBool("UsedThirdSpell", true); // Animator calls CastThirdSpell
             }
         }
     }
