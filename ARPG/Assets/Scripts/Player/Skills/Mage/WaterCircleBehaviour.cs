@@ -30,6 +30,6 @@ public class WaterCircleBehaviour : MonoBehaviour {
                 enemyHealth.ReduceHealth(damage);
             }
         }
-		gameObject.SetActive(false);
+        Destroy(gameObject);
 	}
 }

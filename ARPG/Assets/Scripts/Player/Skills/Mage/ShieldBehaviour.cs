@@ -14,6 +14,6 @@ public class ShieldBehaviour : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 		// still to do
 		yield return new WaitForSeconds(2f);
-		gameObject.SetActive(false);
+        Destroy(gameObject);
 	}
 }

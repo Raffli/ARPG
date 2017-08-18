@@ -7,10 +7,10 @@ using UnityEngine.Networking;
 
 public class SweepingLotus : Skill {
 
-	private Player playerStats;
+	//private Player playerStats;
 
-	public override void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+	public override void SetProperties () {
+		//playerStats = player.GetComponent<Player> ();
 		skillName = "Sweeping Lotus";
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
 		skillIcon = (Sprite) Resources.Load ("UI/sweepingLotus");

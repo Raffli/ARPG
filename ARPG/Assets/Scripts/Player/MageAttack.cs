@@ -18,9 +18,9 @@ public class MageAttack : Attack {
         skills[2] = gameObject.AddComponent<Shield>() as Shield;
         skills[2].SetProperties(player);
         skills[3] = gameObject.AddComponent<WaterCircle>() as WaterCircle;
-        skills[3].SetProperties(player);
+        skills[3].SetProperties();
         skills[4] = gameObject.AddComponent<ShockWave>() as ShockWave;
-        skills[4].SetProperties(player);
+        skills[4].SetProperties();
     }
 
 

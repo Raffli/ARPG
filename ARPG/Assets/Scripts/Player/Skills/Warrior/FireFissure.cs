@@ -7,11 +7,10 @@ using UnityEngine.Networking;
 
 public class FireFissure : Skill {
 
-	private GameObject fireFissure;
-	private Player playerStats;
+	//private Player playerStats;
 
-	public override void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+	public override void CmdSetProperties () {
+		//playerStats = player.GetComponent<Player> ();
 		skillName = "Fire Fissure";
 		skillDescription = "You smash the ground causing the ground to erupt in fire.";
 		skillIcon = (Sprite) Resources.Load ("UI/fireFissure");

@@ -27,7 +27,7 @@ public class RougeAttack : Attack {
         skills[3] = gameObject.AddComponent<Stealth>() as Stealth;
         skills[3].SetProperties(player);
         skills[4] = gameObject.AddComponent<SweepingLotus>() as SweepingLotus;
-        skills[4].SetProperties(player);
+        skills[4].SetProperties();
     }
 
 

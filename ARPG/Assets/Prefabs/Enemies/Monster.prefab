@@ -2193,6 +2193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  lastHealth: 0
   healthBar: {fileID: 114062804136260184}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}
@@ -2278,7 +2279,7 @@ MonoBehaviour:
     i14: 227
     i15: 150
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114363390763232210
 MonoBehaviour:
   m_ObjectHideFlags: 1
