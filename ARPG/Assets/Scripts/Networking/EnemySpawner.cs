@@ -21,7 +21,7 @@ public class EnemySpawner : NetworkBehaviour
                 Random.Range(0, 180),
                 0.0f);
 
-            var enemy = (GameObject)Instantiate(enemyPrefab, spawnPosition, spawnRotation, GetComponent<NetworkTransform>().gameObject.transform);
+            var enemy = (GameObject)Instantiate(enemyPrefab, GetComponent<NetworkTransform>().gameObject.transform.position + spawnPosition, spawnRotation, GetComponent<NetworkTransform>().gameObject.transform);
             NetworkServer.Spawn(enemy);
         }
     }

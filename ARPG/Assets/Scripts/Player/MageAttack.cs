@@ -11,15 +11,15 @@ public class MageAttack : Attack {
     public override void EquipSkill()
     {
         
-        skills[0] = gameObject.AddComponent<Fireball>() as Fireball;
+        skills[0] = gameObject.GetComponent<Fireball>();
         skills[0].SetProperties();
-        skills[1] = gameObject.AddComponent<GroundBreaker>() as GroundBreaker;
+        skills[1] = gameObject.GetComponent<GroundBreaker>();
         skills[1].SetProperties();
-        skills[2] = gameObject.AddComponent<Shield>() as Shield;
+        skills[2] = gameObject.GetComponent<Shield>();
         skills[2].SetProperties(player);
-        skills[3] = gameObject.AddComponent<WaterCircle>() as WaterCircle;
+        skills[3] = gameObject.GetComponent<WaterCircle>();
         skills[3].SetProperties();
-        skills[4] = gameObject.AddComponent<ShockWave>() as ShockWave;
+        skills[4] = gameObject.GetComponent<ShockWave>();
         skills[4].SetProperties();
     }
 

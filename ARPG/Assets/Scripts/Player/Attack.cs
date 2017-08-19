@@ -34,14 +34,19 @@ public class Attack : NetworkBehaviour
 		playerAgent = GetComponent<NavMeshAgent> ();
 		player = GetComponent <Player> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
-		healPotion = gameObject.AddComponent<HealPotion> () as HealPotion;
+		healPotion = gameObject.GetComponent<HealPotion> ();
 		healPotion.SetProperties ();
-		manaPotion = gameObject.AddComponent<ManaPotion> () as ManaPotion;
+		manaPotion = gameObject.GetComponent<ManaPotion> ();
 		manaPotion.SetProperties ();
 		skills = new Skill[5]; 
 	}
 	
-	void FixedUpdate () {
+	void FixedUpdate ()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            EquipSkill();
+        }
         if (!isLocalPlayer) {
             return;
         }
@@ -70,10 +75,10 @@ public class Attack : NetworkBehaviour
         {
             UseManaPotion();
         }
-        else if (Input.GetButtonDown("Jump"))
-        {
-            EquipSkill();
-        }
+        //else if (Input.GetButtonDown("Jump"))
+        //{
+          //  EquipSkill();
+        //}
 	}
 
     public void SetSkill (Skill skill, int index) {

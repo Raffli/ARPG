@@ -10,6 +10,7 @@ public class EnemyHealth : NetworkBehaviour {
 
     [SyncVar]
     public int currentHealth;
+
     public int maxHealth;
     public int lastHealth;
     public Slider healthBar;

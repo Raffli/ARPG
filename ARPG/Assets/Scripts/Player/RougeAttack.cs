@@ -18,15 +18,15 @@ public class RougeAttack : Attack {
         leftSwordAttack = leftSword.GetComponent<SwordAttack>();
         rightSwordAttack = rightSword.GetComponent<SwordAttack>();
 
-        skills[0] = gameObject.AddComponent<SparklingStrike>() as SparklingStrike;
+        skills[0] = gameObject.GetComponent<SparklingStrike>();
         skills[0].SetProperties(rightSword);
-        skills[1] = gameObject.AddComponent<TwinBlades>() as TwinBlades;
+        skills[1] = gameObject.GetComponent<TwinBlades>();
         skills[1].SetProperties(leftSword, rightSword);
-        skills[2] = gameObject.AddComponent<PoisonousBlade>() as PoisonousBlade;
+        skills[2] = gameObject.GetComponent<PoisonousBlade>();
         skills[2].SetProperties(player);
-        skills[3] = gameObject.AddComponent<Stealth>() as Stealth;
+        skills[3] = gameObject.GetComponent<Stealth>();
         skills[3].SetProperties(player);
-        skills[4] = gameObject.AddComponent<SweepingLotus>() as SweepingLotus;
+        skills[4] = gameObject.GetComponent<SweepingLotus>();
         skills[4].SetProperties();
     }
 

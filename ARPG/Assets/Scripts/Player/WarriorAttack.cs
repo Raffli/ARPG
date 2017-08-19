@@ -15,15 +15,15 @@ public class WarriorAttack : Attack {
     {
         swordAttack = sword.GetComponent<SwordAttack>();
 
-        skills[0] = gameObject.AddComponent<Bash>() as Bash;
+        skills[0] = gameObject.GetComponent<Bash>();
         skills[0].SetProperties(sword);
-        skills[1] = gameObject.AddComponent<Bladestorm>() as Bladestorm;
+        skills[1] = gameObject.GetComponent<Bladestorm>();
         skills[1].SetProperties(sword);
-        skills[2] = gameObject.AddComponent<WarCry>() as WarCry;
+        skills[2] = gameObject.GetComponent<WarCry>();
         skills[2].SetProperties(player);
-        skills[3] = gameObject.AddComponent<LastStand>() as LastStand;
+        skills[3] = gameObject.GetComponent<LastStand>();
         skills[3].SetProperties(player);
-        skills[4] = gameObject.AddComponent<FireFissure>() as FireFissure;
+        skills[4] = gameObject.GetComponent<FireFissure>();
         skills[4].SetProperties();
 
     }
