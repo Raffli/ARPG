@@ -84,6 +84,9 @@ public class HUDManager : MonoBehaviour {
 	}
 
 	public void UpdateCooldown (int index, float cooldownLeft, float cooldownMax) {
+		if (index == 3) {
+			Debug.Log ("update cooldown");
+		}
 		cooldownFills [index].fillAmount = cooldownLeft / cooldownMax;
 		cooldownLefts [index].text = "" + (Mathf.CeilToInt(cooldownLeft));
 		if (cooldownLeft <= 0) {

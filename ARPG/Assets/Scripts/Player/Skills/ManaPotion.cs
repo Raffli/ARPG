@@ -53,8 +53,6 @@ public class ManaPotion : NetworkBehaviour
         onCooldown = true;
         cooldownLeft = cooldown;
         player.IncreaseMana(manaAmount);
-
-
         CmdUseEffect();
     }
 }

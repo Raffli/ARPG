@@ -28,6 +28,7 @@ public class HealPotion : NetworkBehaviour {
     void Update() {
         if (onCooldown) {
             cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown(3, cooldownLeft, cooldown);
             if (cooldownLeft <= 0) {
                 onCooldown = false;
             }
@@ -43,11 +44,8 @@ public class HealPotion : NetworkBehaviour {
 
 	public void Use (Player player) {
 		onCooldown = true;
-		player.currentHealth += healAmount;
-		if (player.currentHealth > player.maxHealth) {
-			player.currentHealth = player.maxHealth;
-		}
+		cooldownLeft = cooldown;
+		player.Heal (healAmount);
         CmdUseEffect();
-
     }
 }
