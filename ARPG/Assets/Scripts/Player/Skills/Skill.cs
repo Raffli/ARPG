@@ -18,9 +18,6 @@ public class Skill : NetworkBehaviour {
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
 
-    [Command]
-    public virtual void CmdSetProperties() {}
-
     public virtual void SetProperties() {}
     public virtual void SetProperties(Player player) {}
     public virtual void SetProperties(GameObject sword) {}

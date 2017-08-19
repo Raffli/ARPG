@@ -9,7 +9,7 @@ public class FireFissure : Skill {
 
 	//private Player playerStats;
 
-	public override void CmdSetProperties () {
+	public override void SetProperties () {
 		//playerStats = player.GetComponent<Player> ();
 		skillName = "Fire Fissure";
 		skillDescription = "You smash the ground causing the ground to erupt in fire.";
