@@ -65,7 +65,7 @@ public class WorldInteraction : NetworkBehaviour
 		} else if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)){
 
 			if (buttonDown) {
-				Instantiate (destination, interactionInfo.point, destinationRotation);
+				Instantiate (destination, interactionInfo.point + new Vector3(0,0.08f,0), destinationRotation);
 			}
 			playerAgent.stoppingDistance = 0.3f;
 			playerAgent.SetDestination (interactionInfo.point);
