@@ -287,6 +287,9 @@ GameObject:
   - component: {fileID: 195967283675922960}
   - component: {fileID: 95441816411491764}
   - component: {fileID: 114942833531280292}
+  - component: {fileID: 114378917396516446}
+  - component: {fileID: 114920962627081328}
+  - component: {fileID: 114344013633709292}
   m_Layer: 10
   m_Name: Golem
   m_TagString: Enemy
@@ -777,6 +780,25 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114344013633709292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759386636871906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95441816411491764}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114366543004494488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -793,6 +815,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114378917396516446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759386636871906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 146
+    i1: 179
+    i2: 118
+    i3: 158
+    i4: 3
+    i5: 125
+    i6: 214
+    i7: 148
+    i8: 43
+    i9: 36
+    i10: 238
+    i11: 51
+    i12: 213
+    i13: 69
+    i14: 185
+    i15: 53
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114452423247740816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -881,6 +935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  lastHealth: 0
   healthBar: {fileID: 114093433522628592}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}
@@ -895,6 +950,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5d2686939db345ab06661a5a5186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114920962627081328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759386636871906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.041666668
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 3
 --- !u!114 &114941326413119136
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -839,6 +839,9 @@ GameObject:
   - component: {fileID: 114404234106054134}
   - component: {fileID: 114576408833724680}
   - component: {fileID: 114316534661249438}
+  - component: {fileID: 114427713526608232}
+  - component: {fileID: 114159479132389470}
+  - component: {fileID: 114756334158843632}
   m_Layer: 10
   m_Name: Goblin_Rouge
   m_TagString: Enemy
@@ -2437,6 +2440,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5d2686939db345ab06661a5a5186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114159479132389470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691318337354362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.041666668
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 3
 --- !u!114 &114316534661249438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2488,6 +2512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 50
+  lastHealth: 0
   healthBar: {fileID: 114764006356715770}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}
@@ -2518,6 +2543,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114427713526608232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691318337354362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 204
+    i1: 199
+    i2: 62
+    i3: 224
+    i4: 170
+    i5: 13
+    i6: 199
+    i7: 20
+    i8: 235
+    i9: 253
+    i10: 144
+    i11: 74
+    i12: 121
+    i13: 176
+    i14: 172
+    i15: 31
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114576408833724680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2556,6 +2613,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114756334158843632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691318337354362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95252956557556024}
+  m_ParameterSendBits: 7
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114764006356715770
 MonoBehaviour:
   m_ObjectHideFlags: 1

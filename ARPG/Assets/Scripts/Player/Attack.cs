@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class Attack : MonoBehaviour {
+public class Attack : NetworkBehaviour
+{
 
 	private Animator animator;
 
@@ -23,7 +25,7 @@ public class Attack : MonoBehaviour {
 
 	protected Vector3 castPosition;
 
-	public ISkill [] skills;
+	protected Skill [] skills;
 	protected HealPotion healPotion;
 	protected ManaPotion manaPotion;
 
@@ -32,113 +34,156 @@ public class Attack : MonoBehaviour {
 		playerAgent = GetComponent<NavMeshAgent> ();
 		player = GetComponent <Player> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
-		healPotion = gameObject.AddComponent<HealPotion> () as HealPotion;
+		healPotion = gameObject.GetComponent<HealPotion> ();
 		healPotion.SetProperties ();
-		manaPotion = gameObject.AddComponent<ManaPotion> () as ManaPotion;
+		manaPotion = gameObject.GetComponent<ManaPotion> ();
 		manaPotion.SetProperties ();
-		skills = new ISkill[5]; 
+		skills = new Skill[5]; 
 	}
 	
-	void FixedUpdate () {
-		if (Input.GetButtonDown ("Fire2")) {
-			castPosition = Input.mousePosition;
-			AttackSecondary ();
-		} else if (Input.GetButtonDown ("Spell1")) {
-			UseFirstSpell ();
-		} else if (Input.GetButtonDown ("Spell2")) {
-			UseSecondSpell ();
-		} else if (Input.GetButtonDown ("Spell3")) {
-			UseThirdSpell ();
-		} else if (Input.GetButtonDown ("HealPotion")) {
-			UseHealPotion ();
-		} else if (Input.GetButtonDown ("ManaPotion")) {
-			UseManaPotion ();
-		} else if (Input.GetButtonDown ("Jump")) {
-			EquipSkill ();
-		}
+
+	void FixedUpdate ()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            EquipSkill();
+        }
+        if (!isLocalPlayer) {
+            return;
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            castPosition = Input.mousePosition;
+            AttackSecondary();
+        }
+        else if (Input.GetButtonDown("Spell1"))
+        {
+            UseFirstSpell();
+        }
+        else if (Input.GetButtonDown("Spell2"))
+        {
+            UseSecondSpell();
+        }
+        else if (Input.GetButtonDown("Spell3"))
+        {
+            UseThirdSpell();
+        }
+        else if (Input.GetButtonDown("HealPotion"))
+        {
+            UseHealPotion();
+        }
+        else if (Input.GetButtonDown("ManaPotion"))
+        {
+            UseManaPotion();
+        }
+        //else if (Input.GetButtonDown("Jump"))
+        //{
+          //  EquipSkill();
+        //}
 	}
 
-	public void SetSkill (ISkill skill, int index) {
+    public void SetSkill (Skill skill, int index) {
 		skills [index] = skill;
 	}
 
-	public void AttackPrimary (GameObject enemy) {
-		if (skills [0] != null && !skills[0].onCooldown && (player.currentMana - skills [0].manaCost) >= 0) {
-			player.ReduceMana (skills [0].manaCost);
-			this.enemy = enemy;
-			worldInteraction.SetCanInteract (false);
-			skills [0].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("attackedPrimary"); // Animator calls CastPrimaryAttack
-			}
-		}
-	}
 
-	public void AttackSecondary () {
-		if (skills [1] != null && !skills[1].onCooldown && (player.currentMana - skills [1].manaCost) >= 0) {
-			player.ReduceMana (skills [1].manaCost);
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [1].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("attackedSecondary"); // Animator calls CastSecondaryAttack
-			}
-		}
-	}
+    public void AttackPrimary(GameObject enemy)
+    {
+        if (skills[0] != null && !skills[0].onCooldown && (player.currentMana - skills[0].manaCost) >= 0)
+        {
+            player.ReduceMana(skills[0].manaCost);
+            this.enemy = enemy;
+            worldInteraction.SetCanInteract(false);
+            skills[0].StartCooldown();
+            if (animator)
+            {
+                animator.SetBool("AttackedPrimary", true); // Animator calls CastPrimaryAttack
+            }
+        }
+    }
 
-	public void UseFirstSpell () {
-		if (skills [2] != null && !skills[2].onCooldown && (player.currentMana - skills [2].manaCost) >= 0) {
-			player.ReduceMana (skills [2].manaCost);
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [2].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedFirstSpell"); // Animator calls CastFirstSpell
-			}
-		}
-	}
+    public void AttackSecondary()
+    {
 
-	public void UseSecondSpell () {
-		if (skills [3] != null && !skills[3].onCooldown && (player.currentMana - skills [3].manaCost) >= 0) {
-			player.ReduceMana (skills [3].manaCost);
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [3].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedSecondSpell"); // Animator calls CastSecondSpell
-			}
-		}
-	}
+        if (skills[1] != null && !skills[1].onCooldown && (player.currentMana - skills[1].manaCost) >= 0)
+        {
+            player.ReduceMana(skills[1].manaCost);
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[1].StartCooldown();
+            if (animator)
+            {
+                animator.SetBool("AttackedSecondary",true); // Animator calls CastSecondaryAttack
+            }
+        }
+    }
 
-	public void UseThirdSpell () {
-		if (skills [4] != null && !skills[4].onCooldown && (player.currentMana - skills [4].manaCost) >= 0) {
-			player.ReduceMana (skills [4].manaCost);
-			worldInteraction.SetCanInteract (false);
-			playerAgent.isStopped = true;
-			skills [4].StartCooldown ();
-			if (animator) {
-				animator.SetTrigger ("usedThirdSpell"); // Animator calls CastThirdSpell
-			}
-		}
-	}
+    public void UseFirstSpell()
+    {
+        if (skills[2] != null && !skills[2].onCooldown && (player.currentMana - skills[2].manaCost) >= 0)
+        {
+            player.ReduceMana(skills[2].manaCost);
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[2].StartCooldown();
+            if (animator)
+            {
+                animator.SetBool("UsedFirstSpell", true); // Animator calls CastFirstSpell
+            }
+        }
+    }
 
-	public void UseHealPotion () {
-		if (!healPotion.onCooldown) {
-			healPotion.Use (player);
-		}
-	}
+    public void UseSecondSpell()
+    {
+        if (skills[3] != null && !skills[3].onCooldown && (player.currentMana - skills[3].manaCost) >= 0)
+        {
+            player.ReduceMana(skills[3].manaCost);
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[3].StartCooldown();
+            if (animator)
+            {
+                animator.SetBool("UsedSecondSpell", true); // Animator calls CastSecondSpell
+            }
+        }
+    }
 
-	public void UseManaPotion () {
-		if (!manaPotion.onCooldown) {
-			manaPotion.Use (player);
-		}
-	}
+    public void UseThirdSpell()
+    {
+        if (skills[4] != null && !skills[4].onCooldown && (player.currentMana - skills[4].manaCost) >= 0)
+        {
+            player.ReduceMana(skills[4].manaCost);
+            worldInteraction.SetCanInteract(false);
+            playerAgent.isStopped = true;
+            skills[4].StartCooldown();
+            if (animator)
+            {
+                animator.SetBool("UsedThirdSpell", true); // Animator calls CastThirdSpell
+            }
+        }
+    }
 
-	public virtual void EquipSkill () {}
-	protected virtual void CastPrimaryAttack () {}
-	protected virtual void CastSecondaryAttack () {}
-	protected virtual void CastFirstSpell () {}
-	protected virtual void CastSecondSpell () {}
-	protected virtual void CastThirdSpell () {}
+    public void UseHealPotion()
+    {
+        if (!healPotion.onCooldown)
+        {
+            healPotion.Use(player);
+        }
+    }
+
+    public void UseManaPotion()
+    {
+        if (!manaPotion.onCooldown)
+        {
+            manaPotion.Use(player);
+        }
+    }
+
+    public virtual void EquipSkill() { }
+    protected virtual void CastPrimaryAttack() { }
+    protected virtual void CastSecondaryAttack() { }
+    protected virtual void CastFirstSpell() { }
+    protected virtual void CastSecondSpell() { }
+    protected virtual void CastThirdSpell() { }
 
 }

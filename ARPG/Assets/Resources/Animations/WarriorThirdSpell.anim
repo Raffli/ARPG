@@ -12789,7 +12789,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.43333334
+  - time: 0.4
     functionName: CastThirdSpell
     data: 
     objectReferenceParameter: {fileID: 0}

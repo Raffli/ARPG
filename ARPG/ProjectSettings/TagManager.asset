@@ -11,6 +11,7 @@ TagManager:
   - Rouge
   - Hideable
   - Interactable Object
+  - HUD
   layers:
   - Default
   - TransparentFX

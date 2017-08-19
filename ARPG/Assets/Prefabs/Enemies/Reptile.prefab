@@ -450,6 +450,9 @@ GameObject:
   - component: {fileID: 195425806084992250}
   - component: {fileID: 95156314128196168}
   - component: {fileID: 114322513721583588}
+  - component: {fileID: 114182379225058106}
+  - component: {fileID: 114335596415531064}
+  - component: {fileID: 114561410376167980}
   m_Layer: 10
   m_Name: Reptile
   m_TagString: Enemy
@@ -1508,6 +1511,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114182379225058106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513005404616986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 54
+    i1: 223
+    i2: 149
+    i3: 10
+    i4: 60
+    i5: 64
+    i6: 93
+    i7: 132
+    i8: 217
+    i9: 165
+    i10: 106
+    i11: 204
+    i12: 218
+    i13: 245
+    i14: 202
+    i15: 114
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114187002710707974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1583,6 +1618,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03bfd2b9b664d84db59e8ba32a0fabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114335596415531064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513005404616986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.041666668
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 3
 --- !u!114 &114360306385934664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1611,6 +1667,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5d2686939db345ab06661a5a5186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114561410376167980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513005404616986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95156314128196168}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114651246921244708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1624,6 +1699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  lastHealth: 0
   healthBar: {fileID: 114774916812648832}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}

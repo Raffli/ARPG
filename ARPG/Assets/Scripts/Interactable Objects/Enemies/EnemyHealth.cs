@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 
-public class EnemyHealth : MonoBehaviour {
+public class EnemyHealth : NetworkBehaviour {
 
-
+    [SyncVar]
     public int currentHealth;
+
     public int maxHealth;
+    public int lastHealth;
     public Slider healthBar;
     public GameObject combatTextPrefab;
     Animator anim;
@@ -21,6 +24,7 @@ public class EnemyHealth : MonoBehaviour {
 
     void Start() {
         this.currentHealth = this.maxHealth;
+        this.lastHealth = this.currentHealth;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
@@ -42,16 +46,24 @@ public class EnemyHealth : MonoBehaviour {
         StartCoroutine(RemoveSelf());
     }
 
+    private void Update()
+    {
+        if (lastHealth != currentHealth)
+        {
+            healthBar.value = (float)currentHealth / (float)maxHealth;
+            InitCombatText((lastHealth-currentHealth).ToString());
+            lastHealth = currentHealth;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
     public void ReduceHealth(int damage) {
         if (!isDead)
         {
             currentHealth -= damage;
-            healthBar.value = (float)currentHealth / (float)maxHealth;
-            InitCombatText(damage.ToString());
-            if (currentHealth <= 0)
-            {
-				Die ();
-            }
         }
     }
 

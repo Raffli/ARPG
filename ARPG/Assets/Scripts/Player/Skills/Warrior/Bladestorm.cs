@@ -4,26 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Bladestorm : MonoBehaviour, ISkill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
+public class Bladestorm : Skill {
 
 	private SwordAttack swordAttack;
 	private GameObject sword;
 
-	public void SetProperties () {}
-	public void SetProperties (Player player) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (GameObject sword) {
+	public override void SetProperties (GameObject sword) {
 		this.sword = sword;
 		swordAttack = sword.GetComponent<SwordAttack> ();
 		skillName = "Bladestorm";
@@ -52,13 +39,8 @@ public class Bladestorm : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute () {
+	public override void Execute () {
 		swordAttack.SetHeavyDamage (baseDamage);
 		swordAttack.SetAttack(false, true);
 	}
-
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
 }

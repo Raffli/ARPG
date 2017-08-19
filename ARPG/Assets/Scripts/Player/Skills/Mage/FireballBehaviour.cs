@@ -9,7 +9,7 @@ public class FireballBehaviour : MonoBehaviour {
 	private int speed = 200;
 	private int damage;
 	private int aliveFor;
-	private NavMeshAgent playerAgent;
+	private GameObject player;
     private bool impact;
     private SphereCollider coll;
     private GameObject effects;
@@ -31,8 +31,8 @@ public class FireballBehaviour : MonoBehaviour {
 		}
 	}
 
-	public void SetPlayerAgent (NavMeshAgent playerAgent) {
-		this.playerAgent = playerAgent;
+	public void SetAttackingPlayer (GameObject player) {
+		this.player = player;
 	}
 
 	public void SetFireballDamage(int damage) {
@@ -54,7 +54,7 @@ public class FireballBehaviour : MonoBehaviour {
 		if (other.transform.tag == "Enemy" && !impact)
 		{
             impact = true;
-			other.GetComponent<EnemyAI> ().SetAttacked (playerAgent.transform);
+			//other.GetComponent<EnemyAI> ().SetAttacked (player.transform);
 			other.GetComponent<EnemyHealth>().ReduceHealth(damage);
             StartCoroutine(AfterImpact());
         }

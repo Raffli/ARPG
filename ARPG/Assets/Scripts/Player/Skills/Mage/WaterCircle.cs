@@ -3,27 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class WaterCircle : MonoBehaviour, ISkill {
+public class WaterCircle : Skill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
 
-	private GameObject waterCircle;
-
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (Player player) {
-		waterCircle = player.transform.Find ("WaterCircle").gameObject;
+	public override void SetProperties () {
 		skillName = "Water Circle";
 		skillDescription = "You get sourrounded by water that deals damage to everything it comes in contact with.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/waterCircle");
@@ -45,18 +30,19 @@ public class WaterCircle : MonoBehaviour, ISkill {
 		}
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject waterCircle = (GameObject)Resources.Load("Skills/WaterCircle");
+        GameObject obj = Instantiate(waterCircle, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        obj.GetComponent<WaterCircleBehaviour>().SetDamage(damage);
+        NetworkServer.Spawn(obj);
+    }
 
-	public void Execute () {
-		waterCircle.SetActive (true);
-		waterCircle.GetComponent<WaterCircleBehaviour> ().SetDamage (damage);
-	}
+    public override void Execute()
+    {
+        CmdSpawnIt();
+    }
 
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+
 }

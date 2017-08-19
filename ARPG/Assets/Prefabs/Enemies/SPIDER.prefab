@@ -194,6 +194,9 @@ GameObject:
   - component: {fileID: 195353485695888532}
   - component: {fileID: 95691195404953228}
   - component: {fileID: 114226919116729354}
+  - component: {fileID: 114940052552442688}
+  - component: {fileID: 114212733180373394}
+  - component: {fileID: 114181967463867112}
   m_Layer: 10
   m_Name: SPIDER
   m_TagString: Enemy
@@ -1759,6 +1762,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114181967463867112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191762875744278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95691195404953228}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114190145936904444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1770,6 +1792,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5d2686939db345ab06661a5a5186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114212733180373394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191762875744278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.041666668
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 3
 --- !u!114 &114226919116729354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,6 +1881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
+  lastHealth: 0
   healthBar: {fileID: 114434657960685672}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,
     type: 2}
@@ -1937,6 +1981,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114940052552442688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191762875744278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 98
+    i1: 20
+    i2: 117
+    i3: 84
+    i4: 131
+    i5: 234
+    i6: 255
+    i7: 116
+    i8: 26
+    i9: 143
+    i10: 240
+    i11: 21
+    i12: 253
+    i13: 25
+    i14: 83
+    i15: 168
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!137 &137564868464938500
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

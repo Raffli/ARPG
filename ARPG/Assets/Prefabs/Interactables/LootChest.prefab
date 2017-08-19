@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 65273053662085878}
   - component: {fileID: 114737310517963626}
   - component: {fileID: 114786921167504210}
+  - component: {fileID: 114056071575548500}
+  - component: {fileID: 114986267295620174}
   m_Layer: 11
   m_Name: Chest
   m_TagString: Interactable Object
@@ -352,6 +354,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114056071575548500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186781963704860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 236
+    i1: 52
+    i2: 64
+    i3: 232
+    i4: 122
+    i5: 89
+    i6: 142
+    i7: 84
+    i8: 185
+    i9: 247
+    i10: 181
+    i11: 248
+    i12: 9
+    i13: 1
+    i14: 133
+    i15: 80
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114737310517963626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,3 +408,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7648ab9cbd3fe6e429417960da5df2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114986267295620174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186781963704860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 0}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 

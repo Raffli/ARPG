@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class WarCry : MonoBehaviour, ISkill {
+public class WarCry : Skill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
-
-	private GameObject warCry;
 	private Player playerStats;
 
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (Player player) {
+	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		warCry = player.transform.Find ("WarCry").gameObject;
 		skillName = "War Cry";
 		skillDescription = "You cry out gaining strength and health for x seconds.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/warcry");
@@ -52,12 +37,17 @@ public class WarCry : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute () {
-		warCry.SetActive (true);
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject warCry = (GameObject)Resources.Load("Skills/WarCry");
+        GameObject obj = Instantiate(warCry, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
 
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+    public override void Execute()
+    {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class Interactable : MonoBehaviour {
+public class Interactable : NetworkBehaviour
+{
 
 	private NavMeshAgent playerAgent;
 	private bool hasInteracted;
@@ -22,9 +24,9 @@ public class Interactable : MonoBehaviour {
 			if (playerAgent.remainingDistance <= playerAgent.stoppingDistance) {
 				EnsureLookDirection ();
 				hasInteracted = true;
-				if (isEnemy) {
-					playerAgent.transform.GetComponent<Attack> ().AttackPrimary (this.gameObject);
-				} else {
+                if (isEnemy) {
+                    playerAgent.transform.GetComponent<Attack>().AttackPrimary(this.gameObject);         
+                } else {
 					transform.GetComponent<IInteract> ().Interact (playerAgent.transform);
 				}
 			}

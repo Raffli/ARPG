@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class SweepingLotus : MonoBehaviour, ISkill {
+public class SweepingLotus : Skill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
+	//private Player playerStats;
 
-	private GameObject sweepingLotus;
-	private Player playerStats;
-
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
-		sweepingLotus = player.transform.Find ("SweepingLotus").gameObject;
+	public override void SetProperties () {
+		//playerStats = player.GetComponent<Player> ();
 		skillName = "Sweeping Lotus";
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/sweepingLotus");
@@ -52,14 +37,16 @@ public class SweepingLotus : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute () {
-        sweepingLotus.SetActive (true);
-        sweepingLotus.GetComponent<SweepingLotusBehaviour>().SetDamage(baseDamage);
-
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject lotus = (GameObject)Resources.Load("Skills/SweepingLotus");
+        GameObject obj = Instantiate(lotus, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        obj.GetComponent<SweepingLotusBehaviour>().SetDamage(damage);
+        NetworkServer.Spawn(obj);
     }
 
-    public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+    public override void Execute () {
+        CmdSpawnIt();
+    }
 }

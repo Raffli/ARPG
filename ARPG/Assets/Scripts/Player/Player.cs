@@ -1,22 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 
+    [SyncVar]
 	public int level;
  	public int xp;
 	public int xpToLevel;
-	public int maximumMana;
-	public int currentMana;
-	public int maxHealth;
-	public int currentHealth;
+    [SyncVar]
+    public int maximumMana;
+    [SyncVar]
+    public int currentMana;
+    [SyncVar]
+    public int maxHealth;
+    [SyncVar]
+    public int currentHealth;
+
 
 	void Start() {
-		currentHealth = maxHealth;
+        if (!isLocalPlayer)
+        {
+            Destroy(transform.Find("Main Camera").gameObject);
+        }
+        currentHealth = maxHealth;
 		currentMana = maximumMana;
 		HUDManager.Instance.UpdateHP (currentHealth, maxHealth);
 		HUDManager.Instance.UpdateMana (currentMana, maximumMana);
+        currentHealth = maxHealth;
 	}
 
 	public void TakeDamage (int amount) {
@@ -49,7 +61,6 @@ public class Player : MonoBehaviour {
 	}
 
 	void Die() {
-		Debug.Log("Player ist tot");
 		currentHealth = maxHealth;
 	}
 }

@@ -3,30 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class ShockWave : MonoBehaviour, ISkill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
 
-	private GameObject shockWave;
+public class ShockWave : Skill {
 
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
 
-	public void SetProperties (Player player) {
-		shockWave = player.transform.Find ("Shockwave").gameObject;
+
+	public override void SetProperties() {
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon =  Resources.Load<Sprite> ("UI/Icons/shockwave");
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/shockwave");g
 		manaCost = 20;
 		baseDamage = 15;
 		damage = baseDamage;
@@ -45,18 +33,17 @@ public class ShockWave : MonoBehaviour, ISkill {
 		}
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject shockwave = (GameObject)Resources.Load("Skills/Shockwave");
+        GameObject obj = Instantiate(shockwave, GetComponent<NetworkTransform>().gameObject.transform.position , GetComponent<NetworkTransform>().gameObject.transform.rotation,  GetComponent<NetworkTransform>().gameObject.transform);
+        obj.GetComponent<ShockWaveBehaviour>().SetDamage(damage);
+        NetworkServer.Spawn(obj);
+    }
 
-	public void Execute () {
-		shockWave.SetActive (true);
-		shockWave.GetComponent<ShockWaveBehaviour> ().SetDamage (damage);
-	}
-
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+    public override void Execute()
+    {
+        CmdSpawnIt();
+    }
 }

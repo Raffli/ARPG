@@ -3,28 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class FireFissure : MonoBehaviour, ISkill {
-	
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
+public class FireFissure : Skill {
 
-	private GameObject fireFissure;
-	private Player playerStats;
+	//private Player playerStats;
 
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+	public override void SetProperties () {
+		//playerStats = player.GetComponent<Player> ();
 		skillName = "Fire Fissure";
 		skillDescription = "You smash the ground causing the ground to erupt in fire.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/fireFissure");
@@ -51,14 +37,19 @@ public class FireFissure : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute (GameObject spellOrigin) {
+
+    private void CmdSpawnIt(Vector3 spawnPoint, Quaternion spawnRotation)
+    {
         GameObject fireFissure = (GameObject)Resources.Load("Skills/FireFissure");
-        GameObject obj = Instantiate(fireFissure, spellOrigin.transform.position, spellOrigin.transform.rotation);
+        GameObject obj = Instantiate(fireFissure, spawnPoint, spawnRotation);
         obj.GetComponent<FireFissureBehaviour>().SetFireFissureDamage(damage);
+
+        NetworkServer.Spawn(obj);
     }
 
-    public void Execute () {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+    public override void Execute (GameObject spellOrigin) {
+        Vector3 spawnPoint = spellOrigin.transform.position;
+        Quaternion spawnRotation = spellOrigin.transform.rotation;
+        CmdSpawnIt(spawnPoint, spawnRotation);
+    }
 }

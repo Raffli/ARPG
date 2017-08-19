@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-
-public class FireFissureBehaviour : MonoBehaviour {
+public class FireFissureBehaviour : NetworkBehaviour {
 
     public Collider[] colliderArray;
     private int damage;

@@ -3,29 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class Stealth : MonoBehaviour, ISkill {
+public class Stealth : Skill {
 
-	public string skillName { get; set; }
-	public string skillDescription { get; set; }
-	public Sprite skillIcon { get; set; }
-	public int manaCost { get; set; }
-	public int baseDamage { get; set; }
-	public int damage { get; set; }
-	public float cooldown { get; set; }
-	public float cooldownLeft { get; set; }
-	public bool onCooldown { get; set; }
-
-	private GameObject stealth;
 	private Player playerStats;
 
-	public void SetProperties () {}
-	public void SetProperties (GameObject sword) {}
-	public void SetProperties (GameObject leftSword, GameObject rightSword) {}
-
-	public void SetProperties (Player player) {
+	public override void SetProperties (Player player) {
 		playerStats = player.GetComponent<Player> ();
-		stealth = player.transform.Find ("Stealth").gameObject;
 		skillName = "Stealth";
 		skillDescription = "You concentrate and become invisible to enemies for a while.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/stealth");
@@ -52,13 +37,17 @@ public class Stealth : MonoBehaviour, ISkill {
 		cooldownLeft = cooldown;
 	}
 
-	public void Execute () {
-		stealth.SetActive (true);
-		// add to player.damage or something
-	}
+    [Command]
+    private void CmdSpawnIt()
+    {
+        GameObject stealth = (GameObject)Resources.Load("Skills/Stealth");
+        GameObject obj = Instantiate(stealth, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
 
-	public void Execute (GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
-	public void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {}
-	public void Execute (NavMeshAgent playerAgent, GameObject enemy) {}
+    public override void Execute()
+    {
+        // add to player.armor or something
+        CmdSpawnIt();
+    }
 }
