@@ -51,5 +51,4 @@ public class Shield : Skill {
         // add to player.armor or something
         CmdSpawnIt();
     }
->>>>>>> Networking
 }

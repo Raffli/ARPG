@@ -303,7 +303,6 @@ GameObject:
   - component: {fileID: 195707992819222078}
   - component: {fileID: 114681288344731046}
   - component: {fileID: 114596076020413646}
-  - component: {fileID: 114464298462274748}
   - component: {fileID: 114029080719383988}
   - component: {fileID: 114164138067525388}
   - component: {fileID: 114550315784011436}
@@ -320,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1447631731705526
 GameObject:
   m_ObjectHideFlags: 1
@@ -2547,18 +2546,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSword: {fileID: 1119166978266300}
   rightSword: {fileID: 1844512708093130}
---- !u!114 &114464298462274748
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1446356675736468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06ecfb5314d27d4882138c2b536aa48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hudPanel: {fileID: 0}
 --- !u!114 &114550315784011436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2607,9 +2594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603f9689c62a1044f900c1e4b6ef618d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
---- !u!114 &114596076020413646
-=======
 --- !u!114 &114681288344731046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2623,7 +2607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 5
 --- !u!114 &114824296374842390
->>>>>>> Networking
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

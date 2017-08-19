@@ -712,6 +712,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1550868200648924, guid: 4ddfec6c7f0b7774e875faf9743adec3,
     type: 2}
   numberOfEnemies: 2
+  range: 8
 --- !u!1001 &71245242
 Prefab:
   m_ObjectHideFlags: 0
@@ -1018,6 +1019,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1191762875744278, guid: 6214755483eaff741a8ff015fd1953a8,
     type: 2}
   numberOfEnemies: 10
+  range: 8
 --- !u!1001 &127661748
 Prefab:
   m_ObjectHideFlags: 0
@@ -1424,6 +1426,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1691318337354362, guid: ccc73ee0aa0dc714ebfd904a79b0ac1f,
     type: 2}
   numberOfEnemies: 5
+  range: 8
 --- !u!4 &193006325 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010140763972, guid: b12c8b6046ef0604b96e60fe14b9c16e,
@@ -1815,6 +1818,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1691318337354362, guid: ccc73ee0aa0dc714ebfd904a79b0ac1f,
     type: 2}
   numberOfEnemies: 2
+  range: 8
 --- !u!4 &247363749
 Transform:
   m_ObjectHideFlags: 0
@@ -6975,6 +6979,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1691318337354362, guid: ccc73ee0aa0dc714ebfd904a79b0ac1f,
     type: 2}
   numberOfEnemies: 4
+  range: 8
 --- !u!1 &797708040
 GameObject:
   m_ObjectHideFlags: 0
@@ -9122,6 +9127,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1691318337354362, guid: ccc73ee0aa0dc714ebfd904a79b0ac1f,
     type: 2}
   numberOfEnemies: 4
+  range: 8
 --- !u!1001 &1067855186
 Prefab:
   m_ObjectHideFlags: 0
@@ -16006,6 +16012,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1302081079204366, guid: ea045354f6c08b84baf2bcf17fdcf6d0,
     type: 2}
   numberOfEnemies: 8
+  range: 8
 --- !u!1001 &1870990283
 Prefab:
   m_ObjectHideFlags: 0
@@ -18374,6 +18381,49 @@ Transform:
   m_PrefabParentObject: {fileID: 4397326439367916, guid: c47e9e0bc4103a74d9463e4692065e60,
     type: 2}
   m_PrefabInternal: {fileID: 2056031950}
+--- !u!1 &2070877648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2070877650}
+  - component: {fileID: 2070877649}
+  m_Layer: 0
+  m_Name: HudManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2070877649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2070877648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a26a9d124c0ff9498d0507b11964fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudPanel: {fileID: 354038371}
+  normalCursor: {fileID: 0}
+  attackCursor: {fileID: 0}
+--- !u!4 &2070877650
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2070877648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 512.5659, y: -10.401398, z: 547.93835}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073957151 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1649809789725456, guid: 78cb423cfbefd28419d7eeb1817f0eac,

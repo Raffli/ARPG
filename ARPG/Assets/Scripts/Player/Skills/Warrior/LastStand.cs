@@ -50,5 +50,4 @@ public class LastStand : Skill {
         // add to player.armor or something
         CmdSpawnIt();
     }
->>>>>>> Networking
 }

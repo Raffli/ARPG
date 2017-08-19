@@ -14,7 +14,7 @@ public class ShockWave : Skill {
 	public override void SetProperties() {
 		skillName = "Shockwave";
 		skillDescription = "You emit a shockwave around you that deals damage to any enemy it hits.";
-		skillIcon =  Resources.Load<Sprite> ("UI/Icons/shockwave");g
+		skillIcon =  Resources.Load<Sprite> ("UI/Icons/shockwave");
 		manaCost = 20;
 		baseDamage = 15;
 		damage = baseDamage;
