@@ -18,8 +18,13 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     public int currentHealth;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
 
-	void Start() {
+
+    void Start() {
         if (!isLocalPlayer)
         {
             Destroy(transform.Find("Main Camera").gameObject);

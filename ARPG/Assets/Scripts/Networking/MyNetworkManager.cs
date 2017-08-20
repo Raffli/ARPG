@@ -83,4 +83,8 @@ public class MyNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
+    public void SwitchScene(string sceneName) {
+        ServerChangeScene(sceneName);
+    }
+
 }
