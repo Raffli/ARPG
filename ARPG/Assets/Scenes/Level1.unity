@@ -2308,7 +2308,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1691318337354362, guid: ccc73ee0aa0dc714ebfd904a79b0ac1f,
     type: 2}
   numberOfEnemies: 6
-  range: 8
+  range: 5
   level: 3
 --- !u!1 &80751637
 GameObject:
@@ -2516,7 +2516,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84226635}
-  m_LocalRotation: {x: -0.04171663, y: 0.70587516, z: 0.7058752, w: 0.0417168}
+  m_LocalRotation: {x: -0.041716628, y: 0.7058751, z: 0.70587516, w: 0.041716795}
   m_LocalPosition: {x: -3.5814543, y: 0, z: 8.473491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5394,7 +5394,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221916691}
-  m_LocalRotation: {x: 0.18301125, y: -0.6830131, z: -0.68301314, w: -0.18301153}
+  m_LocalRotation: {x: 0.18301123, y: -0.683013, z: -0.6830131, w: -0.18301152}
   m_LocalPosition: {x: -9.141811, y: 0.13922375, z: -17.157999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7521,7 +7521,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1863466460029694, guid: dd587cfd6353e8e40b646ac18cb2e396,
     type: 2}
   numberOfEnemies: 5
-  range: 8
+  range: 5
   level: 3
 --- !u!1 &258633907
 GameObject:
@@ -8016,7 +8016,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1863466460029694, guid: dd587cfd6353e8e40b646ac18cb2e396,
     type: 2}
   numberOfEnemies: 5
-  range: 8
+  range: 5
   level: 3
 --- !u!1 &291834161
 GameObject:
@@ -9369,7 +9369,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1863466460029694, guid: dd587cfd6353e8e40b646ac18cb2e396,
     type: 2}
   numberOfEnemies: 6
-  range: 8
+  range: 5
   level: 3
 --- !u!1 &349076447
 GameObject:
@@ -10001,7 +10001,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 382239789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.57, y: -13.9, z: -96.96}
+  m_LocalPosition: {x: 82.57, y: -13.87, z: -129.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 38559461}
@@ -22461,7 +22461,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1064642393}
-  m_LocalRotation: {x: -0.2705991, y: -0.65328103, z: -0.65328115, w: 0.27059916}
+  m_LocalRotation: {x: -0.27059907, y: -0.653281, z: -0.6532811, w: 0.27059913}
   m_LocalPosition: {x: -9.295391, y: 0, z: -5.8927093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -24489,7 +24489,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1863466460029694, guid: dd587cfd6353e8e40b646ac18cb2e396,
     type: 2}
   numberOfEnemies: 5
-  range: 8
+  range: 5
   level: 3
 --- !u!1 &1162713202
 GameObject:
