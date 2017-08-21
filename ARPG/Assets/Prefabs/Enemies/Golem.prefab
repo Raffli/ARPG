@@ -986,7 +986,7 @@ MonoBehaviour:
   aggroLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  aggroRadius: 20
+  aggroRadius: 40
   damage: 3
   attackSpeed: 2
   level: 0

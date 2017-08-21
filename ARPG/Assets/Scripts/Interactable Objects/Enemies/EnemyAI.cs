@@ -34,13 +34,13 @@ public class EnemyAI: MonoBehaviour {
         {
             aggro = true;
 			goingBack = false;
-			agent.stoppingDistance = 8f;
+			//agent.stoppingDistance = 8f;
             playerPosition = withinAggroColliders[0].GetComponent<Transform>();
             player = withinAggroColliders[0].GetComponent<Player>();
         }
         else if (aggro){
             aggro = false;
-			GoBackToSpawn ();
+			//GoBackToSpawn ();
         }
     }
 
