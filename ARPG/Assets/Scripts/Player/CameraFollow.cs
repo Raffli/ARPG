@@ -22,6 +22,12 @@ public class CameraFollow : MonoBehaviour
         transform.LookAt(target);
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level > 1) {
+            transform.position = target.position + offset;
+        }
+    }
 
     void Update()
     {

@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class Exit : NetworkBehaviour
 {
     public MyNetworkManager manager;
-
+    public string levelToLoad;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        manager.SwitchScene("Level1");
+        if (other.transform.tag.Equals("Mage") || other.transform.tag.Equals("Warrior") || other.transform.tag.Equals("Rouge"))
+        {
+            manager.SwitchScene(levelToLoad);
+        }
     }
 }

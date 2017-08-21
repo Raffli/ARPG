@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class HUDManager : MonoBehaviour {
 
@@ -25,7 +26,9 @@ public class HUDManager : MonoBehaviour {
 	private Ray ray;
 
 	void Awake () {
-		xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
+        DontDestroyOnLoad(transform.gameObject);
+
+        xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
 		skillGroup = hudPanel.transform.Find ("Skills").gameObject;
