@@ -13,6 +13,7 @@ public class EnemyAI: MonoBehaviour {
     public float aggroRadius;
     public int damage;
     public float attackSpeed;
+    public int level;
     bool aggro;
 
 	private bool wasAttacked;
@@ -53,13 +54,17 @@ public class EnemyAI: MonoBehaviour {
     void DealDamage() {
         if (player)
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(damage*level);
         }
     }
 
     void AttackPlayer()
     {
         anim.SetTrigger("Attack");        
+    }
+
+    public void SetLevel(int level) {
+        this.level = level;
     }
 
 

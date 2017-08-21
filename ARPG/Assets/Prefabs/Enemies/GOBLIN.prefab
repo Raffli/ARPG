@@ -7641,7 +7641,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131698167561522}
-  m_LocalRotation: {x: 0.66138184, y: -0.321861, z: 0.3660895, w: 0.5700511}
+  m_LocalRotation: {x: 0.6613818, y: -0.32186097, z: 0.36608946, w: 0.570051}
   m_LocalPosition: {x: -0.26663175, y: -0.008684978, z: -0.044942692}
   m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
   m_Children: []
@@ -9541,7 +9541,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510586557677682}
-  m_LocalRotation: {x: 0.66138184, y: -0.32186103, z: 0.3660896, w: 0.5700508}
+  m_LocalRotation: {x: 0.6613819, y: -0.32186106, z: 0.36608964, w: 0.57005084}
   m_LocalPosition: {x: -0.1434544, y: -0.008684998, z: -0.04494271}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.9999999}
   m_Children:
@@ -10606,8 +10606,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   aggroRadius: 20
-  damage: 5
+  damage: 3
   attackSpeed: 2
+  level: 0
 --- !u!114 &114629308554690984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10652,7 +10653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  level: 0
+  maxHealth: 20
   lastHealth: 0
   healthBar: {fileID: 114918006658331694}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,

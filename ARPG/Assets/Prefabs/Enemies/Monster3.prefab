@@ -2195,8 +2195,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   aggroRadius: 20
-  damage: 5
+  damage: 3
   attackSpeed: 2
+  level: 0
 --- !u!114 &114022134380108522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2209,7 +2210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  level: 0
+  maxHealth: 30
   lastHealth: 0
   healthBar: {fileID: 114337517665840854}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,

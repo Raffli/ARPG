@@ -629,6 +629,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 7
   range: 8
+  level: 4
 --- !u!1 &14655528
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +802,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 8
+  level: 3
 --- !u!4 &21917981 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 55aa49c292af7574c9a84c4aa5b2faf0, type: 2}
@@ -936,6 +938,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 8
   range: 10
+  level: 3
 --- !u!1 &27408428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1111,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 8
+  level: 5
 --- !u!1 &30425134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2309,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!1 &80751637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,7 +2516,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84226635}
-  m_LocalRotation: {x: -0.041716628, y: 0.7058751, z: 0.70587516, w: 0.041716795}
+  m_LocalRotation: {x: -0.04171663, y: 0.70587516, z: 0.7058752, w: 0.0417168}
   m_LocalPosition: {x: -3.5814543, y: 0, z: 8.473491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3693,6 +3698,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!4 &164598498 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 67fee803cd572034c826650b1022f3c3, type: 3}
@@ -4824,6 +4830,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 15
   range: 15
+  level: 4
 --- !u!1 &208310454
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,6 +5003,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 8
+  level: 3
 --- !u!1001 &213639169
 Prefab:
   m_ObjectHideFlags: 0
@@ -5386,7 +5394,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221916691}
-  m_LocalRotation: {x: 0.18301123, y: -0.683013, z: -0.6830131, w: -0.18301152}
+  m_LocalRotation: {x: 0.18301125, y: -0.6830131, z: -0.68301314, w: -0.18301153}
   m_LocalPosition: {x: -9.141811, y: 0.13922375, z: -17.157999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7514,6 +7522,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 8
+  level: 3
 --- !u!1 &258633907
 GameObject:
   m_ObjectHideFlags: 0
@@ -8008,6 +8017,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 8
+  level: 3
 --- !u!1 &291834161
 GameObject:
   m_ObjectHideFlags: 0
@@ -9360,6 +9370,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!1 &349076447
 GameObject:
   m_ObjectHideFlags: 0
@@ -9891,6 +9902,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 8
+  level: 4
 --- !u!1 &373154093
 GameObject:
   m_ObjectHideFlags: 0
@@ -10063,6 +10075,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 3
 --- !u!1 &386271874
 GameObject:
   m_ObjectHideFlags: 0
@@ -11950,6 +11963,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 7
   range: 10
+  level: 3
 --- !u!1001 &466767071
 Prefab:
   m_ObjectHideFlags: 0
@@ -13389,6 +13403,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 12
   range: 8
+  level: 3
 --- !u!1 &565025774
 GameObject:
   m_ObjectHideFlags: 0
@@ -14497,6 +14512,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!1001 &641609902
 Prefab:
   m_ObjectHideFlags: 0
@@ -15094,6 +15110,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 8
 --- !u!1 &671157833
 GameObject:
   m_ObjectHideFlags: 0
@@ -18023,6 +18040,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 10
   range: 10
+  level: 2
 --- !u!1 &814991014
 GameObject:
   m_ObjectHideFlags: 0
@@ -19017,6 +19035,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 10
+  level: 5
 --- !u!1 &831531332
 GameObject:
   m_ObjectHideFlags: 0
@@ -21458,6 +21477,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!1 &983837056
 GameObject:
   m_ObjectHideFlags: 0
@@ -22441,7 +22461,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1064642393}
-  m_LocalRotation: {x: -0.27059907, y: -0.653281, z: -0.6532811, w: 0.27059913}
+  m_LocalRotation: {x: -0.2705991, y: -0.65328103, z: -0.65328115, w: 0.27059916}
   m_LocalPosition: {x: -9.295391, y: 0, z: -5.8927093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23591,6 +23611,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 8
+  level: 3
 --- !u!1 &1108438334
 GameObject:
   m_ObjectHideFlags: 0
@@ -24053,6 +24074,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 12
+  level: 5
 --- !u!1 &1144813047
 GameObject:
   m_ObjectHideFlags: 0
@@ -24468,6 +24490,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 8
+  level: 3
 --- !u!1 &1162713202
 GameObject:
   m_ObjectHideFlags: 0
@@ -24830,6 +24853,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 15
+  level: 6
 --- !u!1 &1177396682
 GameObject:
   m_ObjectHideFlags: 0
@@ -27562,6 +27586,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 15
+  level: 3
 --- !u!114 &1289973394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29518,6 +29543,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 16
+  level: 5
 --- !u!1 &1424160707
 GameObject:
   m_ObjectHideFlags: 0
@@ -31685,6 +31711,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 8
+  level: 3
 --- !u!1001 &1617150689
 Prefab:
   m_ObjectHideFlags: 0
@@ -34736,6 +34763,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 8
   range: 16
+  level: 4
 --- !u!1 &1799993242
 GameObject:
   m_ObjectHideFlags: 0
@@ -35813,6 +35841,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 10
+  level: 4
 --- !u!1001 &1871077177
 Prefab:
   m_ObjectHideFlags: 0
@@ -36556,6 +36585,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 6
   range: 10
+  level: 3
 --- !u!1 &1897069246
 GameObject:
   m_ObjectHideFlags: 0
@@ -37389,6 +37419,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 8
+  level: 6
 --- !u!4 &1934409872 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 67fee803cd572034c826650b1022f3c3, type: 3}

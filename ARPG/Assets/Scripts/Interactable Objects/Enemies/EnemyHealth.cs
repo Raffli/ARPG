@@ -11,6 +11,7 @@ public class EnemyHealth : NetworkBehaviour {
     [SyncVar]
     public int currentHealth;
 
+    public int level;
     public int maxHealth;
     public int lastHealth;
     public Slider healthBar;
@@ -23,6 +24,7 @@ public class EnemyHealth : NetworkBehaviour {
     bool isDead;
 
     void Start() {
+        this.maxHealth = this.maxHealth * level;
         this.currentHealth = this.maxHealth;
         this.lastHealth = this.currentHealth;
         anim = GetComponent<Animator>();
@@ -58,6 +60,11 @@ public class EnemyHealth : NetworkBehaviour {
                 Die();
             }
         }
+    }
+
+    public void SetLevel(int level)
+    {
+        this.level = level;
     }
 
     public void ReduceHealth(int damage) {

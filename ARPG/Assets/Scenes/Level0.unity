@@ -713,6 +713,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 8
+  level: 4
 --- !u!1001 &71245242
 Prefab:
   m_ObjectHideFlags: 0
@@ -1020,6 +1021,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 10
   range: 8
+  level: 2
 --- !u!1001 &127661748
 Prefab:
   m_ObjectHideFlags: 0
@@ -1427,6 +1429,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 8
+  level: 1
 --- !u!4 &193006325 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010140763972, guid: b12c8b6046ef0604b96e60fe14b9c16e,
@@ -1819,6 +1822,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 8
+  level: 1
 --- !u!4 &247363749
 Transform:
   m_ObjectHideFlags: 0
@@ -6734,6 +6738,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 8
+  level: 2
 --- !u!1 &797708040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8816,6 +8821,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 8
+  level: 1
 --- !u!1001 &1067855186
 Prefab:
   m_ObjectHideFlags: 0
@@ -10301,7 +10307,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343798517}
-  m_LocalRotation: {x: -0.002304211, y: -0.8628959, z: 0.003933842, w: -0.5053611}
+  m_LocalRotation: {x: -0.0023042113, y: -0.86289597, z: 0.0039338423, w: -0.50536114}
   m_LocalPosition: {x: 567.2, y: 25.3, z: 52.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -14972,6 +14978,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 8
   range: 8
+  level: 2
 --- !u!1001 &1870990283
 Prefab:
   m_ObjectHideFlags: 0

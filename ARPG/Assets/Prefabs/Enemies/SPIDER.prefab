@@ -1500,7 +1500,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899568589371024}
-  m_LocalRotation: {x: -0.5130579, y: 0.7729674, z: -0.23008451, w: -0.29386097}
+  m_LocalRotation: {x: -0.5130578, y: 0.7729673, z: -0.23008448, w: -0.29386094}
   m_LocalPosition: {x: -0.09935835, y: 0.77972996, z: 0.35664558}
   m_LocalScale: {x: 0.99999976, y: 0.9999998, z: 0.99999976}
   m_Children:
@@ -1866,8 +1866,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   aggroRadius: 20
-  damage: 5
+  damage: 3
   attackSpeed: 2
+  level: 0
 --- !u!114 &114412704902566846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1880,7 +1881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  level: 0
+  maxHealth: 20
   lastHealth: 0
   healthBar: {fileID: 114434657960685672}
   combatTextPrefab: {fileID: 1264185887247622, guid: fb545cd3281bb60419c257739144884a,

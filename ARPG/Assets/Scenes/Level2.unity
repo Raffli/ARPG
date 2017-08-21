@@ -1460,6 +1460,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 10
+  level: 4
 --- !u!1001 &63443171
 Prefab:
   m_ObjectHideFlags: 0
@@ -2745,6 +2746,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 6
+  level: 7
 --- !u!1001 &113724777
 Prefab:
   m_ObjectHideFlags: 0
@@ -5543,6 +5545,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &227997039
 Prefab:
   m_ObjectHideFlags: 0
@@ -7994,6 +7997,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 5
+  level: 4
 --- !u!1001 &355634760
 Prefab:
   m_ObjectHideFlags: 0
@@ -8173,6 +8177,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1 &363210653
 GameObject:
   m_ObjectHideFlags: 0
@@ -8277,6 +8282,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 10
   range: 20
+  level: 4
 --- !u!4 &366228894 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4958828686206248, guid: 626327e391b7bda4c9598fea253f6977,
@@ -8547,6 +8553,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &373025831
 Prefab:
   m_ObjectHideFlags: 0
@@ -9714,6 +9721,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 2
+  level: 5
 --- !u!4 &411536417 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4958828686206248, guid: 626327e391b7bda4c9598fea253f6977,
@@ -10399,6 +10407,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &439836371
 Prefab:
   m_ObjectHideFlags: 0
@@ -15214,6 +15223,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 9
 --- !u!1 &556170457
 GameObject:
   m_ObjectHideFlags: 0
@@ -15807,6 +15817,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 4
   range: 10
+  level: 5
 --- !u!4 &572078823 stripped
 Transform:
   m_PrefabParentObject: {fileID: 476448, guid: 443b16cc2c749c1449edeccb23f05576, type: 2}
@@ -16185,6 +16196,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 4
+  level: 4
 --- !u!1001 &582667899
 Prefab:
   m_ObjectHideFlags: 0
@@ -16856,6 +16868,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &614760660
 Prefab:
   m_ObjectHideFlags: 0
@@ -17606,6 +17619,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 4
+  level: 4
 --- !u!1001 &641978624
 Prefab:
   m_ObjectHideFlags: 0
@@ -18776,6 +18790,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 9
 --- !u!1001 &708431554
 Prefab:
   m_ObjectHideFlags: 0
@@ -19651,6 +19666,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 10
   range: 20
+  level: 4
 --- !u!4 &742314485 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502,
@@ -20679,6 +20695,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 5
+  level: 4
 --- !u!4 &818705064 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3a2128b2aa9fbd743882c26fb118a4a9, type: 2}
@@ -22723,6 +22740,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!4 &923665866 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502,
@@ -23270,6 +23288,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 2
+  level: 5
 --- !u!1001 &943051866
 Prefab:
   m_ObjectHideFlags: 0
@@ -23527,6 +23546,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 6
+  level: 6
 --- !u!1 &948915438
 GameObject:
   m_ObjectHideFlags: 0
@@ -25305,6 +25325,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 5
+  level: 1
 --- !u!1 &1032269668
 GameObject:
   m_ObjectHideFlags: 0
@@ -27820,6 +27841,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &1149533488
 Prefab:
   m_ObjectHideFlags: 0
@@ -29984,6 +30006,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 2
+  level: 5
 --- !u!1001 &1231854119
 Prefab:
   m_ObjectHideFlags: 0
@@ -30668,6 +30691,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 4
+  level: 4
 --- !u!4 &1267677508 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011207167760, guid: ff421997f346e314c82e73610f419ac1,
@@ -30777,6 +30801,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 8
+  level: 4
 --- !u!1001 &1268782735
 Prefab:
   m_ObjectHideFlags: 0
@@ -31154,6 +31179,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 9
 --- !u!4 &1276106924 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502,
@@ -32135,6 +32161,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 6
 --- !u!1001 &1309887324
 Prefab:
   m_ObjectHideFlags: 0
@@ -32322,6 +32349,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 2
+  level: 5
 --- !u!1001 &1318144032
 Prefab:
   m_ObjectHideFlags: 0
@@ -34762,6 +34790,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &1428532314
 Prefab:
   m_ObjectHideFlags: 0
@@ -35547,6 +35576,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 4
+  level: 4
 --- !u!4 &1496827277 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4958828686206248, guid: 626327e391b7bda4c9598fea253f6977,
@@ -37421,6 +37451,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 1
 --- !u!1 &1595451924
 GameObject:
   m_ObjectHideFlags: 0
@@ -38637,6 +38668,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 2
+  level: 4
 --- !u!1001 &1638526499
 Prefab:
   m_ObjectHideFlags: 0
@@ -39182,6 +39214,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 5
+  level: 4
 --- !u!1001 &1669156065
 Prefab:
   m_ObjectHideFlags: 0
@@ -40148,6 +40181,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 8
 --- !u!4 &1721835491 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4958828686206248, guid: 626327e391b7bda4c9598fea253f6977,
@@ -40693,6 +40727,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 5
+  level: 4
 --- !u!1001 &1739923214
 Prefab:
   m_ObjectHideFlags: 0
@@ -42129,6 +42164,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 5
   range: 10
+  level: 4
 --- !u!1001 &1819137416
 Prefab:
   m_ObjectHideFlags: 0
@@ -42595,6 +42631,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 12
 --- !u!1 &1851704175
 GameObject:
   m_ObjectHideFlags: 0
@@ -42699,6 +42736,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 1
   range: 1
+  level: 7
 --- !u!1 &1852466857
 GameObject:
   m_ObjectHideFlags: 0
@@ -42803,6 +42841,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 6
+  level: 6
 --- !u!4 &1859224409 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d58580eaf868b5f4cb5e8ddc1e779827, type: 2}
@@ -43098,6 +43137,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 3
+  level: 4
 --- !u!1001 &1876287896
 Prefab:
   m_ObjectHideFlags: 0
@@ -44326,6 +44366,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 3
   range: 5
+  level: 4
 --- !u!1001 &1944825366
 Prefab:
   m_ObjectHideFlags: 0
@@ -47278,6 +47319,7 @@ MonoBehaviour:
     type: 2}
   numberOfEnemies: 2
   range: 2
+  level: 5
 --- !u!1001 &2072301763
 Prefab:
   m_ObjectHideFlags: 0
