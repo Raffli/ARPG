@@ -12,18 +12,22 @@ public class Player : NetworkBehaviour {
 	public int xp;
 	public int xpToLevel;
 
-	[HideInInspector] public Stat vitality, dexterity, strength, intelligence;
-	[HideInInspector] public Stat armor;
-	[HideInInspector] public Stat damage;
-	[HideInInspector] public Stat critChance, cooldownReduction;
+	[HideInInspector] public Stat vitality, dexterity, strength, intelligence; // Base Stats
+	[HideInInspector] public Stat armor; // Defense - depends on items
+	[HideInInspector] public Stat damage; // Offense - calculated from dex, str and int
+	[HideInInspector] public Stat critChance, cooldownReduction; // Offense - depends on items
 
-	[HideInInspector] public Stat health, healthPerSecond, healthPerHit;
-	[HideInInspector] public Stat mana, manaPerSecond, manaPerHit;
+	[HideInInspector] public Stat health, healthPerSecond, healthPerHit; // Defense - calculated from vitality and hph from item
+	[HideInInspector] public Stat mana, manaPerSecond, manaPerHit; // Resource - calculated from intelligence and mph from item
 
 	[HideInInspector] [SyncVar] public int currentMana;
 	[HideInInspector] [SyncVar] public int maximumMana;
 	[HideInInspector] [SyncVar] public int currentHealth;
 	[HideInInspector] [SyncVar] public int maximumHealth;
+
+	private float dexScale;
+	private float strScale;
+	private float intScale;
 
 	private NetworkStartPosition[] spawnPoints;
 
@@ -45,8 +49,28 @@ public class Player : NetworkBehaviour {
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
 		strength = new Stat (10, "Strength", "Measures how physically strong your character is.");
 		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
+
+		if (tag.Equals ("Mage")) {
+			intelligence.baseValue += 15;
+			intScale = 0.5f;
+			dexScale = 0.1f;
+			strScale = 0.1f;
+		} else if (tag.Equals ("Rouge")) {
+			vitality.baseValue += 5;
+			dexterity.baseValue += 10;
+			intScale = 0.1f;
+			dexScale = 0.5f;
+			strScale = 0.1f;
+		} else if (tag.Equals ("Warrior")) {
+			vitality.baseValue += 10;
+			strength.baseValue += 5;
+			intScale = 0.1f;
+			dexScale = 0.1f;
+			strScale = 0.5f;
+		}
+
 		armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
-		damage = new Stat (10, "Damage", "Measures how much damage you do with your attacks.");
+		damage = new Stat (calculateDamage(), "Damage", "Measures how much damage you do with your attacks.");
 		critChance = new Stat (5, "Crit Chance", "Measures the chance to strike an enemy critical.");
 		cooldownReduction = new Stat (0, "Cooldown Reduction", "Reduces the cooldowns of your skills.");
 		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
@@ -68,7 +92,16 @@ public class Player : NetworkBehaviour {
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 	}
 
+	private int calculateDamage () {
+		int dmg = 10;
+		dmg += Mathf.RoundToInt ((dexterity.GetValue() * dexScale));
+		dmg += Mathf.RoundToInt ((strength.GetValue() * strScale));
+		dmg += Mathf.RoundToInt ((intelligence.GetValue() * intScale));
+		return dmg;
+	}
+
 	public void TakeDamage (int amount) {
+		amount -= armor.GetValue ();
 		currentHealth -= amount;
 		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
 		if (currentHealth <= 0) {
