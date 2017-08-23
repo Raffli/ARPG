@@ -14,7 +14,6 @@ public class SweepingLotusBehaviour : MonoBehaviour {
 
     public void SetDamage(int damage)
     {
-        print("lotusdamage" + damage);
         this.damage = damage;
     }
 

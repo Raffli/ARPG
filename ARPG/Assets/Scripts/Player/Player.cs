@@ -7,95 +7,117 @@ using UnityEngine.AI;
 
 public class Player : NetworkBehaviour {
 
-    [SyncVar]
+	[SyncVar]
 	public int level;
- 	public int xp;
+	public int xp;
 	public int xpToLevel;
-    [SyncVar]
-    public int maximumMana;
-    [SyncVar]
-    public int currentMana;
-    [SyncVar]
-    public int maxHealth;
-    [SyncVar]
-    public int currentHealth;
-    private NetworkStartPosition[] spawnPoints;
+
+	[HideInInspector] public Stat vitality, dexterity, strength, intelligence;
+	[HideInInspector] public Stat armor;
+	[HideInInspector] public Stat damage;
+	[HideInInspector] public Stat critChance, cooldownReduction;
+
+	[HideInInspector] public Stat health, healthPerSecond, healthPerHit;
+	[HideInInspector] public Stat mana, manaPerSecond, manaPerHit;
+
+	[HideInInspector] [SyncVar] public int currentMana;
+	[HideInInspector] [SyncVar] public int maximumMana;
+	[HideInInspector] [SyncVar] public int currentHealth;
+	[HideInInspector] [SyncVar] public int maximumHealth;
+
+	private NetworkStartPosition[] spawnPoints;
 
 
-    void Awake()
-    {
+	void Awake(){
+		DontDestroyOnLoad(transform.gameObject);    
+	}
 
-        DontDestroyOnLoad(transform.gameObject);
-        
-    }
+	void Start() {
+		if (!isLocalPlayer)
+		{
+			Destroy(transform.Find("Main Camera").gameObject);
+		}
+		else {
+			transform.Find("Main Camera").gameObject.SetActive(true);
+		}
 
+		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
+		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
+		strength = new Stat (10, "Strength", "Measures how physically strong your character is.");
+		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
+		armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
+		damage = new Stat (10, "Damage", "Measures how much damage you do with your attacks.");
+		critChance = new Stat (5, "Crit Chance", "Measures the chance to strike an enemy critical.");
+		cooldownReduction = new Stat (0, "Cooldown Reduction", "Reduces the cooldowns of your skills.");
+		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
+		float hps = vitality.GetValue () * 0.1f;
+		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
+		healthPerHit = new Stat (0, "Health per Hit", "How much health you regenerate when hitting an enemy.");
+		mana = new Stat (100, "Mana", "Spiritual energy used for spells.");
+		float mps = intelligence.GetValue () * 0.1f;
+		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
+		manaPerHit = new Stat (0, "Mana per Hit", "How much mana you regenerate when hitting an enemy.");
 
-
-    void Start() {
-        if (!isLocalPlayer)
-        {
-            Destroy(transform.Find("Main Camera").gameObject);
-        }
-        else {
-            transform.Find("Main Camera").gameObject.SetActive(true);
-        }
-        currentHealth = maxHealth;
+		maximumHealth = health.GetValue();
+		currentHealth = maximumHealth; 
+		maximumMana = mana.GetValue();
 		currentMana = maximumMana;
-		HUDManager.Instance.UpdateHP (currentHealth, maxHealth);
-		HUDManager.Instance.UpdateMana (currentMana, maximumMana);
-        currentHealth = maxHealth;   
-    }
+
+		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
+		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
+		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+	}
 
 	public void TakeDamage (int amount) {
 		currentHealth -= amount;
-		HUDManager.Instance.UpdateHP (currentHealth, maxHealth);
+		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
 		if (currentHealth <= 0) {
 			Die();
 		}
 	}
 
 
-    private void OnLevelWasLoaded(int level)
-    {
-        if (level > 1) {
+	private void OnLevelWasLoaded(int level)
+	{
+		if (level > 1) {
 
-            GetComponent<NavMeshAgent>().enabled = false;
-            spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+			GetComponent<NavMeshAgent>().enabled = false;
+			spawnPoints = FindObjectsOfType<NetworkStartPosition>();
 
-            Vector3 spawnPoint = Vector3.zero;
+			Vector3 spawnPoint = Vector3.zero;
 
-            if (spawnPoints != null && spawnPoints.Length > 0)
-            {
-                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
-            }
-            transform.position = spawnPoint;
-            GetComponent<NavMeshAgent>().enabled = true;
+			if (spawnPoints != null && spawnPoints.Length > 0)
+			{
+				spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+			}
+			transform.position = spawnPoint;
+			GetComponent<NavMeshAgent>().enabled = true;
 
-        }
-    }
-
-    public void Heal (int amount) {
-		currentHealth += amount;
-		if (currentHealth > maxHealth) {
-			currentHealth = maxHealth;
 		}
-		HUDManager.Instance.UpdateHP (currentHealth, maxHealth);
+	}
+
+	public void Heal (int amount) {
+		currentHealth += amount;
+		if (currentHealth > health.GetValue()) {
+			currentHealth = health.GetValue();
+		}
+		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
 	}
 
 	public void IncreaseMana (int amount) {
 		currentMana += amount;
-		if (currentMana > maximumMana) {
-			currentMana = maximumMana;
+		if (currentMana > mana.GetValue()) {
+			currentMana = mana.GetValue();
 		}
-		HUDManager.Instance.UpdateMana (currentMana, maximumMana);
+		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
 	}
 
 	public void ReduceMana (int amount) {
 		currentMana -= amount;
-		HUDManager.Instance.UpdateMana (currentMana, maximumMana);
+		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
 	}
 
 	void Die() {
-		currentHealth = maxHealth;
+		currentHealth = health.GetValue();
 	}
 }
