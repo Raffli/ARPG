@@ -11,7 +11,8 @@ public class TwinBlades : Skill {
 	private SwordAttack rightSwordAttack;
 	private GameObject rightSword;
 
-	public override void SetProperties (GameObject leftSword, GameObject rightSword) {
+	public override void SetProperties (Player player, GameObject leftSword, GameObject rightSword) {
+		this.player = player;
 		this.leftSword = leftSword;
 		leftSwordAttack = leftSword.GetComponent<SwordAttack>();
 		this.rightSword = rightSword;
@@ -19,33 +20,29 @@ public class TwinBlades : Skill {
 		skillName = "Twin Blades";
 		skillDescription = "You hit your enemy with two lightning fast blades.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/twinBlades");
+		skillSlot = 6;
+		scale = 0.6f;
 		manaCost = 0;
-		baseDamage = 30;
-		damage = baseDamage;
-		cooldown = 1.3f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (6, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
-	}
-
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	protected override void ModifyProperties ()
+	{
+		baseDamage = Mathf.RoundToInt((player.dexterity.GetValue() + player.damage.GetValue()) * scale);
+		damage = baseDamage;
+		cooldown = 1.3f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
 	public override void Execute () {
-		rightSwordAttack.SetHeavyDamage (baseDamage);
+		ModifyProperties ();
+		if (player.GetCritted ()) {
+			damage = Mathf.RoundToInt (damage * player.critDamage);
+		}
+		rightSwordAttack.SetHeavyDamage (damage);
 		rightSwordAttack.SetAttack(false, true);
-        leftSwordAttack.SetHeavyDamage(baseDamage);
+        leftSwordAttack.SetHeavyDamage(damage);
         leftSwordAttack.SetAttack(false, true);
     }
 }

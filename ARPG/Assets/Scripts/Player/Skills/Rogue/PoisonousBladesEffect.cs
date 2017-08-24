@@ -11,9 +11,7 @@ public class PoisonousBladesEffect : MonoBehaviour {
 
 	IEnumerator Procedure()
 	{
-		yield return new WaitForSeconds(1f);
-		// still to do
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(5f);
 		gameObject.SetActive(false);
 	}
 }

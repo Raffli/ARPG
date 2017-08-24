@@ -17,22 +17,26 @@ public class Skill : NetworkBehaviour {
 	public float cooldown { get; set; }
 	public float cooldownLeft { get; set; }
 	public bool onCooldown { get; set; }
+	public float duration { get; set; }
+	public float scale { get; set; }
 
-    public virtual void SetProperties() {}
+	protected Player player;
+
     public virtual void SetProperties(Player player) {}
-    public virtual void SetProperties(GameObject sword) {}
-    public virtual void SetProperties(GameObject leftSword, GameObject rightSword) {}
-
+    public virtual void SetProperties(Player player, GameObject sword) {}
+	public virtual void SetProperties(Player player, GameObject leftSword, GameObject rightSword) {}
 
     public virtual void Execute() {}
     public virtual void Execute(GameObject spellOrigin) {}
-    public virtual void Execute(NavMeshAgent playerAgent, Vector3 targetPoint) {}
-    public virtual void Execute(NavMeshAgent playerAgent, GameObject enemy) {}
-    public virtual void Execute(NavMeshAgent playerAgent, GameObject enemy, GameObject spellOrigin) {}
+    public virtual void Execute(Vector3 targetPoint) {}
+    public virtual void Execute(GameObject enemy, GameObject spellOrigin) {}
+
+	protected virtual void ModifyProperties () {} // for recalculating the values before attacking
 
 	protected virtual void Update () {
 		if (onCooldown) {
 			cooldownLeft -= Time.deltaTime;
+			HUDManager.Instance.UpdateCooldown (skillSlot, cooldownLeft, cooldown);
 			if (cooldownLeft <= 0) {
 				onCooldown = false;
 			}

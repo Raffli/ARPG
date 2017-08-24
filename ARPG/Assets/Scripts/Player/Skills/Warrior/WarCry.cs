@@ -7,39 +7,49 @@ using UnityEngine.Networking;
 
 public class WarCry : Skill {
 
-	private Player playerStats;
-
 	public override void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+		this.player = player;
 		skillName = "War Cry";
-		skillDescription = "You cry out gaining strength and health for x seconds.";
+		skillDescription = "You cry out gaining strength and health for a few seconds.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/warcry");
+		skillSlot = 0;
+		scale = 0.5f;
 		manaCost = 15;
-		baseDamage = 0;
-		damage = baseDamage;
-		cooldown = 6f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		duration = 5f;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (0, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties ()
+	{
+		baseDamage = Mathf.RoundToInt(player.strength.GetValue() * scale);
+		damage = Mathf.RoundToInt(player.health.GetValue() * scale);
+		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	public void GiveStrengthHealth () {
+		player.strength.AddBonus (baseDamage);
+		player.health.AddBonus (damage);
+		player.Heal (damage);
+		StartCoroutine (WaitDuration());
+	}
+
+	public void RemoveStrengthHealth () {
+		player.strength.RemoveBonus (baseDamage);
+		player.health.RemoveBonus (damage);
+		player.ReduceHealth (0);
+	}
+
+	IEnumerator WaitDuration () {
+		yield return new WaitForSeconds (duration);
+		RemoveStrengthHealth ();
 	}
 
     [Command]
     private void CmdSpawnIt()
     {
+		GiveStrengthHealth ();
         GameObject warCry = (GameObject)Resources.Load("Skills/WarCry");
         GameObject obj = Instantiate(warCry, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
@@ -47,7 +57,7 @@ public class WarCry : Skill {
 
     public override void Execute()
     {
-        // add to player.armor or something
+		ModifyProperties ();
         CmdSpawnIt();
     }
 }

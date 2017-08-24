@@ -7,35 +7,39 @@ using UnityEngine.Networking;
 
 
 public class Shield : Skill {
-	
-	private Player playerStats;
 
 	public override void SetProperties(Player player) {
-		playerStats = player.GetComponent<Player> ();
+		this.player = player;
         skillName = "Protective Aura";
 		skillDescription = "You concentrate your magic energy to generate a protective aura taht shields you.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/protectingAura");
+		skillSlot = 0;
 		manaCost = 15;
-		baseDamage = 0;
-		damage = baseDamage;
-		cooldown = 6f;
+		scale = 0.5f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		duration = 5f;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (0, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties (){
+		baseDamage = Mathf.RoundToInt (player.intelligence.GetValue () * scale);
+		damage = baseDamage;
+		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	public void GiveArmor () {
+		player.armor.AddBonus (baseDamage);
+		StartCoroutine (WaitDuration());
+	}
+
+	public void RemoveArmor () {
+		player.armor.RemoveBonus (baseDamage);
+	}
+
+	IEnumerator WaitDuration () {
+		yield return new WaitForSeconds (duration);
+		RemoveArmor ();
 	}
 
 
@@ -43,12 +47,13 @@ public class Shield : Skill {
     private void CmdSpawnIt()
     {
         GameObject shield = (GameObject)Resources.Load("Skills/Shield");
+		GiveArmor ();
         GameObject obj = Instantiate(shield, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
     }
 
     public override void Execute() {
-        // add to player.armor or something
+		ModifyProperties ();
         CmdSpawnIt();
     }
 }

@@ -10,28 +10,25 @@ public class GroundBreaker : Skill {
 
 	private int floorMask;
 
-	public override void SetProperties () {
+	public override void SetProperties (Player player) {
+		this.player = player;
 		skillName = "Ground Breaker";
 		skillDescription = "You break the ground at the target location.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/groundbreaker");
+		skillSlot = 6;
 		manaCost = 25;
-		baseDamage = 20;
-		damage = baseDamage;
-		cooldown = 3f;
+		scale = 0.8f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		ModifyProperties ();
 
 		floorMask = LayerMask.GetMask ("Floor");
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (6, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties (){
+		baseDamage = Mathf.RoundToInt((player.intelligence.GetValue() + player.damage.GetValue()) * scale);
+		damage = baseDamage;
+		cooldown = 3f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
     [Command]
@@ -39,13 +36,16 @@ public class GroundBreaker : Skill {
         GameObject groundBreaker = (GameObject)Resources.Load("Skills/GroundBreaker");
         GameObject obj = Instantiate(groundBreaker, point, transform.rotation);
         //obj.GetComponent<GroundBreakerBehaviour>().SetAttackingPlayer(gameObject);
+		if (player.GetCritted ()) {
+			damage = Mathf.RoundToInt (damage * player.critDamage);
+		}
         obj.GetComponent<GroundBreakerBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }
 
 
-    public override void Execute (NavMeshAgent playerAgent, Vector3 targetPoint) {
-
+    public override void Execute (Vector3 targetPoint) {
+		ModifyProperties ();
 		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {		

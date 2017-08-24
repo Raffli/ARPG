@@ -7,27 +7,24 @@ using UnityEngine.Networking;
 
 public class WaterCircle : Skill {
 
-
-	public override void SetProperties () {
+	public override void SetProperties (Player player) {
+		this.player = player;
 		skillName = "Water Circle";
 		skillDescription = "You get sourrounded by water that deals damage to everything it comes in contact with.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/waterCircle");
+		skillSlot = 1;
+		scale = 0.3f;
 		manaCost = 25;
-		baseDamage = 10;
-		damage = baseDamage;
-		cooldown = 5f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (1, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties ()
+	{
+		baseDamage = Mathf.RoundToInt((player.intelligence.GetValue() + player.damage.GetValue()) * scale);
+		damage = baseDamage;
+		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
     [Command]
@@ -35,12 +32,16 @@ public class WaterCircle : Skill {
     {
         GameObject waterCircle = (GameObject)Resources.Load("Skills/WaterCircle");
         GameObject obj = Instantiate(waterCircle, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+		if (player.GetCritted ()) {
+			damage = Mathf.RoundToInt (damage * player.critDamage);
+		}
         obj.GetComponent<WaterCircleBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }
 
     public override void Execute()
     {
+		ModifyProperties ();
         CmdSpawnIt();
     }
 

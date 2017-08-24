@@ -7,47 +7,54 @@ using UnityEngine.Networking;
 
 public class Stealth : Skill {
 
-	private Player playerStats;
-
 	public override void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+		this.player = player;
 		skillName = "Stealth";
 		skillDescription = "You concentrate and become invisible to enemies for a while.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/stealth");
+		skillSlot = 1;
 		manaCost = 15;
-		baseDamage = 0;
-		damage = baseDamage;
-		cooldown = 6f;
+		scale = 0.7f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		duration = 5f;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (1, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties (){
+		baseDamage = Mathf.RoundToInt(player.dexterity.GetValue() * scale);
+		damage = baseDamage;
+		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	public void GiveCritChance () {
+		player.critChance.AddBonus (baseDamage);
+		player.invisible = true;
+		StartCoroutine (WaitDuration());
+	}
+
+	public void RemoveCritChance () {
+		player.critChance.RemoveBonus (baseDamage);
+		player.invisible = false;
+	}
+
+	IEnumerator WaitDuration () {
+		yield return new WaitForSeconds (duration);
+		RemoveCritChance ();
 	}
 
     [Command]
     private void CmdSpawnIt()
     {
         GameObject stealth = (GameObject)Resources.Load("Skills/Stealth");
+		GiveCritChance ();
         GameObject obj = Instantiate(stealth, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
     }
 
     public override void Execute()
     {
-        // add to player.armor or something
+		ModifyProperties ();
         CmdSpawnIt();
     }
 }

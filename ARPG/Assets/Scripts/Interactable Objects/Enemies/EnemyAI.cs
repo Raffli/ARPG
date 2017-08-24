@@ -18,7 +18,6 @@ public class EnemyAI: MonoBehaviour {
 
 	private bool wasAttacked;
 	private Vector3 spawnPosition;
-	private bool goingBack;
 
     void Start()
     {
@@ -32,16 +31,44 @@ public class EnemyAI: MonoBehaviour {
         withinAggroColliders = Physics.OverlapSphere(transform.position, aggroRadius, aggroLayerMask);
 		if (withinAggroColliders.Length > 0)
         {
-            aggro = true;
-			goingBack = false;
-			//agent.stoppingDistance = 8f;
             playerPosition = withinAggroColliders[0].GetComponent<Transform>();
             player = withinAggroColliders[0].GetComponent<Player>();
+			if (!player.invisible) {
+				aggro = true;
+			} else {
+				aggro = false;
+			}
         }
         else if (aggro){
             aggro = false;
-			//GoBackToSpawn ();
         }
+
+		if (!anim.GetBool("Dead") && (aggro || wasAttacked) && agent)
+		{
+			agent.isStopped = false;
+			if (agent.remainingDistance <= agent.stoppingDistance)
+			{
+				anim.SetBool("Walk", false);
+				EnsureLookDirection ();
+				if (!IsInvoking ("AttackPlayer")) {
+					InvokeRepeating ("AttackPlayer", 0.5f, attackSpeed);
+				}
+			}
+			else
+			{
+				anim.SetBool("Walk", true);
+				CancelInvoke("AttackPlayer");
+			}
+			agent.SetDestination(playerPosition.position);
+		}
+		else
+		{
+			if (agent) {
+				agent.isStopped = true;
+			}
+			CancelInvoke("AttackPlayer");
+			anim.SetBool("Walk", false);
+		}
     }
 
 	public void SetAttacked (Transform playerPosition) {
@@ -67,41 +94,6 @@ public class EnemyAI: MonoBehaviour {
         this.level = level;
     }
 
-
-    void Update() {
-		if (!anim.GetBool("Dead") && (aggro || wasAttacked || goingBack) && agent)
-        {
-            agent.isStopped = false;
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                anim.SetBool("Walk", false);
-				EnsureLookDirection ();
-				if (!goingBack) {
-					if (!IsInvoking ("AttackPlayer")) {
-						InvokeRepeating ("AttackPlayer", 0.5f, attackSpeed);
-					}
-				} else {
-					goingBack = false;
-				}
-            }
-            else
-            {
-                anim.SetBool("Walk", true);
-                CancelInvoke("AttackPlayer");
-            }
-			if (!goingBack)
-           		agent.SetDestination(playerPosition.position);
-        }
-        else
-        {
-            if (agent) {
-                agent.isStopped = true;
-            }
-            CancelInvoke("AttackPlayer");
-            anim.SetBool("Walk", false);
-        }
-    }
-
 	void EnsureLookDirection () {
 		if (agent) {
 			agent.updateRotation = false;
@@ -113,7 +105,6 @@ public class EnemyAI: MonoBehaviour {
 
 	void GoBackToSpawn () {
 		if (agent) {
-			goingBack = true;
 			agent.stoppingDistance = 0.1f;
 			agent.SetDestination (spawnPosition);
 		}

@@ -11,38 +11,33 @@ public class SparklingStrike : Skill {
 	private SwordAttack rightSwordAttack;
 	private GameObject rightSword;
 
-	public override void SetProperties (GameObject sword) {
+	public override void SetProperties (Player player, GameObject sword) {
+		this.player = player;
 		rightSword = sword;
 		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
 		skillName = "Sparkling Strike";
-		skillDescription = "You hit your enemy with a powerful strike with your blade.";
+		skillDescription = "You hit your enemy with a powerful strike.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/sparklingStrike");
+		skillSlot = 5;
+		scale = 0.3f;
 		manaCost = 0;
-		baseDamage = 20;
-		damage = baseDamage;
-		cooldown = 0.8f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (5, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties () {
+		baseDamage = Mathf.RoundToInt ((player.dexterity.GetValue () + player.damage.GetValue ()) * scale);
+		damage = baseDamage;
+		cooldown = 0.8f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
-
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
-	}
-
-
+		
 	public override void Execute () {
-        rightSwordAttack.SetLightDamage (baseDamage);
+		ModifyProperties ();
+		if (player.GetCritted ()) {
+			damage = Mathf.RoundToInt (damage * player.critDamage);
+		}
+        rightSwordAttack.SetLightDamage (damage);
         rightSwordAttack.SetAttack(true, false);
 	}
 

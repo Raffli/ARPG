@@ -15,74 +15,27 @@ public class WarriorAttack : Attack {
         swordAttack = sword.GetComponent<SwordAttack>();
 
         skills[0] = gameObject.GetComponent<Bash>();
-        skills[0].SetProperties(sword);
+        skills[0].SetProperties(player, sword);
         skills[1] = gameObject.GetComponent<Bladestorm>();
-        skills[1].SetProperties(sword);
+        skills[1].SetProperties(player, sword);
         skills[2] = gameObject.GetComponent<WarCry>();
         skills[2].SetProperties(player);
         skills[3] = gameObject.GetComponent<LastStand>();
         skills[3].SetProperties(player);
         skills[4] = gameObject.GetComponent<FireFissure>();
-        skills[4].SetProperties();
+        skills[4].SetProperties(player);
 
         if (isLocalPlayer) {
-            HUDManager.Instance.AddSkillToUI(skills[0].skillIcon, 5);
-            HUDManager.Instance.AddSkillToUI(skills[1].skillIcon, 6);
-            HUDManager.Instance.AddSkillToUI(skills[2].skillIcon, 0);
-            HUDManager.Instance.AddSkillToUI(skills[3].skillIcon, 1);
-            HUDManager.Instance.AddSkillToUI(skills[4].skillIcon, 2);
+			HUDManager.Instance.AddSkillToUI(skills[0].skillIcon, skills[0].skillSlot);
+			HUDManager.Instance.AddSkillToUI(skills[1].skillIcon, skills[1].skillSlot);
+			HUDManager.Instance.AddSkillToUI(skills[2].skillIcon, skills[2].skillSlot);
+			HUDManager.Instance.AddSkillToUI(skills[3].skillIcon, skills[3].skillSlot);
+			HUDManager.Instance.AddSkillToUI(skills[4].skillIcon, skills[4].skillSlot);
         }
 
     }
 
-
-    protected override void CastPrimaryAttack()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        GetComponent<Animator>().SetBool("AttackedPrimary", false);
-        skills[0].Execute();
-        playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
-    }
-
-    protected override void CastSecondaryAttack()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        GetComponent<Animator>().SetBool("AttackedSecondary", false);
-        skills[1].Execute();
-        playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
-    }
-
-    protected override void CastFirstSpell()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        GetComponent<Animator>().SetBool("UsedFirstSpell", false);
-        skills[2].Execute();
-        playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
-    }
-
-    protected override void CastSecondSpell()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        GetComponent<Animator>().SetBool("UsedSecondSpell", false);
-        skills[3].Execute();
-        playerAgent.isStopped = false;
-        worldInteraction.SetCanInteract(true);
-    }
+	// Implements other "Cast"-Functions from Attack, overrides thirdSpell because of different execute
 
     protected override void CastThirdSpell()
     {

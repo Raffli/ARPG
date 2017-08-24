@@ -15,24 +15,32 @@ public class ManaPotion : NetworkBehaviour
     public float cooldown { get; set; }
     public float cooldownLeft { get; set; }
     public bool onCooldown { get; set; }
+	public int skillSlot { get; set; }
+	private Player player;
 
-    public void SetProperties()
+	public void SetProperties(Player player)
     {
-        manaAmount = 50;
+		this.player = player;
         price = 50;
         icon = (Image)Resources.Load("UI/manaPotion");
         description = "Potion with refunding magical energy.";
         cooldown = 5f;
         cooldownLeft = 0f;
         onCooldown = false;
+		skillSlot = 4;
+		ModifyProperty ();
     }
+
+	private void ModifyProperty () {
+		manaAmount = Mathf.RoundToInt (player.mana.GetValue () * 0.5f);
+	}
 
     void Update()
     {
         if (onCooldown)
         {
             cooldownLeft -= Time.deltaTime;
-            HUDManager.Instance.UpdateCooldown(4, cooldownLeft, cooldown);
+			HUDManager.Instance.UpdateCooldown(skillSlot, cooldownLeft, cooldown);
             if (cooldownLeft <= 0)
             {
                 onCooldown = false;
@@ -48,8 +56,9 @@ public class ManaPotion : NetworkBehaviour
         NetworkServer.Spawn(obj);
     }
 
-    public void Use(Player player)
+    public void Use()
     {
+		ModifyProperty ();
         onCooldown = true;
         cooldownLeft = cooldown;
         player.IncreaseMana(manaAmount);

@@ -7,39 +7,45 @@ using UnityEngine.Networking;
 
 public class LastStand : Skill {
 
-	private Player playerStats;
+	private int armorBonus;
 
 	public override void SetProperties (Player player) {
-		playerStats = player.GetComponent<Player> ();
+		this.player = player;
 		skillName = "Last Stand";
-		skillDescription = "You concentrate all your energy becoming invicible for the next x seconds.";
+		skillDescription = "You concentrate all your energy becoming invicible for a short period.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/lastStand");
-		manaCost = 15;
-		baseDamage = 0;
-		damage = baseDamage;
-		cooldown = 6f;
+		skillSlot = 1;
+		manaCost = 25;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		duration = 5f;
+		armorBonus = 999999999;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (1, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
+	protected override void ModifyProperties ()
+	{
+		cooldown = 30f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	public void MakeInvicible () {
+		player.armor.AddBonus (armorBonus);
+		StartCoroutine (WaitDuration());
+	}
+
+	public void RemoveInvicibility () {
+		player.armor.RemoveBonus (armorBonus);
+	}
+
+	IEnumerator WaitDuration () {
+		yield return new WaitForSeconds (duration);
+		RemoveInvicibility ();
 	}
 
     [Command]
     private void CmdSpawnIt()
     {
+		MakeInvicible ();
         GameObject lastStand = (GameObject)Resources.Load("Skills/LastStand");
         GameObject obj = Instantiate(lastStand, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
@@ -47,7 +53,7 @@ public class LastStand : Skill {
 
     public override void Execute()
     {
-        // add to player.armor or something
+		ModifyProperties ();
         CmdSpawnIt();
     }
 }

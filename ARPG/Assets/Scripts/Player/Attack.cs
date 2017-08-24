@@ -35,22 +35,23 @@ public class Attack : NetworkBehaviour
 		player = GetComponent <Player> ();
 		worldInteraction = GetComponent<WorldInteraction> ();
 		healPotion = gameObject.GetComponent<HealPotion> ();
-		healPotion.SetProperties ();
 		manaPotion = gameObject.GetComponent<ManaPotion> ();
-		manaPotion.SetProperties ();
 		skills = new Skill[5]; 
 	}
 	
 
-	void FixedUpdate ()
+	void Update ()
     {
         if (Input.GetButtonDown("Jump"))
         {
+			healPotion.SetProperties (player);
+			manaPotion.SetProperties (player);
             EquipSkill();
         }
         if (!isLocalPlayer) {
             return;
         }
+			
         if (Input.GetButtonDown("Fire2"))
         {
             castPosition = Input.mousePosition;
@@ -76,10 +77,6 @@ public class Attack : NetworkBehaviour
         {
             UseManaPotion();
         }
-        //else if (Input.GetButtonDown("Jump"))
-        //{
-          //  EquipSkill();
-        //}
 	}
 
     public void SetSkill (Skill skill, int index) {
@@ -167,7 +164,7 @@ public class Attack : NetworkBehaviour
     {
         if (!healPotion.onCooldown)
         {
-            healPotion.Use(player);
+            healPotion.Use();
         }
     }
 
@@ -175,15 +172,65 @@ public class Attack : NetworkBehaviour
     {
         if (!manaPotion.onCooldown)
         {
-            manaPotion.Use(player);
+            manaPotion.Use();
         }
     }
 
     public virtual void EquipSkill() { }
-    protected virtual void CastPrimaryAttack() { }
-    protected virtual void CastSecondaryAttack() { }
-    protected virtual void CastFirstSpell() { }
-    protected virtual void CastSecondSpell() { }
-    protected virtual void CastThirdSpell() { }
+
+    protected virtual void CastPrimaryAttack() { 
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+		GetComponent<Animator>().SetBool("AttackedPrimary", false);
+		skills[0].Execute();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract(true);
+	}
+
+    protected virtual void CastSecondaryAttack() { 
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+		GetComponent<Animator>().SetBool("AttackedSecondary", false);
+		skills[1].Execute();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract(true);
+	}
+
+    protected virtual void CastFirstSpell() { 
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+		GetComponent<Animator>().SetBool("UsedFirstSpell", false);
+		skills[2].Execute();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract(true);
+	}
+
+    protected virtual void CastSecondSpell() { 
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+		GetComponent<Animator>().SetBool("UsedSecondSpell", false);
+		skills[3].Execute();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract(true);
+	}
+
+    protected virtual void CastThirdSpell() { 
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+		GetComponent<Animator>().SetBool("UsedThirdSpell", false);
+		skills[4].Execute();
+		playerAgent.isStopped = false;
+		worldInteraction.SetCanInteract(true);
+	}
 
 }

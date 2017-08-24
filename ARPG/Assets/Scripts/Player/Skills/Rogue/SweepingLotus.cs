@@ -7,34 +7,23 @@ using UnityEngine.Networking;
 
 public class SweepingLotus : Skill {
 
-	//private Player playerStats;
-
-	public override void SetProperties () {
-		//playerStats = player.GetComponent<Player> ();
+	public override void SetProperties (Player player) {
+		this.player = player;
 		skillName = "Sweeping Lotus";
 		skillDescription = "You spin with your blades creating a sweeping wind that deals damage to enemies.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/sweepingLotus");
-		manaCost = 15;
-		baseDamage = 8;
-		damage = baseDamage;
-		cooldown = 6f;
+		skillSlot = 2;
+		manaCost = 25;
+		scale = 0.2f;
 		cooldownLeft = 0f;
 		onCooldown = false;
+		ModifyProperties ();
 	}
 
-	void Update () {
-		if (onCooldown) {
-			cooldownLeft -= Time.deltaTime;
-			HUDManager.Instance.UpdateCooldown (2, cooldownLeft, cooldown);
-			if (cooldownLeft <= 0) {
-				onCooldown = false;
-			}
-		}
-	}
-
-	public void StartCooldown () {
-		onCooldown = true;
-		cooldownLeft = cooldown;
+	protected override void ModifyProperties (){
+		baseDamage = Mathf.RoundToInt((player.dexterity.GetValue() + player.damage.GetValue()) * scale);
+		damage = baseDamage;
+		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
 	}
 
     [Command]
@@ -42,11 +31,15 @@ public class SweepingLotus : Skill {
     {
         GameObject lotus = (GameObject)Resources.Load("Skills/SweepingLotus");
         GameObject obj = Instantiate(lotus, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+		if (player.GetCritted ()) {
+			damage = Mathf.RoundToInt (damage * player.critDamage);
+		}
         obj.GetComponent<SweepingLotusBehaviour>().SetDamage(damage);
         NetworkServer.Spawn(obj);
     }
 
     public override void Execute () {
+		ModifyProperties ();
         CmdSpawnIt();
     }
 }
