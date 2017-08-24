@@ -4756,6 +4756,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 494ef0d4b24880e49815b70594f76f60, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &489335657 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224688477444462596, guid: 494ef0d4b24880e49815b70594f76f60,
+    type: 2}
+  m_PrefabInternal: {fileID: 489335656}
 --- !u!1001 &500026222
 Prefab:
   m_ObjectHideFlags: 0
@@ -18188,6 +18193,63 @@ Transform:
   m_PrefabParentObject: {fileID: 4551427210362234, guid: 78cb423cfbefd28419d7eeb1817f0eac,
     type: 2}
   m_PrefabInternal: {fileID: 1872817838}
+--- !u!1 &1874668181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1874668182}
+  - component: {fileID: 1874668183}
+  m_Layer: 5
+  m_Name: Bag
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1874668182
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1874668181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 489335657}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 6, y: -260}
+  m_SizeDelta: {x: 522, y: 524}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1874668183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1874668181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 4
+    m_Right: 4
+    m_Top: 6
+    m_Bottom: 6
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 62, y: 62}
+  m_Spacing: {x: 2, y: 2}
+  m_Constraint: 0
+  m_ConstraintCount: 8
 --- !u!1 &1887614082
 GameObject:
   m_ObjectHideFlags: 0
