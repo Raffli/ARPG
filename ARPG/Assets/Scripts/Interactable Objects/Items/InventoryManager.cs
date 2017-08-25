@@ -11,11 +11,10 @@ public class InventoryManager : MonoBehaviour {
 	public GameObject inventoryPanel;
 	private Image playerModel;
 	private Transform equippedGroup;
-	private Button head, amulet, chest, gloves, primary, secondary, ring1, ring2, pants, shoes;
+	[HideInInspector] public Button head, amulet, chest, gloves, primary, secondary, ring1, ring2, pants, shoes;
 	private GameObject bagGroup;
 	public Button bagSlot;
 	private List <Button> bag;
-	private Sprite draconianSword;
 
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
@@ -42,7 +41,8 @@ public class InventoryManager : MonoBehaviour {
 
 		bag = new List<Button> ();
 		bagGroup = inventoryPanel.transform.Find ("Bag").gameObject;
-		draconianSword = Resources.Load<Sprite> ("UI/Icons/Items/draconianSword");
+
+		InventoryEventHandler.OnItemEquipped += EquipItem;
 	}
 
 	void Update () {
@@ -51,6 +51,7 @@ public class InventoryManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
+			Item draconianSword = new Item ("Draconian Sword", Resources.Load<Sprite> ("UI/Icons/Items/draconianSword"), "Primary");
 			AddItemToBag (draconianSword);
 		}
 
@@ -59,7 +60,7 @@ public class InventoryManager : MonoBehaviour {
 		}
 	}
 
-	public bool GetInventoryAcitve () {
+	public bool GetInventoryActive () {
 		return inventoryPanel.activeSelf;
 	}
 
@@ -67,10 +68,12 @@ public class InventoryManager : MonoBehaviour {
 		playerModel.sprite = player;
 	}
 
-	public void AddItemToBag (Sprite item) {
+	public void AddItemToBag (Item item) {
+		item.itemSlot = bag.Count;
 		Button newItem = Instantiate (bagSlot, bagGroup.transform);
-		newItem.image.sprite = item;
+		newItem.image.sprite = item.sprite;
 		newItem.image.enabled = true;
+		newItem.GetComponent<BaggedItem> ().item = item;
 		bag.Add (newItem);
 	}
 
@@ -80,90 +83,54 @@ public class InventoryManager : MonoBehaviour {
 		Destroy (item.gameObject);
 	}
 
-	public void EquipHead (Sprite item) {
-		head.image.sprite = item;
-		head.image.enabled = true;
-	}
-
-	public void UnequipHead () {
-		head.image.enabled = false;
-	}
-
-	public void EquipAmulet (Sprite item) {
-		amulet.image.sprite = item;
-		amulet.image.enabled = true;
-	}
-
-	public void UnequipAmulet () {
-		amulet.image.enabled = false;
-	}
-
-	public void EquipChest (Sprite item) {
-		chest.image.sprite = item;
-		chest.image.enabled = true;
-	}
-
-	public void UnequipChest () {
-		head.image.enabled = false;
-	}
-
-	public void EquipGloves (Sprite item) {
-		gloves.image.sprite = item;
-		gloves.image.enabled = true;
-	}
-
-	public void UnequipGloves () {
-		gloves.image.enabled = false;
-	}
-
-	public void EquipPrimary (Sprite item) {
-		primary.image.sprite = item;
-		primary.image.enabled = true;
-	}
-
-	public void UnequipPrimary () {
-		primary.image.enabled = false;
-	}
-
-	public void EquipSecondary (Sprite item) {
-		secondary.image.sprite = item;
-		secondary.image.enabled = true;
-	}
-
-	public void UnequipSecondary () {
-		secondary.image.enabled = false;
-	}
-
-	public void EquipRing1 (Sprite item) {
-		ring1.image.sprite = item;
-		ring1.image.enabled = true;
-	}
-
-	public void UnequipRing1 () {
-		ring1.image.enabled = false;
-	}
-
-	public void EquipRing2 (Sprite item) {
-		ring2.image.sprite = item;
-		ring2.image.enabled = true;
-	}
-
-	public void UnequipRing2 () {
-		ring2.image.enabled = false;
-	}
-
-	public void EquipPants (Sprite item) {
-		pants.image.sprite = item;
-		pants.image.enabled = true;
-	}
-
-	public void UnequipPants () {
-		pants.image.enabled = false;
-	}
-
-	public void EquipShoes (Sprite item) {
-		shoes.image.sprite = item;
-		shoes.image.enabled = true;
+	public void EquipItem (Item item) {
+		Button buttonToEquip = null;
+		switch (item.itemPosition) 
+		{
+		case "Head":
+			buttonToEquip = head;
+			break;
+		case "Amulet":
+			buttonToEquip = amulet;
+			break;
+		case "Chest":
+			buttonToEquip = chest;
+			break;
+		case "Gloves":
+			buttonToEquip = gloves;
+			break;
+		case "Primary":
+			buttonToEquip = primary;
+			break;
+		case "Secondary":
+			buttonToEquip = secondary;
+			break;
+		case "Ring1":
+			buttonToEquip = ring1;
+			break;
+		case "Ring2":
+			buttonToEquip = ring2;
+			break;
+		case "Pants":
+			buttonToEquip = pants;
+			break;
+		case "Shoes":
+			buttonToEquip = shoes;
+			break;			
+		}
+		if (buttonToEquip != null) {
+			Item swapItem = null;
+			if (buttonToEquip.image.enabled == true) {
+				swapItem = buttonToEquip.GetComponent<EquippedItem> ().item;
+			} 
+			buttonToEquip.image.sprite = item.sprite;
+			buttonToEquip.image.enabled = true;
+			buttonToEquip.GetComponent<EquippedItem> ().item = item;
+			RemoveItemFromBag (item.itemSlot);
+			if (swapItem != null) {
+				AddItemToBag (swapItem);
+			}
+		}
 	}
 
 	public void UnequipShoes () {

@@ -87,6 +87,8 @@ public class Player : NetworkBehaviour {
 		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
 		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+
+		InventoryEventHandler.OnItemEquipped += EquipItem;
 	}
 
 	public void UpdateDynamicStats () {
@@ -100,11 +102,15 @@ public class Player : NetworkBehaviour {
 		maximumMana = mana.GetValue();
 	}
 
+	public void ItemHovered () {
+		Debug.Log ("item hovered");
+	}
+
 	public void AddItemToBag (Item item) {
 		if (bag.Count < maximumBagSlots) {
 			// give item slot. bag.Count
 			bag.Add (item);
-			InventoryManager.Instance.AddItemToBag (item.sprite);
+			InventoryManager.Instance.AddItemToBag (item);
 		}
 	}
 
@@ -114,7 +120,11 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void EquipItem (Item item) {
-		switch (item.itemType) 
+		Debug.Log ("equip " + item.name + " in player.");
+	}
+
+	/*public void EquipItem (Item item) {
+		switch (item.itemPosition) 
 		{
 		case "Head":
 			InventoryManager.Instance.EquipHead (item.sprite);
@@ -147,7 +157,7 @@ public class Player : NetworkBehaviour {
 			InventoryManager.Instance.EquipShoes (item.sprite);
 			break;			
 		}
-	}
+	}*/
 
 	public void UnequipItem () {
 

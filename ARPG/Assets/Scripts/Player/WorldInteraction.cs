@@ -35,7 +35,7 @@ public class WorldInteraction : NetworkBehaviour
         }
         if (canInteract) {
 			if (Input.GetButton("Fire1")) {
-				if (InventoryManager.Instance.GetInventoryAcitve ()) {
+				if (InventoryManager.Instance.GetInventoryActive ()) {
 					if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()) {
 						GetInteraction (Input.GetButtonDown ("Fire1"));
 					}
