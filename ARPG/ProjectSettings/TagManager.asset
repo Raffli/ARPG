@@ -12,6 +12,7 @@ TagManager:
   - Hideable
   - Interactable Object
   - HUD
+  - Inventory
   layers:
   - Default
   - TransparentFX

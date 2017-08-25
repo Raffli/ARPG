@@ -13,8 +13,8 @@ public class InventoryManager : MonoBehaviour {
 	private Transform equippedGroup;
 	private Button head, amulet, chest, gloves, primary, secondary, ring1, ring2, pants, shoes;
 	private GameObject bagGroup;
-	public Image bagSlot;
-	private List <Image> bag;
+	public Button bagSlot;
+	private List <Button> bag;
 	private Sprite draconianSword;
 
 	void Awake () {
@@ -40,7 +40,7 @@ public class InventoryManager : MonoBehaviour {
 		pants = equippedGroup.Find ("Pants").Find ("Item").GetComponent<Button> ();
 		shoes = equippedGroup.Find ("Shoes").Find ("Item").GetComponent<Button> ();
 
-		bag = new List<Image> ();
+		bag = new List<Button> ();
 		bagGroup = inventoryPanel.transform.Find ("Bag").gameObject;
 		draconianSword = Resources.Load<Sprite> ("UI/Icons/Items/draconianSword");
 	}
@@ -51,11 +51,11 @@ public class InventoryManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
-			EquipPrimary (draconianSword);
+			AddItemToBag (draconianSword);
 		}
 
 		if (Input.GetKeyDown (KeyCode.KeypadMinus)) {
-			UnequipPrimary ();
+			RemoveItemFromBag (bag.Count - 1);
 		}
 	}
 
@@ -68,13 +68,14 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void AddItemToBag (Sprite item) {
-		Image newItem = Instantiate (bagSlot, bagGroup.transform);
-		newItem.sprite = item;
+		Button newItem = Instantiate (bagSlot, bagGroup.transform);
+		newItem.image.sprite = item;
+		newItem.image.enabled = true;
 		bag.Add (newItem);
 	}
 
 	public void RemoveItemFromBag (int index) {
-		Image item = bag [index];
+		Button item = bag [index];
 		bag.RemoveAt (index);
 		Destroy (item.gameObject);
 	}
@@ -85,34 +86,34 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void UnequipHead () {
-		head.gameObject.SetActive (false);
+		head.image.enabled = false;
 	}
 
 	public void EquipAmulet (Sprite item) {
 		amulet.image.sprite = item;
-		amulet.gameObject.SetActive (true);
+		amulet.image.enabled = true;
 	}
 
 	public void UnequipAmulet () {
-		amulet.gameObject.SetActive (false);
+		amulet.image.enabled = false;
 	}
 
 	public void EquipChest (Sprite item) {
 		chest.image.sprite = item;
-		chest.gameObject.SetActive (true);
+		chest.image.enabled = true;
 	}
 
 	public void UnequipChest () {
-		head.gameObject.SetActive (false);
+		head.image.enabled = false;
 	}
 
 	public void EquipGloves (Sprite item) {
 		gloves.image.sprite = item;
-		gloves.gameObject.SetActive (true);
+		gloves.image.enabled = true;
 	}
 
 	public void UnequipGloves () {
-		gloves.gameObject.SetActive (false);
+		gloves.image.enabled = false;
 	}
 
 	public void EquipPrimary (Sprite item) {
@@ -126,46 +127,46 @@ public class InventoryManager : MonoBehaviour {
 
 	public void EquipSecondary (Sprite item) {
 		secondary.image.sprite = item;
-		secondary.gameObject.SetActive (true);
+		secondary.image.enabled = true;
 	}
 
 	public void UnequipSecondary () {
-		secondary.image.gameObject.SetActive (false);
+		secondary.image.enabled = false;
 	}
 
 	public void EquipRing1 (Sprite item) {
 		ring1.image.sprite = item;
-		ring1.gameObject.SetActive (true);
+		ring1.image.enabled = true;
 	}
 
 	public void UnequipRing1 () {
-		ring1.gameObject.SetActive (false);
+		ring1.image.enabled = false;
 	}
 
 	public void EquipRing2 (Sprite item) {
 		ring2.image.sprite = item;
-		ring2.gameObject.SetActive (true);
+		ring2.image.enabled = true;
 	}
 
 	public void UnequipRing2 () {
-		ring2.gameObject.SetActive (false);
+		ring2.image.enabled = false;
 	}
 
 	public void EquipPants (Sprite item) {
 		pants.image.sprite = item;
-		pants.gameObject.SetActive (true);
+		pants.image.enabled = true;
 	}
 
 	public void UnequipPants () {
-		pants.gameObject.SetActive (false);
+		pants.image.enabled = false;
 	}
 
 	public void EquipShoes (Sprite item) {
 		shoes.image.sprite = item;
-		shoes.gameObject.SetActive (true);
+		shoes.image.enabled = true;
 	}
 
 	public void UnequipShoes () {
-		shoes.gameObject.SetActive (false);
+		shoes.image.enabled = false;
 	}
 }

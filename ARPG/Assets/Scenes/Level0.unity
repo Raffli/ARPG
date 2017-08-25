@@ -10421,7 +10421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1556160336}
-  bagSlot: {fileID: 114635319967584922, guid: 434a0e4bea4ea764e9be5ea8f4cb700c, type: 2}
+  bagSlot: {fileID: 114326682244204438, guid: 434a0e4bea4ea764e9be5ea8f4cb700c, type: 2}
 --- !u!4 &1344602808
 Transform:
   m_ObjectHideFlags: 0
