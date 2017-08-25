@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour {
 	public GameObject inventoryPanel;
 	private Image playerModel;
 	private Transform equippedGroup;
-	private Image head, amulet, chest, gloves, primary, secondary, ring1, ring2, pants, shoes;
+	private Button head, amulet, chest, gloves, primary, secondary, ring1, ring2, pants, shoes;
 	private GameObject bagGroup;
 	public Image bagSlot;
 	private List <Image> bag;
@@ -29,16 +29,16 @@ public class InventoryManager : MonoBehaviour {
 		playerModel = inventoryPanel.transform.Find ("Model").GetComponent<Image> ();
 
 		equippedGroup = inventoryPanel.transform.Find ("Equipped");
-		head = equippedGroup.Find ("Head").Find ("Item").GetComponent<Image> ();
-		amulet = equippedGroup.Find ("Amulet").Find ("Item").GetComponent<Image> ();
-		chest = equippedGroup.Find ("Chest").Find ("Item").GetComponent<Image> ();
-		gloves = equippedGroup.Find ("Gloves").Find ("Item").GetComponent<Image> ();
-		primary = equippedGroup.Find ("Primary").Find ("Item").GetComponent<Image> ();
-		secondary = equippedGroup.Find ("Secondary").Find ("Item").GetComponent<Image> ();
-		ring1 = equippedGroup.Find ("Ring1").Find ("Item").GetComponent<Image> ();
-		ring2 = equippedGroup.Find ("Ring2").Find ("Item").GetComponent<Image> ();
-		pants = equippedGroup.Find ("Pants").Find ("Item").GetComponent<Image> ();
-		shoes = equippedGroup.Find ("Shoes").Find ("Item").GetComponent<Image> ();
+		head = equippedGroup.Find ("Head").Find ("Item").GetComponent<Button> ();
+		amulet = equippedGroup.Find ("Amulet").Find ("Item").GetComponent<Button> ();
+		chest = equippedGroup.Find ("Chest").Find ("Item").GetComponent<Button> ();
+		gloves = equippedGroup.Find ("Gloves").Find ("Item").GetComponent<Button> ();
+		primary = equippedGroup.Find ("Primary").Find ("Item").GetComponent<Button> ();
+		secondary = equippedGroup.Find ("Secondary").Find ("Item").GetComponent<Button> ();
+		ring1 = equippedGroup.Find ("Ring1").Find ("Item").GetComponent<Button> ();
+		ring2 = equippedGroup.Find ("Ring2").Find ("Item").GetComponent<Button> ();
+		pants = equippedGroup.Find ("Pants").Find ("Item").GetComponent<Button> ();
+		shoes = equippedGroup.Find ("Shoes").Find ("Item").GetComponent<Button> ();
 
 		bag = new List<Image> ();
 		bagGroup = inventoryPanel.transform.Find ("Bag").gameObject;
@@ -80,8 +80,8 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipHead (Sprite item) {
-		head.sprite = item;
-		head.gameObject.SetActive (true);
+		head.image.sprite = item;
+		head.image.enabled = true;
 	}
 
 	public void UnequipHead () {
@@ -89,7 +89,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipAmulet (Sprite item) {
-		amulet.sprite = item;
+		amulet.image.sprite = item;
 		amulet.gameObject.SetActive (true);
 	}
 
@@ -98,7 +98,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipChest (Sprite item) {
-		chest.sprite = item;
+		chest.image.sprite = item;
 		chest.gameObject.SetActive (true);
 	}
 
@@ -107,7 +107,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipGloves (Sprite item) {
-		gloves.sprite = item;
+		gloves.image.sprite = item;
 		gloves.gameObject.SetActive (true);
 	}
 
@@ -116,25 +116,25 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipPrimary (Sprite item) {
-		primary.sprite = item;
-		primary.gameObject.SetActive (true);
+		primary.image.sprite = item;
+		primary.image.enabled = true;
 	}
 
 	public void UnequipPrimary () {
-		primary.gameObject.SetActive (false);
+		primary.image.enabled = false;
 	}
 
 	public void EquipSecondary (Sprite item) {
-		secondary.sprite = item;
+		secondary.image.sprite = item;
 		secondary.gameObject.SetActive (true);
 	}
 
 	public void UnequipSecondary () {
-		secondary.gameObject.SetActive (false);
+		secondary.image.gameObject.SetActive (false);
 	}
 
 	public void EquipRing1 (Sprite item) {
-		ring1.sprite = item;
+		ring1.image.sprite = item;
 		ring1.gameObject.SetActive (true);
 	}
 
@@ -143,7 +143,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipRing2 (Sprite item) {
-		ring2.sprite = item;
+		ring2.image.sprite = item;
 		ring2.gameObject.SetActive (true);
 	}
 
@@ -152,7 +152,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipPants (Sprite item) {
-		pants.sprite = item;
+		pants.image.sprite = item;
 		pants.gameObject.SetActive (true);
 	}
 
@@ -161,7 +161,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void EquipShoes (Sprite item) {
-		shoes.sprite = item;
+		shoes.image.sprite = item;
 		shoes.gameObject.SetActive (true);
 	}
 

@@ -104,11 +104,53 @@ public class Player : NetworkBehaviour {
 		if (bag.Count < maximumBagSlots) {
 			// give item slot. bag.Count
 			bag.Add (item);
+			InventoryManager.Instance.AddItemToBag (item.sprite);
 		}
 	}
 
 	public void RemoveItemFromBag (Item item) {
 		bag.Remove (item);
+		InventoryManager.Instance.RemoveItemFromBag (item.itemSlot);
+	}
+
+	public void EquipItem (Item item) {
+		switch (item.itemType) 
+		{
+		case "Head":
+			InventoryManager.Instance.EquipHead (item.sprite);
+			break;
+		case "Amulet":
+			InventoryManager.Instance.EquipAmulet (item.sprite);
+			break;
+		case "Chest":
+			InventoryManager.Instance.EquipChest (item.sprite);
+			break;
+		case "Gloves":
+			InventoryManager.Instance.EquipGloves (item.sprite);
+			break;
+		case "Primary":
+			InventoryManager.Instance.EquipPrimary (item.sprite);
+			break;
+		case "Secondary":
+			InventoryManager.Instance.EquipSecondary (item.sprite);
+			break;
+		case "Ring1":
+			InventoryManager.Instance.EquipRing1 (item.sprite);
+			break;
+		case "Ring2":
+			InventoryManager.Instance.EquipRing2 (item.sprite);
+			break;
+		case "Pants":
+			InventoryManager.Instance.EquipPants (item.sprite);
+			break;
+		case "Shoes":
+			InventoryManager.Instance.EquipShoes (item.sprite);
+			break;			
+		}
+	}
+
+	public void UnequipItem () {
+
 	}
 
 	public bool GetCritted () {
