@@ -28,6 +28,12 @@ public class HUDManager : MonoBehaviour {
 	void Awake () {
         DontDestroyOnLoad(transform.gameObject);
 
+		if (Instance != null && Instance != this) {
+			Destroy (gameObject);
+		} else {
+			Instance = this;
+		}
+
         xpBar = hudPanel.transform.Find ("XpBar").GetComponent<Slider> ();
 		healthPool = hudPanel.transform.Find ("HealthPool").GetChild (0).GetComponent<Image> ();
 		manaPool = hudPanel.transform.Find ("ManaPool").GetChild (0).GetComponent<Image> ();
@@ -48,12 +54,6 @@ public class HUDManager : MonoBehaviour {
 		}
 		skills [3].sprite = healPotion;
 		skills [4].sprite = manaPotion;
-
-		if (Instance != null && Instance != this) {
-			Destroy (gameObject);
-		} else {
-			Instance = this;
-		}
 
 		SetCursorTexture (normalCursor);
 	}

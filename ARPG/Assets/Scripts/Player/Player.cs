@@ -23,6 +23,9 @@ public class Player : NetworkBehaviour {
 	public float critDamage { get; set; }
 	public bool invisible { get; set; }
 
+	public List <Item> bag;
+	public int maximumBagSlots { get; set; }
+
 	[HideInInspector] [SyncVar] public int currentMana;
 	[HideInInspector] [SyncVar] public int maximumMana;
 	[HideInInspector] [SyncVar] public int currentHealth;
@@ -45,21 +48,28 @@ public class Player : NetworkBehaviour {
 		}
 		critDamage = 1.5f;
 		invisible = false;
+		bag = new List<Item> ();
+		maximumBagSlots = 64;
 
 		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
 		strength = new Stat (10, "Strength", "Measures how physically strong your character is.");
 		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
 
+		Sprite playerModel;
 		if (tag.Equals ("Mage")) {
 			intelligence.baseValue += 15;
+			playerModel = Resources.Load<Sprite> ("UI/mage");
 		} else if (tag.Equals ("Rouge")) {
 			vitality.baseValue += 5;
 			dexterity.baseValue += 10;
-		} else if (tag.Equals ("Warrior")) {
+			playerModel = Resources.Load<Sprite> ("UI/rogue");
+		} else {
 			vitality.baseValue += 10;
 			strength.baseValue += 5;
+			playerModel = Resources.Load<Sprite> ("UI/warrior");
 		}
+		InventoryManager.Instance.SetPlayerModel (playerModel);
 
 		damage = new Stat (0, "Damage", "Measures the extra damage you deal on your attacks.");
 		armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
@@ -88,6 +98,17 @@ public class Player : NetworkBehaviour {
 		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
 		maximumHealth = health.GetValue();
 		maximumMana = mana.GetValue();
+	}
+
+	public void AddItemToBag (Item item) {
+		if (bag.Count < maximumBagSlots) {
+			// give item slot. bag.Count
+			bag.Add (item);
+		}
+	}
+
+	public void RemoveItemFromBag (Item item) {
+		bag.Remove (item);
 	}
 
 	public bool GetCritted () {
