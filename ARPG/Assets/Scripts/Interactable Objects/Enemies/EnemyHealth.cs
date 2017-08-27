@@ -22,6 +22,8 @@ public class EnemyHealth : NetworkBehaviour {
     NavMeshAgent agent;
     EnemyAI enemyAI;
     bool isDead;
+    MusicController musicController;
+
 
     void Start() {
         this.maxHealth = this.maxHealth * level;
@@ -33,13 +35,15 @@ public class EnemyHealth : NetworkBehaviour {
         agent = GetComponent<NavMeshAgent>();
         enemyAI = GetComponent<EnemyAI>();
         healthBar.value = currentHealth / maxHealth;
+        musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
 
     }
 
     private void Die() {
+        musicController.EndBattle();
         isDead = true;
         enemyAI.enabled = false;
-        anim.SetTrigger("Dead");
+        anim.SetBool("Dead",true);
         rb.isKinematic = true;
         rb.useGravity = false;
         Destroy(transform.Find("EnemyCanvas").gameObject);
@@ -73,6 +77,7 @@ public class EnemyHealth : NetworkBehaviour {
             currentHealth -= damage;
         }
     }
+
 
     private void InitCombatText(string damage) {
         GameObject tempCombatText = Instantiate(combatTextPrefab) as GameObject;

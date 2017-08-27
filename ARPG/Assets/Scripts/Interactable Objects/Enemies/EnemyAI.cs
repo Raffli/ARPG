@@ -39,49 +39,55 @@ public class EnemyAI: MonoBehaviour {
             player = withinAggroColliders[0].GetComponent<Player>();
 			if (!player.invisible) {
 				aggro = true;
-                if (!setMusic)
+                if (!setMusic && !anim.GetBool("Dead"))
                 {
                     musicController.SetBattle();
                     setMusic = true;
                 }
             } else {
-				aggro = false;
-                StopMusic();
-
+                aggro = false;
             }
         }
         else if (aggro){
             aggro = false;
-            StopMusic();
         }
 
         if (!anim.GetBool("Dead") && (aggro || wasAttacked) && agent)
+        {
+            agent.isStopped = false;
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                anim.SetBool("Walk", false);
+                EnsureLookDirection();
+                if (!IsInvoking("AttackPlayer"))
+                {
+                    InvokeRepeating("AttackPlayer", 0.5f, attackSpeed);
+                }
+            }
+            else
+            {
+                anim.SetBool("Walk", true);
+                CancelInvoke("AttackPlayer");
+            }
+            agent.SetDestination(playerPosition.position);
+        }
+        else
 		{
-			agent.isStopped = false;
-			if (agent.remainingDistance <= agent.stoppingDistance)
-			{
-				anim.SetBool("Walk", false);
-				EnsureLookDirection ();
-				if (!IsInvoking ("AttackPlayer")) {
-					InvokeRepeating ("AttackPlayer", 0.5f, attackSpeed);
-				}
-			}
-			else
-			{
-				anim.SetBool("Walk", true);
-				CancelInvoke("AttackPlayer");
-			}
-			agent.SetDestination(playerPosition.position);
-		}
-		else
-		{
-            StopMusic();
+            StopBattleMusic();
             if (agent) {
 				agent.isStopped = true;
 			}
 			CancelInvoke("AttackPlayer");
-			anim.SetBool("Walk", false);
-		}
+			anim.SetBool("Walk", false);      
+        }
+    }
+
+    void StopBattleMusic() {
+        if (setMusic)
+        {
+            musicController.EndBattle();
+            setMusic = false;
+        }
     }
 
 	public void SetAttacked (Transform playerPosition) {
@@ -90,14 +96,6 @@ public class EnemyAI: MonoBehaviour {
 		wasAttacked = true;
 		StartCoroutine (ResetWasAttacked ());
 	}
-
-    void StopMusic() {
-        if (setMusic)
-        {
-            musicController.EndBattle();
-            setMusic = false;
-        }
-    }
 
     void DealDamage() {
         if (player)
