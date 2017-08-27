@@ -49,7 +49,8 @@ public class Player : NetworkBehaviour {
 		critDamage = 1.5f;
 		invisible = false;
 		bag = new List<Item> ();
-		maximumBagSlots = 64;
+		maximumBagSlots = 40;
+		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
 
 		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
@@ -89,78 +90,161 @@ public class Player : NetworkBehaviour {
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 
 		InventoryEventHandler.OnItemEquipped += EquipItem;
+		InventoryEventHandler.OnItemUnequipped += UnequipItem;
+		InventoryEventHandler.OnItemBagged += AddItemToBag;
+		InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
+		InventoryEventHandler.OnItemDestroyed += DestroyItem;
 	}
 
 	public void UpdateDynamicStats () {
 		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
+		Debug.Log ("new health is " + health.GetValue ());
 		float hps = vitality.GetValue () * 0.1f;
 		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
 		mana = new Stat (intelligence.GetValue() * 10, "Mana", "Spiritual energy used for spells.");
+		Debug.Log ("new mana is " + mana.GetValue ());
 		float mps = intelligence.GetValue () * 0.1f;
 		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
 		maximumHealth = health.GetValue();
 		maximumMana = mana.GetValue();
 	}
 
-	public void ItemHovered () {
-		Debug.Log ("item hovered");
-	}
-
 	public void AddItemToBag (Item item) {
+		item.itemEquipped = false;
 		if (bag.Count < maximumBagSlots) {
-			// give item slot. bag.Count
+			item.itemSlot = bag.Count;
 			bag.Add (item);
-			InventoryManager.Instance.AddItemToBag (item);
 		}
 	}
 
 	public void RemoveItemFromBag (Item item) {
 		bag.Remove (item);
-		InventoryManager.Instance.RemoveItemFromBag (item.itemSlot);
+		UpdateItemSlotInBag ();
+	}
+
+	public void UpdateItemSlotInBag () {
+		for (int i = 0; i < bag.Count; i++) {
+			bag [i].itemSlot = i;
+		}
+	}
+
+	public void DestroyItem (Item item) {
+		if (item.itemEquipped) {
+			UnequipItem (item);
+		} else {
+			RemoveItemFromBag (item);
+		}
 	}
 
 	public void EquipItem (Item item) {
-		Debug.Log ("equip " + item.name + " in player.");
+		item.itemEquipped = true;
+		foreach (StatBonus bonus in item.itemStats) {
+			switch (bonus.statType) 
+			{
+			case "Damage": 
+				damage.AddBonus (bonus.value);
+				break;
+			case "Vitality": 
+				vitality.AddBonus (bonus.value);
+				UpdateDynamicStats ();
+				break;
+			case "Dexterity": 
+				dexterity.AddBonus (bonus.value);
+				break;
+			case "Intelligence": 
+				intelligence.AddBonus (bonus.value);
+				UpdateDynamicStats ();
+				break;
+			case "Strength": 
+				strength.AddBonus (bonus.value);
+				break;
+			case "Armor": 
+				armor.AddBonus (bonus.value);
+				break;
+			case "Crit Chance": 
+				critChance.AddBonus (bonus.value);
+				break;
+			case "Cooldown Reduction": 
+				cooldownReduction.AddBonus (bonus.value);
+				break;
+			case "Health": 
+				health.AddBonus (bonus.value);
+				break;
+			case "Health per Second": 
+				healthPerSecond.AddBonus (bonus.value);
+				break;
+			case "Health per Hit": 
+				healthPerHit.AddBonus (bonus.value);
+				break;
+			case "Mana": 
+				mana.AddBonus (bonus.value);
+				break;
+			case "Mana per Second": 
+				manaPerSecond.AddBonus (bonus.value);
+				break;
+			case "Mana per Hit": 
+				manaPerHit.AddBonus (bonus.value);
+				break;
+			}
+		}
+
 	}
 
-	/*public void EquipItem (Item item) {
-		switch (item.itemPosition) 
-		{
-		case "Head":
-			InventoryManager.Instance.EquipHead (item.sprite);
-			break;
-		case "Amulet":
-			InventoryManager.Instance.EquipAmulet (item.sprite);
-			break;
-		case "Chest":
-			InventoryManager.Instance.EquipChest (item.sprite);
-			break;
-		case "Gloves":
-			InventoryManager.Instance.EquipGloves (item.sprite);
-			break;
-		case "Primary":
-			InventoryManager.Instance.EquipPrimary (item.sprite);
-			break;
-		case "Secondary":
-			InventoryManager.Instance.EquipSecondary (item.sprite);
-			break;
-		case "Ring1":
-			InventoryManager.Instance.EquipRing1 (item.sprite);
-			break;
-		case "Ring2":
-			InventoryManager.Instance.EquipRing2 (item.sprite);
-			break;
-		case "Pants":
-			InventoryManager.Instance.EquipPants (item.sprite);
-			break;
-		case "Shoes":
-			InventoryManager.Instance.EquipShoes (item.sprite);
-			break;			
+	public void UnequipItem (Item item) {
+		if (bag.Count < maximumBagSlots) {
+			foreach (StatBonus bonus in item.itemStats) {
+				switch (bonus.statType) 
+				{
+				case "Damage": 
+					damage.RemoveBonus (bonus.value);
+					break;
+				case "Vitality": 
+					vitality.RemoveBonus (bonus.value);
+					UpdateDynamicStats ();
+					break;
+				case "Dexterity": 
+					dexterity.RemoveBonus (bonus.value);
+					break;
+				case "Intelligence": 
+					intelligence.RemoveBonus (bonus.value);
+					UpdateDynamicStats ();
+					break;
+				case "Strength": 
+					strength.RemoveBonus (bonus.value);
+					break;
+				case "Armor": 
+					armor.RemoveBonus (bonus.value);
+					break;
+				case "Crit Chance": 
+					critChance.RemoveBonus (bonus.value);
+					break;
+				case "Cooldown Reduction": 
+					cooldownReduction.RemoveBonus (bonus.value);
+					break;
+				case "Health": 
+					health.RemoveBonus (bonus.value);
+					break;
+				case "Health per Second": 
+					healthPerSecond.RemoveBonus (bonus.value);
+					break;
+				case "Health per Hit": 
+					healthPerHit.RemoveBonus (bonus.value);
+					break;
+				case "Mana": 
+					mana.RemoveBonus (bonus.value);
+					break;
+				case "Mana per Second": 
+					manaPerSecond.RemoveBonus (bonus.value);
+					break;
+				case "Mana per Hit": 
+					manaPerHit.RemoveBonus (bonus.value);
+					break;
+				}
+			}
+			if (!item.toDestroy) {
+				AddItemToBag (item);
+			}
 		}
-	}*/
-
-	public void UnequipItem () {
-
 	}
 
 	public bool GetCritted () {

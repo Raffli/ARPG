@@ -18,10 +18,12 @@ public class Stat {
 	}
 
 	public void AddBonus (int bonus) {
+		Debug.Log (bonus + " " + statName + " added!");
 		statBonus += bonus;
 	}
 
 	public void RemoveBonus (int bonus) {
+		Debug.Log (bonus + " " + statName + " removed!");
 		statBonus -= bonus;
 	}
 

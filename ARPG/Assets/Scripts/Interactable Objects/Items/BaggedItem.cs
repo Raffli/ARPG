@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class BaggedItem : MonoBehaviour, IPointerClickHandler {
@@ -10,10 +11,8 @@ public class BaggedItem : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick (PointerEventData eventData)
 	{
 		if (eventData.button == PointerEventData.InputButton.Left) {
-			
-			Debug.Log ("left button clicked");
+			InventoryManager.Instance.ShowItemDescription (this.item);
 		} else if (eventData.button == PointerEventData.InputButton.Right) {
-			Debug.Log ("this item is " + this.item.name);
 			InventoryEventHandler.ItemEquipped (this.item);
 		}
 	}

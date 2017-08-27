@@ -9,7 +9,11 @@ public class EquippedItem : MonoBehaviour, IPointerClickHandler {
 	
 	public void OnPointerClick (PointerEventData eventData)
 	{
-		Debug.Log ("on pointer click");
+		if (eventData.button == PointerEventData.InputButton.Left) {
+			InventoryManager.Instance.ShowItemDescription (this.item);
+		} else if (eventData.button == PointerEventData.InputButton.Right) {
+			InventoryEventHandler.ItemUnequipped (this.item);
+		}
 	}
 
 }
