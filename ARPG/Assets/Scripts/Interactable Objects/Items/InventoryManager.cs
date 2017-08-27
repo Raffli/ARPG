@@ -69,7 +69,7 @@ public class InventoryManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
-			Item draconianSword = new Item ("Draconian Sword", Resources.Load<Sprite> ("UI/Icons/Items/draconianSword"), Item.ItemPosition.Primary);
+			Item draconianSword = new Item ("Draconian Sword", Resources.Load<Sprite> ("UI/Icons/Items/Swords/draconianSword"), Item.ItemPosition.Primary);
 			draconianSword.itemDescription = "One Handed Sword.";
 			draconianSword.itemState = Item.ItemState.Magic;
 			draconianSword.itemStats.Add (new StatBonus (23, "Damage"));
