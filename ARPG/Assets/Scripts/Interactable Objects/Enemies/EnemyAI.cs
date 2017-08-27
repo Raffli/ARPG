@@ -9,12 +9,15 @@ public class EnemyAI: MonoBehaviour {
 	Player player;
     Animator anim;
     Collider[] withinAggroColliders;
+    MusicController musicController;
     public LayerMask aggroLayerMask;
     public float aggroRadius;
     public int damage;
     public float attackSpeed;
     public int level;
     bool aggro;
+    bool setMusic;
+
 
 	private bool wasAttacked;
 	private Vector3 spawnPosition;
@@ -24,6 +27,7 @@ public class EnemyAI: MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 		spawnPosition = transform.position;
+        musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
     }
 
     private void FixedUpdate()
@@ -35,15 +39,23 @@ public class EnemyAI: MonoBehaviour {
             player = withinAggroColliders[0].GetComponent<Player>();
 			if (!player.invisible) {
 				aggro = true;
-			} else {
+                if (!setMusic)
+                {
+                    musicController.SetBattle();
+                    setMusic = true;
+                }
+            } else {
 				aggro = false;
-			}
+                StopMusic();
+
+            }
         }
         else if (aggro){
             aggro = false;
+            StopMusic();
         }
 
-		if (!anim.GetBool("Dead") && (aggro || wasAttacked) && agent)
+        if (!anim.GetBool("Dead") && (aggro || wasAttacked) && agent)
 		{
 			agent.isStopped = false;
 			if (agent.remainingDistance <= agent.stoppingDistance)
@@ -63,7 +75,8 @@ public class EnemyAI: MonoBehaviour {
 		}
 		else
 		{
-			if (agent) {
+            StopMusic();
+            if (agent) {
 				agent.isStopped = true;
 			}
 			CancelInvoke("AttackPlayer");
@@ -77,6 +90,14 @@ public class EnemyAI: MonoBehaviour {
 		wasAttacked = true;
 		StartCoroutine (ResetWasAttacked ());
 	}
+
+    void StopMusic() {
+        if (setMusic)
+        {
+            musicController.EndBattle();
+            setMusic = false;
+        }
+    }
 
     void DealDamage() {
         if (player)

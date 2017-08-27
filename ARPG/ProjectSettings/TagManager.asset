@@ -12,6 +12,7 @@ TagManager:
   - Hideable
   - Interactable Object
   - HUD
+  - MusicController
   layers:
   - Default
   - TransparentFX
