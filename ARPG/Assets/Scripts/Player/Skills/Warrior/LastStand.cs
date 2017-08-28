@@ -25,7 +25,7 @@ public class LastStand : Skill {
 
 	protected override void ModifyProperties ()
 	{
-		cooldown = 30f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 30f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
 	public void MakeInvicible () {
@@ -53,7 +53,6 @@ public class LastStand : Skill {
 
     public override void Execute()
     {
-		ModifyProperties ();
         CmdSpawnIt();
     }
 }

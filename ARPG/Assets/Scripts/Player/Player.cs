@@ -17,8 +17,8 @@ public class Player : NetworkBehaviour {
 	[HideInInspector] public Stat damage; // Offense - depends on items and skills
 	[HideInInspector] public Stat critChance, cooldownReduction; // Offense - depends on items
 
-	[HideInInspector] public Stat health, healthPerSecond, healthPerHit; // Defense - calculated from vitality and hph from item
-	[HideInInspector] public Stat mana, manaPerSecond, manaPerHit; // Resource - calculated from intelligence and mph from item
+	[HideInInspector] public Stat health, healthPerSecond; // Defense - calculated from vitality and items
+	[HideInInspector] public Stat mana, manaPerSecond; // Resource - calculated from intelligence and items
 
 	public float critDamage { get; set; }
 	public bool invisible { get; set; }
@@ -77,10 +77,15 @@ public class Player : NetworkBehaviour {
 		critChance = new Stat (5, "Crit Chance", "Measures the chance to strike an enemy critical.");
 		cooldownReduction = new Stat (0, "Cooldown Reduction", "Reduces the cooldowns of your skills.");
 
-		healthPerHit = new Stat (0, "Health per Hit", "How much health you regenerate when hitting an enemy.");
-		manaPerHit = new Stat (0, "Mana per Hit", "How much mana you regenerate when hitting an enemy.");
-
-		UpdateDynamicStats ();
+		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
+		float hps = vitality.GetValue () * 0.1f;
+		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
+		mana = new Stat (intelligence.GetValue() * 10, "Mana", "Spiritual energy used for spells.");
+		Debug.Log ("new mana is " + mana.GetValue ());
+		float mps = intelligence.GetValue () * 0.1f;
+		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
+		maximumHealth = health.GetValue();
+		maximumMana = mana.GetValue();
 
 		currentHealth = maximumHealth; 
 		currentMana = maximumMana;
@@ -97,14 +102,14 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void UpdateDynamicStats () {
-		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
+		health.baseValue = vitality.GetValue () * 10;
 		Debug.Log ("new health is " + health.GetValue ());
 		float hps = vitality.GetValue () * 0.1f;
-		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
-		mana = new Stat (intelligence.GetValue() * 10, "Mana", "Spiritual energy used for spells.");
+		healthPerSecond.baseValue = Mathf.RoundToInt (hps);
+		mana.baseValue = intelligence.GetValue () * 10;
 		Debug.Log ("new mana is " + mana.GetValue ());
 		float mps = intelligence.GetValue () * 0.1f;
-		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
+		manaPerSecond.baseValue = Mathf.RoundToInt (mps);
 		maximumHealth = health.GetValue();
 		maximumMana = mana.GetValue();
 	}
@@ -173,17 +178,11 @@ public class Player : NetworkBehaviour {
 			case "Health per Second": 
 				healthPerSecond.AddBonus (bonus.value);
 				break;
-			case "Health per Hit": 
-				healthPerHit.AddBonus (bonus.value);
-				break;
 			case "Mana": 
 				mana.AddBonus (bonus.value);
 				break;
 			case "Mana per Second": 
 				manaPerSecond.AddBonus (bonus.value);
-				break;
-			case "Mana per Hit": 
-				manaPerHit.AddBonus (bonus.value);
 				break;
 			}
 		}
@@ -227,17 +226,11 @@ public class Player : NetworkBehaviour {
 				case "Health per Second": 
 					healthPerSecond.RemoveBonus (bonus.value);
 					break;
-				case "Health per Hit": 
-					healthPerHit.RemoveBonus (bonus.value);
-					break;
 				case "Mana": 
 					mana.RemoveBonus (bonus.value);
 					break;
 				case "Mana per Second": 
 					manaPerSecond.RemoveBonus (bonus.value);
-					break;
-				case "Mana per Hit": 
-					manaPerHit.RemoveBonus (bonus.value);
 					break;
 				}
 			}
