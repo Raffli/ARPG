@@ -44,6 +44,7 @@ public class Skill : NetworkBehaviour {
 	}
 
     public virtual void StartCooldown () {
+		ModifyProperties ();
 		onCooldown = true;
 		cooldownLeft = cooldown;
 	}

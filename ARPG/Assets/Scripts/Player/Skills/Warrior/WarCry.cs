@@ -25,7 +25,7 @@ public class WarCry : Skill {
 	{
 		baseDamage = Mathf.RoundToInt(player.strength.GetValue() * scale);
 		damage = Mathf.RoundToInt(player.health.GetValue() * scale);
-		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 15f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
 	public void GiveStrengthHealth () {
@@ -57,7 +57,6 @@ public class WarCry : Skill {
 
     public override void Execute()
     {
-		ModifyProperties ();
         CmdSpawnIt();
     }
 }

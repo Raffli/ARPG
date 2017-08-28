@@ -29,11 +29,10 @@ public class SparklingStrike : Skill {
 	protected override void ModifyProperties () {
 		baseDamage = Mathf.RoundToInt ((player.dexterity.GetValue () + player.damage.GetValue ()) * scale);
 		damage = baseDamage;
-		cooldown = 0.8f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 0.8f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 		
 	public override void Execute () {
-		ModifyProperties ();
 		if (player.GetCritted ()) {
 			damage = Mathf.RoundToInt (damage * player.critDamage);
 		}

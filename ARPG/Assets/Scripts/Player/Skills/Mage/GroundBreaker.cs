@@ -28,7 +28,7 @@ public class GroundBreaker : Skill {
 	protected override void ModifyProperties (){
 		baseDamage = Mathf.RoundToInt((player.intelligence.GetValue() + player.damage.GetValue()) * scale);
 		damage = baseDamage;
-		cooldown = 3f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 3f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
     [Command]
@@ -45,7 +45,6 @@ public class GroundBreaker : Skill {
 
 
     public override void Execute (Vector3 targetPoint) {
-		ModifyProperties ();
 		Ray interactionRay = Camera.main.ScreenPointToRay (targetPoint);
 		RaycastHit interactionInfo; 
 		if (Physics.Raycast (interactionRay, out interactionInfo, Mathf.Infinity, floorMask)) {		

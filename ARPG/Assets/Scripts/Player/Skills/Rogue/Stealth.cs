@@ -24,7 +24,7 @@ public class Stealth : Skill {
 	protected override void ModifyProperties (){
 		baseDamage = Mathf.RoundToInt(player.dexterity.GetValue() * scale);
 		damage = baseDamage;
-		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 15f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
 	public void GiveCritChance () {
@@ -54,7 +54,6 @@ public class Stealth : Skill {
 
     public override void Execute()
     {
-		ModifyProperties ();
         CmdSpawnIt();
     }
 }

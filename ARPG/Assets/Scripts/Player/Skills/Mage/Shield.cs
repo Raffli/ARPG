@@ -25,7 +25,7 @@ public class Shield : Skill {
 	protected override void ModifyProperties (){
 		baseDamage = Mathf.RoundToInt (player.intelligence.GetValue () * scale);
 		damage = baseDamage;
-		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 15f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
 	public void GiveArmor () {
@@ -53,7 +53,6 @@ public class Shield : Skill {
     }
 
     public override void Execute() {
-		ModifyProperties ();
         CmdSpawnIt();
     }
 }
