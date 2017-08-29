@@ -7,8 +7,7 @@ using UnityEngine.AI;
 
 public class Player : NetworkBehaviour {
 
-	[SyncVar]
-	public int level;
+	[SyncVar] public int level;
 	public int xp;
 	public int xpToLevel;
 
@@ -51,6 +50,8 @@ public class Player : NetworkBehaviour {
 		bag = new List<Item> ();
 		maximumBagSlots = 40;
 		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
+		level = 1; 
+		LootManager.Instance.playerLevel = level;
 
 		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
@@ -59,13 +60,16 @@ public class Player : NetworkBehaviour {
 
 		Sprite playerModel;
 		if (tag.Equals ("Mage")) {
+			LootManager.Instance.playerClass = "Mage";
 			intelligence.baseValue += 15;
 			playerModel = Resources.Load<Sprite> ("UI/mage");
 		} else if (tag.Equals ("Rouge")) {
+			LootManager.Instance.playerClass = "Rouge";
 			vitality.baseValue += 5;
 			dexterity.baseValue += 10;
 			playerModel = Resources.Load<Sprite> ("UI/rogue");
 		} else {
+			LootManager.Instance.playerClass = "Warrior";
 			vitality.baseValue += 10;
 			strength.baseValue += 5;
 			playerModel = Resources.Load<Sprite> ("UI/warrior");
@@ -102,11 +106,17 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void UpdateDynamicStats () {
+		int oldHealth = health.GetValue ();
 		health.baseValue = vitality.GetValue () * 10;
+		int healthDifference = health.GetValue () - oldHealth;
+		currentHealth += healthDifference;
 		Debug.Log ("new health is " + health.GetValue ());
 		float hps = vitality.GetValue () * 0.1f;
 		healthPerSecond.baseValue = Mathf.RoundToInt (hps);
+		int oldMana = mana.GetValue ();
 		mana.baseValue = intelligence.GetValue () * 10;
+		int manaDifference = mana.GetValue () - oldMana;
+		currentMana += manaDifference;
 		Debug.Log ("new mana is " + mana.GetValue ());
 		float mps = intelligence.GetValue () * 0.1f;
 		manaPerSecond.baseValue = Mathf.RoundToInt (mps);

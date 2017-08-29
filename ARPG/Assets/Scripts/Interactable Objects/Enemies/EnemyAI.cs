@@ -33,10 +33,12 @@ public class EnemyAI: MonoBehaviour {
         {
             playerPosition = withinAggroColliders[0].GetComponent<Transform>();
             player = withinAggroColliders[0].GetComponent<Player>();
-			if (!player.invisible) {
-				aggro = true;
-			} else {
-				aggro = false;
+			if (player != null) {
+				if (!player.invisible) {
+					aggro = true;
+				} else {
+					aggro = false;
+				}
 			}
         }
         else if (aggro){

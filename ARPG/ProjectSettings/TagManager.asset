@@ -13,6 +13,7 @@ TagManager:
   - Interactable Object
   - HUD
   - Inventory
+  - Loot
   layers:
   - Default
   - TransparentFX

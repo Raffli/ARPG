@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour {
 	public Button bagSlot;
 	private List <Button> bag;
 	public int maximumBagSlots { get; set; }
+	public bool bagFull { get; set; }
 
 	public Color normal;
 	public Color magic;
@@ -66,16 +67,6 @@ public class InventoryManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown ("Inventory")) {
 			inventoryPanel.SetActive (!inventoryPanel.activeSelf);
-		}
-
-		if (Input.GetKeyDown (KeyCode.KeypadPlus)) {
-			Item draconianSword = new Item ("Draconian Sword", Resources.Load<Sprite> ("UI/Icons/Items/Swords/draconianSword"), Item.ItemPosition.Primary);
-			draconianSword.itemDescription = "One Handed Sword.";
-			draconianSword.itemState = Item.ItemState.Magic;
-			draconianSword.itemStats.Add (new StatBonus (23, "Damage"));
-			draconianSword.itemStats.Add (new StatBonus (14, "Strength"));
-			draconianSword.itemStats.Add (new StatBonus (17, "Vitality"));
-			InventoryEventHandler.ItemBagged (draconianSword);
 		}
 	}
 
@@ -128,6 +119,10 @@ public class InventoryManager : MonoBehaviour {
 			newItem.image.enabled = true;
 			newItem.GetComponent<BaggedItem> ().item = item;
 			bag.Add (newItem);
+
+			if (bag.Count == maximumBagSlots) {
+				bagFull = true;
+			}
 		}
 	}
 
@@ -135,6 +130,7 @@ public class InventoryManager : MonoBehaviour {
 		Button button = bag [item.itemSlot];
 		bag.RemoveAt (item.itemSlot);
 		Destroy (button.gameObject);
+		bagFull = false;
 	}
 
 	public void EquipItem (Item item) {

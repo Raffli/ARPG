@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.EventSystems;
 
 public class HUDManager : MonoBehaviour {
 
@@ -23,6 +24,8 @@ public class HUDManager : MonoBehaviour {
 
 	public Texture2D normalCursor;
 	public Texture2D attackCursor;
+	public Texture2D lootCursor;
+	private bool lootCursorSet;
 	private Ray ray;
 
 	void Awake () {
@@ -65,13 +68,21 @@ public class HUDManager : MonoBehaviour {
 			if (hit.collider.gameObject.tag.Equals ("Enemy")) {
 				SetCursorTexture (attackCursor);
 			} else {
-				SetCursorTexture (normalCursor);
+				if (lootCursorSet) {
+					SetCursorTexture (lootCursor);
+				} else {
+					SetCursorTexture (normalCursor);
+				}
 			}
 		}
 	}
 
 	private void SetCursorTexture (Texture2D tex) {
 		Cursor.SetCursor (tex, Vector2.zero, CursorMode.Auto);
+	}
+
+	public void SetLootCursor (bool onLoot) {
+		lootCursorSet = onLoot;
 	}
 
 	public void UpdateXPBar (int currentXp, int xpToLevel) {
