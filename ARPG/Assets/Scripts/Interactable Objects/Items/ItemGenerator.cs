@@ -119,6 +119,7 @@ public class ItemGenerator : MonoBehaviour {
 			itemStats.Add (new StatBonus (playerLevel * gloves[randomHead].multiplier, "Armor"));
 		} else if (randomizer < 50) { // Range for Primary Items - Primary Stat Damage - kind of weapon depends on PlayerClass
 			List <ItemBasis> primary;
+			Debug.Log ("player class is " + playerClass);
 			if (playerClass == "Warrior") {
 				primary = swords;
 			} else if (playerClass == "Mage") {
@@ -134,6 +135,7 @@ public class ItemGenerator : MonoBehaviour {
 			itemStats.Add (new StatBonus (playerLevel * primary[randomHead].multiplier, "Damage"));
 		} else if (randomizer < 60) { // Range for Secondary Items - Primary Stat Damage - kind of item depends on PlayerClass
 			List <ItemBasis> secondary;
+			Debug.Log ("player class is " + playerClass);
 			if (playerClass == "Warrior") {
 				secondary = shields;
 			} else if (playerClass == "Mage") {

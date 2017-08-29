@@ -21,6 +21,8 @@ public class Player : NetworkBehaviour {
 
 	public float critDamage { get; set; }
 	public bool invisible { get; set; }
+	public string className { get; set; }
+	public string playerName { get; set; }
 
 	public List <Item> bag;
 	public int maximumBagSlots { get; set; }
@@ -51,7 +53,9 @@ public class Player : NetworkBehaviour {
 		maximumBagSlots = 40;
 		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
 		level = 1; 
+		playerName = "Flo";
 		LootManager.Instance.playerLevel = level;
+		CharacterManager.Instance.player = this;
 
 		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
@@ -59,21 +63,24 @@ public class Player : NetworkBehaviour {
 		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
 
 		Sprite playerModel;
+		Debug.Log ("tag is " + tag);
 		if (tag.Equals ("Mage")) {
-			LootManager.Instance.playerClass = "Mage";
+			className = "Mage";
 			intelligence.baseValue += 15;
 			playerModel = Resources.Load<Sprite> ("UI/mage");
 		} else if (tag.Equals ("Rouge")) {
-			LootManager.Instance.playerClass = "Rouge";
+			className = "Rouge";
 			vitality.baseValue += 5;
 			dexterity.baseValue += 10;
 			playerModel = Resources.Load<Sprite> ("UI/rogue");
 		} else {
-			LootManager.Instance.playerClass = "Warrior";
+			Debug.Log ("is in else");
+			className = "Warrior";
 			vitality.baseValue += 10;
 			strength.baseValue += 5;
 			playerModel = Resources.Load<Sprite> ("UI/warrior");
 		}
+		LootManager.Instance.playerClass = className;
 		InventoryManager.Instance.SetPlayerModel (playerModel);
 
 		damage = new Stat (0, "Damage", "Measures the extra damage you deal on your attacks.");
@@ -85,7 +92,6 @@ public class Player : NetworkBehaviour {
 		float hps = vitality.GetValue () * 0.1f;
 		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
 		mana = new Stat (intelligence.GetValue() * 10, "Mana", "Spiritual energy used for spells.");
-		Debug.Log ("new mana is " + mana.GetValue ());
 		float mps = intelligence.GetValue () * 0.1f;
 		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
 		maximumHealth = health.GetValue();
@@ -207,6 +213,7 @@ public class Player : NetworkBehaviour {
 				break;
 			}
 		}
+		CharacterManager.Instance.FillUI ();
 
 	}
 
@@ -258,6 +265,7 @@ public class Player : NetworkBehaviour {
 			if (!item.toDestroy) {
 				AddItemToBag (item);
 			}
+			CharacterManager.Instance.FillUI ();
 		}
 	}
 
