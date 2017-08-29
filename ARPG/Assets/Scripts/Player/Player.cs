@@ -103,6 +103,17 @@ public class Player : NetworkBehaviour {
 		InventoryEventHandler.OnItemBagged += AddItemToBag;
 		InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
 		InventoryEventHandler.OnItemDestroyed += DestroyItem;
+
+		InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
+	}
+
+	public void RegenManaAndHealth () {
+		if (currentHealth < maximumHealth) {
+			Heal (healthPerSecond.GetValue ());
+		}
+		if (currentMana < maximumMana) {
+			IncreaseMana (manaPerSecond.GetValue ());
+		}
 	}
 
 	public void UpdateDynamicStats () {
