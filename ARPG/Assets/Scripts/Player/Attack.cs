@@ -37,7 +37,10 @@ public class Attack : NetworkBehaviour
 		healPotion = gameObject.GetComponent<HealPotion> ();
 		manaPotion = gameObject.GetComponent<ManaPotion> ();
 		skills = new Skill[5]; 
+		SetPrivateProperties ();
 	}
+
+	protected virtual void SetPrivateProperties () {}
 
 	void Update ()
     {

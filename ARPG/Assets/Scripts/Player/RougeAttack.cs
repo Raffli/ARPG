@@ -12,6 +12,11 @@ public class RougeAttack : Attack {
 	private SwordAttack leftSwordAttack;
 	private SwordAttack rightSwordAttack;
 
+	protected override void SetPrivateProperties () {
+		leftSwordAttack = leftSword.GetComponent<SwordAttack> ();
+		rightSwordAttack = rightSword.GetComponent<SwordAttack> ();
+	}
+
 	public override void LearnPrimarySkill () {
 		Skill skill = gameObject.GetComponent<SparklingStrike>();
 		skill.SetProperties(player, rightSword);

@@ -10,6 +10,10 @@ public class WarriorAttack : Attack {
 	private SwordAttack swordAttack;
 	public GameObject spellOrigin;
 
+	protected override void SetPrivateProperties () {
+		swordAttack = sword.GetComponent<SwordAttack> ();
+	}
+
 	public override void LearnPrimarySkill () {
 		Skill skill = gameObject.GetComponent<Bash>();
 		skill.SetProperties(player, sword);
