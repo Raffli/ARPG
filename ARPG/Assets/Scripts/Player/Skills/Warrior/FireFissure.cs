@@ -24,7 +24,7 @@ public class FireFissure : Skill {
 	{
 		baseDamage = Mathf.RoundToInt((player.strength.GetValue() + player.damage.GetValue()) * scale);
 		damage = baseDamage;
-		cooldown = 10f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 10f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
 
@@ -40,7 +40,6 @@ public class FireFissure : Skill {
     }
 
     public override void Execute (GameObject spellOrigin) {
-		ModifyProperties ();
         Vector3 spawnPoint = spellOrigin.transform.position;
         Quaternion spawnRotation = spellOrigin.transform.rotation;
         CmdSpawnIt(spawnPoint, spawnRotation);

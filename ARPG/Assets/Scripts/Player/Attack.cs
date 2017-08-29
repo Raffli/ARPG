@@ -53,9 +53,11 @@ public class Attack : NetworkBehaviour
         }
 			
         if (Input.GetButtonDown("Fire2"))
-        {
-            castPosition = Input.mousePosition;
-            AttackSecondary();
+        {	
+			if (!(InventoryManager.Instance.GetInventoryActive() && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ())) {
+				castPosition = Input.mousePosition;
+				AttackSecondary ();
+			}
         }
         else if (Input.GetButtonDown("Spell1"))
         {

@@ -23,7 +23,7 @@ public class SweepingLotus : Skill {
 	protected override void ModifyProperties (){
 		baseDamage = Mathf.RoundToInt((player.dexterity.GetValue() + player.damage.GetValue()) * scale);
 		damage = baseDamage;
-		cooldown = 15f * (1 - player.cooldownReduction.GetValue ()/100);
+		cooldown = 15f * (1f - player.cooldownReduction.GetValue ()/100f);
 	}
 
     [Command]
@@ -39,7 +39,6 @@ public class SweepingLotus : Skill {
     }
 
     public override void Execute () {
-		ModifyProperties ();
         CmdSpawnIt();
     }
 }

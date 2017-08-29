@@ -34,8 +34,14 @@ public class WorldInteraction : NetworkBehaviour
             return;
         }
         if (canInteract) {
-            if (Input.GetButton("Fire1")) { //&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
-				GetInteraction (Input.GetButtonDown("Fire1"));
+			if (Input.GetButton("Fire1")) {
+				if (InventoryManager.Instance.GetInventoryActive ()) {
+					if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()) {
+						GetInteraction (Input.GetButtonDown ("Fire1"));
+					}
+				} else {
+					GetInteraction (Input.GetButtonDown ("Fire1"));
+				}
 			}
 		}
 

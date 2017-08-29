@@ -49,6 +49,9 @@ public class EnemyHealth : NetworkBehaviour {
         Destroy(transform.Find("EnemyCanvas").gameObject);
         Destroy(boxCollider);
         agent.isStopped = true;
+		if (Random.Range (0, 4) == 0) {
+			LootManager.Instance.SpawnLoot (transform.position);
+		}
         StartCoroutine(RemoveSelf());
     }
 
