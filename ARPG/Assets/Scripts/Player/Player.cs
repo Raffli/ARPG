@@ -11,6 +11,8 @@ public class Player : NetworkBehaviour {
 	private int xp;
 	private int xpToLevel;
 
+	private GameObject levelUp;
+
 	[HideInInspector] public Stat vitality, dexterity, strength, intelligence; // Base Stats
 	[HideInInspector] public Stat armor; // Defense - depends on items and skills
 	[HideInInspector] public Stat damage; // Offense - depends on items and skills
@@ -55,6 +57,7 @@ public class Player : NetworkBehaviour {
 		level = 1; 
 		xp = 0;
 		xpToLevel = 100;
+		levelUp = transform.Find ("LevelUp").gameObject;
 		playerName = "Flo";
 		LootManager.Instance.playerLevel = level;
 		CharacterManager.Instance.player = this;
@@ -133,6 +136,7 @@ public class Player : NetworkBehaviour {
 	}
 
 	private void LevelUp () {
+		levelUp.SetActive (true);
 		level++;
 		xp -= xpToLevel;
 		xpToLevel *= 2;
@@ -147,6 +151,12 @@ public class Player : NetworkBehaviour {
 		} else if (level == 5) {
 			attack.LearnThirdSpell ();
 		}
+		StartCoroutine (DisableLevelUp ());
+	}
+
+	IEnumerator DisableLevelUp () {
+		yield return new WaitForSeconds (2f);
+		levelUp.SetActive (false);
 	}
 
 	public void RegenManaAndHealth () {
