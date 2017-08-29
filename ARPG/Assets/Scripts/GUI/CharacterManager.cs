@@ -68,8 +68,38 @@ public class CharacterManager : MonoBehaviour {
 		}
 	}
 
+	public void AddSkillToUI (int index, Sprite icon, string name) {
+		switch (index) {
+		case 0:
+			primaryIcon.sprite = icon;
+			primaryIcon.enabled = true;
+			primary.text = name;
+			break;
+		case 1:
+			secondaryIcon.sprite = icon;
+			secondaryIcon.enabled = true;
+			secondary.text = name;
+			break;
+		case 2:
+			firstSpellIcon.sprite = icon;
+			firstSpellIcon.enabled = true;
+			firstSpell.text = name;
+			break;
+		case 3:
+			secondSpellIcon.sprite = icon;
+			secondSpellIcon.enabled = true;
+			secondSpell.text = name;
+			break;
+		case 4:
+			thirdSpellIcon.sprite = icon;
+			thirdSpellIcon.enabled = true;
+			thirdSpell.text = name;
+			break;
+		}
+	}
+
 	public void FillUI () {
-		playerLevel.text = player.level.ToString ();
+		playerLevel.text = "Level " + player.level.ToString ();
 		playerName.text = player.playerName.ToString();
 		playerClass.text = player.className.ToString();
 

@@ -8,8 +8,8 @@ using UnityEngine.AI;
 public class Player : NetworkBehaviour {
 
 	[SyncVar] public int level;
-	public int xp;
-	public int xpToLevel;
+	private int xp;
+	private int xpToLevel;
 
 	[HideInInspector] public Stat vitality, dexterity, strength, intelligence; // Base Stats
 	[HideInInspector] public Stat armor; // Defense - depends on items and skills
@@ -23,6 +23,7 @@ public class Player : NetworkBehaviour {
 	public bool invisible { get; set; }
 	public string className { get; set; }
 	public string playerName { get; set; }
+	private Attack attack;
 
 	public List <Item> bag;
 	public int maximumBagSlots { get; set; }
@@ -33,7 +34,6 @@ public class Player : NetworkBehaviour {
 	[HideInInspector] [SyncVar] public int maximumHealth;
 
 	private NetworkStartPosition[] spawnPoints;
-
 
 	void Awake(){
 		DontDestroyOnLoad(transform.gameObject);    
@@ -53,9 +53,13 @@ public class Player : NetworkBehaviour {
 		maximumBagSlots = 40;
 		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
 		level = 1; 
+		xp = 0;
+		xpToLevel = 100;
 		playerName = "Flo";
 		LootManager.Instance.playerLevel = level;
 		CharacterManager.Instance.player = this;
+
+		attack = transform.GetComponent<Attack> ();
 
 		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
 		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
@@ -63,7 +67,6 @@ public class Player : NetworkBehaviour {
 		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
 
 		Sprite playerModel;
-		Debug.Log ("tag is " + tag);
 		if (tag.Equals ("Mage")) {
 			className = "Mage";
 			intelligence.baseValue += 15;
@@ -111,6 +114,39 @@ public class Player : NetworkBehaviour {
 		InventoryEventHandler.OnItemDestroyed += DestroyItem;
 
 		InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
+		StartCoroutine (LearnPrimarySkill ());
+	}
+
+	IEnumerator LearnPrimarySkill () {
+		yield return new WaitForSeconds (0.1f);
+		attack.healPotion.SetProperties (this);
+		attack.manaPotion.SetProperties (this);
+		attack.LearnPrimarySkill ();
+	}
+
+	public void GiveXP (int amount) {
+		xp += amount;
+		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+		if (xp >= xpToLevel) {
+			LevelUp ();
+		}
+	}
+
+	private void LevelUp () {
+		level++;
+		xp -= xpToLevel;
+		xpToLevel *= 2;
+		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+		CharacterManager.Instance.FillUI ();
+		if (level == 2) {
+			attack.LearnSecondarySkill ();
+		} else if (level == 3) {
+			attack.LearnFirstSpell ();
+		} else if (level == 4) {
+			attack.LearnSecondSpell ();
+		} else if (level == 5) {
+			attack.LearnThirdSpell ();
+		}
 	}
 
 	public void RegenManaAndHealth () {

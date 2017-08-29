@@ -6496,6 +6496,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPanel: {fileID: 1159139239}
+  primaryIcon: {fileID: 0}
+  secondaryIcon: {fileID: 0}
+  firstSpellIcon: {fileID: 0}
+  secondSpellIcon: {fileID: 0}
+  thirdSpellIcon: {fileID: 0}
+  primary: {fileID: 0}
+  secondary: {fileID: 0}
+  firstSpell: {fileID: 0}
+  secondSpell: {fileID: 0}
+  thirdSpell: {fileID: 0}
 --- !u!4 &751924831
 Transform:
   m_ObjectHideFlags: 0

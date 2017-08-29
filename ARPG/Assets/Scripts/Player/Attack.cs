@@ -26,8 +26,8 @@ public class Attack : NetworkBehaviour
 	protected Vector3 castPosition;
 
 	protected Skill [] skills;
-	protected HealPotion healPotion;
-	protected ManaPotion manaPotion;
+	public HealPotion healPotion;
+	public ManaPotion manaPotion;
 
 	void Start () {
 		animator = GetComponent<Animator>();
@@ -38,16 +38,9 @@ public class Attack : NetworkBehaviour
 		manaPotion = gameObject.GetComponent<ManaPotion> ();
 		skills = new Skill[5]; 
 	}
-	
 
 	void Update ()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-			healPotion.SetProperties (player);
-			manaPotion.SetProperties (player);
-            EquipSkill();
-        }
         if (!isLocalPlayer) {
             return;
         }
@@ -83,6 +76,10 @@ public class Attack : NetworkBehaviour
 
     public void SetSkill (Skill skill, int index) {
 		skills [index] = skill;
+		if (isLocalPlayer) {
+			HUDManager.Instance.AddSkillToUI (skills [index].skillIcon, skills [index].skillSlot);
+			CharacterManager.Instance.AddSkillToUI (index, skills [index].skillIcon, skills [index].skillName);
+		}
 	}
 
 
@@ -178,7 +175,11 @@ public class Attack : NetworkBehaviour
         }
     }
 
-    public virtual void EquipSkill() { }
+	public virtual void LearnPrimarySkill () {}
+	public virtual void LearnSecondarySkill () {}
+	public virtual void LearnFirstSpell () {}
+	public virtual void LearnSecondSpell () {}
+	public virtual void LearnThirdSpell () {}
 
     protected virtual void CastPrimaryAttack() { 
 		if (!isLocalPlayer)
