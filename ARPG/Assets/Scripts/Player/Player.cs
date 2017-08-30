@@ -60,7 +60,6 @@ public class Player : NetworkBehaviour {
 		level = 1; 
 		xp = 0;
 		xpToLevel = 100;
-		levelUp = transform.Find ("LevelUp").gameObject;
 		PlayerEventHandler.LevelUp (level);
 
 		playerName = "Flo";
@@ -143,9 +142,17 @@ public class Player : NetworkBehaviour {
 		}
 	}
 
-	private void LevelUp () {
-		levelUp.SetActive (true);
-		level++;
+    [Command]
+    public void CmdSpawnEffect()
+    {
+        GameObject levelUpEffect = (GameObject)Resources.Load("Skills/LevelUp");
+        GameObject obj = Instantiate(levelUpEffect, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
+        NetworkServer.Spawn(obj);
+    }
+
+    private void LevelUp () {
+        CmdSpawnEffect();
+        level++;
 		xp -= xpToLevel;
 		xpToLevel *= 2;
 		vitality.baseValue += 2;
@@ -160,13 +167,8 @@ public class Player : NetworkBehaviour {
 			dexterity.baseValue += 2;
 		}
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
-		StartCoroutine (DisableLevelUp ());
 	}
 
-	IEnumerator DisableLevelUp () {
-		yield return new WaitForSeconds (2f);
-		levelUp.SetActive (false);
-	}
 
 	public void RegenManaAndHealth () {
 		if (currentHealth < maximumHealth) {
