@@ -16,6 +16,18 @@ namespace Prototype.NetworkLobby
         public Button mageButton;
         public Button warriorButton;
 
+        private Image characterPicture;
+        public Sprite warriorImage;
+        public Sprite mageImage;
+        public Sprite rougeImage;
+
+        private Image characterStats;
+        public Sprite warriorStats;
+        public Sprite mageStats;
+        public Sprite rougeStats;
+
+        private Text classDescription;
+
         public int avatarIndex = 0;
 
         static Color[] Colors = new Color[] { Color.magenta, Color.red, Color.cyan, Color.blue, Color.green, Color.yellow };
@@ -115,6 +127,10 @@ namespace Prototype.NetworkLobby
             remoteIcone.gameObject.SetActive(false);
             localIcone.gameObject.SetActive(true);
 
+            characterPicture = transform.parent.parent.Find("Character").GetComponent<Image>();
+            classDescription = transform.parent.parent.Find("ClassDescription").GetComponent<Text>();
+            characterStats = transform.parent.parent.Find("ClassStats").GetComponent<Image>();           
+
             CheckRemoveButton();
 
             if (playerColor == Color.white)
@@ -153,12 +169,30 @@ namespace Prototype.NetworkLobby
             {
                 case "Rouge":
                     avatarIndex = 0;
+                    characterPicture.sprite = rougeImage;
+                    characterPicture.enabled = true;
+                    classDescription.text = "Rogues rely on skill, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, bringing resourcefulness and versatility to their adventuring parties.";
+                    classDescription.enabled = true;
+                    characterStats.sprite = rougeStats;
+                    characterStats.enabled = true;
                     break;
                 case "Warrior":
                     avatarIndex = 1;
+                    characterPicture.sprite = warriorImage;
+                    characterPicture.enabled = true;
+                    classDescription.text = "Warriors are melee fighters highly trained in the art of weaponry. Melee combat is the warrior's strongest skill. They are strong and quick on the battlefield. Depending on their specialization, a warrior can often deal very high damage or be tough to kill.";
+                    classDescription.enabled = true;
+                    characterStats.sprite = warriorStats;
+                    characterStats.enabled = true;
                     break;
                 case "Mage":
                     avatarIndex = 2;
+                    characterPicture.sprite = mageImage;
+                    characterPicture.enabled = true;
+                    classDescription.text = "Drawing on the subtle weave of magic that permeates the cosmos, mages cast spells of exposive fire, arcing lightning, subtle deception, and brute-force mind control.";
+                    classDescription.enabled = true;
+                    characterStats.sprite = mageStats;
+                    characterStats.enabled = true;
                     break;
             }
             if (isServer)
