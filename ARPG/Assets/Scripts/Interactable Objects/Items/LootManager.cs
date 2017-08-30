@@ -24,6 +24,12 @@ public class LootManager : MonoBehaviour {
 		} else {
 			Instance = this;
 		}
+
+		PlayerEventHandler.OnPlayerLevelUp += UpdateLevel;
+	}
+
+	private void UpdateLevel (int newLevel) {
+		playerLevel = newLevel;
 	}
 
 	public void SpawnLoot (Vector3 lootPosition) {

@@ -59,11 +59,11 @@ public class CharacterManager : MonoBehaviour {
 		thirdSpellIcon = skillsGroup.Find ("Third").GetComponent<Image> ();
 		thirdSpell = skillsGroup.Find ("Third").transform.GetChild (0).GetComponent<Text> ();
 
+		PlayerEventHandler.OnPlayerLevelUp += UpdateLevel;
 	}
 
 	void Update () {
 		if (Input.GetButtonDown ("Character")) {
-			FillUI ();
 			characterPanel.SetActive (!characterPanel.activeSelf);
 		}
 	}
@@ -98,11 +98,16 @@ public class CharacterManager : MonoBehaviour {
 		}
 	}
 
-	public void FillUI () {
-		playerLevel.text = "Level " + player.level.ToString ();
-		playerName.text = player.playerName.ToString();
-		playerClass.text = player.className.ToString();
+	private void UpdateLevel (int newLevel) {
+		playerLevel.text = "Level " + newLevel;
+	}
 
+	public void SetNameAndClass (string playerName, string className) {
+		this.playerName.text = playerName;
+		playerClass.text = className;
+	}
+
+	public void UpdateStats () {
 		vitality.text = player.vitality.GetValue ().ToString();
 		intelligence.text = player.intelligence.GetValue ().ToString();
 		strength.text = player.strength.GetValue ().ToString();

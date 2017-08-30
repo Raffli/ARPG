@@ -31,6 +31,7 @@ public class WarCry : Skill {
 	public void GiveStrengthHealth () {
 		player.strength.AddBonus (baseDamage);
 		player.health.AddBonus (damage);
+		CharacterManager.Instance.UpdateStats ();
 		player.Heal (damage);
 		StartCoroutine (WaitDuration());
 	}
@@ -38,6 +39,7 @@ public class WarCry : Skill {
 	public void RemoveStrengthHealth () {
 		player.strength.RemoveBonus (baseDamage);
 		player.health.RemoveBonus (damage);
+		CharacterManager.Instance.UpdateStats ();
 		player.ReduceHealth (0);
 	}
 

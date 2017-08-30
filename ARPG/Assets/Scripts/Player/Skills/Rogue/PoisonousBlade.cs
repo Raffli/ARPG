@@ -29,11 +29,13 @@ public class PoisonousBlade : Skill {
 
 	public void GivePoisonDamage () {
 		player.damage.AddBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 		StartCoroutine (WaitDuration());
 	}
 
 	public void RemovePoisonDamage () {
 		player.damage.RemoveBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 	}
 
 	IEnumerator WaitDuration () {

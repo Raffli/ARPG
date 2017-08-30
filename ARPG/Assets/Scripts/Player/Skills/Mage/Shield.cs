@@ -30,11 +30,13 @@ public class Shield : Skill {
 
 	public void GiveArmor () {
 		player.armor.AddBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 		StartCoroutine (WaitDuration());
 	}
 
 	public void RemoveArmor () {
 		player.armor.RemoveBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 	}
 
 	IEnumerator WaitDuration () {

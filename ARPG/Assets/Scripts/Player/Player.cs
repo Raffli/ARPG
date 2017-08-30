@@ -49,17 +49,22 @@ public class Player : NetworkBehaviour {
 		else {
 			transform.Find("Main Camera").gameObject.SetActive(true);
 		}
+
 		critDamage = 1.5f;
 		invisible = false;
+
 		bag = new List<Item> ();
 		maximumBagSlots = 40;
 		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
+
 		level = 1; 
 		xp = 0;
 		xpToLevel = 100;
 		levelUp = transform.Find ("LevelUp").gameObject;
+		PlayerEventHandler.LevelUp (level);
+
 		playerName = "Flo";
-		LootManager.Instance.playerLevel = level;
+
 		CharacterManager.Instance.player = this;
 
 		attack = transform.GetComponent<Attack> ();
@@ -80,7 +85,6 @@ public class Player : NetworkBehaviour {
 			dexterity.baseValue += 10;
 			playerModel = Resources.Load<Sprite> ("UI/rogue");
 		} else {
-			Debug.Log ("is in else");
 			className = "Warrior";
 			vitality.baseValue += 10;
 			strength.baseValue += 5;
@@ -88,6 +92,7 @@ public class Player : NetworkBehaviour {
 		}
 		LootManager.Instance.playerClass = className;
 		InventoryManager.Instance.SetPlayerModel (playerModel);
+		CharacterManager.Instance.SetNameAndClass (playerName, className);
 
 		damage = new Stat (0, "Damage", "Measures the extra damage you deal on your attacks.");
 		armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
@@ -105,6 +110,8 @@ public class Player : NetworkBehaviour {
 
 		currentHealth = maximumHealth; 
 		currentMana = maximumMana;
+
+		CharacterManager.Instance.UpdateStats ();
 
 		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
 		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
@@ -131,6 +138,7 @@ public class Player : NetworkBehaviour {
 		xp += amount;
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 		if (xp >= xpToLevel) {
+			PlayerEventHandler.LevelUp (level+1);
 			LevelUp ();
 		}
 	}
@@ -140,17 +148,18 @@ public class Player : NetworkBehaviour {
 		level++;
 		xp -= xpToLevel;
 		xpToLevel *= 2;
-		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
-		CharacterManager.Instance.FillUI ();
-		if (level == 2) {
-			attack.LearnSecondarySkill ();
-		} else if (level == 3) {
-			attack.LearnFirstSpell ();
-		} else if (level == 4) {
-			attack.LearnSecondSpell ();
-		} else if (level == 5) {
-			attack.LearnThirdSpell ();
+		vitality.baseValue += 2;
+		dexterity += 1;
+		intelligence += 1;
+		strength += 1;
+		if (className == "Warrior") {
+			strength += 2;
+		} else if (className == "Mage") {
+			intelligence += 2;
+		} else {
+			dexterity += 2;
 		}
+		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 		StartCoroutine (DisableLevelUp ());
 	}
 
@@ -173,14 +182,12 @@ public class Player : NetworkBehaviour {
 		health.baseValue = vitality.GetValue () * 10;
 		int healthDifference = health.GetValue () - oldHealth;
 		currentHealth += healthDifference;
-		Debug.Log ("new health is " + health.GetValue ());
 		float hps = vitality.GetValue () * 0.1f;
 		healthPerSecond.baseValue = Mathf.RoundToInt (hps);
 		int oldMana = mana.GetValue ();
 		mana.baseValue = intelligence.GetValue () * 10;
 		int manaDifference = mana.GetValue () - oldMana;
 		currentMana += manaDifference;
-		Debug.Log ("new mana is " + mana.GetValue ());
 		float mps = intelligence.GetValue () * 0.1f;
 		manaPerSecond.baseValue = Mathf.RoundToInt (mps);
 		maximumHealth = health.GetValue();
@@ -259,7 +266,7 @@ public class Player : NetworkBehaviour {
 				break;
 			}
 		}
-		CharacterManager.Instance.FillUI ();
+		CharacterManager.Instance.UpdateStats ();
 
 	}
 
@@ -311,7 +318,7 @@ public class Player : NetworkBehaviour {
 			if (!item.toDestroy) {
 				AddItemToBag (item);
 			}
-			CharacterManager.Instance.FillUI ();
+			CharacterManager.Instance.UpdateStats ();
 		}
 	}
 

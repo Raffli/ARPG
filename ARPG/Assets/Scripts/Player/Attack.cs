@@ -38,6 +38,7 @@ public class Attack : NetworkBehaviour
 		manaPotion = gameObject.GetComponent<ManaPotion> ();
 		skills = new Skill[5]; 
 		SetPrivateProperties ();
+		PlayerEventHandler.OnPlayerLevelUp += LevelUp;
 	}
 
 	protected virtual void SetPrivateProperties () {}
@@ -177,6 +178,18 @@ public class Attack : NetworkBehaviour
             manaPotion.Use();
         }
     }
+
+	protected void LevelUp (int newLevel) {
+		if (newLevel == 2) {
+			LearnSecondarySkill ();
+		} else if (newLevel == 4) {
+			LearnFirstSpell ();
+		} else if (newLevel == 6) {
+			LearnSecondSpell ();
+		} else if (newLevel == 8) {
+			LearnThirdSpell ();
+		}
+	}
 
 	public virtual void LearnPrimarySkill () {}
 	public virtual void LearnSecondarySkill () {}

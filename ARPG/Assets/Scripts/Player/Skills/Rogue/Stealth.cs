@@ -29,12 +29,14 @@ public class Stealth : Skill {
 
 	public void GiveCritChance () {
 		player.critChance.AddBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 		player.invisible = true;
 		StartCoroutine (WaitDuration());
 	}
 
 	public void RemoveCritChance () {
 		player.critChance.RemoveBonus (baseDamage);
+		CharacterManager.Instance.UpdateStats ();
 		player.invisible = false;
 	}
 

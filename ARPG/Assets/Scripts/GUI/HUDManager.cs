@@ -107,7 +107,6 @@ public class HUDManager : MonoBehaviour {
 	}
 
 	public void AddSkillToUI (Sprite icon, int index) {
-		Debug.Log ("skill added at " + index);
 		skills [index].sprite = icon;
 	}
 		
