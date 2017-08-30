@@ -66,6 +66,7 @@ public class Player : NetworkBehaviour {
 		playerName = "Flo";
 
 		CharacterManager.Instance.player = this;
+		QuestManager.Instance.player = this;
 
 		attack = transform.GetComponent<Attack> ();
 

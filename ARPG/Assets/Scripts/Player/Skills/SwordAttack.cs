@@ -45,7 +45,6 @@ public class SwordAttack : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Enemy") {
-			Debug.Log ("enemy is hit " + (lastCollider != other));
             if (lastCollider != other)
             {
                 lastCollider = null;

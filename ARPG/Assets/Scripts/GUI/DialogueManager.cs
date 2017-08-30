@@ -46,7 +46,6 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void ContinueDialogue () {
-		Debug.Log ("continue dialogue");
 		if (dialogueIndex < dialogueLines.Count - 1) {
 			dialogueIndex++;
 			dialogue.text = dialogueLines [dialogueIndex];

@@ -27,7 +27,6 @@ public class Interactable : NetworkBehaviour
                 if (isEnemy) {
                     playerAgent.transform.GetComponent<Attack>().AttackPrimary(this.gameObject);         
                 } else {
-					Debug.Log ("interact");
 					Interact (playerAgent.transform);
 				}
 			}
