@@ -11,7 +11,9 @@ public class EnemyHealth : NetworkBehaviour {
     [SyncVar]
     public int currentHealth;
 
+    [SyncVar]
     public int level;
+
     public int maxHealth;
     public int lastHealth;
 	private int xp;

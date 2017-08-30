@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
-public class EnemyAI: MonoBehaviour {
+public class EnemyAI: NetworkBehaviour {
 
     NavMeshAgent agent;
     Transform playerPosition;
