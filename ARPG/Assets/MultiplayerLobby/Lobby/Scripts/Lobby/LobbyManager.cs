@@ -26,6 +26,8 @@ namespace Prototype.NetworkLobby
         [Header("UI Reference")]
         public LobbyTopPanel topPanel;
 
+		public GameObject background;
+
         public RectTransform mainMenuPanel;
         public RectTransform lobbyPanel;
 
@@ -117,6 +119,7 @@ namespace Prototype.NetworkLobby
                 //backDelegate = StopGameClbk;
                 topPanel.isInGame = true;
                 topPanel.ToggleVisibility(false);
+				background.SetActive (false);
             }
         }
 

@@ -314,7 +314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &128758
 GameObject:
   m_ObjectHideFlags: 1
@@ -3248,6 +3248,7 @@ MonoBehaviour:
   lobbySlots: []
   prematchCountdown: 3
   topPanel: {fileID: 11424994}
+  background: {fileID: 1389785856434018}
   mainMenuPanel: {fileID: 22442386}
   lobbyPanel: {fileID: 22443498}
   infoPanel: {fileID: 11442006}
