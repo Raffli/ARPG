@@ -15,6 +15,7 @@ TagManager:
   - MusicController
   - Inventory
   - Loot
+  - NPC
   layers:
   - Default
   - TransparentFX

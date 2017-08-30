@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour {
 
 	public static DialogueManager Instance { get; set; }
+	public delegate void DialogueEndHandler ();
+	public static event DialogueEndHandler OnDialogueEnded;
 
 	public GameObject dialoguePanel;
 	private Text npcName, dialogue;
@@ -24,10 +26,10 @@ public class DialogueManager : MonoBehaviour {
 
 		npcName = dialoguePanel.transform.Find ("NPCName").GetComponent<Text> ();
 		dialogue = dialoguePanel.transform.Find ("Dialogue").GetComponent<Text> ();
-		continueButton = dialoguePanel.transform.Find ("ContinueButton").GetComponent<Button> ();
+		/*continueButton = dialoguePanel.transform.Find ("ContinueButton").GetComponent<Button> ();
 		continueButton.onClick.AddListener (delegate {
 			ContinueDialogue ();
-		});
+		});*/
 	}
 
 	public void AddNewDialogue (string [] lines, string npcName) {
@@ -44,11 +46,14 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void ContinueDialogue () {
+		Debug.Log ("continue dialogue");
 		if (dialogueIndex < dialogueLines.Count - 1) {
 			dialogueIndex++;
 			dialogue.text = dialogueLines [dialogueIndex];
 		} else {
 			dialoguePanel.SetActive (false);
+			OnDialogueEnded ();
 		}
 	}
+		
 }

@@ -25,6 +25,7 @@ public class HUDManager : MonoBehaviour {
 	public Texture2D normalCursor;
 	public Texture2D attackCursor;
 	public Texture2D lootCursor;
+	public Texture2D speechCursor;
 	private bool lootCursorSet;
 	private Ray ray;
 
@@ -67,6 +68,8 @@ public class HUDManager : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
 			if (hit.collider.gameObject.tag.Equals ("Enemy")) {
 				SetCursorTexture (attackCursor);
+			} else if (hit.collider.gameObject.tag.Equals ("NPC")) {
+				SetCursorTexture (speechCursor);
 			} else {
 				if (lootCursorSet) {
 					SetCursorTexture (lootCursor);
