@@ -15,8 +15,8 @@ public class CharacterManager : MonoBehaviour {
 	private Text vitality, intelligence, dexterity, strength, armor, damage, mana, health, mps, hps, critChance, cdr;
 
 	private Transform skillsGroup;
-	public Image primaryIcon, secondaryIcon, firstSpellIcon, secondSpellIcon, thirdSpellIcon;
-	public Text primary, secondary, firstSpell, secondSpell, thirdSpell;
+	[HideInInspector] public Image primaryIcon, secondaryIcon, firstSpellIcon, secondSpellIcon, thirdSpellIcon;
+	[HideInInspector] public Text primary, secondary, firstSpell, secondSpell, thirdSpell;
 
 	public Player player { get; set; }
 

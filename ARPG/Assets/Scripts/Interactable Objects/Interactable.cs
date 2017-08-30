@@ -27,7 +27,7 @@ public class Interactable : NetworkBehaviour
                 if (isEnemy) {
                     playerAgent.transform.GetComponent<Attack>().AttackPrimary(this.gameObject);         
                 } else {
-					transform.GetComponent<IInteract> ().Interact (playerAgent.transform);
+					Interact (playerAgent.transform);
 				}
 			}
 		}
@@ -39,4 +39,6 @@ public class Interactable : NetworkBehaviour
 		playerAgent.transform.LookAt (lookDirection);
 		playerAgent.updateRotation = true;
 	}
+
+	protected virtual void Interact (Transform player) {}
 }

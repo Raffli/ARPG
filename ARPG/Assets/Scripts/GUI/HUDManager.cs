@@ -25,6 +25,7 @@ public class HUDManager : NetworkBehaviour {
 	public Texture2D normalCursor;
 	public Texture2D attackCursor;
 	public Texture2D lootCursor;
+	public Texture2D speechCursor;
 	private bool lootCursorSet;
 	private Ray ray;
 
@@ -64,26 +65,21 @@ public class HUDManager : NetworkBehaviour {
     void Update()
     {
         if (isLocalPlayer) {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if (hit.collider.gameObject.tag.Equals("Enemy"))
-                {
-                    SetCursorTexture(attackCursor);
-                }
-                else
-                {
-                    if (lootCursorSet)
-                    {
-                        SetCursorTexture(lootCursor);
-                    }
-                    else
-                    {
-                        SetCursorTexture(normalCursor);
-                    }
-                }
-            }
+            ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
+				if (hit.collider.gameObject.tag.Equals ("Enemy")) {
+					SetCursorTexture (attackCursor);
+				} else if (hit.collider.gameObject.tag.Equals ("NPC")) {
+					SetCursorTexture (speechCursor);
+				} else {
+					if (lootCursorSet) {
+						SetCursorTexture (lootCursor);
+					} else {
+						SetCursorTexture (normalCursor);
+					}
+				}
+			}
         }
 	}
 
