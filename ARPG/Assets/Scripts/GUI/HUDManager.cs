@@ -64,8 +64,8 @@ public class HUDManager : NetworkBehaviour {
 
     void Update()
     {
-		Debug.Log ("is local player " + isLocalPlayer);
-        if (isLocalPlayer) {
+		Debug.Log ("is local player " + hasAuthority);
+        if (hasAuthority) {
             ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
