@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.EventSystems;
 
-public class HUDManager : MonoBehaviour {
+public class HUDManager : NetworkBehaviour {
 
 	public static HUDManager Instance { get; set; }
 
@@ -61,20 +61,30 @@ public class HUDManager : MonoBehaviour {
 		SetCursorTexture (normalCursor);
 	}
 
-	void Update () {
-		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
-			if (hit.collider.gameObject.tag.Equals ("Enemy")) {
-				SetCursorTexture (attackCursor);
-			} else {
-				if (lootCursorSet) {
-					SetCursorTexture (lootCursor);
-				} else {
-					SetCursorTexture (normalCursor);
-				}
-			}
-		}
+    void Update()
+    {
+        if (isLocalPlayer) {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.collider.gameObject.tag.Equals("Enemy"))
+                {
+                    SetCursorTexture(attackCursor);
+                }
+                else
+                {
+                    if (lootCursorSet)
+                    {
+                        SetCursorTexture(lootCursor);
+                    }
+                    else
+                    {
+                        SetCursorTexture(normalCursor);
+                    }
+                }
+            }
+        }
 	}
 
 	private void SetCursorTexture (Texture2D tex) {
