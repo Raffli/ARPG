@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.EventSystems;
 
-public class HUDManager : NetworkBehaviour {
+public class HUDManager : MonoBehaviour {
 
 	public static HUDManager Instance { get; set; }
 
@@ -64,23 +64,32 @@ public class HUDManager : NetworkBehaviour {
 
     void Update()
     {
-		Debug.Log ("is local player " + hasAuthority);
-        if (hasAuthority) {
-            ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
-				if (hit.collider.gameObject.tag.Equals ("Enemy")) {
-					SetCursorTexture (attackCursor);
-				} else if (hit.collider.gameObject.tag.Equals ("NPC")) {
-					SetCursorTexture (speechCursor);
-				} else {
-					if (lootCursorSet) {
-						SetCursorTexture (lootCursor);
-					} else {
-						SetCursorTexture (normalCursor);
-					}
-				}
-			}
+        if (Camera.main)
+        {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.collider.gameObject.tag.Equals("Enemy"))
+                {
+                    SetCursorTexture(attackCursor);
+                }
+                else if (hit.collider.gameObject.tag.Equals("NPC"))
+                {
+                    SetCursorTexture(speechCursor);
+                }
+                else
+                {
+                    if (lootCursorSet)
+                    {
+                        SetCursorTexture(lootCursor);
+                    }
+                    else
+                    {
+                        SetCursorTexture(normalCursor);
+                    }
+                }
+            }
         }
 	}
 
