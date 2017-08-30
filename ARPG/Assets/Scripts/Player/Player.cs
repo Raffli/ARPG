@@ -149,15 +149,15 @@ public class Player : NetworkBehaviour {
 		xp -= xpToLevel;
 		xpToLevel *= 2;
 		vitality.baseValue += 2;
-		dexterity += 1;
-		intelligence += 1;
-		strength += 1;
+		dexterity.baseValue += 1;
+		intelligence.baseValue += 1;
+		strength.baseValue += 1;
 		if (className == "Warrior") {
-			strength += 2;
+			strength.baseValue += 2;
 		} else if (className == "Mage") {
-			intelligence += 2;
+			intelligence.baseValue += 2;
 		} else {
-			dexterity += 2;
+			dexterity.baseValue += 2;
 		}
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 		StartCoroutine (DisableLevelUp ());
