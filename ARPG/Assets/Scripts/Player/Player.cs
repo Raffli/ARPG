@@ -204,8 +204,6 @@ public class Player : NetworkBehaviour {
         if (currentMana < maximumMana) {
             IncreaseMana(manaPerSecond.GetValue());
         }
-        Debug.Log(maximumHealth + "" + currentHealth);
-
     }
 
 
