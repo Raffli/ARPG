@@ -66,7 +66,7 @@ public class EnemyHealth : NetworkBehaviour {
             InitCombatText((lastHealth-currentHealth).ToString());
             lastHealth = currentHealth;
         }
-		if (currentHealth <= 0)
+		if (currentHealth <= 0 && !isDead)
 		{
 			Die();
 		}
