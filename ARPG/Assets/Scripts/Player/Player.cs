@@ -264,7 +264,7 @@ public class Player : NetworkBehaviour {
 	}
 
     [Command]
-    private void CmdIncreaseDamage(string type, int value)
+    private void CmdIncreaseStats(string type, int value)
     {
         if (isLocalPlayer) {
             return;
@@ -319,52 +319,52 @@ public class Player : NetworkBehaviour {
 			{
 			case "Damage": 
 				damage.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Vitality": 
 				vitality.AddBonus (bonus.value);
 				UpdateDynamicStats ();
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Dexterity": 
 				dexterity.AddBonus (bonus.value);
-                 CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Intelligence": 
 				intelligence.AddBonus (bonus.value);
 				UpdateDynamicStats ();
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Strength": 
 				strength.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Armor": 
 				armor.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Crit Chance": 
 				critChance.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Cooldown Reduction":
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Health": 
 				health.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Health per Second": 
 				healthPerSecond.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Mana": 
 				mana.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			case "Mana per Second": 
 				manaPerSecond.AddBonus (bonus.value);
-                CmdIncreaseDamage(bonus.statType, bonus.value);
+                CmdIncreaseStats(bonus.statType, bonus.value);
                 break;
 			}
 		}
@@ -372,48 +372,111 @@ public class Player : NetworkBehaviour {
 
 	}
 
-	public void UnequipItem (Item item) {
+    [Command]
+    private void CmdDecreaseStats(string type, int value)
+    {
+        if (isLocalPlayer)
+        {
+            return;
+        }
+        switch (type)
+        {
+            case "Damage":
+                damage.RemoveBonus(value);
+                break;
+            case "Vitality":
+                vitality.RemoveBonus(value);
+                UpdateDynamicStats();
+                break;
+            case "Dexterity":
+                dexterity.RemoveBonus(value);
+                break;
+            case "Intelligence":
+                intelligence.RemoveBonus(value);
+                UpdateDynamicStats();
+                break;
+            case "Strength":
+                strength.RemoveBonus(value);
+                break;
+            case "Armor":
+                armor.RemoveBonus(value);
+                break;
+            case "Crit Chance":
+                critChance.RemoveBonus(value);
+                break;
+            case "Cooldown Reduction":
+                cooldownReduction.RemoveBonus(value);
+                break;
+            case "Health":
+                health.RemoveBonus(value);
+                break;
+            case "Health per Second":
+                healthPerSecond.RemoveBonus(value);
+                break;
+            case "Mana":
+                mana.RemoveBonus(value);
+                break;
+            case "Mana per Second":
+                manaPerSecond.RemoveBonus(value);
+                break;
+        }
+    }
+
+
+    public void UnequipItem (Item item) {
 		if (bag.Count < maximumBagSlots) {
 			foreach (StatBonus bonus in item.itemStats) {
 				switch (bonus.statType) 
 				{
 				case "Damage": 
 					damage.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Vitality": 
 					vitality.RemoveBonus (bonus.value);
 					UpdateDynamicStats ();
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Dexterity": 
 					dexterity.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Intelligence": 
 					intelligence.RemoveBonus (bonus.value);
 					UpdateDynamicStats ();
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Strength": 
 					strength.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Armor": 
 					armor.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Crit Chance": 
 					critChance.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Cooldown Reduction": 
 					cooldownReduction.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Health": 
 					health.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Health per Second": 
 					healthPerSecond.RemoveBonus (bonus.value);
-					break;
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
 				case "Mana": 
 					mana.RemoveBonus (bonus.value);
-					break;
-				case "Mana per Second": 
-					manaPerSecond.RemoveBonus (bonus.value);
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    break;
+				case "Mana per Second":
+                    CmdDecreaseStats(bonus.statType, bonus.value);
+                    manaPerSecond.RemoveBonus (bonus.value);
 					break;
 				}
 			}
