@@ -118,11 +118,11 @@ public class Player : NetworkBehaviour {
 			InventoryEventHandler.OnItemBagged += AddItemToBag;
 			InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
 			InventoryEventHandler.OnItemDestroyed += DestroyItem;
+
+			PlayerEventHandler.OnXpGained += GiveXP;
+			InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
 		}
 
-		PlayerEventHandler.OnXpGained += GiveXP;
-
-		InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
 		StartCoroutine (LearnPrimarySkill ());
 	}
 

@@ -181,6 +181,7 @@ public class Attack : NetworkBehaviour
 
 	protected void LevelUp (int newLevel) {
 		if (newLevel == 2) {
+			Debug.Log ("learn secondary");
 			LearnSecondarySkill ();
 		} else if (newLevel == 4) {
 			LearnFirstSpell ();
