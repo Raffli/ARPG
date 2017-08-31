@@ -15,7 +15,7 @@ public class EnemyHealth : NetworkBehaviour {
     public int level;
 
     public int maxHealth;
-    public int lastHealth;
+    [SyncVar] public int lastHealth;
 	private int xp;
     public Slider healthBar;
     public GameObject combatTextPrefab;
