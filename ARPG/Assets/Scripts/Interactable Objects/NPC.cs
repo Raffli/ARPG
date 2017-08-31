@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPC : Interactable {
 
@@ -11,6 +12,7 @@ public class NPC : Interactable {
 	public bool finishesQuest;
 	public int startQuestIndex;
 	public int finishQuestIndex;
+	public bool endsGame;
 
 
 	protected override void Interact (Transform player) {
@@ -23,6 +25,18 @@ public class NPC : Interactable {
 		if (startsQuest) {
 			DialogueManager.OnDialogueEnded += StartQuest;
 		}
+		if (endsGame) {
+			DialogueManager.OnDialogueEnded += EndGame;
+		}
+	}
+
+	public void EndGame () {
+		StartCoroutine (Wait ());
+	}
+
+	IEnumerator Wait () {
+		yield return new WaitForSeconds (5f);
+		SceneManager.LoadScene ("Lobby");
 	}
 
 	public void StartQuest () {

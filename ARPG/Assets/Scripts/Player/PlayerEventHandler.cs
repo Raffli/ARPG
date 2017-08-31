@@ -10,4 +10,11 @@ public class PlayerEventHandler : MonoBehaviour {
 	public static void LevelUp (int newLevel) {
 		OnPlayerLevelUp (newLevel);
 	}
+
+	public delegate void GainXpHandler (int amount);
+	public static event GainXpHandler OnXpGained;
+
+	public static void XpGained (int amount) {
+		OnXpGained (amount);
+	}
 }

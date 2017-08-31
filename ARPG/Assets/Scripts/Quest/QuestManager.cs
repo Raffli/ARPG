@@ -15,8 +15,6 @@ public class QuestManager : MonoBehaviour {
 	private GameObject quest1, quest2, quest3;
 	private Text quest1Title, quest2Title, quest3Title, quest1Task, quest2Task, quest3Task;
 
-	public Player player { get; set; }
-
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
 
@@ -60,7 +58,7 @@ public class QuestManager : MonoBehaviour {
 	public void FinishQuest (int index) {
 		quests [index].done = true;
 		quests [index].active = false;
-		player.GiveXP (quests [index].xp);
+		PlayerEventHandler.XpGained (quests [index].xp);
 		if (quests [index].uiSlot == 1) {
 			if (quest2.activeSelf) {
 				quest1Title.text = quest2Title.text;
@@ -87,11 +85,9 @@ public class QuestManager : MonoBehaviour {
 			quest3.SetActive (false);
 		} 
 		questsActive--;
-		Debug.Log (questsActive);
 	}
 
 	private void DisplayQuest (int index) {
-		Debug.Log (questsActive);
 		if (questsActive == 1) {
 			quest1Title.text = quests [index].name;
 			quest1Task.text = quests [index].task;

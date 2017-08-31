@@ -71,13 +71,6 @@ public class ItemGenerator : MonoBehaviour {
 
 	}
 
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.KeypadMultiply)) {
-			Item item = GenerateRandomItem (1, "Warrior");
-			InventoryEventHandler.ItemBagged (item);
-		}
-	}
-
 	public Item GenerateRandomItem (int playerLevel, string playerClass) {
 		Item newItem = new Item ("", null, Item.ItemPosition.Amulet);
 
@@ -89,6 +82,7 @@ public class ItemGenerator : MonoBehaviour {
 		int randomStatsCount = 0;
 
 		int randomizer = Random.Range (0, 100);
+		Debug.Log ("randomizer " + randomizer);
 		if (randomizer < 10) { // Range for Head Items - Primary Stat Armor
 			itemPosition = Item.ItemPosition.Head;
 			int randomHead = Random.Range (0, headItems.Count);
@@ -119,7 +113,6 @@ public class ItemGenerator : MonoBehaviour {
 			itemStats.Add (new StatBonus (playerLevel * gloves[randomHead].multiplier, "Armor"));
 		} else if (randomizer < 50) { // Range for Primary Items - Primary Stat Damage - kind of weapon depends on PlayerClass
 			List <ItemBasis> primary;
-			Debug.Log ("player class is " + playerClass);
 			if (playerClass == "Warrior") {
 				primary = swords;
 			} else if (playerClass == "Mage") {
@@ -135,7 +128,6 @@ public class ItemGenerator : MonoBehaviour {
 			itemStats.Add (new StatBonus (playerLevel * primary[randomHead].multiplier, "Damage"));
 		} else if (randomizer < 60) { // Range for Secondary Items - Primary Stat Damage - kind of item depends on PlayerClass
 			List <ItemBasis> secondary;
-			Debug.Log ("player class is " + playerClass);
 			if (playerClass == "Warrior") {
 				secondary = shields;
 			} else if (playerClass == "Mage") {

@@ -65,7 +65,6 @@ public class Player : NetworkBehaviour {
 		playerName = "Flo";
 
 		CharacterManager.Instance.player = this;
-		QuestManager.Instance.player = this;
 
 		attack = transform.GetComponent<Attack> ();
 
@@ -122,6 +121,8 @@ public class Player : NetworkBehaviour {
 		InventoryEventHandler.OnItemBagged += AddItemToBag;
 		InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
 		InventoryEventHandler.OnItemDestroyed += DestroyItem;
+
+		PlayerEventHandler.OnXpGained += GiveXP;
 
 		InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
 		StartCoroutine (LearnPrimarySkill ());

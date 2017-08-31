@@ -1272,7 +1272,7 @@ Transform:
   - {fileID: 812146606}
   - {fileID: 662646763}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &45692641
 Prefab:
@@ -7389,7 +7389,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &291834163
 MonoBehaviour:
@@ -10877,7 +10877,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &449320480
 GameObject:
@@ -10939,7 +10939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449910885
 GameObject:
@@ -20720,7 +20720,7 @@ Transform:
   - {fileID: 1836778679}
   - {fileID: 1662497054}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &974401978
 GameObject:
@@ -21737,7 +21737,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1063299355
 MonoBehaviour:
@@ -22405,6 +22405,111 @@ Transform:
   m_Father: {fileID: 46108964}
   m_RootOrder: 137
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1090407386
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 329.93387
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50.009155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 645.8838
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.113833055
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.99349993
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_Name
+      value: Lander
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: name
+      value: Lander Stormwind
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: startsQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: finishesQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: startQuestIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: finishQuestIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[0]
+      value: How did you get here? I tried to go to Shroudmere.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[1]
+      value: But there are monsters everywhere! So I hid here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[2]
+      value: Ah...So Phrett sent you. I honestly thought everything was lost.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[3]
+      value: But you could be the one to beat the troll king!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[4]
+      value: He commands his forces from the old faun ruins. You can defeat him!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -13.073001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1094567040
 GameObject:
   m_ObjectHideFlags: 0
@@ -29271,7 +29376,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90.43701, y: -30, z: 0}
 --- !u!1 &1460793334
 GameObject:
@@ -32736,7 +32841,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1715693237
 MonoBehaviour:

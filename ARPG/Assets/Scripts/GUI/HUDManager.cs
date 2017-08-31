@@ -98,6 +98,7 @@ public class HUDManager : MonoBehaviour {
 	}
 
 	public void SetLootCursor (bool onLoot) {
+		Debug.Log ("on loot");
 		lootCursorSet = onLoot;
 	}
 

@@ -189,7 +189,7 @@ namespace Prototype.NetworkLobby
                     avatarIndex = 2;
                     characterPicture.sprite = mageImage;
                     characterPicture.enabled = true;
-                    classDescription.text = "Drawing on the subtle weave of magic that permeates the cosmos, mages cast spells of exposive fire, arcing lightning, subtle deception, and brute-force mind control.";
+                    classDescription.text = "Drawing on the subtle weave of magic that permeates the cosmos, mages cast spells of explosive fire, arcing lightning, subtle deception, and brute-force mind control.";
                     classDescription.enabled = true;
                     characterStats.sprite = mageStats;
                     characterStats.enabled = true;

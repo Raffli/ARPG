@@ -6012,7 +6012,7 @@ Transform:
   - {fileID: 1088153910}
   - {fileID: 1469260833}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &270347332
 Prefab:
@@ -19754,7 +19754,7 @@ Transform:
   m_LocalScale: {x: 80, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &750528010
 Prefab:
@@ -20007,6 +20007,98 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502,
     type: 2}
   m_PrefabInternal: {fileID: 1189743108}
+--- !u!1001 &774575110
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 621.27216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 34.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 259.48105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.95441264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.2984904
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -145.266
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+      propertyPath: m_Name
+      value: MayorMerrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: name
+      value: Mayor Merrick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: finishesQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[0]
+      value: Finally! Someone came to rescue me. I thought I was going to die here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[1]
+      value: I am Mayor Merrick from Shroudmere. The Troll King abducted me several
+        days ago.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[2]
+      value: Oh...nobody noticed?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: dialogue.Array.data[3]
+      value: Well...Thank you anyway. From now on you will be know as the Hero of
+        Shroudmere!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114549893220921114, guid: 0a36d45e1b007e14b884de828f3b6938,
+        type: 2}
+      propertyPath: finishQuestIndex
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0a36d45e1b007e14b884de828f3b6938, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &774614871
 Prefab:
   m_ObjectHideFlags: 0
@@ -25357,7 +25449,7 @@ Transform:
   - {fileID: 1221223777}
   - {fileID: 576690706}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1034132748
 Prefab:
@@ -47906,7 +47998,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2091359098
 Prefab:
@@ -48877,7 +48969,7 @@ Transform:
   - {fileID: 363210654}
   - {fileID: 736547954}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2136242513
 Prefab:

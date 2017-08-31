@@ -26,11 +26,6 @@ public class EnemyHealth : NetworkBehaviour {
     EnemyAI enemyAI;
     bool isDead;
     MusicController musicController;
-	GameObject [] warriors;
-	GameObject [] mages;
-	GameObject [] rogues;
-	List <Player> players;
-
 
     void Start() {
         this.maxHealth = this.maxHealth * level;
@@ -44,19 +39,6 @@ public class EnemyHealth : NetworkBehaviour {
         healthBar.value = currentHealth / maxHealth;
         musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
 		xp = Mathf.RoundToInt (maxHealth * 0.5f);
-		warriors = GameObject.FindGameObjectsWithTag ("Warrior");
-		mages = GameObject.FindGameObjectsWithTag ("Mage");
-		rogues = GameObject.FindGameObjectsWithTag ("Rouge");
-		players = new List<Player> ();
-		foreach (GameObject warrior in warriors) {
-			players.Add (warrior.GetComponent<Player> ());
-		}
-		foreach (GameObject mage in mages) {
-			players.Add (mage.GetComponent<Player> ());
-		}
-		foreach (GameObject rogue in rogues) {
-			players.Add (rogue.GetComponent<Player> ());
-		}
     }
 
     private void Die() {
@@ -72,9 +54,7 @@ public class EnemyHealth : NetworkBehaviour {
 		if (Random.Range (0, 4) == 0) {
 			LootManager.Instance.SpawnLoot (transform.position);
 		}
-		foreach (Player player in players) {
-			player.GiveXP (xp);
-		}
+		PlayerEventHandler.XpGained (xp);
         StartCoroutine(RemoveSelf());
     }
 
