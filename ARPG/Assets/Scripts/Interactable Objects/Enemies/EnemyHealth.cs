@@ -65,11 +65,11 @@ public class EnemyHealth : NetworkBehaviour {
             healthBar.value = (float)currentHealth / (float)maxHealth;
             InitCombatText((lastHealth-currentHealth).ToString());
             lastHealth = currentHealth;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
         }
+		if (currentHealth <= 0 && !isDead)
+		{
+			Die();
+		}
     }
 
     public void SetLevel(int level)

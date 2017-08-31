@@ -58,11 +58,11 @@ public class WarriorAttack : Attack {
     }
 
     private void RestartPlayerAgent() {
+        swordAttack.DisableSword();
         if (!isLocalPlayer)
         {
             return;
         }
         playerAgent.isStopped = false;
-		swordAttack.DisableSword ();
 	}
 }

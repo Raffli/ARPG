@@ -33,6 +33,7 @@ public class SparklingStrike : Skill {
 	}
 		
 	public override void Execute () {
+        Debug.Log("execute sparkling strike");
 		if (player.GetCritted ()) {
 			damage = Mathf.RoundToInt (damage * player.critDamage);
 		}

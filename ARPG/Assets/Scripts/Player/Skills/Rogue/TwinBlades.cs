@@ -21,6 +21,7 @@ public class TwinBlades : Skill {
 		skillDescription = "You hit your enemy with two lightning fast blades.";
 		skillIcon =  Resources.Load<Sprite> ("UI/Icons/twinBlades");
 		skillSlot = 6;
+		Debug.Log ("twin blades learned");
 		scale = 0.6f;
 		manaCost = 0;
 		cooldownLeft = 0f;
@@ -36,6 +37,7 @@ public class TwinBlades : Skill {
 	}
 
 	public override void Execute () {
+		Debug.Log ("twin blades executed");
 		if (player.GetCritted ()) {
 			damage = Mathf.RoundToInt (damage * player.critDamage);
 		}

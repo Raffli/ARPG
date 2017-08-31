@@ -1456,15 +1456,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
+  m_SendInterval: 0.04347826
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 60
-  m_InterpolateRotation: 100
-  m_InterpolateMovement: 100
+  m_SnapThreshold: 80
+  m_InterpolateRotation: 0
+  m_InterpolateMovement: 20
 --- !u!114 &114752381440449840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95177043328395638}
-  m_ParameterSendBits: 0
+  m_ParameterSendBits: 7
   param0: 
   param1: 
   param2: 
