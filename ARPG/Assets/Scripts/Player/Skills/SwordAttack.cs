@@ -45,19 +45,21 @@ public class SwordAttack : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Enemy") {
-            Debug.Log(lastCollider +" "+ other);
+           
             if (lastCollider != other)
             {
+                Debug.Log("alter collider != neuer collider");
                 lastCollider = null;
                 if (lightAttack)
                 {
-
+                    Debug.Log("lightAttack");
                     source.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
                     other.GetComponent<EnemyHealth>().ReduceHealth(lightDamage);
                     lastCollider=other;
                 }
                 else if (heavyAttack)
                 {
+                    Debug.Log("heavyAttack");
                     source.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
                     other.GetComponent<EnemyHealth>().ReduceHealth(heavyDamage);
                     lastCollider=other;

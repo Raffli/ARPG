@@ -142,18 +142,21 @@ public class Player : NetworkBehaviour {
         {
             PlayerEventHandler.LevelUp(level + 1);
             LevelUp();
+            RpcLevelUpOnClient();
         }
-        RpcUpdateXpOnClient();
+        RpcUpdateXpBar();
     }
 
     [ClientRpc]
-    private void RpcUpdateXpOnClient()
+    private void RpcUpdateXpBar()
     {
         HUDManager.Instance.UpdateXPBar(xp, xpToLevel);
-        if (xp >= xpToLevel) { 
-            LevelUp();
-            attack.LevelUp(level);
-        }
+    }
+
+    [ClientRpc]
+    private void RpcLevelUpOnClient() {
+        LevelUp();
+        attack.LevelUp(level);
     }
 
     [Command]
