@@ -42,90 +42,87 @@ public class Player : NetworkBehaviour {
 	}
 
 	void Start() {
-		if (!isLocalPlayer)
-		{
-			Destroy(transform.Find("Main Camera").gameObject);
-		}
-		else {
-			transform.Find("Main Camera").gameObject.SetActive(true);
-		}
-
-		critDamage = 1.5f;
-		invisible = false;
-
-		bag = new List<Item> ();
-		maximumBagSlots = 40;
-		InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
-
-		level = 1; 
-		xp = 0;
-		xpToLevel = 100;
-		PlayerEventHandler.LevelUp (level);
-
-		playerName = "Flo";
-
-		CharacterManager.Instance.player = this;
-
-		attack = transform.GetComponent<Attack> ();
-
-		vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
-		dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
-		strength = new Stat (10, "Strength", "Measures how physically strong your character is.");
-		intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
-
-		Sprite playerModel;
-		if (tag.Equals ("Mage")) {
-			className = "Mage";
-			intelligence.baseValue += 15;
-			playerModel = Resources.Load<Sprite> ("UI/mage");
-		} else if (tag.Equals ("Rouge")) {
-			className = "Rouge";
-			vitality.baseValue += 5;
-			dexterity.baseValue += 10;
-			playerModel = Resources.Load<Sprite> ("UI/rogue");
+		if (!isLocalPlayer) {
+			Destroy (transform.Find ("Main Camera").gameObject);
 		} else {
-			className = "Warrior";
-			vitality.baseValue += 10;
-			strength.baseValue += 5;
-			playerModel = Resources.Load<Sprite> ("UI/warrior");
+			transform.Find ("Main Camera").gameObject.SetActive (true);
+
+			critDamage = 1.5f;
+			invisible = false;
+
+			bag = new List<Item> ();
+			maximumBagSlots = 40;
+			InventoryManager.Instance.maximumBagSlots = maximumBagSlots;
+
+			level = 1; 
+			xp = 0;
+			xpToLevel = 100;
+			playerName = "Flo";
+
+			PlayerEventHandler.LevelUp (level);
+			CharacterManager.Instance.player = this;
+
+			attack = transform.GetComponent<Attack> ();
+
+			vitality = new Stat (10, "Vitality", "Measures how sturdy your character is.");
+			dexterity = new Stat (10, "Dexterity", "Measures how agile your character is.");
+			strength = new Stat (10, "Strength", "Measures how physically strong your character is.");
+			intelligence = new Stat (10, "Intelligence", "Measures how intelligent your character is.");
+
+			Sprite playerModel;
+			if (tag.Equals ("Mage")) {
+				className = "Mage";
+				intelligence.baseValue += 15;
+				playerModel = Resources.Load<Sprite> ("UI/mage");
+			} else if (tag.Equals ("Rouge")) {
+				className = "Rouge";
+				vitality.baseValue += 5;
+				dexterity.baseValue += 10;
+				playerModel = Resources.Load<Sprite> ("UI/rogue");
+			} else {
+				className = "Warrior";
+				vitality.baseValue += 10;
+				strength.baseValue += 5;
+				playerModel = Resources.Load<Sprite> ("UI/warrior");
+			}
+			LootManager.Instance.playerClass = className;
+			InventoryManager.Instance.SetPlayerModel (playerModel);
+			CharacterManager.Instance.SetNameAndClass (playerName, className);
+
+			damage = new Stat (0, "Damage", "Measures the extra damage you deal on your attacks.");
+			armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
+			critChance = new Stat (5, "Crit Chance", "Measures the chance to strike an enemy critical.");
+			cooldownReduction = new Stat (0, "Cooldown Reduction", "Reduces the cooldowns of your skills.");
+
+			health = new Stat (vitality.GetValue () * 10, "Health", "Your health. If it is at 0 you die!");
+			float hps = vitality.GetValue () * 0.1f;
+			healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
+			mana = new Stat (intelligence.GetValue () * 10, "Mana", "Spiritual energy used for spells.");
+			float mps = intelligence.GetValue () * 0.1f;
+			manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
+			maximumHealth = health.GetValue ();
+			maximumMana = mana.GetValue ();
+
+			currentHealth = maximumHealth; 
+			currentMana = maximumMana;
+
+			CharacterManager.Instance.UpdateStats ();
+
+			HUDManager.Instance.UpdateHP (currentHealth, health.GetValue ());
+			HUDManager.Instance.UpdateMana (currentMana, mana.GetValue ());
+			HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+
+			InventoryEventHandler.OnItemEquipped += EquipItem;
+			InventoryEventHandler.OnItemUnequipped += UnequipItem;
+			InventoryEventHandler.OnItemBagged += AddItemToBag;
+			InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
+			InventoryEventHandler.OnItemDestroyed += DestroyItem;
+
+			PlayerEventHandler.OnXpGained += GiveXP;
+
+			InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
+			StartCoroutine (LearnPrimarySkill ());
 		}
-		LootManager.Instance.playerClass = className;
-		InventoryManager.Instance.SetPlayerModel (playerModel);
-		CharacterManager.Instance.SetNameAndClass (playerName, className);
-
-		damage = new Stat (0, "Damage", "Measures the extra damage you deal on your attacks.");
-		armor = new Stat (0, "Armor", "Measures how much damage you can absorb.");
-		critChance = new Stat (5, "Crit Chance", "Measures the chance to strike an enemy critical.");
-		cooldownReduction = new Stat (0, "Cooldown Reduction", "Reduces the cooldowns of your skills.");
-
-		health = new Stat (vitality.GetValue() * 10, "Health", "Your health. If it is at 0 you die!");
-		float hps = vitality.GetValue () * 0.1f;
-		healthPerSecond = new Stat (Mathf.RoundToInt (hps), "Health per Second", "How much health you regenerate every second.");
-		mana = new Stat (intelligence.GetValue() * 10, "Mana", "Spiritual energy used for spells.");
-		float mps = intelligence.GetValue () * 0.1f;
-		manaPerSecond = new Stat (Mathf.RoundToInt (mps), "Mana per Second", "How much mana you regenerate every second.");
-		maximumHealth = health.GetValue();
-		maximumMana = mana.GetValue();
-
-		currentHealth = maximumHealth; 
-		currentMana = maximumMana;
-
-		CharacterManager.Instance.UpdateStats ();
-
-		HUDManager.Instance.UpdateHP (currentHealth, health.GetValue());
-		HUDManager.Instance.UpdateMana (currentMana, mana.GetValue());
-		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
-
-		InventoryEventHandler.OnItemEquipped += EquipItem;
-		InventoryEventHandler.OnItemUnequipped += UnequipItem;
-		InventoryEventHandler.OnItemBagged += AddItemToBag;
-		InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
-		InventoryEventHandler.OnItemDestroyed += DestroyItem;
-
-		PlayerEventHandler.OnXpGained += GiveXP;
-
-		InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
-		StartCoroutine (LearnPrimarySkill ());
 	}
 
 	IEnumerator LearnPrimarySkill () {
