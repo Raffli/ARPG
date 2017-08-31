@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour {
 
@@ -18,10 +19,9 @@ public class StartGame : MonoBehaviour {
     public Button back;
     public Slider audioSlider;
 
-
     public void PlayPress()
     {
-        //Lobby wird aufgerufen
+        SceneManager.LoadScene(1);
     }
 
     public void ExitPress()
@@ -32,6 +32,7 @@ public class StartGame : MonoBehaviour {
 
     public void YesPress()
     {
+        Debug.Log("yes pressed");
         Application.Quit();
     }
 
@@ -50,7 +51,7 @@ public class StartGame : MonoBehaviour {
 
     public void AudioSliderMove()
     {
-
+        AudioListener.volume = audioSlider.value;
     }
 
     public void BackPress()
