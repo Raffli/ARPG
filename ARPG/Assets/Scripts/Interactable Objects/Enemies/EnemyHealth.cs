@@ -54,7 +54,10 @@ public class EnemyHealth : NetworkBehaviour {
 		if (Random.Range (0, 4) == 0) {
 			LootManager.Instance.SpawnLoot (transform.position);
 		}
-		PlayerEventHandler.XpGained (xp);
+		if (QuestManager.Instance.isOnServer) {
+			Debug.Log ("give xp to player " + xp);
+			PlayerEventHandler.XpGained (xp);
+		}
         StartCoroutine(RemoveSelf());
     }
 

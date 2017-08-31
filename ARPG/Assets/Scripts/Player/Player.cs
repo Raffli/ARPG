@@ -29,6 +29,7 @@ public class Player : NetworkBehaviour {
 
     public List<Item> bag;
     public int maximumBagSlots { get; set; }
+	public bool playerIsOnServer { get; set; }
 
     [HideInInspector] [SyncVar] public int currentMana;
     [HideInInspector] [SyncVar] public int maximumMana;
@@ -122,6 +123,8 @@ public class Player : NetworkBehaviour {
             InvokeRepeating("RegenManaAndHealth", 1f, 1f);
 
         }
+		playerIsOnServer = isServer;
+		QuestManager.Instance.isOnServer = playerIsOnServer;
         if (isServer)
         {
             PlayerEventHandler.OnXpGained += GiveXP;
@@ -138,6 +141,7 @@ public class Player : NetworkBehaviour {
 
     public void GiveXP(int amount) {
         xp += amount;
+		Debug.Log ("give xp " + amount + " new xp: " + xp + " xp to level: " + xpToLevel);
         if (xp >= xpToLevel)
         {
             PlayerEventHandler.LevelUp(level + 1);
@@ -155,8 +159,12 @@ public class Player : NetworkBehaviour {
 
     [ClientRpc]
     private void RpcLevelUpOnClient() {
-        LevelUp();
-        attack.LevelUp(level);
+		Debug.Log ("is server " + isServer);
+		if (!isServer) {
+			Debug.Log ("client, level up!");
+			LevelUp ();
+			attack.LevelUp (level);
+		}
     }
 
     [Command]
@@ -168,6 +176,7 @@ public class Player : NetworkBehaviour {
     }
 
     private void LevelUp () {
+		Debug.Log ("level it up " + className);
         CmdSpawnEffect();
         level++;
 		xp -= xpToLevel;
@@ -183,7 +192,9 @@ public class Player : NetworkBehaviour {
 		} else {
 			dexterity.baseValue += 2;
 		}
-		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+		if (isLocalPlayer) {
+			HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+		}
 	}
 
 

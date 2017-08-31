@@ -15,6 +15,8 @@ public class QuestManager : MonoBehaviour {
 	private GameObject quest1, quest2, quest3;
 	private Text quest1Title, quest2Title, quest3Title, quest1Task, quest2Task, quest3Task;
 
+	public bool isOnServer { get; set; }
+
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
 
@@ -58,7 +60,10 @@ public class QuestManager : MonoBehaviour {
 	public void FinishQuest (int index) {
 		quests [index].done = true;
 		quests [index].active = false;
-		PlayerEventHandler.XpGained (quests [index].xp);
+
+		if (isOnServer) {
+			PlayerEventHandler.XpGained (quests [index].xp);
+		}
 		if (quests [index].uiSlot == 1) {
 			if (quest2.activeSelf) {
 				quest1Title.text = quest2Title.text;
