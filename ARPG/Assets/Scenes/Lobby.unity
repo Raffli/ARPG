@@ -115,10 +115,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 22459552, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -195,7 +191,6 @@ Prefab:
       propertyPath: m_Text
       value: 
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 155310, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -429,22 +424,6 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 724.75
       objectReference: {fileID: 0}
-=======
-    - target: {fileID: 22477934, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -1364.3984
-      objectReference: {fileID: 0}
-    - target: {fileID: 224396570642692250, guid: c0978251ff7b10d4fb954a4b56acd9f0,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -562.39844
-      objectReference: {fileID: 0}
-    - target: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[29]
-      value: 
-      objectReference: {fileID: 1996857697448498, guid: 4892eb56a97e2cc409bc7298d2963370,
-        type: 2}
->>>>>>> 74c7ab7f6ed57853f477f06ffd1d4d108dd091ca
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
   m_IsPrefabParent: 0
@@ -610,7 +589,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
