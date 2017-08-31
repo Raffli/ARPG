@@ -29,7 +29,7 @@ public class Player : NetworkBehaviour {
 
     public List<Item> bag;
     public int maximumBagSlots { get; set; }
-	public bool playerIsOnServer { get; set; }
+    public bool playerIsOnServer { get; set; }
 
     [HideInInspector] [SyncVar] public int currentMana;
     [HideInInspector] [SyncVar] public int maximumMana;
@@ -123,8 +123,8 @@ public class Player : NetworkBehaviour {
             InvokeRepeating("RegenManaAndHealth", 1f, 1f);
 
         }
-		playerIsOnServer = isServer;
-		QuestManager.Instance.isOnServer = playerIsOnServer;
+        playerIsOnServer = isServer;
+        QuestManager.Instance.isOnServer = playerIsOnServer;
         if (isServer)
         {
             PlayerEventHandler.OnXpGained += GiveXP;
@@ -162,10 +162,10 @@ public class Player : NetworkBehaviour {
 
     [ClientRpc]
     private void RpcLevelUpOnClient() {
-		if (!isServer) {
-			LevelUp ();
-			attack.LevelUp (level);
-		}
+        if (!isServer) {
+            LevelUp();
+            attack.LevelUp(level);
+        }
     }
 
     [Command]
@@ -176,34 +176,47 @@ public class Player : NetworkBehaviour {
         NetworkServer.Spawn(obj);
     }
 
-    private void LevelUp () {
-		Debug.Log ("level it up " + className);
+    private void LevelUp() {
+        Debug.Log("level it up " + className);
         CmdSpawnEffect();
         level++;
-		xp -= xpToLevel;
-		xpToLevel *= 2;
-		vitality.baseValue += 2;
-		dexterity.baseValue += 1;
-		intelligence.baseValue += 1;
-		strength.baseValue += 1;
-		if (className == "Warrior") {
-			strength.baseValue += 2;
-		} else if (className == "Mage") {
-			intelligence.baseValue += 2;
-		} else {
-			dexterity.baseValue += 2;
-		}
-	}
+        xp -= xpToLevel;
+        xpToLevel *= 2;
+        vitality.baseValue += 2;
+        dexterity.baseValue += 1;
+        intelligence.baseValue += 1;
+        strength.baseValue += 1;
+        if (className == "Warrior") {
+            strength.baseValue += 2;
+        } else if (className == "Mage") {
+            intelligence.baseValue += 2;
+        } else {
+            dexterity.baseValue += 2;
+        }
+        UpdateDynamicStats();
+    }
 
 
-	public void RegenManaAndHealth () {
-		if (currentHealth < maximumHealth) {
-			Heal (healthPerSecond.GetValue ());
-		}
-		if (currentMana < maximumMana) {
-			IncreaseMana (manaPerSecond.GetValue ());
-		}
-	}
+    public void RegenManaAndHealth() {
+        if (currentHealth < maximumHealth) {
+            Heal(healthPerSecond.GetValue());
+        }
+        if (currentMana < maximumMana) {
+            IncreaseMana(manaPerSecond.GetValue());
+        }
+        Debug.Log(maximumHealth + "" + currentHealth);
+
+    }
+
+
+    [Command]
+    private void CmdUpdateStats(int maxhHealth, int maxMana) {
+        if (isLocalPlayer) {
+            return;
+        }
+        maximumHealth = maxhHealth;
+        maximumMana = maxMana;
+    }
 
 	public void UpdateDynamicStats () {
 		int oldHealth = health.GetValue ();
@@ -220,7 +233,8 @@ public class Player : NetworkBehaviour {
 		manaPerSecond.baseValue = Mathf.RoundToInt (mps);
 		maximumHealth = health.GetValue();
 		maximumMana = mana.GetValue();
-	}
+        CmdUpdateStats(maximumHealth, maximumMana);
+    }
 
 	public void AddItemToBag (Item item) {
 		item.itemEquipped = false;
@@ -249,49 +263,109 @@ public class Player : NetworkBehaviour {
 		}
 	}
 
-	public void EquipItem (Item item) {
+    [Command]
+    private void CmdIncreaseDamage(string type, int value)
+    {
+        if (isLocalPlayer) {
+            return;
+        }
+        switch (type)
+        {
+        case "Damage":
+            damage.AddBonus(value);
+            break;
+        case "Vitality":
+            vitality.AddBonus(value);
+            UpdateDynamicStats();
+            break;
+        case "Dexterity":
+            dexterity.AddBonus(value);
+            break;
+        case "Intelligence":
+            intelligence.AddBonus(value);
+            UpdateDynamicStats();
+            break;
+        case "Strength":
+            strength.AddBonus(value);
+            break;
+        case "Armor":
+            armor.AddBonus(value);
+            break;
+        case "Crit Chance":
+            critChance.AddBonus(value);
+            break;
+        case "Cooldown Reduction":
+            cooldownReduction.AddBonus(value);
+            break;
+        case "Health":
+            health.AddBonus(value);
+            break;
+        case "Health per Second":
+            healthPerSecond.AddBonus(value);
+            break;
+        case "Mana":
+            mana.AddBonus(value);
+            break;
+        case "Mana per Second":
+            manaPerSecond.AddBonus(value);
+            break;
+        }
+    }
+
+    public void EquipItem (Item item) {
 		item.itemEquipped = true;
 		foreach (StatBonus bonus in item.itemStats) {
 			switch (bonus.statType) 
 			{
 			case "Damage": 
 				damage.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Vitality": 
 				vitality.AddBonus (bonus.value);
 				UpdateDynamicStats ();
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Dexterity": 
 				dexterity.AddBonus (bonus.value);
-				break;
+                 CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Intelligence": 
 				intelligence.AddBonus (bonus.value);
 				UpdateDynamicStats ();
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Strength": 
 				strength.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Armor": 
 				armor.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Crit Chance": 
 				critChance.AddBonus (bonus.value);
-				break;
-			case "Cooldown Reduction": 
-				cooldownReduction.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
+			case "Cooldown Reduction":
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Health": 
 				health.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Health per Second": 
 				healthPerSecond.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Mana": 
 				mana.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			case "Mana per Second": 
 				manaPerSecond.AddBonus (bonus.value);
-				break;
+                CmdIncreaseDamage(bonus.statType, bonus.value);
+                break;
 			}
 		}
 		CharacterManager.Instance.UpdateStats ();
