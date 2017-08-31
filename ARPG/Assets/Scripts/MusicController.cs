@@ -44,12 +44,12 @@ public class MusicController : MonoBehaviour
         else if (isBattle && battleCounter == 0)
         {
             isBattle = false;
-            audioSource.clip = levelTracks[level - 1];
+            audioSource.clip = levelTracks[level - 2];
             audioSource.Play();
         }
         if (start)
         {
-            audioSource.clip = levelTracks[level - 1];
+            audioSource.clip = levelTracks[level - 2];
             audioSource.Play();
             start = false;
         }
