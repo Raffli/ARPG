@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class Player : NetworkBehaviour {
 
 	[SyncVar] public int level;
-	private int xp;
+	[SyncVar] private int xp;
 	private int xpToLevel;
 
 	private GameObject levelUp;
