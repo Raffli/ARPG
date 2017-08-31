@@ -135,11 +135,11 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void GiveXP (int amount) {
+        xp += amount;
         if (isLocalPlayer)
         {
             HUDManager.Instance.UpdateXPBar(xp, xpToLevel);
-        }
-        xp += amount;
+        }   
         if (xp >= xpToLevel)
         {
             PlayerEventHandler.LevelUp(level + 1);
