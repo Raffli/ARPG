@@ -54,6 +54,8 @@ public class ManaPotion : NetworkBehaviour
         GameObject manaEffect = (GameObject)Resources.Load("Skills/ManaPotionEffect");
         GameObject obj = Instantiate(manaEffect, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
+        player.IncreaseMana(manaAmount);
+
     }
 
     public void Use()

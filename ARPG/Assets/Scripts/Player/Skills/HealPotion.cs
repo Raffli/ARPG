@@ -48,9 +48,11 @@ public class HealPotion : NetworkBehaviour {
         GameObject healEffect = (GameObject)Resources.Load("Skills/HealthPotionEffect");
         GameObject obj = Instantiate(healEffect, GetComponent<NetworkTransform>().gameObject.transform.position, GetComponent<NetworkTransform>().gameObject.transform.rotation, GetComponent<NetworkTransform>().gameObject.transform);
         NetworkServer.Spawn(obj);
+        player.Heal(healAmount);
+
     }
 
-	public void Use () {
+    public void Use () {
 		ModifyProperty ();
 		onCooldown = true;
 		cooldownLeft = cooldown;
