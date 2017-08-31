@@ -121,9 +121,8 @@ public class Player : NetworkBehaviour {
 
 			PlayerEventHandler.OnXpGained += GiveXP;
 			InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
+			StartCoroutine (LearnPrimarySkill ());
 		}
-
-		StartCoroutine (LearnPrimarySkill ());
 	}
 
 	IEnumerator LearnPrimarySkill () {
@@ -134,11 +133,13 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void GiveXP (int amount) {
-		xp += amount;
-		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
-		if (xp >= xpToLevel) {
-			PlayerEventHandler.LevelUp (level+1);
-			LevelUp ();
+		if (isLocalPlayer) {
+			xp += amount;
+			HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+			if (xp >= xpToLevel) {
+				PlayerEventHandler.LevelUp (level + 1);
+				LevelUp ();
+			}
 		}
 	}
 

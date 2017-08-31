@@ -30,15 +30,17 @@ public class Attack : NetworkBehaviour
 	public ManaPotion manaPotion;
 
 	void Start () {
-		animator = GetComponent<Animator>();
-		playerAgent = GetComponent<NavMeshAgent> ();
-		player = GetComponent <Player> ();
-		worldInteraction = GetComponent<WorldInteraction> ();
-		healPotion = gameObject.GetComponent<HealPotion> ();
-		manaPotion = gameObject.GetComponent<ManaPotion> ();
-		skills = new Skill[5]; 
-		SetPrivateProperties ();
-		PlayerEventHandler.OnPlayerLevelUp += LevelUp;
+		if (isLocalPlayer) {
+			animator = GetComponent<Animator>();
+			playerAgent = GetComponent<NavMeshAgent> ();
+			player = GetComponent <Player> ();
+			worldInteraction = GetComponent<WorldInteraction> ();
+			healPotion = gameObject.GetComponent<HealPotion> ();
+			manaPotion = gameObject.GetComponent<ManaPotion> ();
+			skills = new Skill[5]; 
+			SetPrivateProperties ();
+			PlayerEventHandler.OnPlayerLevelUp += LevelUp;
+		}
 	}
 
 	protected virtual void SetPrivateProperties () {}
