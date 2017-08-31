@@ -121,9 +121,10 @@ public class Player : NetworkBehaviour {
 
 			PlayerEventHandler.OnXpGained += GiveXP;
 			InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
-			StartCoroutine (LearnPrimarySkill ());
+			
 		}
-	}
+        StartCoroutine(LearnPrimarySkill());
+    }
 
 	IEnumerator LearnPrimarySkill () {
 		yield return new WaitForSeconds (0.1f);

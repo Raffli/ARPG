@@ -30,15 +30,16 @@ public class Attack : NetworkBehaviour
 	public ManaPotion manaPotion;
 
 	void Start () {
-		if (isLocalPlayer) {
 			animator = GetComponent<Animator>();
 			playerAgent = GetComponent<NavMeshAgent> ();
 			player = GetComponent <Player> ();
 			worldInteraction = GetComponent<WorldInteraction> ();
 			healPotion = gameObject.GetComponent<HealPotion> ();
 			manaPotion = gameObject.GetComponent<ManaPotion> ();
-			skills = new Skill[5]; 
-			SetPrivateProperties ();
+			skills = new Skill[5];
+        if (isLocalPlayer)
+        {
+            SetPrivateProperties ();
 			PlayerEventHandler.OnPlayerLevelUp += LevelUp;
 		}
 	}
@@ -200,57 +201,52 @@ public class Attack : NetworkBehaviour
 	public virtual void LearnSecondSpell () {}
 	public virtual void LearnThirdSpell () {}
 
-    protected virtual void CastPrimaryAttack() { 
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-		GetComponent<Animator>().SetBool("AttackedPrimary", false);
-		skills[0].Execute();
+    protected virtual void CastPrimaryAttack() {
+        if (isServer)
+        {
+            skills[0].Execute();
+        }
+        GetComponent<Animator>().SetBool("AttackedPrimary", false);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract(true);
 	}
 
-    protected virtual void CastSecondaryAttack() { 
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-		GetComponent<Animator>().SetBool("AttackedSecondary", false);
-		skills[1].Execute();
+    protected virtual void CastSecondaryAttack() {
+        if (isServer)
+        {
+            skills[1].Execute();
+        }
+        GetComponent<Animator>().SetBool("AttackedSecondary", false);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract(true);
 	}
 
-    protected virtual void CastFirstSpell() { 
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-		GetComponent<Animator>().SetBool("UsedFirstSpell", false);
-		skills[2].Execute();
+    protected virtual void CastFirstSpell() {
+        if (isServer)
+        {
+            skills[2].Execute();
+        }
+        GetComponent<Animator>().SetBool("UsedFirstSpell", false);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract(true);
 	}
 
-    protected virtual void CastSecondSpell() { 
-		if (!isLocalPlayer)
+    protected virtual void CastSecondSpell() {
+        if (isServer)
 		{
-			return;
-		}
-		GetComponent<Animator>().SetBool("UsedSecondSpell", false);
-		skills[3].Execute();
-		playerAgent.isStopped = false;
+            skills[3].Execute();
+        }
+        GetComponent<Animator>().SetBool("UsedSecondSpell", false);
+        playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract(true);
 	}
 
-    protected virtual void CastThirdSpell() { 
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-		GetComponent<Animator>().SetBool("UsedThirdSpell", false);
-		skills[4].Execute();
+    protected virtual void CastThirdSpell() {
+        if (isServer)
+        {
+            skills[4].Execute();
+        }
+        GetComponent<Animator>().SetBool("UsedThirdSpell", false);
 		playerAgent.isStopped = false;
 		worldInteraction.SetCanInteract(true);
 	}
