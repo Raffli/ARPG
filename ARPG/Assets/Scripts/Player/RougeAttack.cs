@@ -56,10 +56,6 @@ public class RougeAttack : Attack {
 	}
 
 	private void DisableSwords() {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
         leftSwordAttack.DisableSword ();
 		rightSwordAttack.DisableSword ();
 	}
