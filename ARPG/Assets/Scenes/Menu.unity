@@ -4306,7 +4306,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 431}
-  m_SizeDelta: {x: 267.7, y: 106}
+  m_SizeDelta: {x: 700, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125722936
 MonoBehaviour:
@@ -4340,7 +4340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'MENU
+  m_Text: 'DIABLO IV
 
 '
 --- !u!222 &2125722937

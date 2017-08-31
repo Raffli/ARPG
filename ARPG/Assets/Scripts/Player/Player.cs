@@ -165,6 +165,7 @@ public class Player : NetworkBehaviour {
         if (!isServer) {
             LevelUp();
             attack.LevelUp(level);
+			CharacterManager.Instance.UpdateLevel (level);
         }
     }
 
@@ -177,7 +178,6 @@ public class Player : NetworkBehaviour {
     }
 
     private void LevelUp() {
-        Debug.Log("level it up " + className);
         CmdSpawnEffect();
         level++;
         xp -= xpToLevel;

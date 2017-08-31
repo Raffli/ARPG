@@ -98,7 +98,8 @@ public class CharacterManager : MonoBehaviour {
 		}
 	}
 
-	private void UpdateLevel (int newLevel) {
+	public void UpdateLevel (int newLevel) {
+		Debug.Log ("new level for " + playerClass.text + " is " + newLevel);
 		playerLevel.text = "Level " + newLevel;
 	}
 
