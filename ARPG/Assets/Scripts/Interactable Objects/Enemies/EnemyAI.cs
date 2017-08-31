@@ -103,7 +103,7 @@ public class EnemyAI: NetworkBehaviour {
     void DealDamage() {
         if (player)
         {
-            player.TakeDamage(damage*level);
+            player.TakeDamage(damage * level);
         }
     }
 
