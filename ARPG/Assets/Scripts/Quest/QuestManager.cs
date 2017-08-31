@@ -50,24 +50,38 @@ public class QuestManager : MonoBehaviour {
 
 	public void StartQuest (int index) {
 		if (questsActive < maximumQuestsActive) {
-			questsActive++;
-			quests [index].active = true;
-			quests [index].uiSlot = questsActive;
-			DisplayQuest (index);
+			if (!quests [index].active && !quests [index].done) {
+				quests [index].active = true;
+				quests [index].uiSlot = questsActive;
+				questsActive++;
+				DisplayQuest (index);
+			}
 		}
 	}
 
 	public void FinishQuest (int index) {
-		quests [index].done = true;
-		quests [index].active = false;
+		if (!quests [index].done) {
+			quests [index].done = true;
+			quests [index].active = false;
 
-		if (isOnServer) {
-			PlayerEventHandler.XpGained (quests [index].xp);
-		}
-		if (quests [index].uiSlot == 1) {
-			if (quest2.activeSelf) {
-				quest1Title.text = quest2Title.text;
-				quest1Task.text = quest2Task.text;
+			if (isOnServer) {
+				PlayerEventHandler.XpGained (quests [index].xp);
+			}
+			if (quests [index].uiSlot == 1) {
+				if (quest2.activeSelf) {
+					quest1Title.text = quest2Title.text;
+					quest1Task.text = quest2Task.text;
+					if (quest3.activeSelf) {
+						quest2Title.text = quest3Title.text;
+						quest2Task.text = quest3Task.text;
+						quest3.SetActive (false);
+					} else {
+						quest2.SetActive (false);
+					}
+				} else {
+					quest1.SetActive (false);
+				}
+			} else if (quests [index].uiSlot == 2) {
 				if (quest3.activeSelf) {
 					quest2Title.text = quest3Title.text;
 					quest2Task.text = quest3Task.text;
@@ -75,21 +89,11 @@ public class QuestManager : MonoBehaviour {
 				} else {
 					quest2.SetActive (false);
 				}
-			} else {
-				quest1.SetActive (false);
-			}
-		} else if (quests [index].uiSlot == 2) {
-			if (quest3.activeSelf) {
-				quest2Title.text = quest3Title.text;
-				quest2Task.text = quest3Task.text;
+			} else if (quests [index].uiSlot == 3) {
 				quest3.SetActive (false);
-			} else {
-				quest2.SetActive (false);
-			}
-		} else if (quests [index].uiSlot == 3) {
-			quest3.SetActive (false);
-		} 
-		questsActive--;
+			} 
+			questsActive--;
+		}
 	}
 
 	private void DisplayQuest (int index) {
