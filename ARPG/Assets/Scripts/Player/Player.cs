@@ -119,10 +119,11 @@ public class Player : NetworkBehaviour {
 			InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
 			InventoryEventHandler.OnItemDestroyed += DestroyItem;
 
-			PlayerEventHandler.OnXpGained += GiveXP;
 			InvokeRepeating ("RegenManaAndHealth", 1f, 1f);
 			
 		}
+        PlayerEventHandler.OnXpGained += GiveXP;
+
         StartCoroutine(LearnPrimarySkill());
     }
 
@@ -134,14 +135,16 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void GiveXP (int amount) {
-		if (isLocalPlayer) {
-			xp += amount;
-			HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
-			if (xp >= xpToLevel) {
-				PlayerEventHandler.LevelUp (level + 1);
-				LevelUp ();
-			}
-		}
+        if (isLocalPlayer)
+        {
+            HUDManager.Instance.UpdateXPBar(xp, xpToLevel);
+        }
+        xp += amount;
+        if (xp >= xpToLevel)
+        {
+            PlayerEventHandler.LevelUp(level + 1);
+            LevelUp();
+        }
 	}
 
     [Command]
