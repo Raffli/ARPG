@@ -119,9 +119,6 @@ public class Player : NetworkBehaviour {
             InventoryEventHandler.OnItemBagged += AddItemToBag;
             InventoryEventHandler.OnItemUnbagged += RemoveItemFromBag;
             InventoryEventHandler.OnItemDestroyed += DestroyItem;
-
-            InvokeRepeating("RegenManaAndHealth", 1f, 1f);
-
         }
         playerIsOnServer = isServer;
         QuestManager.Instance.isOnServer = playerIsOnServer;
@@ -130,6 +127,7 @@ public class Player : NetworkBehaviour {
             PlayerEventHandler.OnXpGained += GiveXP;
         }
         StartCoroutine(LearnPrimarySkill());
+		InvokeRepeating("RegenManaAndHealth", 1f, 1f);
     }
 
     private void Update()
