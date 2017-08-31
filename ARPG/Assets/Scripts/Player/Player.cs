@@ -360,13 +360,10 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void TakeDamage (int amount) {
-        if (isLocalPlayer)
+        amount -= armor.GetValue();
+        if (amount > 0)
         {
-            amount -= armor.GetValue();
-            if (amount > 0)
-            {
-                ReduceHealth(amount);
-            }
+            ReduceHealth(amount);
         }
 	}
 
@@ -390,52 +387,65 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void Heal (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             currentHealth += amount;
             if (currentHealth > health.GetValue())
             {
                 currentHealth = health.GetValue();
             }
+        }
+        if (isLocalPlayer)
+        {
             HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
         }
-	}
+    }
 
 	public void ReduceHealth (int amount) {
-        if (isLocalPlayer)
+        print("reduceHealth" + isServer + isLocalPlayer + amount);
+        if (isServer)
         {
             if (currentHealth > health.GetValue())
             {
                 currentHealth = health.GetValue();
             }
             currentHealth -= amount;
-            HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
             if (currentHealth <= 0)
             {
                 Die();
             }
         }
-	}
+        if (isLocalPlayer) {
+            HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
+        }
+    }
 
 	public void IncreaseMana (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             currentMana += amount;
             if (currentMana > mana.GetValue())
             {
                 currentMana = mana.GetValue();
             }
-            HUDManager.Instance.UpdateMana(currentMana, maximumMana);
+            
         }
-	}
-
-	public void ReduceMana (int amount) {
         if (isLocalPlayer)
         {
-            currentMana -= amount;
             HUDManager.Instance.UpdateMana(currentMana, maximumMana);
         }
-	}
+    }
+
+	public void ReduceMana (int amount) {
+        if (isServer)
+        {
+            currentMana -= amount;
+        }
+        if (isLocalPlayer)
+        {
+            HUDManager.Instance.UpdateMana(currentMana, maximumMana);
+        }
+    }
 
 	void Die() {
 		currentHealth = maximumHealth;
