@@ -102,7 +102,8 @@ public class Player : NetworkBehaviour {
         currentMana = maximumMana;
 
         if (isLocalPlayer) {
-            PlayerEventHandler.LevelUp(level);
+			LootManager.Instance.UpdateLevel (level);
+			CharacterManager.Instance.UpdateLevel (level);
             CharacterManager.Instance.player = this;
             LootManager.Instance.playerClass = className;
             InventoryManager.Instance.SetPlayerModel(playerModel);
@@ -122,10 +123,7 @@ public class Player : NetworkBehaviour {
             InvokeRepeating("RegenManaAndHealth", 1f, 1f);
 
         }
-        if (isServer)
-        {
-            PlayerEventHandler.OnXpGained += GiveXP;
-        }
+
         StartCoroutine(LearnPrimarySkill());
     }
 
@@ -137,14 +135,17 @@ public class Player : NetworkBehaviour {
     }
 
     public void GiveXP(int amount) {
-        xp += amount;
-        if (xp >= xpToLevel)
-        {
-            PlayerEventHandler.LevelUp(level + 1);
-            LevelUp();
-            RpcLevelUpOnClient();
-        }
-        RpcUpdateXpBar();
+		if (isServer)
+		{
+	        xp += amount;
+	        if (xp >= xpToLevel)
+	        {
+	            LevelUp();
+				attack.LevelUp (level);
+	            RpcLevelUpOnClient();
+	        }
+	        RpcUpdateXpBar();
+		}
     }
 
     [ClientRpc]
@@ -184,6 +185,8 @@ public class Player : NetworkBehaviour {
 			dexterity.baseValue += 2;
 		}
 		HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
+		CharacterManager.Instance.UpdateLevel (level);
+		LootManager.Instance.UpdateLevel (level);
 	}
 
 

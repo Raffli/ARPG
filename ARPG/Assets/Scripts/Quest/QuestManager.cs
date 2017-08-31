@@ -58,7 +58,7 @@ public class QuestManager : MonoBehaviour {
 	public void FinishQuest (int index) {
 		quests [index].done = true;
 		quests [index].active = false;
-		PlayerEventHandler.XpGained (quests [index].xp);
+		CharacterManager.Instance.GainXp (quests [index].xp);
 		if (quests [index].uiSlot == 1) {
 			if (quest2.activeSelf) {
 				quest1Title.text = quest2Title.text;
