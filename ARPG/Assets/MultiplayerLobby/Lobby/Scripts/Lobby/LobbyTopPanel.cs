@@ -24,7 +24,6 @@ namespace Prototype.NetworkLobby
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                print(exitIsDisplayed);
                 ToggleVisibilityOfExitDialog(!exitIsDisplayed);
             }
 
