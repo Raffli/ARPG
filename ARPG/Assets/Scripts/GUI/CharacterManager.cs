@@ -58,6 +58,8 @@ public class CharacterManager : MonoBehaviour {
 		secondSpell = skillsGroup.Find ("Second").transform.GetChild (0).GetComponent<Text> ();
 		thirdSpellIcon = skillsGroup.Find ("Third").GetComponent<Image> ();
 		thirdSpell = skillsGroup.Find ("Third").transform.GetChild (0).GetComponent<Text> ();
+
+		PlayerEventHandler.OnPlayerLevelUp += UpdateLevel;
 	}
 
 	void Update () {
@@ -96,11 +98,7 @@ public class CharacterManager : MonoBehaviour {
 		}
 	}
 
-	public void GainXp (int amount) {
-		player.GiveXP (amount);
-	}
-
-	public void UpdateLevel (int newLevel) {
+	private void UpdateLevel (int newLevel) {
 		playerLevel.text = "Level " + newLevel;
 	}
 

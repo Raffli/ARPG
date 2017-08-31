@@ -40,6 +40,7 @@ public class Attack : NetworkBehaviour
         if (isLocalPlayer)
         {
             SetPrivateProperties ();
+			PlayerEventHandler.OnPlayerLevelUp += LevelUp;
 		}
 	}
 

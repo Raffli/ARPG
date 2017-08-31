@@ -54,7 +54,7 @@ public class EnemyHealth : NetworkBehaviour {
 		if (Random.Range (0, 4) == 0) {
 			LootManager.Instance.SpawnLoot (transform.position);
 		}
-		CharacterManager.Instance.GainXp(xp);
+		PlayerEventHandler.XpGained (xp);
         StartCoroutine(RemoveSelf());
     }
 

@@ -24,9 +24,11 @@ public class LootManager : MonoBehaviour {
 		} else {
 			Instance = this;
 		}
+
+		PlayerEventHandler.OnPlayerLevelUp += UpdateLevel;
 	}
 
-	public void UpdateLevel (int newLevel) {
+	private void UpdateLevel (int newLevel) {
 		playerLevel = newLevel;
 	}
 
