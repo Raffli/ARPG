@@ -132,6 +132,16 @@ public class Player : NetworkBehaviour {
         StartCoroutine(LearnPrimarySkill());
     }
 
+    private void Update()
+    {
+        if (isLocalPlayer)
+        {
+            HUDManager.Instance.UpdateXPBar(xp, xpToLevel);
+            HUDManager.Instance.UpdateMana(currentMana, maximumMana);
+            HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
+        }
+    }
+
     IEnumerator LearnPrimarySkill() {
         yield return new WaitForSeconds(0.1f);
         attack.healPotion.SetProperties(this);
@@ -141,27 +151,18 @@ public class Player : NetworkBehaviour {
 
     public void GiveXP(int amount) {
         xp += amount;
-		Debug.Log ("give xp " + amount + " new xp: " + xp + " xp to level: " + xpToLevel);
         if (xp >= xpToLevel)
         {
             PlayerEventHandler.LevelUp(level + 1);
             LevelUp();
             RpcLevelUpOnClient();
         }
-        RpcUpdateXpBar();
     }
 
-    [ClientRpc]
-    private void RpcUpdateXpBar()
-    {
-        HUDManager.Instance.UpdateXPBar(xp, xpToLevel);
-    }
 
     [ClientRpc]
     private void RpcLevelUpOnClient() {
-		Debug.Log ("is server " + isServer);
 		if (!isServer) {
-			Debug.Log ("client, level up!");
 			LevelUp ();
 			attack.LevelUp (level);
 		}
@@ -191,9 +192,6 @@ public class Player : NetworkBehaviour {
 			intelligence.baseValue += 2;
 		} else {
 			dexterity.baseValue += 2;
-		}
-		if (isLocalPlayer) {
-			HUDManager.Instance.UpdateXPBar (xp, xpToLevel);
 		}
 	}
 
@@ -360,13 +358,10 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void TakeDamage (int amount) {
-        if (isLocalPlayer)
+        amount -= armor.GetValue();
+        if (amount > 0)
         {
-            amount -= armor.GetValue();
-            if (amount > 0)
-            {
-                ReduceHealth(amount);
-            }
+            ReduceHealth(amount);
         }
 	}
 
@@ -390,52 +385,49 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void Heal (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             currentHealth += amount;
             if (currentHealth > health.GetValue())
             {
                 currentHealth = health.GetValue();
             }
-            HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
         }
-	}
+    }
 
 	public void ReduceHealth (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             if (currentHealth > health.GetValue())
             {
                 currentHealth = health.GetValue();
             }
             currentHealth -= amount;
-            HUDManager.Instance.UpdateHP(currentHealth, maximumHealth);
             if (currentHealth <= 0)
             {
                 Die();
             }
         }
-	}
+    }
 
 	public void IncreaseMana (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             currentMana += amount;
             if (currentMana > mana.GetValue())
             {
                 currentMana = mana.GetValue();
             }
-            HUDManager.Instance.UpdateMana(currentMana, maximumMana);
+            
         }
-	}
+    }
 
 	public void ReduceMana (int amount) {
-        if (isLocalPlayer)
+        if (isServer)
         {
             currentMana -= amount;
-            HUDManager.Instance.UpdateMana(currentMana, maximumMana);
         }
-	}
+    }
 
 	void Die() {
 		currentHealth = maximumHealth;
